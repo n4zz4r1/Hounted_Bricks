@@ -1,0 +1,1175 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: BouncyLocalizer_pt-BR
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: pt-BR
+  m_SharedData: {fileID: 11400000, guid: 93d4d1d1261026540af4b11b377b1aff, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 282998755328
+    m_Localized: Personagem
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309760
+    m_Localized: Mochila
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309761
+    m_Localized: Batalha
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309762
+    m_Localized: Campanha
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309763
+    m_Localized: Loja
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309764
+    m_Localized: Mochila
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309765
+    m_Localized: Pedra Torta
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309766
+    m_Localized: Pedra forte, porem quebra depois de alguns hits
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309767
+    m_Localized: Pedra Flecha
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309768
+    m_Localized: Pedra fraca, porem passa pelos inimigos
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309769
+    m_Localized: Pedra Bomba
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309770
+    m_Localized: Pedra forte que explode e tem chance de queimar inimigos
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309771
+    m_Localized: Pedra Redonda
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309772
+    m_Localized: Pedra comun com forca media que nao quebra
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309773
+    m_Localized: Comun
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309774
+    m_Localized: Incomum
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309775
+    m_Localized: Rara
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309776
+    m_Localized: Legendaria
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309777
+    m_Localized: Dourada
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309778
+    m_Localized: Pedra
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309779
+    m_Localized: Special
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309780
+    m_Localized: Comum
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309781
+    m_Localized: Habilitade
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309782
+    m_Localized: Personagen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309783
+    m_Localized: Personagens
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309784
+    m_Localized: Lucas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309785
+    m_Localized: Slingshot Master
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309786
+    m_Localized: 'focus on rock and movement improvments
+
+      has abilities that
+      make him stronger or make more money from monsters
+
+      can construct mines'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309787
+    m_Localized: Bill
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309788
+    m_Localized: Venon Master
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309789
+    m_Localized: 'Specialized with poison rocks
+
+      Has be focus on poison effects
+      or'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309790
+    m_Localized: Lisa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309791
+    m_Localized: Rock Fire Caster
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309792
+    m_Localized: 'specialysed in fire rocks
+
+      fire damage, range and duration
+      are increased by lisa
+
+      Can have healing abilities'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309793
+    m_Localized: Mapa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309794
+    m_Localized: Shop
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309795
+    m_Localized: Moedas e Diamantes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309796
+    m_Localized: R$ 9,90
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309797
+    m_Localized: R$ 9,90
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309798
+    m_Localized: 10
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309799
+    m_Localized: 150
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309800
+    m_Localized: 10
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309801
+    m_Localized: Uru Studios Apresenta
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309802
+    m_Localized: Pedra Torta
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309803
+    m_Localized: Pedra forte, porem quebra depois de alguns hits
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309804
+    m_Localized: Pedra forte, porem quebra depois de alguns hits
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309805
+    m_Localized: Pedra Redonda
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309806
+    m_Localized: Pedra de forca media, e que nao quebra
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309807
+    m_Localized: Pedra de forca media, e que nao quebra
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309808
+    m_Localized: Pedra Flecha
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309809
+    m_Localized: Pedra fraca mas que corta os inimigos
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309810
+    m_Localized: Pedra fraca mas que corta os inimigos
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309811
+    m_Localized: Pedra Bomba
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309812
+    m_Localized: Pedra muito forte que explode e tem probabilidade de incinerar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309813
+    m_Localized: Pedra muito forte que explode e tem probabilidade de incinerar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309814
+    m_Localized: Lucas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309815
+    m_Localized: Mestre em Pedras
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309816
+    m_Localized: Mestre em Pedras
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309817
+    m_Localized: Lisa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309818
+    m_Localized: The Fireshot Master
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309819
+    m_Localized: 'Specialysed in fire rocks
+
+      Fire damage, range and duration
+      are increased by lisa
+
+      Can have healing abilities'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309820
+    m_Localized: Bill
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309821
+    m_Localized: the poison specialist
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309822
+    m_Localized: 'Specialized with poison rocks
+
+      Has be focus on poison effects '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309823
+    m_Localized: Willy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309824
+    m_Localized: The Wizard
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309825
+    m_Localized: The Wizard
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309826
+    m_Localized: 'Started package: Receive a bag with 1000 coins'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309827
+    m_Localized: 'Magic Wand: sligtly increace amount of coins inside chests'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309828
+    m_Localized: Brutus
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309829
+    m_Localized: The dog
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309830
+    m_Localized: The dog
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309831
+    m_Localized: Remove all ads from the game and turn video chest into normal chest
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309832
+    m_Localized: 'Super Snif: Sligly increase chance to find chests in game'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309833
+    m_Localized: Diamont Pack
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309834
+    m_Localized: Small Diamont pack
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309835
+    m_Localized: Small Diamont pack
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309836
+    m_Localized: Big Diamont Pack
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309837
+    m_Localized: A big number of diamonts
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309838
+    m_Localized: A big number of diamonts
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309839
+    m_Localized: Crooked Improvement
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309840
+    m_Localized: Improve power and durability
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309841
+    m_Localized: Improve power and durability
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309842
+    m_Localized: Rounded Improvement
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309843
+    m_Localized: Improve power
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309844
+    m_Localized: Improve power
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309845
+    m_Localized: Arrowed Improvement
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309846
+    m_Localized: Improve power and durability
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309847
+    m_Localized: Improve power and durability
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309848
+    m_Localized: Bomb Improvement
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309849
+    m_Localized: Improve power
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309850
+    m_Localized: Improve power
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309851
+    m_Localized: run lucas, run
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309852
+    m_Localized: run lucas, run
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309853
+    m_Localized: Increace the number of times lucas can move during a match from
+      2 to 6
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309854
+    m_Localized: Sand bag Acelerator
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309855
+    m_Localized: Sand bag Acelerator
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309856
+    m_Localized: Decrease sandbag ability cooldown from 2 turns to 1.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309857
+    m_Localized: more rocks please
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309858
+    m_Localized: more rocks please
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309859
+    m_Localized: get a change to duplicate or triplicate each rock you throw
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309860
+    m_Localized: rock party
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309861
+    m_Localized: rock party
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309862
+    m_Localized: make rocks colide to each other, making it to spread a lot more.
+      Limit of 3 per match.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309863
+    m_Localized: no pain, no gain
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309864
+    m_Localized: no pain, no gain
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309865
+    m_Localized: Make lucas slingshot shoot slightly faster and deal more damage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309866
+    m_Localized: more love please
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309867
+    m_Localized: more love please
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309868
+    m_Localized: increase lucas lifes by three
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504064
+    m_Localized: perfect aim
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504065
+    m_Localized: perfect aim
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504066
+    m_Localized: make fire aim larger making shots more precise
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504067
+    m_Localized: Lets rock
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504068
+    m_Localized: Lets rock
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504069
+    m_Localized: Throw five rocks at the same time for each rock you have. Use only
+      once per match
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504070
+    m_Localized: its a trap
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504071
+    m_Localized: its a trap
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504072
+    m_Localized: Place mines that explodes on monsters, dealind a lot of damage.
+      Cooldown in 4 turns.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504073
+    m_Localized: give me money
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504074
+    m_Localized: give me money
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504075
+    m_Localized: Become a true farmer, making monsters drop more coins than usual
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504076
+    m_Localized: light it up
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504077
+    m_Localized: light it up
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504078
+    m_Localized: Burn all your rocks per turn. Refresh after 3 turns.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504079
+    m_Localized: My Lucky day One
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504080
+    m_Localized: My Lucky day One
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504081
+    m_Localized: Get a small chance to put one or more rocks you throw on fire, each
+      attack.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504082
+    m_Localized: combo fire
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504083
+    m_Localized: combo fire
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504084
+    m_Localized: Put rocks on fire after a few hits and rebounces
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504085
+    m_Localized: medic !
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504086
+    m_Localized: medic !
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504087
+    m_Localized: Get one more heart and a small change to heal himself each turn
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504088
+    m_Localized: firewall
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504089
+    m_Localized: firewall
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504090
+    m_Localized: Get a good chance to rebounce fireballs cast by mages, even on sandbags
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504091
+    m_Localized: my lucky day two
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504092
+    m_Localized: my lucky day two
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504093
+    m_Localized: Get a small chance to put on fire one or more rocks you throw on
+      each attack.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504094
+    m_Localized: fire power
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504095
+    m_Localized: fire power
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504096
+    m_Localized: increase the damage and duration of your fire on monsters
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504097
+    m_Localized: fire everywere
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504098
+    m_Localized: fire everywere
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504099
+    m_Localized: increase the range of you fire, making it spread more
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504100
+    m_Localized: fireworks
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504101
+    m_Localized: fireworks
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504102
+    m_Localized: Shoot a lot of firerocks without counting your turn. Refresh after
+      4 turns.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504103
+    m_Localized: fire bomb
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504104
+    m_Localized: fire bomb
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504105
+    m_Localized: Makes bomb rocks aways incinerate
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504106
+    m_Localized: Acid Bomb
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504107
+    m_Localized: Acid Bomb
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504108
+    m_Localized: turn bomb rock into poison rocks, making it aways poison enemies
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504109
+    m_Localized: Lucky Poison
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504110
+    m_Localized: Lucky Poison
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504111
+    m_Localized: get a small chance to put poison on every rock you throw
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504112
+    m_Localized: poison per turn
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504113
+    m_Localized: poison per turn
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504114
+    m_Localized: When is active, put poison on at least 3 rocks you thrown . Coldown
+      after 3 turns
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504115
+    m_Localized: poison all
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504116
+    m_Localized: poison all
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504117
+    m_Localized: Poison all rocks at once. You can only use it twice per match
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504118
+    m_Localized: lucky poison two
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504119
+    m_Localized: lucky poison two
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504120
+    m_Localized: get a small chance, or increase it, to put poison on every rock
+      you throw
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504121
+    m_Localized: perfect shoes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504122
+    m_Localized: perfect shoes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504123
+    m_Localized: Increace the number of times lucas can move during a match from
+      2 to 5
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504124
+    m_Localized: ultra aim
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504125
+    m_Localized: ultra aim
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504126
+    m_Localized: make your aim rebounce walls, making it much more precise
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504127
+    m_Localized: Acid rain
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504128
+    m_Localized: Acid rain
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504129
+    m_Localized: create an acid rains that random hit your enemies
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504130
+    m_Localized: poison perfection
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504131
+    m_Localized: poison perfection
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504132
+    m_Localized: make your poison last longer and cause more damage on enemies
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504133
+    m_Localized: Viruz
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504134
+    m_Localized: Oh No!!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504135
+    m_Localized: Make poison Spread
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504136
+    m_Localized: Fechar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504137
+    m_Localized: Entendido !
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504138
+    m_Localized: Voltar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504139
+    m_Localized: Ok
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504140
+    m_Localized: Cartas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504141
+    m_Localized: Detalhes da Carta
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504142
+    m_Localized: Titulo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504143
+    m_Localized: Quantidade
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504144
+    m_Localized: Atualizar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504145
+    m_Localized: Disponivel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504146
+    m_Localized: Level
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504147
+    m_Localized: Reiniciar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504148
+    m_Localized: Sair
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504149
+    m_Localized: Tipo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504150
+    m_Localized: Updates
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504151
+    m_Localized: Qualidate
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504152
+    m_Localized: "Configura\xE7\xF5es"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504153
+    m_Localized: Sober nos
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504154
+    m_Localized: Pedra
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504155
+    m_Localized: Melhorias de Pedras
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504156
+    m_Localized: Pedras
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504157
+    m_Localized: Efeitos Sonoros
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504158
+    m_Localized: Musica
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504159
+    m_Localized: Idioma
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504160
+    m_Localized: Moedas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504161
+    m_Localized: Moeda
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504162
+    m_Localized: Diamante
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504163
+    m_Localized: Diamantes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504164
+    m_Localized: Baus
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504165
+    m_Localized: Encontrados
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504166
+    m_Localized: Tier
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504167
+    m_Localized: Nao Encontrado
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504168
+    m_Localized: Habilidades
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504169
+    m_Localized: Cartas Especiais
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504170
+    m_Localized: Habilidade
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504171
+    m_Localized: 'Select an ability above.
+
+      You can choose one per tier.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504172
+    m_Localized: Selecionar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504173
+    m_Localized: 'Type:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504174
+    m_Localized: Personagens
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504175
+    m_Localized: Turn Based Card
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504176
+    m_Localized: Turns to reload
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504177
+    m_Localized: Consumable Card
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504178
+    m_Localized: Times per stage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504179
+    m_Localized: Improvement
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504180
+    m_Localized: Permanent Improvement
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504181
+    m_Localized: Jogar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504182
+    m_Localized: Recompensas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504183
+    m_Localized: Fase
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504184
+    m_Localized: Jardim
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504185
+    m_Localized: Cozinha
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504186
+    m_Localized: Sala de Estar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504187
+    m_Localized: Banheiro
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504188
+    m_Localized: Quarto
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504189
+    m_Localized: Cripta
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504190
+    m_Localized: Facil
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504191
+    m_Localized: Medio
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504192
+    m_Localized: Dificil
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504193
+    m_Localized: Impossivel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 158335043784704
+    m_Localized: Super Misterios
+    m_Metadata:
+      m_Items: []
+  - m_Id: 874966296449024
+    m_Localized: Carta
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1152946960748544
+    m_Localized: Sem vidas suficientes.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1546572601643008
+    m_Localized: Voce perdeu.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1546572622614528
+    m_Localized: Voce ganhou!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1546572622614529
+    m_Localized: Pausado
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3659807442227200
+    m_Localized: Limpar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3659807467393024
+    m_Localized: Completar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6506369054822400
+    m_Localized: Andar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6506369079988224
+    m_Localized: Mova rapido
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6506369079988225
+    m_Localized: Make your character to move before it shots
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6541673090404352
+    m_Localized: Choose where to go below
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10315310922616832
+    m_Localized: MAX
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10315310943588352
+    m_Localized: Common
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10315310943588353
+    m_Localized: Uncommon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10315310943588354
+    m_Localized: Rare
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10315310943588355
+    m_Localized: Legendary
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10315310943588356
+    m_Localized: Gold
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10317413057449984
+    m_Localized: Power
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10317413061644288
+    m_Localized: Resistance
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10317413061644289
+    m_Localized: Health
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10317413061644290
+    m_Localized: Aim
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10317413061644291
+    m_Localized: Magic
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10317413061644292
+    m_Localized: Consumable
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10317413061644293
+    m_Localized: Probability
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10317413061644294
+    m_Localized: Rarity
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10623327006248960
+    m_Localized: Gem Slot
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10856984828596224
+    m_Localized: Range
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12721886790832128
+    m_Localized: Carregando
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12749952426594304
+    m_Localized: None
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12749952460148736
+    m_Localized: Moedas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12749952460148737
+    m_Localized: Diamantes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12749952460148738
+    m_Localized: Scroll de Pedra
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12749952460148739
+    m_Localized: Scroll de Personagem
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12749952460148740
+    m_Localized: Scroll para Abilidade
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12749952460148741
+    m_Localized: Bau
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12749952460148742
+    m_Localized: Chave de Bau
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12749952460148743
+    m_Localized: Carta
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12749952460148744
+    m_Localized: Dinheiro
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12767305407287296
+    m_Localized: Comprado.
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

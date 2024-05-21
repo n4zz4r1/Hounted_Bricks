@@ -1,0 +1,1148 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: BouncyLocalizer Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: BouncyLocalizer
+  m_TableCollectionNameGuidString: 93d4d1d1261026540af4b11b377b1aff
+  m_Entries:
+  - m_Id: 158335043784704
+    m_Key: Game.Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 282998755328
+    m_Key: Menu.Character
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309760
+    m_Key: Menu.Bag
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309761
+    m_Key: Menu.Battle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309762
+    m_Key: Menu.Campaign
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309763
+    m_Key: Menu.Shop
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309764
+    m_Key: BagScene.Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309765
+    m_Key: Rock.Crooked
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309766
+    m_Key: Rock.Crooked.Descr
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309767
+    m_Key: Rock.Arrow
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309768
+    m_Key: Rock.Arrow.Descr
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309769
+    m_Key: Rock.Bomb
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309770
+    m_Key: Rock.Bomb.Descr
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309771
+    m_Key: Rock.Round
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309772
+    m_Key: Rock.Round.Descr
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309773
+    m_Key: Quality.Common
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309774
+    m_Key: Quality.Uncommon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309775
+    m_Key: Quality.Rare
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309776
+    m_Key: Quality.Legendary
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309777
+    m_Key: Quality.Gold
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309778
+    m_Key: CardType.ROCK
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309779
+    m_Key: CardType.SPECIAL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309780
+    m_Key: CardType.NONE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309781
+    m_Key: CardType.ABILITY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309782
+    m_Key: CardType.CHARACTER
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309783
+    m_Key: CharacterScene.Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309784
+    m_Key: Lucas.Name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309785
+    m_Key: Lucas.Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309786
+    m_Key: Lucas.FullDescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309787
+    m_Key: Bill.Name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309788
+    m_Key: Bill.Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309789
+    m_Key: Bill.FullDescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309790
+    m_Key: Lisa.Name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309791
+    m_Key: Lisa.Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309792
+    m_Key: Lisa.FullDescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309793
+    m_Key: MapScene.Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309794
+    m_Key: ShopScene.Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309795
+    m_Key: ShopScene.Title.Coins
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309796
+    m_Key: Cost.Diamont.Pack1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309797
+    m_Key: Cost.Diamont.Pack2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309798
+    m_Key: Cost.Gold.Pack1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309799
+    m_Key: Cost.Gold.Pack2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309800
+    m_Key: Cost.Treasure.Pack1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309801
+    m_Key: Label.UruStudios.Presents
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309802
+    m_Key: 001_Crooked_Rock.Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309803
+    m_Key: 001_Crooked_Rock.Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309804
+    m_Key: 001_Crooked_Rock.Detail
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309805
+    m_Key: 002_Rounded_Rock.Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309806
+    m_Key: 002_Rounded_Rock.Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309807
+    m_Key: 002_Rounded_Rock.Detail
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309808
+    m_Key: 003_Arrowed_Rock.Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309809
+    m_Key: 003_Arrowed_Rock.Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309810
+    m_Key: 003_Arrowed_Rock.Detail
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309811
+    m_Key: 004_Bomb_Rock.Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309812
+    m_Key: 004_Bomb_Rock.Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309813
+    m_Key: 004_Bomb_Rock.Detail
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309814
+    m_Key: 005_Char_Lucas.Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309815
+    m_Key: 005_Char_Lucas.Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309816
+    m_Key: 005_Char_Lucas.Detail
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309817
+    m_Key: 006_Char_Lisa.Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309818
+    m_Key: 006_Char_Lisa.Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309819
+    m_Key: 006_Char_Lisa.Detail
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309820
+    m_Key: 007_Char_Bill.Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309821
+    m_Key: 007_Char_Bill.Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309822
+    m_Key: 007_Char_Bill.Detail
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309823
+    m_Key: 008_Special_Char_Willy.Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309824
+    m_Key: 008_Special_Char_Willy.Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309825
+    m_Key: 008_Special_Char_Willy.Detail
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309826
+    m_Key: 008_Special_Char_Willy.Detail2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309827
+    m_Key: 008_Special_Char_Willy.Detail3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309828
+    m_Key: 009_Special_Char_Brutus.Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309829
+    m_Key: 009_Special_Char_Brutus.Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309830
+    m_Key: 009_Special_Char_Brutus.Detail
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309831
+    m_Key: 009_Special_Char_Brutus.Detail2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309832
+    m_Key: 009_Special_Char_Brutus.Detail3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309833
+    m_Key: 010_Special_Small_Diamont_Pack.Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309834
+    m_Key: 010_Special_Small_Diamont_Pack.Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309835
+    m_Key: 010_Special_Small_Diamont_Pack.Detail
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309836
+    m_Key: 011_Special_Big_Diamont_Pack.Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309837
+    m_Key: 011_Special_Big_Diamont_Pack.Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309838
+    m_Key: 011_Special_Big_Diamont_Pack.Detail
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309839
+    m_Key: 012_Improved_Crooked_Rock.Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309840
+    m_Key: 012_Improved_Crooked_Rock.Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309841
+    m_Key: 012_Improved_Crooked_Rock.Detail
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309842
+    m_Key: 013_Improved_Rounded_Rock.Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309843
+    m_Key: 013_Improved_Rounded_Rock.Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309844
+    m_Key: 013_Improved_Rounded_Rock.Detail
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309845
+    m_Key: 014_Improved_Arrowed_Rock.Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309846
+    m_Key: 014_Improved_Arrowed_Rock.Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309847
+    m_Key: 014_Improved_Arrowed_Rock.Detail
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309848
+    m_Key: 015_Improved_Bomb_Rock.Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309849
+    m_Key: 015_Improved_Bomb_Rock.Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309850
+    m_Key: 015_Improved_Bomb_Rock.Detail
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309851
+    m_Key: 016_Ab_Lucas_Move.Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309852
+    m_Key: 016_Ab_Lucas_Move.Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309853
+    m_Key: 016_Ab_Lucas_Move.Detail
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309854
+    m_Key: 017_Ab_Lucas_SandBag.Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309855
+    m_Key: 017_Ab_Lucas_SandBag.Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309856
+    m_Key: 017_Ab_Lucas_SandBag.Detail
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309857
+    m_Key: 018_Ab_Lucas_MoreRockPlease.Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309858
+    m_Key: 018_Ab_Lucas_MoreRockPlease.Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309859
+    m_Key: 018_Ab_Lucas_MoreRockPlease.Detail
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309860
+    m_Key: 019_Ab_Lucas_RockParty.Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309861
+    m_Key: 019_Ab_Lucas_RockParty.Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309862
+    m_Key: 019_Ab_Lucas_RockParty.Detail
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309863
+    m_Key: 020_Ab_Lucas_NoPainNoGain.Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309864
+    m_Key: 020_Ab_Lucas_NoPainNoGain.Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309865
+    m_Key: 020_Ab_Lucas_NoPainNoGain.Detail
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309866
+    m_Key: 021_Ab_Lucas_MoreLovePlease.Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309867
+    m_Key: 021_Ab_Lucas_MoreLovePlease.Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283032309868
+    m_Key: 021_Ab_Lucas_MoreLovePlease.Detail
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504064
+    m_Key: 022_Ab_Lucas_PerfectAim.Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504065
+    m_Key: 022_Ab_Lucas_PerfectAim.Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504066
+    m_Key: 022_Ab_Lucas_PerfectAim.Detail
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504067
+    m_Key: 023_Ab_Lucas_LetsRock.Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504068
+    m_Key: 023_Ab_Lucas_LetsRock.Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504069
+    m_Key: 023_Ab_Lucas_LetsRock.Detail
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504070
+    m_Key: 024_Ab_Lucas_Mine.Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504071
+    m_Key: 024_Ab_Lucas_Mine.Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504072
+    m_Key: 024_Ab_Lucas_Mine.Detail
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504073
+    m_Key: 025_Ab_Lucas_GiveMeMoney.Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504074
+    m_Key: 025_Ab_Lucas_GiveMeMoney.Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504075
+    m_Key: 025_Ab_Lucas_GiveMeMoney.Detail
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504076
+    m_Key: 026_Ab_Lisa_FireByTurn.Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504077
+    m_Key: 026_Ab_Lisa_FireByTurn.Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504078
+    m_Key: 026_Ab_Lisa_FireByTurn.Detail
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504079
+    m_Key: 027_Ab_Lisa_FireByLucky.Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504080
+    m_Key: 027_Ab_Lisa_FireByLucky.Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504081
+    m_Key: 027_Ab_Lisa_FireByLucky.Detail
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504082
+    m_Key: 028_Ab_Lisa_FireByRebounce.Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504083
+    m_Key: 028_Ab_Lisa_FireByRebounce.Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504084
+    m_Key: 028_Ab_Lisa_FireByRebounce.Detail
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504085
+    m_Key: 029_Ab_Lisa_Healer.Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504086
+    m_Key: 029_Ab_Lisa_Healer.Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504087
+    m_Key: 029_Ab_Lisa_Healer.Detail
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504088
+    m_Key: 030_Ab_Lisa_Firewall.Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504089
+    m_Key: 030_Ab_Lisa_Firewall.Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504090
+    m_Key: 030_Ab_Lisa_Firewall.Detail
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504091
+    m_Key: 031_Ab_Lisa_FireByLuckyTwo.Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504092
+    m_Key: 031_Ab_Lisa_FireByLuckyTwo.Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504093
+    m_Key: 031_Ab_Lisa_FireByLuckyTwo.Detail
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504094
+    m_Key: 032_Ab_Lisa_FireStronger.Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504095
+    m_Key: 032_Ab_Lisa_FireStronger.Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504096
+    m_Key: 032_Ab_Lisa_FireStronger.Detail
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504097
+    m_Key: 033_Ab_Lisa_FireSpread.Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504098
+    m_Key: 033_Ab_Lisa_FireSpread.Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504099
+    m_Key: 033_Ab_Lisa_FireSpread.Detail
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504100
+    m_Key: 034_Ab_Lisa_Fireworks.Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504101
+    m_Key: 034_Ab_Lisa_Fireworks.Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504102
+    m_Key: 034_Ab_Lisa_Fireworks.Detail
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504103
+    m_Key: 035_Ab_Lisa_SpecialFireBomb.Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504104
+    m_Key: 035_Ab_Lisa_SpecialFireBomb.Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504105
+    m_Key: 035_Ab_Lisa_SpecialFireBomb.Detail
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504106
+    m_Key: 036_Ab_Bill_AcidBomb.Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504107
+    m_Key: 036_Ab_Bill_AcidBomb.Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504108
+    m_Key: 036_Ab_Bill_AcidBomb.Detail
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504109
+    m_Key: 037_Ab_Bill_PoisonByLucky.Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504110
+    m_Key: 037_Ab_Bill_PoisonByLucky.Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504111
+    m_Key: 037_Ab_Bill_PoisonByLucky.Detail
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504112
+    m_Key: 038_Ab_Bill_PoisonByTurn.Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504113
+    m_Key: 038_Ab_Bill_PoisonByTurn.Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504114
+    m_Key: 038_Ab_Bill_PoisonByTurn.Detail
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504115
+    m_Key: 039_Ab_Bill_PoisonByTimes.Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504116
+    m_Key: 039_Ab_Bill_PoisonByTimes.Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504117
+    m_Key: 039_Ab_Bill_PoisonByTimes.Detail
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504118
+    m_Key: 040_Ab_Bill_PoisonByLuckyTwo.Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504119
+    m_Key: 040_Ab_Bill_PoisonByLuckyTwo.Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504120
+    m_Key: 040_Ab_Bill_PoisonByLuckyTwo.Detail
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504121
+    m_Key: 041_Ab_Bill_PerfectShoes.Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504122
+    m_Key: 041_Ab_Bill_PerfectShoes.Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504123
+    m_Key: 041_Ab_Bill_PerfectShoes.Detail
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504124
+    m_Key: 042_Ab_Bill_UltraAim.Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504125
+    m_Key: 042_Ab_Bill_UltraAim.Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504126
+    m_Key: 042_Ab_Bill_UltraAim.Detail
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504127
+    m_Key: 043_Ab_Bill_AcidRain.Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504128
+    m_Key: 043_Ab_Bill_AcidRain.Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504129
+    m_Key: 043_Ab_Bill_AcidRain.Detail
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504130
+    m_Key: 044_Ab_Bill_SuperPoison.Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504131
+    m_Key: 044_Ab_Bill_SuperPoison.Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504132
+    m_Key: 044_Ab_Bill_SuperPoison.Detail
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504133
+    m_Key: 045_Ab_Bill_Viruz.Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504134
+    m_Key: 045_Ab_Bill_Viruz.Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504135
+    m_Key: 045_Ab_Bill_Viruz.Detail
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6506369054822400
+    m_Key: 046_Basic_Move.Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6506369079988224
+    m_Key: 046_Basic_Move.Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6506369079988225
+    m_Key: 046_Basic_Move.Detail
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12721886790832128
+    m_Key: Label.Loading
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504136
+    m_Key: Label.Buttom.Close
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504137
+    m_Key: Label.Buttom.Gotit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504138
+    m_Key: Label.Buttom.Back
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504139
+    m_Key: Label.Buttom.Ok
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504140
+    m_Key: Label.Title.Deck
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504141
+    m_Key: Label.CardDetail
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504142
+    m_Key: Label.Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504143
+    m_Key: Label.Quantity
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504144
+    m_Key: Label.Upgrade
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504145
+    m_Key: Label.Available
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504146
+    m_Key: Label.Level
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504147
+    m_Key: Label.Restart
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504148
+    m_Key: Label.Leave
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504149
+    m_Key: Label.Type
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504150
+    m_Key: Label.Updates
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504151
+    m_Key: Label.Quality
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504152
+    m_Key: Label.Settings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504153
+    m_Key: Label.About
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504154
+    m_Key: Label.Rock
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504155
+    m_Key: Label.Rock.Improvement
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504156
+    m_Key: Label.Rocks
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504157
+    m_Key: Label.Sound
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504158
+    m_Key: Label.Music
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504159
+    m_Key: Label.Language
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504160
+    m_Key: Label.Coins
+    m_Metadata:
+      m_Items: []
+  - m_Id: 874966296449024
+    m_Key: Label.Card
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504161
+    m_Key: Label.Coin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504162
+    m_Key: Label.Diamont
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504163
+    m_Key: Label.Diamonts
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504164
+    m_Key: Label.Chests
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504165
+    m_Key: Label.Found
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504166
+    m_Key: Label.Tier
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504167
+    m_Key: Label.NotFound
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504168
+    m_Key: Label.Abilities
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504169
+    m_Key: Label.SpecialCards
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504170
+    m_Key: Label.Ability
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504171
+    m_Key: Label.SelectAbility
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3659807442227200
+    m_Key: Label.Clean
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3659807467393024
+    m_Key: Label.AutoFill
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504172
+    m_Key: Label.Select
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504173
+    m_Key: Label.TypeUsage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504174
+    m_Key: Label.Characters
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504175
+    m_Key: Label.CONSUME_PER_TURN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504176
+    m_Key: Label.CONSUME_PER_TURN.Detail
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504177
+    m_Key: Label.CONSUME_ONCE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504178
+    m_Key: Label.CONSUME_ONCE.Detail
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504179
+    m_Key: Label.IMPROVEMENT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504180
+    m_Key: Label.IMPROVEMENT.Detail
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504181
+    m_Key: Label.Play
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504182
+    m_Key: Label.Rewards
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504183
+    m_Key: Label.Stage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504184
+    m_Key: Label.StageType.GARDEN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504185
+    m_Key: Label.StageType.KITCHEN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504186
+    m_Key: Label.StageType.LIVING_ROOM
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504187
+    m_Key: Label.StageType.REST_ROOM
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504188
+    m_Key: Label.StageType.BED_ROOM
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504189
+    m_Key: Label.StageType.CRYPT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504190
+    m_Key: Label.StageDifficultyType.EASY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504191
+    m_Key: Label.StageDifficultyType.MEDIUM
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504192
+    m_Key: Label.StageDifficultyType.HARD
+    m_Metadata:
+      m_Items: []
+  - m_Id: 283036504193
+    m_Key: Label.StageDifficultyType.IMPOSSIBLE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1152946960748544
+    m_Key: Map.NoLifeLeft
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1546572601643008
+    m_Key: Game.Lost
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1546572622614528
+    m_Key: Game.Won
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1546572622614529
+    m_Key: Game.Pause
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6541673090404352
+    m_Key: Label.WhereToMove
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10315310922616832
+    m_Key: Label.MaxLevel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10315310943588352
+    m_Key: CardRarity.COMMON
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10315310943588353
+    m_Key: CardRarity.UNCOMMON
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10315310943588354
+    m_Key: CardRarity.RARE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10315310943588355
+    m_Key: CardRarity.LEGENDARY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10315310943588356
+    m_Key: CardRarity.GOLD
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10317413057449984
+    m_Key: CardAttribute.POWER
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10317413061644288
+    m_Key: CardAttribute.RESISTANCE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10317413061644289
+    m_Key: CardAttribute.HEALTH
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10317413061644290
+    m_Key: CardAttribute.AIM
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10317413061644291
+    m_Key: CardAttribute.MAGIC
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10317413061644292
+    m_Key: CardAttribute.CONSUMABLE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10317413061644293
+    m_Key: CardAttribute.PROBABILITY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10317413061644294
+    m_Key: CardAttribute.RARITY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10623327006248960
+    m_Key: CardAttribute.GEM_SLOT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10856984828596224
+    m_Key: CardAttribute.RANGE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12749952426594304
+    m_Key: ResourceType_NONE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12749952460148736
+    m_Key: ResourceType_COIN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12749952460148737
+    m_Key: ResourceType_DIAMOND
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12749952460148738
+    m_Key: ResourceType_ROCK_SCROLL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12749952460148739
+    m_Key: ResourceType_CHAR_SCROLL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12749952460148740
+    m_Key: ResourceType_ABILITY_SCROLL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12749952460148741
+    m_Key: ResourceType_CHEST
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12749952460148742
+    m_Key: ResourceType_CHEST_KEYS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12749952460148743
+    m_Key: ResourceType_CARD
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12749952460148744
+    m_Key: ResourceType_MONEY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12767305407287296
+    m_Key: Label.SoldOut
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 5602587140032299013
+  references:
+    version: 2
+    RefIds:
+    - rid: 5602587140032299013
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1713186310723
