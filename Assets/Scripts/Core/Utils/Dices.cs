@@ -30,7 +30,6 @@ public abstract class Dices {
                 return (int)(GameDataV1.Instance.level * CoinQuantityDice.Roll());
             case ResourceType.DIAMOND:
                 return (int)(GameDataV1.Instance.level * DiamontQuantityDice.Roll());
-                ;
             case ResourceType.CHEST:
                 return 1; // create dice for chests
             case ResourceType.CARD:
@@ -118,41 +117,38 @@ public class CardDice : AbstractDice<CardDice, Card> {
         new(Card.Card_004_Bomb_Rock, 10f),
 
         new(Card.Card_016_Ab_Lucas_Move, COMMON),
-        new(Card.Card_017_Ab_Lucas_SandBag, COMMON),
-        new(Card.Card_018_Ab_Lucas_MoreRockPlease, UNCOMMON),
-        new(Card.Card_019_Ab_Lucas_RockParty, UNCOMMON),
-        new(Card.Card_020_Ab_Lucas_NoPainNoGain, UNCOMMON),
-        new(Card.Card_021_Ab_Lucas_MoreLovePlease, RARE),
-        new(Card.Card_022_Ab_Lucas_PerfectAim, RARE),
+        new(Card.Card_017_Ab_Lucas_SuperStone, COMMON),
+        new(Card.Card_018_Ab_Lucas_SlingshotMater, UNCOMMON),
+        new(Card.Card_019_Ab_Lucas_SmallRock, UNCOMMON),
+        new(Card.Card_020_Ab_Lucas_Power, UNCOMMON),
+        new(Card.Card_021_Ab_Lucas_RockRain, RARE),
+        new(Card.Card_022_Ab_Lucas_SuperWall, RARE),
         new(Card.Card_023_Ab_Lucas_LetsRock, LEGENDARY),
         new(Card.Card_024_Ab_Lucas_Mine, LEGENDARY),
         new(Card.Card_025_Ab_Lucas_GiveMeMoney, LEGENDARY),
 
-        new(Card.Card_026_Ab_Lisa_FireByTurn, COMMON),
+        new(Card.Card_026_Ab_Lisa_Fire, COMMON),
         new(Card.Card_027_Ab_Lisa_FireByLucky, COMMON),
         new(Card.Card_028_Ab_Lisa_FireByRebounce, COMMON),
         new(Card.Card_029_Ab_Lisa_Healer, UNCOMMON),
         new(Card.Card_030_Ab_Lisa_Firewall, UNCOMMON),
-        new(Card.Card_031_Ab_Lisa_FireByLuckyTwo, RARE),
+        new(Card.Card_031_Ab_Lisa_FireCamp, RARE),
         new(Card.Card_032_Ab_Lisa_FireStronger, RARE),
         new(Card.Card_033_Ab_Lisa_FireSpread, RARE),
         new(Card.Card_034_Ab_Lisa_Fireworks, LEGENDARY),
         new(Card.Card_035_Ab_Lisa_SpecialFireBomb, LEGENDARY),
 
         new(Card.Card_036_Ab_Bill_AcidBomb, COMMON),
-        new(Card.Card_037_Ab_Bill_PoisonByLucky, UNCOMMON),
-        new(Card.Card_038_Ab_Bill_PoisonByTurn, UNCOMMON),
-        new(Card.Card_039_Ab_Bill_PoisonByTimes, UNCOMMON),
-        new(Card.Card_040_Ab_Bill_PoisonByLuckyTwo, RARE),
-        new(Card.Card_041_Ab_Bill_PerfectShoes, RARE),
+        new(Card.Card_037_Ab_Bill_Poison, UNCOMMON),
+        new(Card.Card_038_Ab_Bill_PoisonByLucky, UNCOMMON),
+        new(Card.Card_039_Ab_Bill_PoisonByLuckTwo, UNCOMMON),
+        new(Card.Card_040_Ab_Bill_Barrel, RARE),
+        new(Card.Card_041_Ab_Bill_Run, RARE),
         new(Card.Card_042_Ab_Bill_UltraAim, RARE),
         new(Card.Card_043_Ab_Bill_AcidRain, LEGENDARY),
         new(Card.Card_044_Ab_Bill_SuperPoison, LEGENDARY),
         new(Card.Card_045_Ab_Bill_Viruz, LEGENDARY),
 
-        new(Card.Card_012_Improved_Crooked_Rock, UNCOMMON),
-        new(Card.Card_013_Improved_Rounded_Rock, UNCOMMON),
-        new(Card.Card_014_Improved_Arrowed_Rock, UNCOMMON)
         // new(Card.Card_015_Improved_Bomb_Rock, UNCOMMON),
     }.Where(card => !CardsDataV1.Instance.HaveAllCardsFrom(card.Value)).ToArray();
 }

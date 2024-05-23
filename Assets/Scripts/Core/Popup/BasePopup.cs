@@ -12,7 +12,9 @@ public class BasePopup : MonoBehaviour {
 }
 
 public enum Popups {
-    SettingsPopup
+    SettingsPopup,
+    CardDetailPopup,
+    DeckPopup,
 }
 
 }

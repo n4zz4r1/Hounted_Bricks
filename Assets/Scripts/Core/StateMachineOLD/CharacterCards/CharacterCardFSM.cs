@@ -14,8 +14,8 @@ namespace Core.StateMachine.CharacterCards {
 public class CharacterCardFSM : StateMachine<CharacterCardFSM, State<CharacterCardFSM>> {
     [SerializeField] public Card card;
 
-    [FormerlySerializedAs("AbilitiesPopup")] [SerializeField]
-    public AbilitiesPopup abilitiesPopup;
+    // [FormerlySerializedAs("AbilitiesPopup")] [SerializeField]
+    // public AbilitiesPopup abilitiesPopup;
 
     [FormerlySerializedAs("Internal")] [SerializeField]
     public Components components;
@@ -49,9 +49,9 @@ public class CharacterCardFSM : StateMachine<CharacterCardFSM, State<CharacterCa
         }
     }
 
-    private new void OpenPopup() {
-        abilitiesPopup.gameObject.SetActive(true);
-    }
+    // private new void OpenPopup() {
+    //     abilitiesPopup.gameObject.SetActive(true);
+    // }
 }
 
 [Serializable]

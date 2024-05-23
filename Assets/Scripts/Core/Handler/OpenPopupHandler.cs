@@ -1,4 +1,6 @@
 using Core.Popup;
+using Core.Popup.CardDetail;
+using Core.StateMachine.Cards;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.EventSystems;
@@ -8,7 +10,7 @@ namespace Core.Handler {
 
 public class OpenPopupHandler : MonoBehaviour, IPointerClickHandler {
     [SerializeField] public Popups popup = Popups.SettingsPopup;
-
+    [SerializeField] public CardFSM cardFSMIfNeeded;
 
     public void OnPointerClick(PointerEventData eventData) {
         var popupAsset = Addressables.LoadAssetAsync<GameObject>(popup.ToString());
@@ -16,7 +18,9 @@ public class OpenPopupHandler : MonoBehaviour, IPointerClickHandler {
     }
 
     private void AsyncCompleted(AsyncOperationHandle<GameObject> obj) {
-        Instantiate(obj.Result, transform.root.transform);
+        var instance = Instantiate(obj.Result, transform.root.transform);
+        if(popup == Popups.CardDetailPopup)
+            instance.GetComponent<CardDetailPopup>().CardSetup(cardFSMIfNeeded);
     }
 }
 

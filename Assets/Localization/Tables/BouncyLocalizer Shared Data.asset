@@ -315,76 +315,76 @@ MonoBehaviour:
     m_Key: 009_Special_Char_Brutus.Detail3
     m_Metadata:
       m_Items: []
-  - m_Id: 283032309833
-    m_Key: 010_Special_Small_Diamont_Pack.Title
+  - m_Id: 13789088180752384
+    m_Key: 010_Basic_Move.Title
     m_Metadata:
       m_Items: []
-  - m_Id: 283032309834
-    m_Key: 010_Special_Small_Diamont_Pack.Description
+  - m_Id: 13789088201723904
+    m_Key: 010_Basic_Move.Description
     m_Metadata:
       m_Items: []
-  - m_Id: 283032309835
-    m_Key: 010_Special_Small_Diamont_Pack.Detail
+  - m_Id: 13789088201723905
+    m_Key: 010_Basic_Move.Detail
     m_Metadata:
       m_Items: []
-  - m_Id: 283032309836
-    m_Key: 011_Special_Big_Diamont_Pack.Title
+  - m_Id: 13789088201723906
+    m_Key: 011_Basic_SandBag.Title
     m_Metadata:
       m_Items: []
-  - m_Id: 283032309837
-    m_Key: 011_Special_Big_Diamont_Pack.Description
+  - m_Id: 13789088201723907
+    m_Key: 011_Basic_SandBag.Description
     m_Metadata:
       m_Items: []
-  - m_Id: 283032309838
-    m_Key: 011_Special_Big_Diamont_Pack.Detail
+  - m_Id: 13789088201723908
+    m_Key: 011_Basic_SandBag.Detail
     m_Metadata:
       m_Items: []
-  - m_Id: 283032309839
-    m_Key: 012_Improved_Crooked_Rock.Title
+  - m_Id: 13789088201723909
+    m_Key: 012_Basic_SuperAim.Title
     m_Metadata:
       m_Items: []
-  - m_Id: 283032309840
-    m_Key: 012_Improved_Crooked_Rock.Description
+  - m_Id: 13789088201723910
+    m_Key: 012_Basic_SuperAim.Description
     m_Metadata:
       m_Items: []
-  - m_Id: 283032309841
-    m_Key: 012_Improved_Crooked_Rock.Detail
+  - m_Id: 13789088201723911
+    m_Key: 012_Basic_SuperAim.Detail
     m_Metadata:
       m_Items: []
-  - m_Id: 283032309842
-    m_Key: 013_Improved_Rounded_Rock.Title
+  - m_Id: 13789088201723912
+    m_Key: 013_Basic_Lucas.Title
     m_Metadata:
       m_Items: []
-  - m_Id: 283032309843
-    m_Key: 013_Improved_Rounded_Rock.Description
+  - m_Id: 13789088201723913
+    m_Key: 013_Basic_Lucas.Description
     m_Metadata:
       m_Items: []
-  - m_Id: 283032309844
-    m_Key: 013_Improved_Rounded_Rock.Detail
+  - m_Id: 13789088201723914
+    m_Key: 013_Basic_Lucas.Detail
     m_Metadata:
       m_Items: []
-  - m_Id: 283032309845
-    m_Key: 014_Improved_Arrowed_Rock.Title
+  - m_Id: 13789088201723915
+    m_Key: 014_Basic_Lisa.Title
     m_Metadata:
       m_Items: []
-  - m_Id: 283032309846
-    m_Key: 014_Improved_Arrowed_Rock.Description
+  - m_Id: 13789088201723916
+    m_Key: 014_Basic_Lisa.Description
     m_Metadata:
       m_Items: []
-  - m_Id: 283032309847
-    m_Key: 014_Improved_Arrowed_Rock.Detail
+  - m_Id: 13789088201723917
+    m_Key: 014_Basic_Lisa.Detail
     m_Metadata:
       m_Items: []
-  - m_Id: 283032309848
-    m_Key: 015_Improved_Bomb_Rock.Title
+  - m_Id: 13789088201723918
+    m_Key: 015_Basic_Billy.Title
     m_Metadata:
       m_Items: []
-  - m_Id: 283032309849
-    m_Key: 015_Improved_Bomb_Rock.Description
+  - m_Id: 13789088201723919
+    m_Key: 015_Basic_Billy.Description
     m_Metadata:
       m_Items: []
-  - m_Id: 283032309850
-    m_Key: 015_Improved_Bomb_Rock.Detail
+  - m_Id: 13789088201723920
+    m_Key: 015_Basic_Billy.Detail
     m_Metadata:
       m_Items: []
   - m_Id: 283032309851
@@ -399,76 +399,76 @@ MonoBehaviour:
     m_Key: 016_Ab_Lucas_Move.Detail
     m_Metadata:
       m_Items: []
-  - m_Id: 283032309854
-    m_Key: 017_Ab_Lucas_SandBag.Title
+  - m_Id: 13789088201723921
+    m_Key: 017_Ab_Lucas_SuperStone.Title
     m_Metadata:
       m_Items: []
-  - m_Id: 283032309855
-    m_Key: 017_Ab_Lucas_SandBag.Description
+  - m_Id: 13789088201723922
+    m_Key: 017_Ab_Lucas_SuperStone.Description
     m_Metadata:
       m_Items: []
-  - m_Id: 283032309856
-    m_Key: 017_Ab_Lucas_SandBag.Detail
+  - m_Id: 13789088201723923
+    m_Key: 017_Ab_Lucas_SuperStone.Detail
     m_Metadata:
       m_Items: []
-  - m_Id: 283032309857
-    m_Key: 018_Ab_Lucas_MoreRockPlease.Title
+  - m_Id: 13789088201723924
+    m_Key: 018_Ab_Lucas_SlingshotMater.Title
     m_Metadata:
       m_Items: []
-  - m_Id: 283032309858
-    m_Key: 018_Ab_Lucas_MoreRockPlease.Description
+  - m_Id: 13789088201723925
+    m_Key: 018_Ab_Lucas_SlingshotMater.Description
     m_Metadata:
       m_Items: []
-  - m_Id: 283032309859
-    m_Key: 018_Ab_Lucas_MoreRockPlease.Detail
+  - m_Id: 13789088201723926
+    m_Key: 018_Ab_Lucas_SlingshotMater.Detail
     m_Metadata:
       m_Items: []
-  - m_Id: 283032309860
-    m_Key: 019_Ab_Lucas_RockParty.Title
+  - m_Id: 13789088201723927
+    m_Key: 019_Ab_Lucas_SmallRock.Title
     m_Metadata:
       m_Items: []
-  - m_Id: 283032309861
-    m_Key: 019_Ab_Lucas_RockParty.Description
+  - m_Id: 13789088201723928
+    m_Key: 019_Ab_Lucas_SmallRock.Description
     m_Metadata:
       m_Items: []
-  - m_Id: 283032309862
-    m_Key: 019_Ab_Lucas_RockParty.Detail
+  - m_Id: 13789088201723929
+    m_Key: 019_Ab_Lucas_SmallRock.Detail
     m_Metadata:
       m_Items: []
-  - m_Id: 283032309863
-    m_Key: 020_Ab_Lucas_NoPainNoGain.Title
+  - m_Id: 13789088201723930
+    m_Key: 020_Ab_Lucas_Power.Title
     m_Metadata:
       m_Items: []
-  - m_Id: 283032309864
-    m_Key: 020_Ab_Lucas_NoPainNoGain.Description
+  - m_Id: 13789088201723931
+    m_Key: 020_Ab_Lucas_Power.Description
     m_Metadata:
       m_Items: []
-  - m_Id: 283032309865
-    m_Key: 020_Ab_Lucas_NoPainNoGain.Detail
+  - m_Id: 13789088201723932
+    m_Key: 020_Ab_Lucas_Power.Detail
     m_Metadata:
       m_Items: []
-  - m_Id: 283032309866
-    m_Key: 021_Ab_Lucas_MoreLovePlease.Title
+  - m_Id: 13789088201723933
+    m_Key: 021_Ab_Lucas_RockRain.Title
     m_Metadata:
       m_Items: []
-  - m_Id: 283032309867
-    m_Key: 021_Ab_Lucas_MoreLovePlease.Description
+  - m_Id: 13789088201723934
+    m_Key: 021_Ab_Lucas_RockRain.Description
     m_Metadata:
       m_Items: []
-  - m_Id: 283032309868
-    m_Key: 021_Ab_Lucas_MoreLovePlease.Detail
+  - m_Id: 13789088201723935
+    m_Key: 021_Ab_Lucas_RockRain.Detail
     m_Metadata:
       m_Items: []
-  - m_Id: 283036504064
-    m_Key: 022_Ab_Lucas_PerfectAim.Title
+  - m_Id: 13789088201723936
+    m_Key: 022_Ab_Lucas_SuperWall.Title
     m_Metadata:
       m_Items: []
-  - m_Id: 283036504065
-    m_Key: 022_Ab_Lucas_PerfectAim.Description
+  - m_Id: 13789088201723937
+    m_Key: 022_Ab_Lucas_SuperWall.Description
     m_Metadata:
       m_Items: []
-  - m_Id: 283036504066
-    m_Key: 022_Ab_Lucas_PerfectAim.Detail
+  - m_Id: 13789088201723938
+    m_Key: 022_Ab_Lucas_SuperWall.Detail
     m_Metadata:
       m_Items: []
   - m_Id: 283036504067
@@ -507,16 +507,16 @@ MonoBehaviour:
     m_Key: 025_Ab_Lucas_GiveMeMoney.Detail
     m_Metadata:
       m_Items: []
-  - m_Id: 283036504076
-    m_Key: 026_Ab_Lisa_FireByTurn.Title
+  - m_Id: 13789088201723939
+    m_Key: 026_Ab_Lisa_Fire.Title
     m_Metadata:
       m_Items: []
-  - m_Id: 283036504077
-    m_Key: 026_Ab_Lisa_FireByTurn.Description
+  - m_Id: 13789088201723940
+    m_Key: 026_Ab_Lisa_Fire.Description
     m_Metadata:
       m_Items: []
-  - m_Id: 283036504078
-    m_Key: 026_Ab_Lisa_FireByTurn.Detail
+  - m_Id: 13789088201723941
+    m_Key: 026_Ab_Lisa_Fire.Detail
     m_Metadata:
       m_Items: []
   - m_Id: 283036504079
@@ -567,16 +567,16 @@ MonoBehaviour:
     m_Key: 030_Ab_Lisa_Firewall.Detail
     m_Metadata:
       m_Items: []
-  - m_Id: 283036504091
-    m_Key: 031_Ab_Lisa_FireByLuckyTwo.Title
+  - m_Id: 13790605260509184
+    m_Key: 031_Ab_Lisa_FireCamp.Title
     m_Metadata:
       m_Items: []
-  - m_Id: 283036504092
-    m_Key: 031_Ab_Lisa_FireByLuckyTwo.Description
+  - m_Id: 13790605260509185
+    m_Key: 031_Ab_Lisa_FireCamp.Description
     m_Metadata:
       m_Items: []
-  - m_Id: 283036504093
-    m_Key: 031_Ab_Lisa_FireByLuckyTwo.Detail
+  - m_Id: 13790605260509186
+    m_Key: 031_Ab_Lisa_FireCamp.Detail
     m_Metadata:
       m_Items: []
   - m_Id: 283036504094
@@ -639,64 +639,64 @@ MonoBehaviour:
     m_Key: 036_Ab_Bill_AcidBomb.Detail
     m_Metadata:
       m_Items: []
-  - m_Id: 283036504109
-    m_Key: 037_Ab_Bill_PoisonByLucky.Title
+  - m_Id: 13789088201723945
+    m_Key: 037_Ab_Bill_Poison.Title
     m_Metadata:
       m_Items: []
-  - m_Id: 283036504110
-    m_Key: 037_Ab_Bill_PoisonByLucky.Description
+  - m_Id: 13789088201723946
+    m_Key: 037_Ab_Bill_Poison.Description
     m_Metadata:
       m_Items: []
-  - m_Id: 283036504111
-    m_Key: 037_Ab_Bill_PoisonByLucky.Detail
+  - m_Id: 13789088201723947
+    m_Key: 037_Ab_Bill_Poison.Detail
     m_Metadata:
       m_Items: []
-  - m_Id: 283036504112
-    m_Key: 038_Ab_Bill_PoisonByTurn.Title
+  - m_Id: 13789088201723948
+    m_Key: 038_Ab_Bill_PoisonByLucky.Title
     m_Metadata:
       m_Items: []
-  - m_Id: 283036504113
-    m_Key: 038_Ab_Bill_PoisonByTurn.Description
+  - m_Id: 13789088201723949
+    m_Key: 038_Ab_Bill_PoisonByLucky.Description
     m_Metadata:
       m_Items: []
-  - m_Id: 283036504114
-    m_Key: 038_Ab_Bill_PoisonByTurn.Detail
+  - m_Id: 13789088201723950
+    m_Key: 038_Ab_Bill_PoisonByLucky.Detail
     m_Metadata:
       m_Items: []
-  - m_Id: 283036504115
-    m_Key: 039_Ab_Bill_PoisonByTimes.Title
+  - m_Id: 13789088201723951
+    m_Key: 039_Ab_Bill_PoisonByLuckTwo.Title
     m_Metadata:
       m_Items: []
-  - m_Id: 283036504116
-    m_Key: 039_Ab_Bill_PoisonByTimes.Description
+  - m_Id: 13789088201723952
+    m_Key: 039_Ab_Bill_PoisonByLuckTwo.Description
     m_Metadata:
       m_Items: []
-  - m_Id: 283036504117
-    m_Key: 039_Ab_Bill_PoisonByTimes.Detail
+  - m_Id: 13789088201723953
+    m_Key: 039_Ab_Bill_PoisonByLuckTwo.Detail
     m_Metadata:
       m_Items: []
-  - m_Id: 283036504118
-    m_Key: 040_Ab_Bill_PoisonByLuckyTwo.Title
+  - m_Id: 13789088201723954
+    m_Key: 040_Ab_Bill_Barrel.Title
     m_Metadata:
       m_Items: []
-  - m_Id: 283036504119
-    m_Key: 040_Ab_Bill_PoisonByLuckyTwo.Description
+  - m_Id: 13789088201723955
+    m_Key: 040_Ab_Bill_Barrel.Description
     m_Metadata:
       m_Items: []
-  - m_Id: 283036504120
-    m_Key: 040_Ab_Bill_PoisonByLuckyTwo.Detail
+  - m_Id: 13789088201723956
+    m_Key: 040_Ab_Bill_Barrel.Detail
     m_Metadata:
       m_Items: []
-  - m_Id: 283036504121
-    m_Key: 041_Ab_Bill_PerfectShoes.Title
+  - m_Id: 13789088201723957
+    m_Key: 041_Ab_Bill_Run.Title
     m_Metadata:
       m_Items: []
-  - m_Id: 283036504122
-    m_Key: 041_Ab_Bill_PerfectShoes.Description
+  - m_Id: 13789088201723958
+    m_Key: 041_Ab_Bill_Run.Description
     m_Metadata:
       m_Items: []
-  - m_Id: 283036504123
-    m_Key: 041_Ab_Bill_PerfectShoes.Detail
+  - m_Id: 13789088201723959
+    m_Key: 041_Ab_Bill_Run.Detail
     m_Metadata:
       m_Items: []
   - m_Id: 283036504124

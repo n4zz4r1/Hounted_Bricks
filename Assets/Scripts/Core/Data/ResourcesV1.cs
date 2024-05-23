@@ -20,14 +20,7 @@ public class ResourcesV1 : Data<ResourcesV1> {
     }
 
     public long GetResourcesAmount(CardType cardType) {
-        return cardType switch {
-            CardType.NONE => GetResourcesAmount(ResourceType.NONE),
-            CardType.ROCK => GetResourcesAmount(ResourceType.ROCK_SCROLL),
-            CardType.SPECIAL => GetResourcesAmount(ResourceType.NONE),
-            CardType.ABILITY => GetResourcesAmount(ResourceType.ABILITY_SCROLL),
-            CardType.CHARACTER => GetResourcesAmount(ResourceType.CHAR_SCROLL),
-            _ => GetResourcesAmount(ResourceType.NONE)
-        };
+        return GetResourcesAmount(CardTypeUtils.ToResource(cardType));
     }
 
     public void SetResource(ResourceType type, long amount) {

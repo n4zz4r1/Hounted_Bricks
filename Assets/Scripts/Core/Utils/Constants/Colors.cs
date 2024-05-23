@@ -68,23 +68,23 @@ public class DifficultyUtil {
         switch (type) {
             case StageDifficultyType.EASY:
                 difficultyUtil.color = Colors.EASY;
-                difficultyUtil.label = LocalizationUtils.GetLocalizedText("Label.StageDifficultyType.EASY");
+                // difficultyUtil.label = LocalizationUtils.GetLocalizedText("Label.StageDifficultyType.EASY");
                 break;
             case StageDifficultyType.MEDIUM:
                 difficultyUtil.color = Colors.MEDIUM;
-                difficultyUtil.label = LocalizationUtils.GetLocalizedText("Label.StageDifficultyType.MEDIUM");
+                // difficultyUtil.label = LocalizationUtils.GetLocalizedText("Label.StageDifficultyType.MEDIUM");
                 break;
             case StageDifficultyType.HARD:
                 difficultyUtil.color = Colors.HARD;
-                difficultyUtil.label = LocalizationUtils.GetLocalizedText("Label.StageDifficultyType.HARD");
+                // difficultyUtil.label = LocalizationUtils.GetLocalizedText("Label.StageDifficultyType.HARD");
                 break;
             case StageDifficultyType.IMPOSSIBLE:
                 difficultyUtil.color = Colors.HARD;
-                difficultyUtil.label = LocalizationUtils.GetLocalizedText("Label.StageDifficultyType.HARD");
+                // difficultyUtil.label = LocalizationUtils.GetLocalizedText("Label.StageDifficultyType.HARD");
                 break;
             default:
                 difficultyUtil.color = Colors.EASY;
-                difficultyUtil.label = LocalizationUtils.GetLocalizedText("Label.StageDifficultyType.EASY");
+                // difficultyUtil.label = LocalizationUtils.GetLocalizedText("Label.StageDifficultyType.EASY");
                 break;
         }
 
@@ -122,27 +122,27 @@ public class RarityUtils {
             case CardRarity.COMMON:
                 rarityUtils.NormalColor = new Color(0.77f, 0.67f, 0.52f);
                 rarityUtils.LightColor = rarityUtils.NormalColor;
-                rarityUtils.Label = LocalizationUtils.GetLocalizedText("Quality.Common");
+                // rarityUtils.Label = LocalizationUtils.GetLocalizedText("Quality.Common");
                 break;
             case CardRarity.UNCOMMON:
                 rarityUtils.NormalColor = new Color(0.33f, 0.77f, 0.54f);
                 rarityUtils.LightColor = rarityUtils.NormalColor;
-                rarityUtils.Label = LocalizationUtils.GetLocalizedText("Quality.Uncommon");
+                // rarityUtils.Label = LocalizationUtils.GetLocalizedText("Quality.Uncommon");
                 break;
             case CardRarity.RARE:
                 rarityUtils.NormalColor = new Color(0.28f, 0.54f, 0.85f);
                 rarityUtils.LightColor = rarityUtils.NormalColor;
-                rarityUtils.Label = LocalizationUtils.GetLocalizedText("Quality.Rare");
+                // rarityUtils.Label = LocalizationUtils.GetLocalizedText("Quality.Rare");
                 break;
             case CardRarity.LEGENDARY:
                 rarityUtils.NormalColor = new Color(0.60f, 0.28f, 1f);
                 rarityUtils.LightColor = rarityUtils.NormalColor;
-                rarityUtils.Label = LocalizationUtils.GetLocalizedText("Quality.Legendary");
+                // rarityUtils.Label = LocalizationUtils.GetLocalizedText("Quality.Legendary");
                 break;
             case CardRarity.GOLD:
                 rarityUtils.NormalColor = new Color(0.83f, 0.76f, 0.45f);
                 rarityUtils.LightColor = rarityUtils.NormalColor;
-                rarityUtils.Label = LocalizationUtils.GetLocalizedText("Quality.Gold");
+                // rarityUtils.Label = LocalizationUtils.GetLocalizedText("Quality.Gold");
                 break;
             default:
                 rarityUtils.NormalColor = Colors.PRIMARY;

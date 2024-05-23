@@ -334,78 +334,6 @@ MonoBehaviour:
     m_Localized: 'Super Snif: Sligly increase chance to find chests in game'
     m_Metadata:
       m_Items: []
-  - m_Id: 283032309833
-    m_Localized: Diamont Pack
-    m_Metadata:
-      m_Items: []
-  - m_Id: 283032309834
-    m_Localized: Small Diamont pack
-    m_Metadata:
-      m_Items: []
-  - m_Id: 283032309835
-    m_Localized: Small Diamont pack
-    m_Metadata:
-      m_Items: []
-  - m_Id: 283032309836
-    m_Localized: Big Diamont Pack
-    m_Metadata:
-      m_Items: []
-  - m_Id: 283032309837
-    m_Localized: A big number of diamonts
-    m_Metadata:
-      m_Items: []
-  - m_Id: 283032309838
-    m_Localized: A big number of diamonts
-    m_Metadata:
-      m_Items: []
-  - m_Id: 283032309839
-    m_Localized: Crooked Improvement
-    m_Metadata:
-      m_Items: []
-  - m_Id: 283032309840
-    m_Localized: Improve power and durability
-    m_Metadata:
-      m_Items: []
-  - m_Id: 283032309841
-    m_Localized: Improve power and durability
-    m_Metadata:
-      m_Items: []
-  - m_Id: 283032309842
-    m_Localized: Rounded Improvement
-    m_Metadata:
-      m_Items: []
-  - m_Id: 283032309843
-    m_Localized: Improve power
-    m_Metadata:
-      m_Items: []
-  - m_Id: 283032309844
-    m_Localized: Improve power
-    m_Metadata:
-      m_Items: []
-  - m_Id: 283032309845
-    m_Localized: Arrowed Improvement
-    m_Metadata:
-      m_Items: []
-  - m_Id: 283032309846
-    m_Localized: Improve power and durability
-    m_Metadata:
-      m_Items: []
-  - m_Id: 283032309847
-    m_Localized: Improve power and durability
-    m_Metadata:
-      m_Items: []
-  - m_Id: 283032309848
-    m_Localized: Bomb Improvement
-    m_Metadata:
-      m_Items: []
-  - m_Id: 283032309849
-    m_Localized: Improve power
-    m_Metadata:
-      m_Items: []
-  - m_Id: 283032309850
-    m_Localized: Improve power
-    m_Metadata:
-      m_Items: []
   - m_Id: 283032309851
     m_Localized: run lucas, run
     m_Metadata:
@@ -417,79 +345,6 @@ MonoBehaviour:
   - m_Id: 283032309853
     m_Localized: Increace the number of times lucas can move during a match from
       2 to 6
-    m_Metadata:
-      m_Items: []
-  - m_Id: 283032309854
-    m_Localized: Sand bag Acelerator
-    m_Metadata:
-      m_Items: []
-  - m_Id: 283032309855
-    m_Localized: Sand bag Acelerator
-    m_Metadata:
-      m_Items: []
-  - m_Id: 283032309856
-    m_Localized: Decrease sandbag ability cooldown from 2 turns to 1.
-    m_Metadata:
-      m_Items: []
-  - m_Id: 283032309857
-    m_Localized: more rocks please
-    m_Metadata:
-      m_Items: []
-  - m_Id: 283032309858
-    m_Localized: more rocks please
-    m_Metadata:
-      m_Items: []
-  - m_Id: 283032309859
-    m_Localized: get a change to duplicate or triplicate each rock you throw
-    m_Metadata:
-      m_Items: []
-  - m_Id: 283032309860
-    m_Localized: rock party
-    m_Metadata:
-      m_Items: []
-  - m_Id: 283032309861
-    m_Localized: rock party
-    m_Metadata:
-      m_Items: []
-  - m_Id: 283032309862
-    m_Localized: make rocks colide to each other, making it to spread a lot more.
-      Limit of 3 per match.
-    m_Metadata:
-      m_Items: []
-  - m_Id: 283032309863
-    m_Localized: no pain, no gain
-    m_Metadata:
-      m_Items: []
-  - m_Id: 283032309864
-    m_Localized: no pain, no gain
-    m_Metadata:
-      m_Items: []
-  - m_Id: 283032309865
-    m_Localized: Make lucas slingshot shoot slightly faster and deal more damage
-    m_Metadata:
-      m_Items: []
-  - m_Id: 283032309866
-    m_Localized: more love please
-    m_Metadata:
-      m_Items: []
-  - m_Id: 283032309867
-    m_Localized: more love please
-    m_Metadata:
-      m_Items: []
-  - m_Id: 283032309868
-    m_Localized: increase lucas lifes by three
-    m_Metadata:
-      m_Items: []
-  - m_Id: 283036504064
-    m_Localized: perfect aim
-    m_Metadata:
-      m_Items: []
-  - m_Id: 283036504065
-    m_Localized: perfect aim
-    m_Metadata:
-      m_Items: []
-  - m_Id: 283036504066
-    m_Localized: make fire aim larger making shots more precise
     m_Metadata:
       m_Items: []
   - m_Id: 283036504067
@@ -528,18 +383,6 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 283036504075
     m_Localized: Become a true farmer, making monsters drop more coins than usual
-    m_Metadata:
-      m_Items: []
-  - m_Id: 283036504076
-    m_Localized: light it up
-    m_Metadata:
-      m_Items: []
-  - m_Id: 283036504077
-    m_Localized: light it up
-    m_Metadata:
-      m_Items: []
-  - m_Id: 283036504078
-    m_Localized: Burn all your rocks per turn. Refresh after 3 turns.
     m_Metadata:
       m_Items: []
   - m_Id: 283036504079
@@ -589,19 +432,6 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 283036504090
     m_Localized: Get a good chance to rebounce fireballs cast by mages, even on sandbags
-    m_Metadata:
-      m_Items: []
-  - m_Id: 283036504091
-    m_Localized: my lucky day two
-    m_Metadata:
-      m_Items: []
-  - m_Id: 283036504092
-    m_Localized: my lucky day two
-    m_Metadata:
-      m_Items: []
-  - m_Id: 283036504093
-    m_Localized: Get a small chance to put on fire one or more rocks you throw on
-      each attack.
     m_Metadata:
       m_Items: []
   - m_Id: 283036504094
@@ -663,69 +493,6 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 283036504108
     m_Localized: turn bomb rock into poison rocks, making it aways poison enemies
-    m_Metadata:
-      m_Items: []
-  - m_Id: 283036504109
-    m_Localized: Lucky Poison
-    m_Metadata:
-      m_Items: []
-  - m_Id: 283036504110
-    m_Localized: Lucky Poison
-    m_Metadata:
-      m_Items: []
-  - m_Id: 283036504111
-    m_Localized: get a small chance to put poison on every rock you throw
-    m_Metadata:
-      m_Items: []
-  - m_Id: 283036504112
-    m_Localized: poison per turn
-    m_Metadata:
-      m_Items: []
-  - m_Id: 283036504113
-    m_Localized: poison per turn
-    m_Metadata:
-      m_Items: []
-  - m_Id: 283036504114
-    m_Localized: When is active, put poison on at least 3 rocks you thrown . Coldown
-      after 3 turns
-    m_Metadata:
-      m_Items: []
-  - m_Id: 283036504115
-    m_Localized: poison all
-    m_Metadata:
-      m_Items: []
-  - m_Id: 283036504116
-    m_Localized: poison all
-    m_Metadata:
-      m_Items: []
-  - m_Id: 283036504117
-    m_Localized: Poison all rocks at once. You can only use it twice per match
-    m_Metadata:
-      m_Items: []
-  - m_Id: 283036504118
-    m_Localized: lucky poison two
-    m_Metadata:
-      m_Items: []
-  - m_Id: 283036504119
-    m_Localized: lucky poison two
-    m_Metadata:
-      m_Items: []
-  - m_Id: 283036504120
-    m_Localized: get a small chance, or increase it, to put poison on every rock
-      you throw
-    m_Metadata:
-      m_Items: []
-  - m_Id: 283036504121
-    m_Localized: perfect shoes
-    m_Metadata:
-      m_Items: []
-  - m_Id: 283036504122
-    m_Localized: perfect shoes
-    m_Metadata:
-      m_Items: []
-  - m_Id: 283036504123
-    m_Localized: Increace the number of times lucas can move during a match from
-      2 to 5
     m_Metadata:
       m_Items: []
   - m_Id: 283036504124
@@ -1168,6 +935,239 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 12767305407287296
     m_Localized: Comprado.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13789088180752384
+    m_Localized: Diamont Pack
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13789088201723904
+    m_Localized: Small Diamont pack
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13789088201723905
+    m_Localized: Small Diamont pack
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13789088201723906
+    m_Localized: Big Diamont Pack
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13789088201723907
+    m_Localized: A big number of diamonts
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13789088201723908
+    m_Localized: A big number of diamonts
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13789088201723909
+    m_Localized: Crooked Improvement
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13789088201723910
+    m_Localized: Improve power and durability
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13789088201723911
+    m_Localized: Improve power and durability
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13789088201723912
+    m_Localized: Rounded Improvement
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13789088201723913
+    m_Localized: Improve power
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13789088201723914
+    m_Localized: Improve power
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13789088201723915
+    m_Localized: Arrowed Improvement
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13789088201723916
+    m_Localized: Improve power and durability
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13789088201723917
+    m_Localized: Improve power and durability
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13789088201723918
+    m_Localized: Bomb Improvement
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13789088201723919
+    m_Localized: Improve power
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13789088201723920
+    m_Localized: Improve power
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13789088201723921
+    m_Localized: Sand bag Acelerator
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13789088201723922
+    m_Localized: Sand bag Acelerator
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13789088201723923
+    m_Localized: Decrease sandbag ability cooldown from 2 turns to 1.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13789088201723924
+    m_Localized: more rocks please
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13789088201723925
+    m_Localized: more rocks please
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13789088201723926
+    m_Localized: get a change to duplicate or triplicate each rock you throw
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13789088201723927
+    m_Localized: rock party
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13789088201723928
+    m_Localized: rock party
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13789088201723929
+    m_Localized: make rocks colide to each other, making it to spread a lot more.
+      Limit of 3 per match.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13789088201723930
+    m_Localized: no pain, no gain
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13789088201723931
+    m_Localized: no pain, no gain
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13789088201723932
+    m_Localized: Make lucas slingshot shoot slightly faster and deal more damage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13789088201723933
+    m_Localized: more love please
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13789088201723934
+    m_Localized: more love please
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13789088201723935
+    m_Localized: increase lucas lifes by three
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13789088201723936
+    m_Localized: perfect aim
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13789088201723937
+    m_Localized: perfect aim
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13789088201723938
+    m_Localized: make fire aim larger making shots more precise
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13789088201723939
+    m_Localized: light it up
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13789088201723940
+    m_Localized: light it up
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13789088201723941
+    m_Localized: Burn all your rocks per turn. Refresh after 3 turns.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13789088201723945
+    m_Localized: Lucky Poison
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13789088201723946
+    m_Localized: Lucky Poison
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13789088201723947
+    m_Localized: get a small chance to put poison on every rock you throw
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13789088201723948
+    m_Localized: poison per turn
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13789088201723949
+    m_Localized: poison per turn
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13789088201723950
+    m_Localized: When is active, put poison on at least 3 rocks you thrown . Coldown
+      after 3 turns
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13789088201723951
+    m_Localized: poison all
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13789088201723952
+    m_Localized: poison all
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13789088201723953
+    m_Localized: Poison all rocks at once. You can only use it twice per match
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13789088201723954
+    m_Localized: lucky poison two
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13789088201723955
+    m_Localized: lucky poison two
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13789088201723956
+    m_Localized: get a small chance, or increase it, to put poison on every rock
+      you throw
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13789088201723957
+    m_Localized: perfect shoes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13789088201723958
+    m_Localized: perfect shoes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13789088201723959
+    m_Localized: Increace the number of times lucas can move during a match from
+      2 to 5
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13790605260509184
+    m_Localized: my lucky day two
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13790605260509185
+    m_Localized: my lucky day two
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13790605260509186
+    m_Localized: Get a small chance to put on fire one or more rocks you throw on
+      each attack.
     m_Metadata:
       m_Items: []
   references:

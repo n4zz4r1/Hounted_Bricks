@@ -36,6 +36,19 @@ public class CardsDataV1 : Data<CardsDataV1> {
     public int GetCardLevel(Card card) {
         return cardsLevel.Exists(c => c.card.Equals(card)) ? cardsLevel.Find(c => c.card.Equals(card)).level : 1;
     }
+    
+    public CardLevel GetCardLevelObject(Card card) {
+        CardLevel cardLevel;
+        if (cardsLevel.Exists(c => c.card.Equals(card))) {
+            cardLevel = cardsLevel.Find(c => c.card.Equals(card));
+        }
+        else {
+            cardsLevel.Add(new CardLevel(card, 1));
+            cardLevel = cardsLevel.Find(c => c.card.Equals(card));
+        }
+
+        return cardLevel;
+    }
 
     public int GetCardMaxQuantity(Card card) {
         return _cardsMaxQuantity.Exists(c => c.card == card)
@@ -86,7 +99,7 @@ public class CardsDataV1 : Data<CardsDataV1> {
         var success = true;
 
         Transaction(() => {
-            var cardLevel = cardsLevel.Find(c => c.card.Equals(card));
+            var cardLevel = GetCardLevelObject(card);
             var coinCost = GameMathUtils.GenerateUpdateCostByLevel(cardLevel.level + 1);
             var resourceUpdateCost =
                 GameMathUtils.GenerateUpdateCostByLevel(cardLevel.level + 1, resourceUpdateType);
@@ -113,6 +126,10 @@ public class CardsDataV1 : Data<CardsDataV1> {
         Card.Card_001_Crooked_Rock, Card.Card_001_Crooked_Rock, Card.Card_001_Crooked_Rock,
         Card.Card_001_Crooked_Rock,
         Card.Card_002_Rounded_Rock,
+        Card.Card_002_Rounded_Rock,
+        Card.Card_003_Arrowed_Rock,
+        Card.Card_003_Arrowed_Rock,
+        Card.Card_004_Bomb_Rock,
 
         // Characters
         Card.Card_005_Char_Lucas,
@@ -121,37 +138,57 @@ public class CardsDataV1 : Data<CardsDataV1> {
 
         // Basic Cards
         // TODO remove
-        Card.Card_046_Basic_Move
+        Card.Card_010_Basic_Move,
+        
+        Card.Card_011_Basic_SandBag,
+        Card.Card_012_Basic_SuperAim,
+        Card.Card_013_Basic_Lucas,
+        Card.Card_014_Basic_Lisa,
+        Card.Card_015_Basic_Billy,
+        Card.Card_016_Ab_Lucas_Move,
+        Card.Card_017_Ab_Lucas_SuperStone,
+        Card.Card_018_Ab_Lucas_SlingshotMater,
+        Card.Card_019_Ab_Lucas_SmallRock,
+        Card.Card_020_Ab_Lucas_Power,
+        Card.Card_021_Ab_Lucas_RockRain,
+        Card.Card_022_Ab_Lucas_SuperWall,
+        Card.Card_023_Ab_Lucas_LetsRock,
+        Card.Card_024_Ab_Lucas_Mine,
+        Card.Card_025_Ab_Lucas_GiveMeMoney,
+        Card.Card_026_Ab_Lisa_Fire,
+        Card.Card_027_Ab_Lisa_FireByLucky,
+        Card.Card_028_Ab_Lisa_FireByRebounce,
+        Card.Card_029_Ab_Lisa_Healer,
+        Card.Card_030_Ab_Lisa_Firewall,
+        Card.Card_031_Ab_Lisa_FireCamp,
+        Card.Card_032_Ab_Lisa_FireStronger,
+        Card.Card_033_Ab_Lisa_FireSpread,
+        Card.Card_034_Ab_Lisa_Fireworks,
+        Card.Card_035_Ab_Lisa_SpecialFireBomb,
+        Card.Card_036_Ab_Bill_AcidBomb,
+        Card.Card_037_Ab_Bill_Poison,
+        Card.Card_038_Ab_Bill_PoisonByLucky,
+        Card.Card_039_Ab_Bill_PoisonByLuckTwo,
+        Card.Card_040_Ab_Bill_Barrel,
+        Card.Card_041_Ab_Bill_Run,
+        Card.Card_042_Ab_Bill_UltraAim,
+        Card.Card_043_Ab_Bill_AcidRain,
+        Card.Card_044_Ab_Bill_SuperPoison,
+        Card.Card_045_Ab_Bill_Viruz,
+
+        
     };
 
-    [SerializeField] private List<CardLevel> cardsLevel = new() {
-        new CardLevel(Card.Card_001_Crooked_Rock, 1),
-        new CardLevel(Card.Card_002_Rounded_Rock, 1),
-        new CardLevel(Card.Card_003_Arrowed_Rock, 1),
-        new CardLevel(Card.Card_004_Bomb_Rock, 1),
-        new CardLevel(Card.Card_005_Char_Lucas, 1),
-        new CardLevel(Card.Card_006_Char_Lisa, 1),
-        new CardLevel(Card.Card_007_Char_Bill, 1)
-    };
+    [SerializeField] private List<CardLevel> cardsLevel = new() { };
 
     [SerializeField] private readonly List<CardLevel> _cardsMaxQuantity = new() {
-        new CardLevel(Card.Card_001_Crooked_Rock, 20),
-        new CardLevel(Card.Card_002_Rounded_Rock, 20),
+        new CardLevel(Card.Card_001_Crooked_Rock, 10),
+        new CardLevel(Card.Card_002_Rounded_Rock, 10),
         new CardLevel(Card.Card_003_Arrowed_Rock, 10),
         new CardLevel(Card.Card_004_Bomb_Rock, 10),
-        new CardLevel(Card.Card_010_Special_Small_Diamond_Pack, 20),
-        new CardLevel(Card.Card_011_Special_Big_Diamond_Pack, 20),
-        new CardLevel(Card.Card_012_Improved_Crooked_Rock, 3),
-        new CardLevel(Card.Card_013_Improved_Rounded_Rock, 3),
-        new CardLevel(Card.Card_014_Improved_Arrowed_Rock, 3),
-        // new CardLevel(Card.Card_015_Improved_Bomb_Rock,         4),
-        new CardLevel(Card.Card_046_Basic_Move, 1)
     };
 
     [SerializeField] private readonly List<CardRelated> _cardRelationship = new() {
-        new CardRelated(Card.Card_001_Crooked_Rock, Card.Card_012_Improved_Crooked_Rock),
-        new CardRelated(Card.Card_002_Rounded_Rock, Card.Card_013_Improved_Rounded_Rock),
-        new CardRelated(Card.Card_003_Arrowed_Rock, Card.Card_014_Improved_Arrowed_Rock)
         // new CardRelated(Card.Card_004_Bomb_Rock,        Card.Card_015_Improved_Bomb_Rock),
     };
 

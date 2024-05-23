@@ -17,11 +17,21 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: c6c5e7b5144f6cd4ab82410d0a49f8e4
   m_SerializeEntries:
-  - m_GUID: 431bd77e748bda0459f6b4943c67e15a
-    m_Address: SettingsPopup
+  - m_GUID: 29538cf91e39ee343854f1bec7e5e953
+    m_Address: CardDetailPopup
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fcebd371945d68e499f7d62733b1fb4a
+    m_Address: DeckPopup
     m_ReadOnly: 0
     m_SerializedLabels:
     - MainSceneAddressable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 431bd77e748bda0459f6b4943c67e15a
+    m_Address: SettingsPopup
+    m_ReadOnly: 0
+    m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 32e1b6a54f8b9a04b841d0c47a9f0d7a, type: 2}

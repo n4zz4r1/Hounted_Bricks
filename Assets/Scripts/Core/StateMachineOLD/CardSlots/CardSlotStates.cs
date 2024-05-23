@@ -28,8 +28,8 @@ public class WithRock : State<CardSlotFSM> {
     }
 
     public override void SetCard(CardSlotFSM fsm) {
-        fsm.OriginalIconSprite = CardFSM.GetIconFromCard(fsm.CurrentCard);
-        fsm.components.slotIcon.sprite = CardFSM.GetIconFromCard(fsm.CurrentCard);
+        fsm.OriginalIconSprite = CardFSM.GetCardIcon(fsm.CurrentCard);
+        fsm.components.slotIcon.sprite = CardFSM.GetCardIcon(fsm.CurrentCard);
         fsm.SelectedCardFSM = fsm.CurrentCard;
         fsm.components.slotBox.color = RarityUtils.From(fsm.CurrentCard.Rarity).NormalColor;
     }
