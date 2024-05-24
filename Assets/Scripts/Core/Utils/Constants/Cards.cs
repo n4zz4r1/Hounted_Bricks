@@ -62,14 +62,9 @@ public enum Card {
     Card_044_Ab_Bill_SuperPoison,
 
     // ReSharper disable once IdentifierTypo
-    Card_045_Ab_Bill_Viruz,
+    Card_045_Ab_Bill_Viruz
 
     // Basic Cards
-
-    
-
-    
-    
 }
 
 }

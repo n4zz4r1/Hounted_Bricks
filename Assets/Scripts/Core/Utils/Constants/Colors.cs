@@ -1,7 +1,5 @@
-using System;
 using Core.StateMachine.Cards;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace Core.Utils.Constants {
 
@@ -60,7 +58,7 @@ public static class Colors {
 public class DifficultyUtil {
     public Color color { get; private set; }
     public StageDifficultyType difficultyType { get; private set; }
-    public string label { get; private set; }
+    public string label { get; }
 
     public static DifficultyUtil From(StageDifficultyType type) {
         DifficultyUtil difficultyUtil = new();
@@ -112,7 +110,7 @@ public class RarityUtils {
     public Color NormalColor { get; private set; }
     public Color LightColor { get; private set; }
 
-    public string Label { get; private set; }
+    public string Label { get; }
 
 
     public static RarityUtils From(CardRarity cardRarity) {

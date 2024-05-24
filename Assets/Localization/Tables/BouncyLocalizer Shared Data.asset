@@ -1091,6 +1091,10 @@ MonoBehaviour:
     m_Key: CardAttribute.RANGE
     m_Metadata:
       m_Items: []
+  - m_Id: 13891765317292032
+    m_Key: Label.Shuffle
+    m_Metadata:
+      m_Items: []
   - m_Id: 12749952426594304
     m_Key: ResourceType_NONE
     m_Metadata:

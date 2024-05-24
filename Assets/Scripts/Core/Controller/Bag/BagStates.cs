@@ -34,7 +34,7 @@ public class Started : State<BagController> {
         fsm.SyncAllData(typeof(BagController));
     }
 
-    public override void Enter(BagController fsm) {
+    public override void Before(BagController fsm) {
         SyncData(fsm);
     }
 
@@ -53,7 +53,7 @@ public class Started : State<BagController> {
             }
             else {
                 currentSlot.ChangeState(StateMachine.CardSlots.States.WithRock);
-                currentSlot.CurrentCard = fsm.CardPrefabDictionary[selectedCard].GetComponent<CardFSM>();
+                currentSlot.CurrentCard = fsm.CardPrefabDictionary[selectedCard];
                 currentSlot.State.SetCard(currentSlot);
             }
         }

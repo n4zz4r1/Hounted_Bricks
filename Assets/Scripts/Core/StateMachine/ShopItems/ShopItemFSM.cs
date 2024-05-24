@@ -25,7 +25,9 @@ public class ShopItemFSM : StateMachine<ShopItemFSM, State<ShopItemFSM>> {
         components.shopItemButton.onClick.AddListener(() => { State.Buy(FSM); });
     }
 
-    internal void Sync() => SyncDataBase();
+    internal void Sync() {
+        SyncDataBase();
+    }
 
     protected override void SyncDataBase() {
         if (rewardType == ResourceType.CARD && CardsDataV1.Instance.HasCard(card))

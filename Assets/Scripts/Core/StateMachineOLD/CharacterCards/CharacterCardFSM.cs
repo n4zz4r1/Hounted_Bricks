@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using Core.Data;
-using Core.Popup;
 using Core.StateMachine.Cards;
 using Core.Utils.Constants;
 using Framework.Base;

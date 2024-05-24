@@ -15,12 +15,16 @@ public abstract class StateMachine<T, U> : MonoBehaviour where T : MonoBehaviour
     protected abstract T FSM { get; }
     protected abstract U GetInitialState { get; }
 
-    public void Awake() {
+    public async void Awake() {
+        // ReSharper disable once MethodHasAsyncOverload
         Before();
+        await BeforeAsync();
         State = GetInitialState;
         State.Before(FSM);
     }
 
+    protected virtual Task BeforeAsync() => Task.CompletedTask; 
+    
     public void Start() {
         if (GetInitialState == State) 
             State.Enter(FSM);
@@ -35,7 +39,6 @@ public abstract class StateMachine<T, U> : MonoBehaviour where T : MonoBehaviour
         {
             var asset = (Tu) await handle.Task;
             if (asset != null) {
-                Debug.Log("Asset loaded successfully.");
                 // Here you can use the asset, for example, instantiate it
                 return asset;
             } else {

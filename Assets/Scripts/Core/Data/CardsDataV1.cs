@@ -36,7 +36,7 @@ public class CardsDataV1 : Data<CardsDataV1> {
     public int GetCardLevel(Card card) {
         return cardsLevel.Exists(c => c.card.Equals(card)) ? cardsLevel.Find(c => c.card.Equals(card)).level : 1;
     }
-    
+
     public CardLevel GetCardLevelObject(Card card) {
         CardLevel cardLevel;
         if (cardsLevel.Exists(c => c.card.Equals(card))) {
@@ -139,7 +139,7 @@ public class CardsDataV1 : Data<CardsDataV1> {
         // Basic Cards
         // TODO remove
         Card.Card_010_Basic_Move,
-        
+
         Card.Card_011_Basic_SandBag,
         Card.Card_012_Basic_SuperAim,
         Card.Card_013_Basic_Lucas,
@@ -174,18 +174,16 @@ public class CardsDataV1 : Data<CardsDataV1> {
         Card.Card_042_Ab_Bill_UltraAim,
         Card.Card_043_Ab_Bill_AcidRain,
         Card.Card_044_Ab_Bill_SuperPoison,
-        Card.Card_045_Ab_Bill_Viruz,
-
-        
+        Card.Card_045_Ab_Bill_Viruz
     };
 
-    [SerializeField] private List<CardLevel> cardsLevel = new() { };
+    [SerializeField] private List<CardLevel> cardsLevel = new();
 
     [SerializeField] private readonly List<CardLevel> _cardsMaxQuantity = new() {
         new CardLevel(Card.Card_001_Crooked_Rock, 10),
         new CardLevel(Card.Card_002_Rounded_Rock, 10),
         new CardLevel(Card.Card_003_Arrowed_Rock, 10),
-        new CardLevel(Card.Card_004_Bomb_Rock, 10),
+        new CardLevel(Card.Card_004_Bomb_Rock, 10)
     };
 
     [SerializeField] private readonly List<CardRelated> _cardRelationship = new() {

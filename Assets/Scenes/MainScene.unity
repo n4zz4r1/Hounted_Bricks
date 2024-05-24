@@ -733,9 +733,45 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 838918760}
     m_Modifications:
+    - target: {fileID: 521191518739293682, guid: 9dca6adecd02ecf43adb497fbc22dcd5, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 521191518739293682, guid: 9dca6adecd02ecf43adb497fbc22dcd5, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3016447640256488033, guid: 9dca6adecd02ecf43adb497fbc22dcd5, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3016447640256488033, guid: 9dca6adecd02ecf43adb497fbc22dcd5, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3567347267435680337, guid: 9dca6adecd02ecf43adb497fbc22dcd5, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3567347267435680337, guid: 9dca6adecd02ecf43adb497fbc22dcd5, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4355188344243292762, guid: 9dca6adecd02ecf43adb497fbc22dcd5, type: 3}
       propertyPath: m_Name
       value: Bag
+      objectReference: {fileID: 0}
+    - target: {fileID: 5687961285876137980, guid: 9dca6adecd02ecf43adb497fbc22dcd5, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5687961285876137980, guid: 9dca6adecd02ecf43adb497fbc22dcd5, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7783100087129008489, guid: 9dca6adecd02ecf43adb497fbc22dcd5, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7783100087129008489, guid: 9dca6adecd02ecf43adb497fbc22dcd5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -744,6 +780,10 @@ PrefabInstance:
     - target: {fileID: 7783100087129008489, guid: 9dca6adecd02ecf43adb497fbc22dcd5, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7783100087129008489, guid: 9dca6adecd02ecf43adb497fbc22dcd5, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 2956
       objectReference: {fileID: 0}
     - target: {fileID: 7783100087129008489, guid: 9dca6adecd02ecf43adb497fbc22dcd5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

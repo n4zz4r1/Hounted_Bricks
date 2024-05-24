@@ -30,7 +30,7 @@ public static class LocalizationUtils {
     //     // Wait until the localization system is ready
     //     yield return LocalizationSettings.InitializationOperation;
     // }
-    
+
     public static async Task<string> LoadText(string key) {
         var localization = LocalizationSettings.StringDatabase.GetLocalizedStringAsync("BouncyLocalizer", key);
         return await localization.Task;

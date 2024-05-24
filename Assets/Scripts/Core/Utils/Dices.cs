@@ -147,7 +147,7 @@ public class CardDice : AbstractDice<CardDice, Card> {
         new(Card.Card_042_Ab_Bill_UltraAim, RARE),
         new(Card.Card_043_Ab_Bill_AcidRain, LEGENDARY),
         new(Card.Card_044_Ab_Bill_SuperPoison, LEGENDARY),
-        new(Card.Card_045_Ab_Bill_Viruz, LEGENDARY),
+        new(Card.Card_045_Ab_Bill_Viruz, LEGENDARY)
 
         // new(Card.Card_015_Improved_Bomb_Rock, UNCOMMON),
     }.Where(card => !CardsDataV1.Instance.HaveAllCardsFrom(card.Value)).ToArray();

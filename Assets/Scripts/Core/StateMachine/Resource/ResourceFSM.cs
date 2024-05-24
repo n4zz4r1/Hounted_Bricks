@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using Core.Data;
 using Core.Utils;
 using Framework.Base;
@@ -18,12 +19,9 @@ public class ResourceFSM : StateMachine<ResourceFSM, State<ResourceFSM>> {
     protected override ResourceFSM FSM => this;
     protected override State<ResourceFSM> GetInitialState => States.Created;
 
-    public new async void Awake() {
-        // update icon, label and text based on its type
-        components.resourceIcon.sprite = await Sprites<Sprite, ResourceType>.LoadAssetAsync(resourceType);
+    protected override async Task BeforeAsync() {
+        components.resourceIcon.sprite = await AssetLoader<Sprite, ResourceType>.Load(resourceType);
         components.quantityText.text = ResourcesV1.Instance.GetResourcesAmount(resourceType).ToString();
-
-        base.Awake();
     }
 
     protected override void SyncDataBase() {

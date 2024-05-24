@@ -52,8 +52,7 @@ public enum CardType {
     SPECIAL = 3,
     BASIC_ABILITY = 4,
     PASSIVE_ABILITY = 5,
-    ACTIVE_ABILITY = 6,
-
+    ACTIVE_ABILITY = 6
 }
 
 public abstract class CardTypeUtils {

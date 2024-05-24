@@ -1,4 +1,5 @@
 using System;
+using Core.Controller.Bag;
 using Core.StateMachine.Cards;
 using Framework.Base;
 using UnityEngine;
@@ -8,8 +9,10 @@ using UnityEngine.UI;
 namespace Core.StateMachine.CardSlots {
 
 public class CardSlotFSM : StateMachine<CardSlotFSM, State<CardSlotFSM>> {
-    [FormerlySerializedAs("CardSlotComponents")] [SerializeField]
-    public Components components;
+
+    [SerializeField] public Components components;
+
+    internal BagController BagController;
 
     protected override CardSlotFSM FSM => this;
     protected override State<CardSlotFSM> GetInitialState => States.Empty;
@@ -20,19 +23,18 @@ public class CardSlotFSM : StateMachine<CardSlotFSM, State<CardSlotFSM>> {
     public CardFSM SelectedCardFSM { get; set; }
     public int Index { get; set; }
     public CardFSM CurrentCard { get; set; }
+
+    protected override void Before() {
+        BagController = gameObject.transform.root.GetComponentInChildren<BagController>();
+        base.Before();
+    }
 }
 
 [Serializable]
 public class Components {
-    [FormerlySerializedAs("SlotCollider")] [SerializeField]
-    public BoxCollider2D slotCollider;
-
-    [FormerlySerializedAs("SlotBox")] [SerializeField]
-    public Image slotBox;
-
-    [FormerlySerializedAs("SlotIcon")] [SerializeField]
-    public Image slotIcon;
-
+    [SerializeField] public BoxCollider2D slotCollider;
+    [SerializeField] public Image slotBox;
+    [SerializeField] public Image slotIcon;
     [SerializeField] public GameObject backgroundFilledInBox;
 }
 

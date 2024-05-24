@@ -1,4 +1,3 @@
-using Core.StateMachine.Cards;
 using Core.Utils.Constants;
 using DG.Tweening;
 using Framework.Base;
@@ -28,8 +27,10 @@ public class WithRock : State<CardSlotFSM> {
     }
 
     public override void SetCard(CardSlotFSM fsm) {
-        fsm.OriginalIconSprite = CardFSM.GetCardIcon(fsm.CurrentCard);
-        fsm.components.slotIcon.sprite = CardFSM.GetCardIcon(fsm.CurrentCard);
+        fsm.OriginalIconSprite =
+            fsm.BagController.CardPrefabDictionary[fsm.CurrentCard.cardId].components.cardIcon.sprite;
+        fsm.components.slotIcon.sprite =
+            fsm.BagController.CardPrefabDictionary[fsm.CurrentCard.cardId].components.cardIcon.sprite;
         fsm.SelectedCardFSM = fsm.CurrentCard;
         fsm.components.slotBox.color = RarityUtils.From(fsm.CurrentCard.Rarity).NormalColor;
     }

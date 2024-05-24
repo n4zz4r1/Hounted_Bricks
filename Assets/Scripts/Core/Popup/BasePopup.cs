@@ -14,7 +14,7 @@ public class BasePopup : MonoBehaviour {
 public enum Popups {
     SettingsPopup,
     CardDetailPopup,
-    DeckPopup,
+    DeckPopup
 }
 
 }

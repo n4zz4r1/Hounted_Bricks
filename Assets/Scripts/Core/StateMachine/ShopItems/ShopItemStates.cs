@@ -14,17 +14,17 @@ public abstract class States {
 }
 
 public class Created : State<ShopItemFSM> {
-    public override void Enter(ShopItemFSM fsm) => fsm.Sync();
+    public override void Enter(ShopItemFSM fsm) {
+        fsm.Sync();
+    }
 }
 
 public class Available : State<ShopItemFSM> {
-
     public override void Enter(ShopItemFSM fsm) {
         fsm.components.shopItemButton.interactable = true;
         fsm.components.shopItemButton.enabled = true;
-        if (fsm.rewardType != ResourceType.CARD) {
+        if (fsm.rewardType != ResourceType.CARD)
             fsm.components.shopItemButton.image.color = ResourceUtils.From(fsm.rewardType).BackgroundColor;
-        }
     }
 
     public override void Buy(ShopItemFSM fsm) {
@@ -40,18 +40,15 @@ public class Available : State<ShopItemFSM> {
         if (!success) return;
 
         // Second, earn reward if succeeded
-        if (fsm.rewardType == ResourceType.CARD) {
+        if (fsm.rewardType == ResourceType.CARD)
             CardsDataV1.Instance.AddCard(fsm.card);
-        }
-        else {
+        else
             ResourcesV1.Instance.AddResources(fsm.rewardType, fsm.reward);
-        }
 
         fsm.components.shopItemButton.enabled = true;
         fsm.SyncAllData<ResourceFSM, State<ResourceFSM>>(TagType.Resource);
         fsm.SyncAllData(typeof(ShopItemFSM));
     }
-
 }
 
 public class SoldOut : State<ShopItemFSM> {
