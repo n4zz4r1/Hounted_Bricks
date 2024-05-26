@@ -8,8 +8,17 @@ using Framework.Base;
 namespace Core.Controller.Bag {
 
 public abstract class States {
+    public static readonly Preloading Preloading = new();
     public static readonly Started Started = new();
 }
+
+public class Preloading : State<BagController> {
+    public override void Before(BagController fsm) {
+        
+    }
+}
+
+
 
 public class Started : State<BagController> {
     public override void Clear(BagController fsm) {
@@ -41,21 +50,7 @@ public class Started : State<BagController> {
     public override void SyncData(BagController fsm) {
         var totalOfRocks = CardsDataV1.Instance.GetTotalRocks();
         for (var i = 0; i < 30; i++) {
-            var currentSlot = fsm.components.slots[i];
-            var selectedCard = PlayerDataV1.Instance.saveRockSlot[i];
-            currentSlot.Index = i;
-
-            if ((i != 0 && PlayerDataV1.Instance.saveRockSlot[i - 1] is Card.NONE) || i == totalOfRocks) {
-                currentSlot.ChangeState(StateMachine.CardSlots.States.Disabled);
-            }
-            else if (PlayerDataV1.Instance.saveRockSlot[i] is Card.NONE) {
-                currentSlot.ChangeState(StateMachine.CardSlots.States.Empty);
-            }
-            else {
-                currentSlot.ChangeState(StateMachine.CardSlots.States.WithRock);
-                currentSlot.CurrentCard = fsm.CardPrefabDictionary[selectedCard];
-                currentSlot.State.SetCard(currentSlot);
-            }
+            // TODO
         }
     }
 }

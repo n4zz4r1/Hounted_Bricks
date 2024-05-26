@@ -15,9 +15,7 @@ public class CardTouchHandler : MonoBehaviour, IPointerDownHandler, IPointerUpHa
         _isPointerDown = true;
     }
 
-    public void OnPointerEnter(PointerEventData eventData) {
-        
-    }
+    public void OnPointerEnter(PointerEventData eventData) { }
 
     public void OnPointerExit(PointerEventData eventData) {
         if (_isDraggingCard || !_isPointerDown || !currentCardFSM.HasAvailableCards())

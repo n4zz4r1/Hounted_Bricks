@@ -19,8 +19,8 @@ public class OpenPopupHandler : MonoBehaviour, IPointerClickHandler {
 
     private void AsyncCompleted(AsyncOperationHandle<GameObject> obj) {
         var instance = Instantiate(obj.Result, transform.root.transform);
-        if (popup == Popups.CardDetailPopup)
-            instance.GetComponent<CardDetailPopup>().CardSetup(cardFSMIfNeeded);
+        if (popup == Popups.CardDetailPopup) instance.GetComponent<CardDetailPopup>().CardSetup(cardFSMIfNeeded);
+        instance.GetComponent<BasePopup>().Show();
     }
 }
 

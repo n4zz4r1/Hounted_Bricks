@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: B03_LivingRoom_Controller
+  m_Controller: {fileID: 9100000, guid: 65d3cc5808aeea84689681f8324d0fd2, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 533217261d4511044bc2a6f55ad5b144, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: e131264637a23a64888149913e59afd1, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: cdc7d2561901c97439afe6f3703d614e, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: c126d0cd4c4d0604a82ea874ea9692bc, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 90cf3d4f7a6b8ca49a0b0aab9f83d522, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 6423ccbe99660294dbd4fc7eac2cf11d, type: 2}

@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.SceneManagement;
+using Object = UnityEngine.Object;
 
 namespace Framework.Base {
 
@@ -14,6 +15,7 @@ public abstract class StateMachine<T, U> : MonoBehaviour where T : MonoBehaviour
     public U State;
     protected abstract T FSM { get; }
     protected abstract U GetInitialState { get; }
+    private bool isInitialized = false; 
 
     public async void Awake() {
         // ReSharper disable once MethodHasAsyncOverload
@@ -21,49 +23,55 @@ public abstract class StateMachine<T, U> : MonoBehaviour where T : MonoBehaviour
         await BeforeAsync();
         State = GetInitialState;
         State.Before(FSM);
+        isInitialized = true;
     }
 
-    protected virtual Task BeforeAsync() => Task.CompletedTask; 
-    
-    public void Start() {
-        if (GetInitialState == State) 
+    private IEnumerator Start()
+    {
+        while (!isInitialized) yield return null;
+
+        if (GetInitialState == State)
             State.Enter(FSM);
     }
 
-    // Generic method to load any type of asset from Addressables
-    public async Task<Tu> LoadAssetAsync<Tu>(string address) where Tu : UnityEngine.Object
-    {
-        AsyncOperationHandle handle = Addressables.LoadAssetAsync<Tu>(address);
-
-        try
-        {
-            var asset = (Tu) await handle.Task;
-            if (asset != null) {
-                // Here you can use the asset, for example, instantiate it
-                return asset;
-            } else {
-                Debug.LogError($"Failed to load asset: {asset}");
-                return null;
-            }
-        }
-        catch (System.Exception ex)
-        {
-            Debug.LogError($"Failed to load asset: {ex.Message}");
-            return null;
-        }
-    }
-    
 
     public void Update() {
-        State?.Update(FSM);
+        if (isInitialized)
+           State?.Update(FSM);
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
-        State.OnCollisionEnter(FSM, collision);
+        if (isInitialized)
+            State.OnCollisionEnter(FSM, collision);
     }
 
     private void OnTriggerExit2D(Collider2D collision) {
-        State.OnCollisionExit(FSM, collision);
+        if (isInitialized)
+            State.OnCollisionExit(FSM, collision);
+    }
+
+    protected virtual Task BeforeAsync() {
+        return Task.CompletedTask;
+    }
+
+    // Generic method to load any type of asset from Addressables
+    public async Task<Tu> LoadAssetAsync<Tu>(string address) where Tu : Object {
+        AsyncOperationHandle handle = Addressables.LoadAssetAsync<Tu>(address);
+
+        try {
+            var asset = (Tu)await handle.Task;
+            if (asset != null) {
+                // Here you can use the asset, for example, instantiate it
+                return asset;
+            }
+
+            Debug.LogError($"Failed to load asset: {asset}");
+            return null;
+        }
+        catch (Exception ex) {
+            Debug.LogError($"Failed to load asset: {ex.Message}");
+            return null;
+        }
     }
 
     public void SyncAllData(Type @class) {
@@ -160,8 +168,8 @@ public abstract class PersistentStateMachine<T, U> : StateMachine<T, U> where T 
         }
     }
 
-    public virtual List<BMScene> ScenesToDestroy() {
-        return new List<BMScene>();
+    public virtual List<GameScenes> ScenesToDestroy() {
+        return new List<GameScenes>();
     }
 
     public virtual void BeforeChangeScene() { }
@@ -175,14 +183,11 @@ public enum TagType {
     Resource
 }
 
-public enum BMScene {
+public enum GameScenes {
     GameScene,
-    HomeScene,
-    MapScene,
-    ShopScene,
-    CharacterScene,
-    BagScene,
-    AboutScene
+    MainScene,
+    PreloadScene,
+    AboutUs
 }
 
 }

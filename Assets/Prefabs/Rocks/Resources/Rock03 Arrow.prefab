@@ -110,7 +110,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3209989462352860777, guid: 991c658651948654a847f553636f4b35, type: 3}
       propertyPath: m_Layer
-      value: 12
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 5299076106907866479, guid: 991c658651948654a847f553636f4b35, type: 3}
       propertyPath: m_Controller
@@ -149,6 +149,10 @@ PrefabInstance:
       value: Normal Trace
       objectReference: {fileID: 0}
     - target: {fileID: 8328079177251852234, guid: 991c658651948654a847f553636f4b35, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8598764440746840665, guid: 991c658651948654a847f553636f4b35, type: 3}
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}

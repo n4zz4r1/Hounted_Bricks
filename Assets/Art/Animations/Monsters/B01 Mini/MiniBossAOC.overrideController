@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: MiniBossAOC
+  m_Controller: {fileID: 9100000, guid: 65d3cc5808aeea84689681f8324d0fd2, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: cdc7d2561901c97439afe6f3703d614e, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: c896d21d34d2e844bb54f732fa53285d, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 533217261d4511044bc2a6f55ad5b144, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 37d4ed3b04d3fef44a95379ba9fde937, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 90cf3d4f7a6b8ca49a0b0aab9f83d522, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 5b6d7305fe2704a4cacc1ef66a8a552b, type: 2}

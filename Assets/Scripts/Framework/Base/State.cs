@@ -11,7 +11,10 @@ public abstract class State<T> {
     public virtual void Before(T fsm) { }
     public virtual void Enter(T fsm) { }
 
-    public virtual Task AsyncEnter(T fsm) { return Task.CompletedTask; }
+    public virtual Task AsyncEnter(T fsm) {
+        return Task.CompletedTask;
+    }
+
     public virtual void Update(T fsm) { }
     public virtual void OnCollisionEnter(T fsm, Collider2D collider) { }
     public virtual void OnCollisionExit(T fsm, Collider2D collider) { }
@@ -46,6 +49,8 @@ public abstract class State<T> {
     public virtual void Unselect(T fsm) { }
     public virtual void Earn(T fsm) { }
     public virtual void Choose(T fsm) { }
+    public virtual void Next(T fsm) { }
+    public virtual void Previous(T fsm) { }
 
     #endregion
 
@@ -54,32 +59,32 @@ public abstract class State<T> {
     public virtual void SetCard(T fsm) { }
     public virtual void RollTheDice(T fsm) { }
     public virtual void ChangeReward(T fsm, int amount) { }
+    public virtual void Hit(T fsm) { }
+    public virtual void Hit(T fsm, float damage) { }
+    public virtual void Move(T fsm, float x) { }
+    public virtual void NextWave(T fsm) { }
+    public virtual void TakeHit(T fsm) { }
+    public virtual void AddLife(T fsm) { }
+    public virtual void Aim(T fsm) { }
+    public virtual void Shoot(T fsm) { }
+    public virtual void Collect(T fsm) { }
+    public virtual void Kill(T fsm) { }
+    public virtual void Complete(T fsm, int stars = 1) { }
+    public virtual void Win(T fsm, int stars) { }
+    public virtual void Loose(T fsm) { }
+    public virtual void StopMoving(T fsm) { }
 
     #endregion
 
     // public virtual void IncreaseLevel(T fsm) { }
-    // public virtual void Kill(T fsm) { }
     // public virtual void Hit(T fsm) { }
     // public virtual void Hit(T fsm, float damage) { }
     // 
-    // public virtual void Complete(T fsm, int stars = 1) { }
-    // public virtual void Aim(T fsm) { }
-    // public virtual void Win(T fsm, int stars) { }
-    // public virtual void Loose(T fsm) { }
-    // public virtual void Shoot(T fsm) { }
-    // public virtual void Collect(T fsm) { }
-    // public virtual void TakeHit(T fsm) { }
-    // public virtual void AddLife(T fsm) { }
-    // public virtual void Move(T fsm, float x) { }
-    // public virtual void Next(T fsm) { }
-    // public virtual void NextWave(T fsm) { }
-    // public virtual void Previous(T fsm) { }
 
     // Specifics
     // public virtual void SetCard(T fsm) { }
     // public virtual void Wakeup(T fsm) { }
     // public virtual void Bark(T fsm) { }
-    // public virtual void StopMoving(T fsm) { }
     // public virtual void StartShooting(T fsm, Vector2 to) { }
 }
 

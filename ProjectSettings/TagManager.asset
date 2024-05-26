@@ -6,6 +6,11 @@ TagManager:
   tags:
   - Menu
   - Resource
+  - Wall
+  - EndLine
+  - Rocks
+  - Monster
+  - currentStage
   layers:
   - Default
   - TransparentFX
@@ -14,7 +19,7 @@ TagManager:
   - Water
   - UI
   - 
-  - 
+  - Rock
   - IgnoreCollision
   - ArrowRock
   - Monster

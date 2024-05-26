@@ -5,13 +5,21 @@ using Framework.Base;
 namespace Core.StateMachine.CardSlots {
 
 public abstract class States {
+    public static readonly Preload Preload = new();
     public static readonly Empty Empty = new();
     public static readonly WithRock WithRock = new();
     public static readonly Disabled Disabled = new();
     public static readonly OnHover OnHover = new();
 }
 
+public class Preload : State<CardSlotFSM> {
+    public override void Before(CardSlotFSM fsm) {
+        fsm.Sync();
+    }
+}
+
 public class Empty : State<CardSlotFSM> {
+
     public override void Enter(CardSlotFSM fsm) {
         fsm.components.slotBox.color = Colors.PRIMARY;
         fsm.components.slotIcon.enabled = false;
@@ -28,9 +36,9 @@ public class WithRock : State<CardSlotFSM> {
 
     public override void SetCard(CardSlotFSM fsm) {
         fsm.OriginalIconSprite =
-            fsm.BagController.CardPrefabDictionary[fsm.CurrentCard.cardId].components.cardIcon.sprite;
+            fsm.CardPrefabDictionary[fsm.CurrentCard.cardId].components.cardIcon.sprite;
         fsm.components.slotIcon.sprite =
-            fsm.BagController.CardPrefabDictionary[fsm.CurrentCard.cardId].components.cardIcon.sprite;
+            fsm.CardPrefabDictionary[fsm.CurrentCard.cardId].components.cardIcon.sprite;
         fsm.SelectedCardFSM = fsm.CurrentCard;
         fsm.components.slotBox.color = RarityUtils.From(fsm.CurrentCard.Rarity).NormalColor;
     }

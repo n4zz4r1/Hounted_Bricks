@@ -4,6 +4,7 @@ using System.Globalization;
 using Core.Data;
 using Core.StateMachine.CardAttribute;
 using Core.StateMachine.Cards;
+using Core.StateMachine.CardSlots;
 using Core.StateMachine.Resource;
 using Core.StateMachine.ResourceSlider;
 using Core.Utils;
@@ -44,6 +45,7 @@ public class CardDetailPopup : StateMachine<CardDetailPopup, State<CardDetailPop
             CardsDataV1.Instance.IncreaseLevel(CardFSM.cardId, ResourceType.ROCK_SCROLL);
             SyncAllData(typeof(CardFSM));
             SyncAllData(typeof(ResourceFSM));
+            SyncAllData(typeof(CardSlotFSM));
             SyncAllData(typeof(CardDetailPopup));
         }
     }

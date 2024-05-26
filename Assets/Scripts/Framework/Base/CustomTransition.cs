@@ -6,18 +6,11 @@ using UnityEngine.UI;
 namespace Framework.Base {
 
 public class CustomTransition : MonoBehaviour {
-
-    #region Components
-
-    [SerializeField] public Slider loaderBar;
-    [SerializeField] public Animator animator;
-
-    #endregion
+    private static readonly int FadeOut = Animator.StringToHash("FadeOut");
+    private bool _hasLoading;
 
     private string _nextScene;
-    private bool _hasLoading;
     private bool _quit;
-    private static readonly int FadeOut = Animator.StringToHash("FadeOut");
 
     public void TransitionTo(string scene, bool loading = false) {
         // Debug.Log("transition to scene " + scene + " now");
@@ -52,6 +45,12 @@ public class CustomTransition : MonoBehaviour {
         }
     }
 
+    #region Components
+
+    [SerializeField] public Slider loaderBar;
+    [SerializeField] public Animator animator;
+
+    #endregion
 }
 
 }

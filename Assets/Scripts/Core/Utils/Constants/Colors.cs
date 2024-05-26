@@ -34,6 +34,7 @@ public static class Colors {
     public static readonly Color ENABLED = COMMON_CARD;
     public static readonly Color ENABLED_2 = PRIMARY;
     public static readonly Color WHITE = new(0.98f, 0.96f, 0.95f);
+    public static readonly Color BLACK = new(0f, 0f, 0f);
     public static readonly Color ORANGE_CHEST = new(0.83f, 0.45f, 0.09f);
     public static readonly Color DIAMOND = new(0.67f, 0.33f, 0.33f);
 
@@ -46,6 +47,8 @@ public static class Colors {
     public static readonly Color BUTTON_VARIANT_3 = new(0.67f, 0.33f, 0.33f);
     public static readonly Color ACTIVE_MENU_BUTTON = new(0.62f, 0.52f, 0.45f);
     public static readonly Color INACTIVE_MENU_BUTTON = new(0.62f, 0.52f, 0.45f, 0.5f);
+    public static readonly Color ROCK_ON_POISON = new(0.62f, 0.52f, 0.45f, 0.5f); // TODO change
+    public static readonly Color FIRE = new(0.62f, 0.52f, 0.45f, 0.5f); // TODO change
 
     public static Color WithAlpha(Color color, float alpha) {
         var newColorWithAlpha = color;

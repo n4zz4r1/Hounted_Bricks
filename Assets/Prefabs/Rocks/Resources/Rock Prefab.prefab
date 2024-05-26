@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8878961801107967838}
   - component: {fileID: 4966706634973655688}
   - component: {fileID: 1291278319912861910}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Fire Trace
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: 5642639783666974200}
   - component: {fileID: 6532144934385515314}
   - component: {fileID: 4238136334885073578}
-  m_Layer: 12
+  m_Layer: 7
   m_Name: ball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -159,7 +159,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -224,7 +224,7 @@ GameObject:
   - component: {fileID: 2171725131645434277}
   - component: {fileID: 7076929904231851291}
   - component: {fileID: 376845271550258954}
-  m_Layer: 12
+  m_Layer: 7
   m_Name: Rock Prefab
   m_TagString: Rocks
   m_Icon: {fileID: 0}
@@ -261,11 +261,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2211023893240641688}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0b157d17846471a972be3e2b5af5d57, type: 3}
+  m_Script: {fileID: 11500000, guid: 7a110bca82802d24491c4b3fec1b3736, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rockType: 0
-  rockDamage: 10
+  rockDamage: 0
   life: 1
   collisionCounter: 0
   components:
@@ -276,7 +276,7 @@ MonoBehaviour:
     fireTrace: {fileID: 467379504453971222}
     poisonTrace: {fileID: 3167785306238188542}
     collider: {fileID: 2537148306084920766}
-    hitWallFX: {fileID: 8300000, guid: 72602fa760a8f144db294c598ad4f867, type: 3}
+    hitWallFX: {fileID: 8300000, guid: ca5d283157f5691488dfc3b73d3b217c, type: 3}
     rotationDegrees: -1
 --- !u!58 &7076929904231851291
 CircleCollider2D:
@@ -351,7 +351,7 @@ GameObject:
   - component: {fileID: 6360917203416508285}
   - component: {fileID: 3025428585395531022}
   - component: {fileID: 3555917082042391271}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Poison Trace
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -457,7 +457,7 @@ GameObject:
   - component: {fileID: 7066094388277644596}
   - component: {fileID: 2537148306084920766}
   - component: {fileID: 8328727299254261510}
-  m_Layer: 12
+  m_Layer: 7
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -523,7 +523,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3209989462352860777}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e35c01ed57c4f5d9b20181c2d14c4cb, type: 3}
+  m_Script: {fileID: 11500000, guid: 33411d87c3934a8380fc333fd3e3810a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rockFSM: {fileID: 2171725131645434277}
@@ -538,7 +538,7 @@ GameObject:
   - component: {fileID: 3005878471367797436}
   - component: {fileID: 5916285680556775725}
   - component: {fileID: 6252266479946431961}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Normal Trace
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -644,7 +644,7 @@ GameObject:
   - component: {fileID: 7217081350706243040}
   - component: {fileID: 9214518526228358520}
   - component: {fileID: 5323029922034729340}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Blank
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -686,7 +686,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

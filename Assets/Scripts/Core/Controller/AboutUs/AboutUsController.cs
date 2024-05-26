@@ -1,5 +1,4 @@
 using Framework.Base;
-using Framework.Constants;
 using UnityEngine;
 using UnityEngine.UI;
 

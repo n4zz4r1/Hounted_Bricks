@@ -1,4 +1,3 @@
-using System.Globalization;
 using Core.Controller.Bag;
 using Core.Data;
 using Core.StateMachine.CardSlots;
@@ -64,7 +63,6 @@ public class NotFound : State<CardFSM> {
 }
 
 public class Found : State<CardFSM> {
-
     public override void Hide(CardFSM fsm) {
         fsm.components.cardCanvasGroup.alpha = 0f;
     }
@@ -108,7 +106,8 @@ public class Found : State<CardFSM> {
                 if (totalOfUpgradeRes >= coinsNextLevel) {
                     fsm.components.levelSlider.value = coinsNextLevel;
                     fsm.components.levelKnot.SetActive(true);
-                } else {
+                }
+                else {
                     fsm.components.levelSlider.value = totalOfUpgradeRes;
                     fsm.components.levelKnot.SetActive(false);
                 }
@@ -156,8 +155,7 @@ public class Found : State<CardFSM> {
         if (slotCollider.State == CardSlots.States.Disabled ||
             (slotCollider.State is WithRock && slotCollider.SelectedCardFSM?.cardId == fsm.cardId))
             return;
-
-        if (PlayerDataV1.Instance.saveRockSlot[fsm.SelectedSlot.Index] != Card.NONE)
+        if (PlayerDataV1.Instance.saveRockSlot[fsm.SelectedSlot.index] != Card.NONE)
             fsm.SelectedSlot.ChangeState(CardSlots.States.WithRock);
         else
             fsm.SelectedSlot.ChangeState(CardSlots.States.Empty);
@@ -184,7 +182,7 @@ public class Found : State<CardFSM> {
 
     public override void StopDragging(CardFSM fsm) {
         if (fsm.DragCard.GetComponent<CardFSM>().SelectedSlot != null)
-            PlayerDataV1.Instance.ChangeRockSlot(fsm.DragCard.GetComponent<CardFSM>().SelectedSlot.Index,
+            PlayerDataV1.Instance.ChangeRockSlot(fsm.DragCard.GetComponent<CardFSM>().SelectedSlot.index,
                 fsm.cardId);
         else
             fsm.UpdateCurrentAvailable(fsm.CurrentQuantity + 1);
@@ -192,6 +190,7 @@ public class Found : State<CardFSM> {
         fsm.DestroyDragCard();
         fsm.IsDragging = false;
 
+        fsm.SyncAllData(typeof(CardSlotFSM));
         fsm.SyncAllData(typeof(CardFSM));
         fsm.SyncAllData(typeof(BagController));
     }
