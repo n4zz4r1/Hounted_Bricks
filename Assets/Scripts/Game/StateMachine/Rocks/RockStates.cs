@@ -24,12 +24,12 @@ public class Moving : State<RockFSM> {
         // for rocks different than arrow, check if is on fire
         if (fsm.rockType != RockType.R03_ARROW) {
             // Bomb Fire Effect, GALisaFireBomb
-            if (fsm.IsOnFire() || (fsm.components.GameController.abilityFactor.FireBombEffect &&
+            if (fsm.IsOnFire() || (fsm.components.GameController.AbilityFactor.FireBombEffect &&
                                    fsm.rockType == RockType.R04_BOMB))
                 fsm.SetOnFire();
 
             // Poison Fire Effect, Billy
-            else if (fsm.IsOnPoison() || (fsm.components.GameController.abilityFactor.AcidBombEffect &&
+            else if (fsm.IsOnPoison() || (fsm.components.GameController.AbilityFactor.AcidBombEffect &&
                                           fsm.rockType == RockType.R04_BOMB))
                 fsm.SetOnPoison();
         }
@@ -88,7 +88,7 @@ public class Collected : State<RockFSM> {
         fsm.gameObject.layer = Layers.IgnoreCollision;
         fsm.components.collider.gameObject.layer = Layers.IgnoreCollision;
 
-        var destiny = new Vector3(fsm.components.GameController.playerInGame.transform.position.x, -2, 0);
+        var destiny = new Vector3(fsm.components.GameController.PlayerInGame.transform.position.x, -2, 0);
 
         var difference = destiny - fsm.transform.position;
 

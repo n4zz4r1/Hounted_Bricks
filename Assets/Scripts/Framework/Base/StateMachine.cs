@@ -3,10 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
-using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.SceneManagement;
-using Object = UnityEngine.Object;
 
 namespace Framework.Base {
 
@@ -15,7 +12,7 @@ public abstract class StateMachine<T, U> : MonoBehaviour where T : MonoBehaviour
     public U State;
     protected abstract T FSM { get; }
     protected abstract U GetInitialState { get; }
-    private bool isInitialized = false; 
+    private bool _isInitialized; 
 
     public async void Awake() {
         // ReSharper disable once MethodHasAsyncOverload
@@ -23,30 +20,29 @@ public abstract class StateMachine<T, U> : MonoBehaviour where T : MonoBehaviour
         await BeforeAsync();
         State = GetInitialState;
         State.Before(FSM);
-        isInitialized = true;
+        _isInitialized = true;
     }
 
     private IEnumerator Start()
     {
-        while (!isInitialized) yield return null;
+        while (!_isInitialized) yield return null;
 
         if (GetInitialState == State)
             State.Enter(FSM);
     }
 
-
     public void Update() {
-        if (isInitialized)
+        if (_isInitialized)
            State?.Update(FSM);
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
-        if (isInitialized)
+        if (_isInitialized)
             State.OnCollisionEnter(FSM, collision);
     }
 
     private void OnTriggerExit2D(Collider2D collision) {
-        if (isInitialized)
+        if (_isInitialized)
             State.OnCollisionExit(FSM, collision);
     }
 
@@ -55,24 +51,24 @@ public abstract class StateMachine<T, U> : MonoBehaviour where T : MonoBehaviour
     }
 
     // Generic method to load any type of asset from Addressables
-    public async Task<Tu> LoadAssetAsync<Tu>(string address) where Tu : Object {
-        AsyncOperationHandle handle = Addressables.LoadAssetAsync<Tu>(address);
-
-        try {
-            var asset = (Tu)await handle.Task;
-            if (asset != null) {
-                // Here you can use the asset, for example, instantiate it
-                return asset;
-            }
-
-            Debug.LogError($"Failed to load asset: {asset}");
-            return null;
-        }
-        catch (Exception ex) {
-            Debug.LogError($"Failed to load asset: {ex.Message}");
-            return null;
-        }
-    }
+    // public async Task<Tu> LoadAssetAsync<Tu>(string address) where Tu : Object {
+    //     AsyncOperationHandle handle = Addressables.LoadAssetAsync<Tu>(address);
+    //
+    //     try {
+    //         var asset = (Tu)await handle.Task;
+    //         if (asset != null) {
+    //             // Here you can use the asset, for example, instantiate it
+    //             return asset;
+    //         }
+    //
+    //         Debug.LogError($"Failed to load asset: {asset}");
+    //         return null;
+    //     }
+    //     catch (Exception ex) {
+    //         Debug.LogError($"Failed to load asset: {ex.Message}");
+    //         return null;
+    //     }
+    // }
 
     public void SyncAllData(Type @class) {
         transform.root.BroadcastMessage("SyncData", @class);

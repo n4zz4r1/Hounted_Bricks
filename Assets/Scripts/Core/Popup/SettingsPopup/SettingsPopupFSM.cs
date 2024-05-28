@@ -1,7 +1,6 @@
 using System;
 using Core.Data;
 using Core.StateMachine.Menu;
-using Core.StateMachine.Rewards;
 using Core.Utils;
 using Core.Utils.Constants;
 using Framework.Base;
@@ -27,34 +26,34 @@ public class SettingsPopupFSM : StateMachine<SettingsPopupFSM, State<SettingsPop
         ChangeLangButton(SettingsDataV1.Instance.GetLanguage());
 
         cleanButton.onClick.AddListener(DataManager.Clean);
-        rewardButton.onClick.AddListener(() => {
-            var rewardFSM = Resources.Load("Reward") as GameObject;
-            if (rewardFSM == null) throw new ArgumentNullException(nameof(rewardFSM));
-
-            for (var i = 0; i < 50; i++) {
-                var rewardTemp = CreateInstance(rewardFSM, transform);
-                var rewardFSMInstance = rewardTemp.GetComponent<RewardFSM>();
-                rewardFSMInstance.shouldDestroy = true;
-                rewardFSMInstance.RollTheDice(NormalRewardDice.Roll());
-                rewardFSMInstance.State.Earn(rewardFSMInstance);
-            }
-
-            SyncAllData(typeof(MenuFSM));
-        });
-        reward1000Button.onClick.AddListener(() => {
-            var rewardFSM = Resources.Load("Reward") as GameObject;
-            if (rewardFSM == null) throw new ArgumentNullException(nameof(rewardFSM));
-
-            for (var i = 0; i < 1000; i++) {
-                var rewardTemp = CreateInstance(rewardFSM, transform);
-                var rewardFSMInstance = rewardTemp.GetComponent<RewardFSM>();
-                rewardFSMInstance.shouldDestroy = true;
-                rewardFSMInstance.RollTheDice(NormalRewardDice.Roll());
-                rewardFSMInstance.State.Earn(rewardFSMInstance);
-            }
-
-            SyncAllData(typeof(MenuFSM));
-        });
+        // rewardButton.onClick.AddListener(() => {
+        //     var rewardFSM = Resources.Load("Reward") as GameObject;
+        //     if (rewardFSM == null) throw new ArgumentNullException(nameof(rewardFSM));
+        //
+        //     for (var i = 0; i < 50; i++) {
+        //         var rewardTemp = CreateInstance(rewardFSM, transform);
+        //         var rewardFSMInstance = rewardTemp.GetComponent<RewardFSM>();
+        //         rewardFSMInstance.shouldDestroy = true;
+        //         rewardFSMInstance.RollTheDice(NormalRewardDice.Roll());
+        //         rewardFSMInstance.State.Earn(rewardFSMInstance);
+        //     }
+        //
+        //     SyncAllData(typeof(MenuFSM));
+        // });
+        // reward1000Button.onClick.AddListener(() => {
+        //     var rewardFSM = Resources.Load("Reward") as GameObject;
+        //     if (rewardFSM == null) throw new ArgumentNullException(nameof(rewardFSM));
+        //
+        //     for (var i = 0; i < 1000; i++) {
+        //         var rewardTemp = CreateInstance(rewardFSM, transform);
+        //         var rewardFSMInstance = rewardTemp.GetComponent<RewardFSM>();
+        //         rewardFSMInstance.shouldDestroy = true;
+        //         rewardFSMInstance.RollTheDice(NormalRewardDice.Roll());
+        //         rewardFSMInstance.State.Earn(rewardFSMInstance);
+        //     }
+        //
+        //     SyncAllData(typeof(MenuFSM));
+        // });
     }
 
     private void ChangeLangToEnglish() {

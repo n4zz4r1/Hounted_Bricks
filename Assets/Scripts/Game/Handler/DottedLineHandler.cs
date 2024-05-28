@@ -36,7 +36,7 @@ public class DottedLineHandler : MonoBehaviour {
     }
 
     private int GetLimitSize() {
-        return (int)(limit * gameController.abilityFactor.AimSizeFactor);
+        return (int)(limit * gameController.AbilityFactor.AimSizeFactor);
     }
 
     internal void DestroyAllDots() {

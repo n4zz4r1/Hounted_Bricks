@@ -1,13 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Core.StateMachine.ActionButton;
 using Core.StateMachine.Cards;
 using Core.StateMachine.Stages;
 using Core.Utils;
 using Core.Utils.Constants;
 using Framework.Base;
 using Game.Popup.GameMenu;
+using Game.StateMachine.ActionButton;
 using Game.StateMachine.Monster;
 using Game.StateMachine.Players;
 using Game.StateMachine.Rocks;
@@ -19,24 +19,27 @@ using UnityEngine.UI;
 namespace Game.Controller.Game {
 
 public class GameController : Controller<GameController, GameState> {
+
+    public static GameController Instance;
+
     [SerializeField] public Components components;
     public List<RockFSM> rocksInGame = new();
-    internal readonly AbilityFactor abilityFactor = new();
-    internal readonly Dictionary<Monsters.MonsterBoss, GameObject> bossesPrefab = new();
-    public readonly AtomicInt countNumRockLaunched = new(0);
+    internal readonly AbilityFactor AbilityFactor = new();
+    internal readonly Dictionary<Monsters.MonsterBoss, GameObject> BossesPrefab = new();
+    public readonly AtomicInt CountNunRockLaunched = new(0);
 
     // Atomic Properties
-    public readonly AtomicInt countRockDestroyed = new(0);
-    public readonly AtomicInt currentStars = new(1);
-    internal readonly AtomicList<MonsterFSM> monstersInGame = new();
-    private readonly AtomicInt monstersMoved = new(0);
-    internal readonly Dictionary<Monsters.Monster, GameObject> monstersPrefab = new();
-    internal readonly AtomicInt playerLife = new(3);
-    internal ActionButtonFSM[] actionButtons;
-    internal MonsterGrid monsterGrid;
-    internal Vector2 nextPlayerPosition = PlayerFSM.PLAYER_START_POSITION;
-    internal PlayerFSM playerInGame;
-    internal Vector2 shootReleasePosition;
+    public readonly AtomicInt CountRockDestroyed = new(0);
+    public readonly AtomicInt CurrentStars = new(1);
+    internal readonly AtomicList<MonsterFSM> MonstersInGame = new();
+    private readonly AtomicInt _monstersMoved = new(0);
+    internal readonly Dictionary<Monsters.Monster, GameObject> MonstersPrefab = new();
+    internal readonly AtomicInt PlayerLife = new(3);
+    internal ActionButtonFSM[] ActionButtons;
+    internal MonsterGrid MonsterGrid;
+    internal Vector2 NextPlayerPosition = PlayerFSM.PlayerStartPosition;
+    internal PlayerFSM PlayerInGame;
+    internal Vector2 ShootReleasePosition;
 
     protected override GameController FSM => this;
     protected override GameState GetInitialState => States.CreatingGame;
@@ -50,20 +53,20 @@ public class GameController : Controller<GameController, GameState> {
     public Dictionary<Card, CardFSM> CardPrefabDictionary { get; set; } = new();
 
     internal int MonsterMoved() {
-        return monstersMoved.Value;
+        return _monstersMoved.Value;
     }
 
     internal void SetAllMonstersMoved() {
-        monstersMoved.Value = 0;
+        _monstersMoved.Value = 0;
     }
 
     internal void MonsterMovementBegin() {
-        FSM.monstersMoved.Value = FSM.monstersInGame.Count;
+        FSM._monstersMoved.Value = FSM.MonstersInGame.Count;
     }
 
     public void ReduceLife(MonsterFSM monsterFSM) {
-        var reduced = playerLife.Subtract(monsterFSM.damage);
-        monstersInGame.Remove(monsterFSM);
+        var reduced = PlayerLife.Subtract(monsterFSM.damage);
+        MonstersInGame.Remove(monsterFSM);
         // monstersAlive.Decrement();
         for (var i = 0; i < components.hearts.Count; i++)
             if (i >= reduced)
@@ -71,7 +74,7 @@ public class GameController : Controller<GameController, GameState> {
     }
 
     public void IncreaseMonstersMoved(MonsterFSM monsterFSM) {
-        var moved = monstersMoved.Decrement();
+        var moved = _monstersMoved.Decrement();
         // Debug.Log("["+ monstersMoved.Value +"] Monster "+ monsterFSM.monsterType +" moved to " + monsterFSM.gameObject.transform.position);
 
         // When all moved
@@ -81,22 +84,24 @@ public class GameController : Controller<GameController, GameState> {
 
     protected override async Task BeforeAsync() {
         CardPrefabDictionary.Add(Card.Card_001_Crooked_Rock,
-            await AssetLoader<CardFSM, ResourceType>.LoadCardFSM(Card.Card_001_Crooked_Rock));
+            await AssetLoader<Card>.Load<CardFSM>(Card.Card_001_Crooked_Rock));
         CardPrefabDictionary.Add(Card.Card_002_Rounded_Rock,
-            await AssetLoader<CardFSM, ResourceType>.LoadCardFSM(Card.Card_002_Rounded_Rock));
+            await AssetLoader<Card>.Load<CardFSM>(Card.Card_002_Rounded_Rock));
         CardPrefabDictionary.Add(Card.Card_003_Arrowed_Rock,
-            await AssetLoader<CardFSM, ResourceType>.LoadCardFSM(Card.Card_003_Arrowed_Rock));
+            await AssetLoader<Card>.Load<CardFSM>(Card.Card_003_Arrowed_Rock));
         CardPrefabDictionary.Add(Card.Card_004_Bomb_Rock,
-            await AssetLoader<CardFSM, ResourceType>.LoadCardFSM(Card.Card_004_Bomb_Rock));
+            await AssetLoader<Card>.Load<CardFSM>(Card.Card_004_Bomb_Rock));
 
-        actionButtons = GetComponentsInChildren<ActionButtonFSM>();
+        ActionButtons = GetComponentsInChildren<ActionButtonFSM>();
+        Instance = this;
 
-        components.nextWaveActionButton.components.button.onClick.AddListener(() => {
-            var amount = components.nextWaveActionButton.Counter.Add(1);
-            components.nextWaveActionButton.components.counter.text = amount.ToString();
-            State.NextWave(FSM);
-        });
-        components.collectButton.components.button.onClick.AddListener(() => State.Collect(FSM));
+        // TODO
+        // components.nextWaveActionButton.components.button.onClick.AddListener(() => {
+        //     var amount = components.nextWaveActionButton.Counter.Add(1);
+        //     components.nextWaveActionButton.components.counter.text = amount.ToString();
+        //     State.NextWave(FSM);
+        // });
+        // components.collectButton.components.button.onClick.AddListener(() => State.Collect(FSM));
     }
 
     // protected override void Before()
@@ -110,21 +115,21 @@ public class GameController : Controller<GameController, GameState> {
     }
 
     public void AimStart() {
-        playerInGame.State.Aim(playerInGame);
+        PlayerInGame.State.Aim(PlayerInGame);
     }
 
     public void AimExit() {
         // TODO implement
-        playerInGame.State.Stop(playerInGame);
+        PlayerInGame.State.Stop(PlayerInGame);
     }
 
     public void StartShooting(Vector2 to) {
-        if (playerInGame.State != StateMachine.Players.States.Aiming) return;
+        if (PlayerInGame.State != StateMachine.Players.States.Aiming) return;
 
         // shootReleasePosition = Input.mousePosition;
-        FSM.shootReleasePosition = to;
+        FSM.ShootReleasePosition = to;
         ChangeState(States.Shooting);
-        playerInGame.State.Shoot(playerInGame);
+        PlayerInGame.State.Shoot(PlayerInGame);
         // // TODO implement
         // throw new NotImplementedException();
     }
@@ -148,16 +153,15 @@ public class Components {
     [SerializeField] public Camera mainCamera;
     [SerializeField] public GameObject aimTouchArea;
     [SerializeField] public List<Image> hearts;
-    [SerializeField] public ActionButtonFSM nextWaveActionButton;
-    [SerializeField] public ActionButtonFSM collectButton;
+    // [SerializeField] public ActionButtonFSM nextWaveActionButton;
+    // [SerializeField] public ActionButtonFSM collectButton;
 
     [SerializeField] public List<AudioClip> walkClip;
 
     // TODO DEV AREA, REMOVE
     [SerializeField] public TextMeshProUGUI currentState;
-    internal GameObject gameArea;
-
-    internal GameObject playerArea;
+    internal GameObject GameArea;
+    internal GameObject PlayerArea;
 }
 
 }

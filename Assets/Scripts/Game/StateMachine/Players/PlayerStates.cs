@@ -125,7 +125,7 @@ public class Moving : State<PlayerFSM> {
     public override void Exit(PlayerFSM fsm) {
         // Update LastRockPosition
         var position = fsm.transform.position;
-        fsm.gameController.nextPlayerPosition = new Vector3(position.x, position.y, position.z);
+        fsm.gameController.NextPlayerPosition = new Vector3(position.x, position.y, position.z);
         fsm.gameController.State.StopMoving(fsm.gameController);
     }
 }

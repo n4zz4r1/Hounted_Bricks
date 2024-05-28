@@ -5,27 +5,21 @@ using Core.StateMachine.Cards;
 using Core.Utils.Constants;
 using Framework.Base;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Core.StateMachine.CharacterCards {
 
 public class CharacterCardFSM : StateMachine<CharacterCardFSM, State<CharacterCardFSM>> {
-    [SerializeField] public Card card;
-
-    // [FormerlySerializedAs("AbilitiesPopup")] [SerializeField]
-    // public AbilitiesPopup abilitiesPopup;
-
-    [FormerlySerializedAs("Internal")] [SerializeField]
-    public Components components;
 
     protected override CharacterCardFSM FSM => this;
-    protected override State<CharacterCardFSM> GetInitialState => States.Created;
+    protected override State<CharacterCardFSM> GetInitialState => States.Preload;
 
+    [SerializeField] public Card card;
+    [SerializeField] public Components components;
+    
     protected override void Before() {
         components.buttonFoundBox.onClick.AddListener(() => State.Select(FSM));
         components.buttonAbility.onClick.AddListener(OpenPopup);
-        // originalSprite = 
         FillAbilityIcons();
     }
 
@@ -47,10 +41,6 @@ public class CharacterCardFSM : StateMachine<CharacterCardFSM, State<CharacterCa
             }
         }
     }
-
-    // private new void OpenPopup() {
-    //     abilitiesPopup.gameObject.SetActive(true);
-    // }
 }
 
 [Serializable]

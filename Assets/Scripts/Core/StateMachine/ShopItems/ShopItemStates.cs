@@ -7,13 +7,13 @@ using Framework.Base;
 namespace Core.StateMachine.ShopItems {
 
 public abstract class States {
-    public static readonly Created Created = new();
+    public static readonly Preload Preload = new();
     public static readonly Available Available = new();
     public static readonly NoFunds NoFunds = new();
     public static readonly SoldOut SoldOut = new();
 }
 
-public class Created : State<ShopItemFSM> {
+public class Preload : State<ShopItemFSM> {
     public override void Enter(ShopItemFSM fsm) {
         fsm.Sync();
     }

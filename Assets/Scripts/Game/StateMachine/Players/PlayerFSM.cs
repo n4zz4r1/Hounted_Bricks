@@ -10,17 +10,15 @@ using UnityEngine;
 namespace Game.StateMachine.Players {
 
 public class PlayerFSM : StateMachine<PlayerFSM, State<PlayerFSM>> {
-    public static readonly Vector2 PLAYER_START_POSITION = new(3, -0.6f);
-    private static readonly Quaternion PLAYER_START_ROTATION = Quaternion.Euler(0.0f, 0.0f, 0.0f);
+    public static readonly Vector2 PlayerStartPosition = new(3, -0.6f);
+    private static readonly Quaternion PlayerStartRotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
 
     [SerializeField] public int lives;
     [SerializeField] public float movementSpeed = 6.0f;
     [SerializeField] public PlayerComponents components;
 
     #region Sounds
-
     [SerializeField] public List<AudioClip> throwRockFX;
-
     #endregion
 
     internal GameController gameController;
@@ -31,7 +29,7 @@ public class PlayerFSM : StateMachine<PlayerFSM, State<PlayerFSM>> {
     protected override State<PlayerFSM> GetInitialState => States.Created;
 
     public static PlayerFSM Build(string prefab, Transform parent) {
-        var player = Instantiate(Resources.Load<PlayerFSM>(prefab), PLAYER_START_POSITION, PLAYER_START_ROTATION,
+        var player = Instantiate(Resources.Load<PlayerFSM>(prefab), PlayerStartPosition, PlayerStartRotation,
             parent);
         return player;
     }

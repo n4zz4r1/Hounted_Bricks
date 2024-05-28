@@ -6,13 +6,13 @@ using Framework.Base;
 namespace Core.StateMachine.CharacterCards {
 
 public abstract class States {
-    public static readonly Created Created = new();
+    public static readonly Preload Preload = new();
     public static readonly NotFound NotFound = new();
     public static readonly Selected Selected = new();
     public static readonly Unselected Unselected = new();
 }
 
-public class Created : State<CharacterCardFSM> {
+public class Preload : State<CharacterCardFSM> {
     public override void Before(CharacterCardFSM fsm) {
         var selectedCharacter = PlayerDataV1.Instance.selectedCharacter;
         if (selectedCharacter == fsm.card) {
@@ -28,7 +28,8 @@ public class Created : State<CharacterCardFSM> {
         }
     }
 
-    private static void SetupStars(CharacterCardFSM fsm) {
+    private static void SetupStars(CharacterCardFSM _) {
+        // TODO update stars
         // for (var i = 0; i < FSM.cardFSM.power.stamina; i++) {
         //     FSM.components.starsStamina[i].color = ColorUtils.YELLOW;
         // }

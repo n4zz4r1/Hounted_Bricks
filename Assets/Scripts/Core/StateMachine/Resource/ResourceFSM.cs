@@ -9,19 +9,22 @@ using Image = UnityEngine.UI.Image;
 
 namespace Core.StateMachine.Resource {
 
-/**
- * Refactor: TODO
- */
 public class ResourceFSM : StateMachine<ResourceFSM, State<ResourceFSM>> {
     [SerializeField] public ResourceType resourceType;
     [SerializeField] public Components components;
 
     protected override ResourceFSM FSM => this;
-    protected override State<ResourceFSM> GetInitialState => States.Created;
+    protected override State<ResourceFSM> GetInitialState => States.Preload;
 
     protected override async Task BeforeAsync() {
-        components.resourceIcon.sprite = await AssetLoader<Sprite, ResourceType>.Load(resourceType);
+        var texture2d = await AssetLoader<ResourceType>.Load<Texture2D>(resourceType);
+        components.resourceIcon.sprite = ConvertToSprite(texture2d);
         components.quantityText.text = ResourcesV1.Instance.GetResourcesAmount(resourceType).ToString();
+    }
+    
+    private Sprite ConvertToSprite(Texture2D texture)
+    {
+        return Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
     }
 
     protected override void SyncDataBase() {

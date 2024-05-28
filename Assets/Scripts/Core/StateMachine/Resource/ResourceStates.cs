@@ -2,13 +2,10 @@ using Framework.Base;
 
 namespace Core.StateMachine.Resource {
 
-/**
- * Refactor: TODO
- */
 public abstract class States {
-    public static readonly Created Created = new();
+    public static readonly Preload Preload = new();
 }
 
-public class Created : State<ResourceFSM> { }
+public class Preload : State<ResourceFSM> { }
 
 }

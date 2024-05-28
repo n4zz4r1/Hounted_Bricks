@@ -1,5 +1,5 @@
-using Core.StateMachine.ActionButton;
 using Framework.Base;
+using Game.StateMachine.ActionButton;
 using Game.StateMachine.Rocks;
 
 namespace Game.Controller.Game {
@@ -22,8 +22,9 @@ public class PlayerTurn : GameState {
         fsm.SyncAllData(typeof(ActionButtonFSM));
         fsm.components.aimTouchArea.SetActive(true);
         // FSM.monstersMoved.Value = 0;
-        fsm.components.nextWaveActionButton.components.button.enabled = true;
-        fsm.components.collectButton.Inactive();
+        // TODO
+        // fsm.components.nextWaveActionButton.components.button.enabled = true;
+        // fsm.components.collectButton.Inactive();
     }
 
     public override void NextWave(GameController fsm) {

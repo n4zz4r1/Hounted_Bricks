@@ -15,12 +15,12 @@ public class CreatingGame : GameState {
         fsm.CurrentStage = StageFSM.GetCurrentStage();
 
         // Add player
-        fsm.components.playerArea = new GameObject("Area: Player");
-        fsm.components.playerArea.transform.SetParent(fsm.transform);
-        fsm.components.gameArea = new GameObject("Area: Game");
-        fsm.components.gameArea.transform.SetParent(fsm.transform);
-        fsm.playerInGame = PlayerFSM.Build(BMCharacter.Preset[PlayerDataV1.Instance.selectedCharacter],
-            fsm.components.playerArea.transform);
+        fsm.components.PlayerArea = new GameObject("Area: Player");
+        fsm.components.PlayerArea.transform.SetParent(fsm.transform);
+        fsm.components.GameArea = new GameObject("Area: Game");
+        fsm.components.GameArea.transform.SetParent(fsm.transform);
+        fsm.PlayerInGame = PlayerFSM.Build(BMCharacter.Preset[PlayerDataV1.Instance.selectedCharacter],
+            fsm.components.PlayerArea.transform);
         fsm.SaveRockSlot = PlayerDataV1.Instance.GetSavedRocks();
 
         CreateMonsters(fsm);
@@ -32,9 +32,9 @@ public class CreatingGame : GameState {
         // Preload all Prefabs
         // TODO to improve performance, load only prefabs within the game
         foreach (var monster in Enum.GetValues(typeof(Monsters.Monster)))
-            FSM.monstersPrefab[(Monsters.Monster)monster] = Resources.Load<GameObject>(monster.ToString());
+            FSM.MonstersPrefab[(Monsters.Monster)monster] = Resources.Load<GameObject>(monster.ToString());
         foreach (var monster in Enum.GetValues(typeof(Monsters.MonsterBoss)))
-            FSM.bossesPrefab[(Monsters.MonsterBoss)monster] = Resources.Load<GameObject>(monster.ToString());
+            FSM.BossesPrefab[(Monsters.MonsterBoss)monster] = Resources.Load<GameObject>(monster.ToString());
 
         // Create Monsters
         if (FSM.CurrentStage.properties.autoGenerate)
@@ -51,16 +51,16 @@ public class CreatingGame : GameState {
                 lastWave = wave.positionY;
 
             foreach (var positionX in wave.positionX)
-                FSM.monstersInGame.Add(MonsterFSM.Create(
-                    FSM.monstersPrefab[wave.monster],
+                FSM.MonstersInGame.Add(MonsterFSM.Create(
+                    FSM.MonstersPrefab[wave.monster],
                     new Vector2(positionX, wave.positionY),
                     FSM.components.areaMonsters.transform).GetComponent<MonsterFSM>());
         }
 
         // Add boss if exist
         if (FSM.CurrentStage.properties.boss.boss != Monsters.MonsterBoss.NONE)
-            FSM.monstersInGame.Add(MonsterFSM.Create(
-                FSM.bossesPrefab[FSM.CurrentStage.properties.boss.boss],
+            FSM.MonstersInGame.Add(MonsterFSM.Create(
+                FSM.BossesPrefab[FSM.CurrentStage.properties.boss.boss],
                 new Vector2(FSM.CurrentStage.properties.boss.positionX, lastWave + 2), // last wave + two blocks
                 FSM.components.areaMonsters.transform).GetComponent<MonsterFSM>());
     }
@@ -89,8 +89,8 @@ public class CreatingGame : GameState {
             var monster = StageGenerator.ChooseMonster(level, monstersEasy, monstersMid, monstersHard);
             var positionsX = StageGenerator.ShuffleList(numberOfMonsters);
             foreach (var positionX in positionsX)
-                FSM.monstersInGame.Add(MonsterFSM.Create(
-                    FSM.monstersPrefab[monster],
+                FSM.MonstersInGame.Add(MonsterFSM.Create(
+                    FSM.MonstersPrefab[monster],
                     new Vector2(positionX, positionY),
                     FSM.components.areaMonsters.transform).GetComponent<MonsterFSM>());
         }
@@ -101,8 +101,8 @@ public class CreatingGame : GameState {
 
         var bossPositionY = waves + 12;
         var bossPositionX = StageGenerator.ShuffleListBoss();
-        FSM.monstersInGame.Add(MonsterFSM.Create(
-            FSM.bossesPrefab[boss],
+        FSM.MonstersInGame.Add(MonsterFSM.Create(
+            FSM.BossesPrefab[boss],
             new Vector2(bossPositionX, bossPositionY),
             FSM.components.areaMonsters.transform).GetComponent<MonsterFSM>());
     }

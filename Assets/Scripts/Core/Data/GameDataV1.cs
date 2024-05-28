@@ -1,6 +1,5 @@
 using System;
 using System.Linq;
-using Core.StateMachine.Rewards;
 using Core.StateMachine.Stages;
 using Framework.Base;
 using UnityEngine;
@@ -37,8 +36,9 @@ public class GameDataV1 : Data<GameDataV1> {
         if (stars <= (int)stageFSM.CurrentStageStatus)
             return;
 
-        for (var i = (int)stageFSM.CurrentStageStatus + 1; i <= stars; i++)
-            RewardFSM.SaveReward(stageFSM.rewards[i - 1], stageFSM.rewardsQuantity[i - 1], stageFSM.cardReward);
+        // TODO for map stage
+        // for (var i = (int)stageFSM.CurrentStageStatus + 1; i <= stars; i++)
+        //     RewardFSM.SaveReward(stageFSM.rewards[i - 1], stageFSM.rewardsQuantity[i - 1], stageFSM.cardReward);
 
         SetStageStatus(stageFSM.Level, (StageStatus)stars);
     }

@@ -9,56 +9,29 @@ using UnityEngine;
 namespace Core.StateMachine.Cards {
 
 public abstract class States {
-    public static readonly Created Created = new();
+    public static readonly Preload Preload = new();
     public static readonly NotFound NotFound = new();
     public static readonly Found Found = new();
 }
 
-public class Created : State<CardFSM> {
+public class Preload : State<CardFSM> {
     public override void Before(CardFSM fsm) {
         fsm.components.cardTitleText.text = fsm.GetCardTitle;
-        // TODO Type Icon
-        // fsm.components.cardTypeIcon.sprite = fsm.components.cardTypeIcons[(int)fsm.cardType];
         fsm.SyncData(typeof(CardFSM));
-        // If card quantity > 0, set State to FOUND, else NOT_FOUND
         fsm.PaintCard(fsm.Rarity);
 
-        // if (fsm.createAsDisable || !CardsDataV1.Instance.cards.Contains(fsm.cardId)) { TODO check create as disable
         if (!CardsDataV1.Instance.cards.Contains(fsm.cardId)) {
             fsm.ChangeState(States.NotFound);
             return;
         }
 
-
-        // var quantity = CardsDataV1.Instance.GetCardQuantity(fsm.cardId);
-        // float quantity = CardsDataV1.Instance.GetCardQuantity(fsm.cardId);
-        // fsm.components.textQuantity.text = quantity.ToString(CultureInfo.InvariantCulture);
-
         fsm.ChangeState(States.Found);
-
-        //
-        // // Show card quantity if needed
-        // if (quantity > 1) {
-        //     fsm.components.boxQuantity.SetActive(true);
-        //     // float maxQuantity = fsm.maxQuantity;
-        //     // fsm.components.textQuantity.text = quantity + " / " + maxQuantity;
-        //     // fsm.components.boxQuantityProgress.rectTransform.anchorMax = new Vector2(quantity / maxQuantity, 1);
-        // }
-        // else {
-        //     fsm.components.boxQuantity.SetActive(false);
-        // }
     }
 }
 
 public class NotFound : State<CardFSM> {
     public override void Enter(CardFSM fsm) {
-        // fsm.DestroyCardBox();
         fsm.components.cardBox.SetActive(false);
-        // fsm.components.iconCardForNotFound.sprite = fsm.components.cardIcon.sprite;
-        // fsm.components.areaQuantity.SetActive(false);
-
-        // fsm.DestroyInfoButton();
-        // fsm.components.cardTitleText.transform.localPosition = new Vector3(0, -1, 0);
     }
 }
 
@@ -72,12 +45,6 @@ public class Found : State<CardFSM> {
     }
 
     public override void Enter(CardFSM fsm) {
-        // Hide information if needed
-        // if (fsm.hideInfo) {
-        // fsm.DestroyInfoButton();
-        // fsm.components.cardTitleText.transform.localPosition = new Vector3(0, -1, 0);
-        // }
-
         if (fsm.maxLevel <= 1)
             fsm.components.levelBox.SetActive(false);
 
@@ -121,13 +88,6 @@ public class Found : State<CardFSM> {
         var cardQuantity = CardsDataV1.Instance.GetCardQuantity(fsm.cardId);
         fsm.components.textQuantity.text = cardQuantity.ToString();
         fsm.UpdateCurrentAvailable(cardQuantity - PlayerDataV1.Instance.RockCardCounter(fsm.cardId));
-
-        //     // Update Colors
-        //     fsm.SyncCardColors();
-        //
-        //     // Gems Area 
-        //     if (!fsm.HasGems()) fsm.components.gemsArea.SetActive(false);
-        //     // TODO add gems here
     }
 
     //
@@ -135,8 +95,6 @@ public class Found : State<CardFSM> {
     //
     public override void OnCollisionEnter(CardFSM fsm, Collider2D collider) {
         var slotCollider = collider.GetComponent<CardSlotFSM>();
-        Debug.Log("Collided " + collider);
-        // ReSharper disable once Unity.NoNullPropagation
         if (slotCollider == null || slotCollider.State == CardSlots.States.Disabled ||
             (slotCollider.State is WithRock && slotCollider.SelectedCardFSM?.cardId == fsm.cardId))
             return;
@@ -151,7 +109,6 @@ public class Found : State<CardFSM> {
         if (fsm.SelectedSlot == null) return;
 
         var slotCollider = collider.GetComponent<CardSlotFSM>();
-        // ReSharper disable once Unity.NoNullPropagation
         if (slotCollider.State == CardSlots.States.Disabled ||
             (slotCollider.State is WithRock && slotCollider.SelectedCardFSM?.cardId == fsm.cardId))
             return;
@@ -165,12 +122,11 @@ public class Found : State<CardFSM> {
 
     public override void StartDragging(CardFSM fsm) {
         fsm.UpdateCurrentAvailable(fsm.CurrentQuantity - 1);
-        AssetLoader<GameObject, Card>.LoadCard(fsm, CloneCard);
-
+        AssetLoader<Card>.Load<CardFSM, CardFSM>(fsm.cardId, fsm, CloneCard);
         fsm.IsDragging = true;
     }
 
-    private void CloneCard(GameObject cardFSMPrefab, CardFSM fsm) {
+    private static void CloneCard(CardFSM cardFSMPrefab, CardFSM fsm) {
         fsm.CreateClone(cardFSMPrefab);
     }
 

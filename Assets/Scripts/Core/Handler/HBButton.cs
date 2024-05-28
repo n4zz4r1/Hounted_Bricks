@@ -1,45 +1,41 @@
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
-using UnityEngine.Localization.Settings;
 using UnityEngine.UI;
 
 namespace Core.Handler {
 
-public class HBButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
-{
-    [Header("Button States")]
-    public Sprite normalSprite;
+public class HBButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler {
+    [Header("Button States")] public Sprite normalSprite;
+
     public Sprite disabledSprite;
     public Sprite pressedSprite;
 
-    [Header("Settings")]
-    public bool isDisabledByDefault = false;
+    [Header("Settings")] public bool isDisabledByDefault;
 
-    [Header("Events")]
-    public UnityEvent onClick;
+    [Header("Events")] public UnityEvent onClick;
+
+    public Dropdown color;
 
     private Image buttonImage;
     private Vector3 originalPosition;
 
-    public Dropdown color;
-    
-    
+
     public void OnPointerDown(PointerEventData eventData) {
         if (isDisabledByDefault) return;
-        
+
         buttonImage.sprite = pressedSprite;
         transform.localPosition = originalPosition + new Vector3(0, -5f, 0);
     }
 
     public void OnPointerUp(PointerEventData eventData) {
         if (isDisabledByDefault) return;
-        
+
         buttonImage.sprite = normalSprite;
         transform.localPosition = originalPosition;
         onClick?.Invoke(); // Trigger onClick event on mouse release
     }
-    
+
     // private void Awake()
     // {
     //     buttonImage = GetComponent<Image>();

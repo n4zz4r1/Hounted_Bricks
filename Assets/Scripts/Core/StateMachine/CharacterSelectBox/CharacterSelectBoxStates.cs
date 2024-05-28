@@ -1,5 +1,4 @@
 using Core.Data;
-using Core.Popup.StagePopup;
 using Core.StateMachine.CharacterCards;
 using Core.StateMachine.Menu;
 using Framework.Base;
@@ -7,14 +6,14 @@ using Framework.Base;
 namespace Core.StateMachine.CharacterSelectBox {
 
 public abstract class States {
-    public static readonly Created Created = new();
+    public static readonly Preload Preload = new();
     public static readonly Selected Selected = new();
     public static readonly NotSelected NotSelected = new();
     public static readonly NotFound NotFound = new();
     public static readonly Dead Dead = new();
 }
 
-public class Created : State<CharacterSelectBoxFSM> {
+public class Preload : State<CharacterSelectBoxFSM> {
     public override void Enter(CharacterSelectBoxFSM fsm) {
         fsm.components.disabledBox.SetActive(false);
         fsm.components.enabledBox.SetActive(false);
@@ -86,7 +85,6 @@ public class NotSelected : State<CharacterSelectBoxFSM> {
         fsm.SyncAllData(typeof(CharacterCardFSM));
         fsm.SyncAllData(typeof(MenuFSM));
         fsm.SyncAllData(typeof(CharacterSelectBoxFSM));
-        fsm.SyncAllData(typeof(StagePopup));
     }
     // public override void Enter(CharacterSelectBoxFSM FSM)
     // {

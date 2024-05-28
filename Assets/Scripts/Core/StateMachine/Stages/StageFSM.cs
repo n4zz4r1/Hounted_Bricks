@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using Core.Data;
 using Core.Handler;
-using Core.Popup.StagePopup;
 using Core.Utils;
 using Core.Utils.Constants;
 using Framework.Base;
@@ -33,7 +32,7 @@ public class StageFSM : StateMachine<StageFSM, State<StageFSM>>, IPointerClickHa
     [SerializeField] public Components components;
 
     protected override StageFSM FSM => this;
-    protected override State<StageFSM> GetInitialState => States.Created;
+    protected override State<StageFSM> GetInitialState => States.Preload;
 
     public int Level { get; private set; }
 
@@ -42,8 +41,9 @@ public class StageFSM : StateMachine<StageFSM, State<StageFSM>>, IPointerClickHa
     public void OnPointerClick(PointerEventData eventData) {
         if (!isMapStage) return;
 
-        components.stagePopup.gameObject.SetActive(true);
-        components.stagePopup.OpenStage(FSM);
+        // TODO map stage
+        // components.stagePopup.gameObject.SetActive(true);
+        // components.stagePopup.OpenStage(FSM);
     }
 
     protected override void Before() {
@@ -144,7 +144,7 @@ public class Components {
     [SerializeField] public Image boxImage;
     [SerializeField] public TextMeshProUGUI difficultyLabel;
     [SerializeField] public GameObject doneBox;
-    [SerializeField] public StagePopup stagePopup;
+    // [SerializeField] public StagePopup stagePopup;
     [SerializeField] public Light2DBase light2DBase;
 
     // Remove and Add game objects for doors, windows and others

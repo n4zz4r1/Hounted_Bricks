@@ -25,7 +25,7 @@ public abstract class States {
 
 public class ReachEndLine : MonsterState {
     public override void Enter(MonsterFSM fsm) {
-        fsm.GameController.monstersInGame.Remove(fsm);
+        fsm.GameController.MonstersInGame.Remove(fsm);
         Object.Destroy(fsm.gameObject);
     }
 }
@@ -137,7 +137,7 @@ public class Dying : MonsterState {
     private static readonly int KillAnim = Animator.StringToHash("Kill");
 
     public override void Enter(MonsterFSM fsm) {
-        fsm.GameController.monstersInGame.Remove(fsm);
+        fsm.GameController.MonstersInGame.Remove(fsm);
         fsm.components.animator.SetTrigger(KillAnim);
         AudioController.PlayFXRandom(fsm.dyingFX);
     }

@@ -7,14 +7,14 @@ using UnityEngine.UI;
 namespace Core.StateMachine.Stages {
 
 public abstract class States {
-    public static readonly Created Created = new();
+    public static readonly Preload Preload = new();
     public static readonly MainGameStage MainGameStage = new();
     public static readonly Unavailable Unavailable = new();
     public static readonly Available Available = new();
     public static readonly Done Done = new();
 }
 
-public class Created : State<StageFSM> {
+public class Preload : State<StageFSM> {
     public override void Before(StageFSM fsm) {
         if (!fsm.isMapStage) {
             fsm.ChangeState(States.MainGameStage);

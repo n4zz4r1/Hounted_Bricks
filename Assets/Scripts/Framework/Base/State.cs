@@ -22,7 +22,9 @@ public abstract class State<T> {
     public virtual void SyncData(T fsm) { }
     public virtual void OpenPopup(T fsm) { }
     public virtual void TransitionTo(T fsm, string scene, Button from) { }
-
+    public virtual void Released(T fsm) { }
+    public virtual void Pressed(T fsm) { }
+    
     #endregion
 
     #region Common Behaves

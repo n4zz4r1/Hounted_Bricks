@@ -19,7 +19,7 @@ public class ShopItemFSM : StateMachine<ShopItemFSM, State<ShopItemFSM>> {
     [SerializeField] public ShopItemComponents components;
 
     protected override ShopItemFSM FSM => this;
-    protected override State<ShopItemFSM> GetInitialState => States.Created;
+    protected override State<ShopItemFSM> GetInitialState => States.Preload;
 
     protected override void Before() {
         components.shopItemButton.onClick.AddListener(() => { State.Buy(FSM); });

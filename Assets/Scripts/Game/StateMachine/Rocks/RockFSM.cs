@@ -96,7 +96,7 @@ public class RockFSM : StateMachine<RockFSM, State<RockFSM>> {
 
     // Total damage = Rock Damage + Player Factor 
     internal float Damage() {
-        return rockDamage * components.GameController.abilityFactor.DamageFactor;
+        return rockDamage * components.GameController.AbilityFactor.DamageFactor;
     }
 
     public void Collided(Collider2D other) {
@@ -146,14 +146,14 @@ public class RockFSM : StateMachine<RockFSM, State<RockFSM>> {
     }
 
     internal bool IsOnFire() {
-        return OnFire = components.GameController.abilityFactor.RockOnFire ||
-                        ProbabilityUtils.Instance.Between100(components.GameController.abilityFactor
+        return OnFire = components.GameController.AbilityFactor.RockOnFire ||
+                        ProbabilityUtils.Instance.Between100(components.GameController.AbilityFactor
                             .RockOnFireFactor);
     }
 
     internal bool IsOnPoison() {
-        return OnPoison = components.GameController.abilityFactor.RockOnPoisonTurn ||
-                          ProbabilityUtils.Instance.Between100(components.GameController.abilityFactor
+        return OnPoison = components.GameController.AbilityFactor.RockOnPoisonTurn ||
+                          ProbabilityUtils.Instance.Between100(components.GameController.AbilityFactor
                               .RockOnPoisonFactor);
     }
 

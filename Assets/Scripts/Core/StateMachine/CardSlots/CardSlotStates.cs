@@ -19,7 +19,6 @@ public class Preload : State<CardSlotFSM> {
 }
 
 public class Empty : State<CardSlotFSM> {
-
     public override void Enter(CardSlotFSM fsm) {
         fsm.components.slotBox.color = Colors.PRIMARY;
         fsm.components.slotIcon.enabled = false;

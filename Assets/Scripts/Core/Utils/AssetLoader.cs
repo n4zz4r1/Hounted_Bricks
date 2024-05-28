@@ -1,29 +1,40 @@
 using System;
 using System.Threading.Tasks;
-using Core.StateMachine.Cards;
-using Core.Utils.Constants;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
-using UnityEngine.Localization.Settings;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using Object = UnityEngine.Object;
 
 namespace Core.Utils {
 
-public abstract class AssetLoader<T, U> where U : Enum where T : Object {
-    // Get T Object by Enum
-    public static async Task<T> Load(U assetEnum) {
-        var handle = Addressables.LoadAssetAsync<T>(typeof(U).Name + "_" + assetEnum);
+public abstract class AssetLoader<U> where U : Enum {
+
+    private static string AssetName(U assetEnum) => typeof(U).Name == "Card" ? 
+        assetEnum.ToString().Replace("Card_", "") : typeof(U).Name + "_" + assetEnum;
+
+    /**
+     * Load an asset (GameObject) storing on cache and returning it
+     */
+    public static async Task<T> Load<T>(U assetEnum) where T : Object {
+        // // 1. Tries to get from cache.
+        // if (AssetCache.TryGetValue(assetEnum, out var cachedAsset)) {
+        //     CustomLog($"Asset {assetEnum} fetched from preloaded cache.");
+        //     return ConvertToObject<T>(cachedAsset);
+        // }
 
         try {
-            var asset = await handle.Task;
-            if (asset != null)
-                // Debug.Log("Asset loaded successfully.");
-                // Here you can use the asset, for example, instantiate it
-                return asset;
+            // 2. Check if asset exists at all
+            var asset = await Addressables.LoadAssetAsync<Object>(AssetName(assetEnum)).Task;
+            if (asset == null) {
+                Debug.LogError($"Failed to load asset from enum: {AssetName(assetEnum)}");
+                return null;
+            }
+            //
+            // // 3. Stores on cache and return
+            // AssetCache[assetEnum] = asset;
+            // CustomLog($"Asset {assetEnum} loaded successfully.");
 
-            Debug.LogError($"Failed to load asset: {asset}");
-            return null;
+            return ConvertToObject<T>(asset);
         }
         catch (Exception ex) {
             Debug.LogError($"Failed to load asset: {ex.Message}");
@@ -31,67 +42,52 @@ public abstract class AssetLoader<T, U> where U : Enum where T : Object {
         }
     }
 
-    public static async Task<GameObject> LoadCard(Card card) {
-        var handle = Addressables.LoadAssetAsync<GameObject>(card.ToString().Replace("Card_", ""));
-
-        try {
-            var asset = await handle.Task;
-            if (asset != null)
-                // Debug.Log("Asset loaded successfully.");
-                // Here you can use the asset, for example, instantiate it
-                return asset;
-
-            Debug.LogError($"Failed to load asset: {asset}");
-            return null;
+    private static T ConvertToObject<T>(Object o) where T : Object {
+        Debug.Log($"component found from {typeof(T).Name}, object type {o.GetType()} : {o}");
+        // if (o is Sprite sprite && typeof(T) == typeof(Object)) {
+        //     return sprite as T;
+        // }
+        // If is a subclass of GameObject, should return component T, else cast normally
+        if (o is GameObject gameObject) {
+            return gameObject.GetComponent<T>();
         }
-        catch (Exception ex) {
-            Debug.LogError($"Failed to load asset: {ex.Message}");
-            return null;
-        }
+        return (T) o;
     }
 
-    public static async Task<CardFSM> LoadCardFSM(Card card) {
-        var handle = Addressables.LoadAssetAsync<GameObject>(card.ToString().Replace("Card_", ""));
+    //
 
-        try {
-            var asset = await handle.Task;
-            if (asset != null)
-                // Debug.Log("Asset loaded successfully.");
-                // Here you can use the asset, for example, instantiate it
-                return asset.GetComponent<CardFSM>();
+    /**
+     * Load an asset (GameObject) storing on cache and returning it as callback
+     */
+    public static void Load<V, X>(U assetEnum, V fsm, Action<X, V> callback) where X : Object {
 
-            Debug.LogError($"Failed to load asset: {asset}");
-            return null;
-        }
-        catch (Exception ex) {
-            Debug.LogError($"Failed to load asset: {ex.Message}");
-            return null;
-        }
-    }
+        // 1. Tries to get from cache.
+        // if (AssetCache.TryGetValue(assetEnum, out var cachedAsset)) {
+        //     CustomLog($"Asset {assetEnum} fetched from preloaded cache.");
+        //     callback?.Invoke(ConvertToObject<X>(cachedAsset), fsm);
+        //     return;
+        // }
 
-    public static void LoadCard(CardFSM fsm, Action<GameObject, CardFSM> callback) {
-        var handle = Addressables.LoadAssetAsync<GameObject>(fsm.cardId.ToString().Replace("Card_", ""));
+        // 2. Once request completed, store asset on cache and execute callback 
+        var handle = Addressables.LoadAssetAsync<X>(AssetName(assetEnum));
         handle.Completed += operation => {
             if (operation.Status == AsyncOperationStatus.Succeeded) {
                 var asset = operation.Result;
-                // Debug.Log("Asset loaded successfully.");
-                callback?.Invoke(asset, fsm);
+                // AssetCache[assetEnum] = asset;
+                // CustomLog($"Asset {assetEnum} loaded successfully.");
+                callback?.Invoke(ConvertToObject<X>(asset), fsm);
             }
             else {
                 Debug.LogError($"Failed to load asset: {operation.OperationException?.Message}");
-                callback?.Invoke(null, fsm);
-            }
+            } 
         };
     }
 
-    // Get Localization by Enum
-    public static async Task<string> LoadLabel(U enumType) {
-        var localization =
-            LocalizationSettings.StringDatabase.GetLocalizedStringAsync("BouncyLocalizer",
-                typeof(T).Name + "_" + enumType);
-        return await localization.Task;
+    private static void CustomLog(string message) {
+        Debug.Log(message); // You can customize this method to log in different ways.
     }
 }
+
 
 // Below, all sprites available
 

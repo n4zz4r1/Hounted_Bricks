@@ -2,7 +2,6 @@
 using Core.StateMachine.Cards;
 using Core.StateMachine.CardSlots;
 using Core.Utils;
-using Core.Utils.Constants;
 using Framework.Base;
 
 namespace Core.Controller.Bag {
@@ -13,11 +12,8 @@ public abstract class States {
 }
 
 public class Preloading : State<BagController> {
-    public override void Before(BagController fsm) {
-        
-    }
+    public override void Before(BagController fsm) { }
 }
-
 
 
 public class Started : State<BagController> {

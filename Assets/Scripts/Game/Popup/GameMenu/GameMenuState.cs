@@ -17,7 +17,7 @@ public class Playing : State<GameMenuFSM> {
     }
 
     public override void Win(GameMenuFSM fsm, int stars) {
-        fsm.components.gameController.currentStars.Value = stars;
+        fsm.components.gameController.CurrentStars.Value = stars;
         fsm.ChangeState(States.Victory);
     }
 
@@ -63,7 +63,7 @@ public class Victory : State<GameMenuFSM> {
         }
         fsm.components.gameMenuTitle.text = fsm.YouWonLabel;
         GameDataV1.Instance.CompleteStage(fsm.components.gameController.CurrentStage,
-            fsm.components.gameController.currentStars.Value);
+            fsm.components.gameController.CurrentStars.Value);
         fsm.stageFSM.SetNextLevel();
     }
 

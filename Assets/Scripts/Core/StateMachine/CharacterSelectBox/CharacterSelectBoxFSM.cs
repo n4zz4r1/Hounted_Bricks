@@ -14,9 +14,9 @@ public class CharacterSelectBoxFSM : StateMachine<CharacterSelectBoxFSM, State<C
     [SerializeField] public Card character = Card.Card_005_Char_Lucas;
 
     protected override CharacterSelectBoxFSM FSM => this;
-    protected override State<CharacterSelectBoxFSM> GetInitialState => States.Created;
+    protected override State<CharacterSelectBoxFSM> GetInitialState => States.Preload;
 
-    public int MaxHeart { get; set; } = 3;
+    private int MaxHeart { get; set; } = 3;
     // public DateTime LastDateTime { get; set; } = new ();
 
     protected override void SyncDataBase() {

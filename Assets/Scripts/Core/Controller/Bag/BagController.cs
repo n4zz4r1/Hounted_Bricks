@@ -21,18 +21,22 @@ public class BagController : StateMachine<BagController, State<BagController>> {
 
     protected override BagController FSM => this;
     protected override State<BagController> GetInitialState => States.Started;
-    public Dictionary<Card, CardFSM> CardPrefabDictionary { get; set; } = new();
+
+    public Dictionary<Card, CardFSM> CardPrefabDictionary {
+        get => _cardPrefabDictionary;
+        set => _cardPrefabDictionary = value;
+    }
 
     protected override async Task BeforeAsync() {
         // update icon, label and text based on its type
         CardPrefabDictionary.Add(Card.Card_001_Crooked_Rock,
-            await AssetLoader<CardFSM, ResourceType>.LoadCardFSM(Card.Card_001_Crooked_Rock));
+            await AssetLoader<Card>.Load<CardFSM>(Card.Card_001_Crooked_Rock));
         CardPrefabDictionary.Add(Card.Card_002_Rounded_Rock,
-            await AssetLoader<CardFSM, ResourceType>.LoadCardFSM(Card.Card_002_Rounded_Rock));
+            await AssetLoader<Card>.Load<CardFSM>(Card.Card_002_Rounded_Rock));
         CardPrefabDictionary.Add(Card.Card_003_Arrowed_Rock,
-            await AssetLoader<CardFSM, ResourceType>.LoadCardFSM(Card.Card_003_Arrowed_Rock));
+            await AssetLoader<Card>.Load<CardFSM>(Card.Card_003_Arrowed_Rock));
         CardPrefabDictionary.Add(Card.Card_004_Bomb_Rock,
-            await AssetLoader<CardFSM, ResourceType>.LoadCardFSM(Card.Card_004_Bomb_Rock));
+            await AssetLoader<Card>.Load<CardFSM>(Card.Card_004_Bomb_Rock));
     }
 
     protected override void Before() {
@@ -46,6 +50,7 @@ public class BagController : StateMachine<BagController, State<BagController>> {
     #region DEV
 
     [SerializeField] public Button addResource;
+    [SerializeField] private Dictionary<Card, CardFSM> _cardPrefabDictionary = new();
 
     private void AddResource() {
         ResourcesV1.Instance.AddResources(ResourceType.ROCK_SCROLL, 50);

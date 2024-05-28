@@ -11,7 +11,7 @@ public class TemplateFSM : StateMachine<TemplateFSM, State<TemplateFSM>> {
     [SerializeField] public Components components;
 
     protected override TemplateFSM FSM => this;
-    protected override State<TemplateFSM> GetInitialState => States.Created;
+    protected override State<TemplateFSM> GetInitialState => States.Preload;
 }
 
 [Serializable]
