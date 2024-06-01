@@ -51,7 +51,9 @@ public class Aiming : State<PlayerFSM> {
     private static readonly int StopAnim = Animator.StringToHash("Stop");
 
     public override void Enter(PlayerFSM fsm) {
+        
         fsm.components.animator.SetTrigger(AimAnim);
+        Aim(fsm);
     }
 
     public override void Aim(PlayerFSM fsm) {
@@ -60,20 +62,20 @@ public class Aiming : State<PlayerFSM> {
         var mousePosition = fsm.gameController.components.mainCamera.ScreenToWorldPoint(Input.mousePosition);
         var newPosition = new Vector3(mousePosition.x, mousePosition.y, 0);
         // Debug.Log("from vector " + newPosition + " to vector " + newPosition);
-        fsm.components.aimLineHandler.CreateDottedAim(currentPosition, newPosition);
+        fsm.components.aimLineHandler.StartAiming(fsm.transform.position, fsm.AimFactor);
     }
 
     public override void Update(PlayerFSM fsm) {
-        Aim(fsm);
+        // Aim(fsm);
     }
 
     public override void Shoot(PlayerFSM fsm) {
-        fsm.components.aimLineHandler.DestroyAllDots();
+        fsm.components.aimLineHandler.StopAiming();
         fsm.ChangeState(States.Shooting);
     }
 
     public override void Stop(PlayerFSM fsm) {
-        fsm.components.aimLineHandler.DestroyAllDots();
+        fsm.components.aimLineHandler.StopAiming();
         fsm.components.animator.SetTrigger(StopAnim);
         fsm.ChangeState(States.Idle);
     }

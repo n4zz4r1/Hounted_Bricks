@@ -80,14 +80,14 @@ public class StageFSM : StateMachine<StageFSM, State<StageFSM>>, IPointerClickHa
     }
 
     public static StageFSM GetMainStage() {
-        Debug.Log("lets create stage");
+        // Debug.Log("lets create stage");
         var cardPrefab = Resources.Load("Stage") as GameObject;
         if (cardPrefab != null) {
-            Debug.Log("creating");
+            // Debug.Log("creating");
             var cardObjectInstance = Instantiate(cardPrefab);
             var stageFSM = cardObjectInstance.GetComponent<StageFSM>();
             stageFSM.isMapStage = false;
-            Debug.Log("stage found");
+            // Debug.Log("stage found");
             return stageFSM;
         }
 

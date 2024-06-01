@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Core.StateMachine.Cards;
 using Core.Utils.Constants;
+using DG.Tweening;
 using Framework.Base;
 using Game.Controller.Game;
 using TMPro;
@@ -16,32 +17,43 @@ public class ActionButtonFSM : StateMachine<ActionButtonFSM, State<ActionButtonF
     [SerializeField] public Card card = Card.NONE;
     [SerializeField] public ActionButtonComponents components;
     [SerializeField] public GameController gameController;
+    [SerializeField] public bool activeOnShooting;
+    protected override State<ActionButtonFSM> GetInitialState => States.Preload;
 
     #region Button Properties
 
     internal CardFSM CardFSM;
     internal readonly AtomicInt Counter = new(0);
     protected override ActionButtonFSM FSM => this;
-    protected override State<ActionButtonFSM> GetInitialState => States.Preload;
     private readonly Dictionary<Transform, Vector3> _originalPositions = new();
     private readonly Vector3 _pressedPosition = new(0f, -5f, 0f);
     internal bool IsPointerInside { get; set; }
+    internal bool IsPressed { get; set; }
+    private Vector2 buttonOriginalPosition;
+    public float moveDistance = 50f; // Distance to move to the right
+    public float moveDuration = 0.5f; // Duration of the move
+
 
     #endregion
 
     protected override void Before() {
         _originalPositions.Clear();
+        buttonOriginalPosition = components.rectTransform != null ? components.rectTransform.anchoredPosition : Vector2.zero;
         foreach (Transform child in transform)
             _originalPositions[child] = child.localPosition;
     }
 
     // This sync will be called every time game state changes
     protected override void SyncDataBase() {
-        if (GameController.Instance!.State == Game.Controller.Game.States.PlayerTurn) {
-            ChangeState(States.Enable);
-        } else {
-            ChangeState(States.Disable);
-        }
+        if (CardFSM == null || CardFSM.abilityFSM == null) return;
+        
+        // ReSharper disable once ConvertIfStatementToSwitchStatement
+        if (!CardFSM.abilityFSM.activeOnShootingStage && GameController.Instance!.State == Game.Controller.Game.States.PlayerTurn)
+            State.Enable(FSM);
+        else if(CardFSM.abilityFSM.activeOnShootingStage && GameController.Instance!.State == Game.Controller.Game.States.Shooting) 
+            State.Enable(FSM);
+        else 
+            State.Disable(FSM);
     }
 
     public void OnPointerDown(PointerEventData eventData) =>  State.Pressed(FSM);
@@ -52,8 +64,14 @@ public class ActionButtonFSM : StateMachine<ActionButtonFSM, State<ActionButtonF
 
     public void OnPointerExit(PointerEventData eventData) {
         IsPointerInside = false;
+        IsPressed = false;
         State.Released(FSM);
     }
+    
+    public void MoveRight() =>  components.rectTransform?.DOAnchorPosX(buttonOriginalPosition.x + moveDistance, moveDuration).SetEase(Ease.OutQuad);
+    
+    public void MoveLeft() =>  components.rectTransform?.DOAnchorPosX(buttonOriginalPosition.x, moveDuration).SetEase(Ease.OutQuad);
+
     internal void MoveChildrenIcons(bool pressed) {
         // only move if button is not disabled
         foreach (Transform child in transform)
@@ -61,6 +79,26 @@ public class ActionButtonFSM : StateMachine<ActionButtonFSM, State<ActionButtonF
                 child.localPosition = pressed ? _originalPositions[child] + _pressedPosition : _originalPositions[child];
     }
 
+    // Once action is done
+    public void ActionDoneCallback() {
+        Counter.Value--;
+        // if (Counter.Value-- <= 0) 
+            State.Disable(FSM);
+        // else
+            // State.Enable(FSM);
+        components.counter.text = Counter.Value.ToString();
+    }
+
+    // Once action is canceled
+    public void ActionCanceledCallback() {
+        State.Enable(FSM);
+    }
+}
+
+public enum SpecialAction {
+    NONE,
+    RECYCLE,
+    NEXT_WAVE,
 }
 
 [Serializable]
@@ -71,6 +109,8 @@ public class ActionButtonComponents {
     [SerializeField] public Image icon;
     [SerializeField] public Sprite spriteEnabled;
     [SerializeField] public Sprite spritePressed;
+    [SerializeField] public CanvasGroup canvasGroup;
+    [SerializeField] public RectTransform rectTransform;
 }
 
 }

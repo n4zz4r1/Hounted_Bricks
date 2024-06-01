@@ -30,7 +30,10 @@ public static class Colors {
     public static readonly Color ACTIVE_EXIT_BUTTON = new(0.78f, 0.29f, 0.19f);
     public static readonly Color INACTIVE_EXIT_BUTTON = new(0.84f, 0.62f, 0.57f);
     public static readonly Color DISABLED = new(0.67f, 0.67f, 0.67f, 1f);
+    public static readonly Color DISABLED_WOOD = new(0.72f, 0.70f, 0.68f, 1f);
     public static readonly Color DISABLED_ALPHA = new(0.67f, 0.67f, 0.67f, 0.2f);
+    public static readonly Color DISABLED_ALPHA_2 = new(0f, 0f, 0f, 0.03f);
+    public static readonly Color DISABLED_ALPHA_3 = new(0f, 0f, 0f, 0.2f);
     public static readonly Color ENABLED = COMMON_CARD;
     public static readonly Color ENABLED_2 = PRIMARY;
     public static readonly Color WHITE = new(0.98f, 0.96f, 0.95f);

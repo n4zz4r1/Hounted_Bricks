@@ -17,6 +17,8 @@ public class PlayerFSM : StateMachine<PlayerFSM, State<PlayerFSM>> {
     [SerializeField] public float movementSpeed = 6.0f;
     [SerializeField] public PlayerComponents components;
 
+    internal float AimFactor { get; set; } = 1f;
+    
     #region Sounds
     [SerializeField] public List<AudioClip> throwRockFX;
     #endregion
@@ -27,16 +29,16 @@ public class PlayerFSM : StateMachine<PlayerFSM, State<PlayerFSM>> {
 
     protected override PlayerFSM FSM => this;
     protected override State<PlayerFSM> GetInitialState => States.Created;
-
-    public static PlayerFSM Build(string prefab, Transform parent) {
-        var player = Instantiate(Resources.Load<PlayerFSM>(prefab), PlayerStartPosition, PlayerStartRotation,
-            parent);
-        return player;
-    }
+    //
+    // public static PlayerFSM Build(string prefab, Transform parent) {
+    //     var player = Instantiate(Resources.Load<PlayerFSM>(prefab), PlayerStartPosition, PlayerStartRotation,
+    //         parent);
+    //     return player;
+    // }
 
     protected override void Before() {
         gameController = GetComponentInParent<GameController>();
-        components.aimLineHandler.gameController = gameController;
+        // components.aimLineHandler.gameController = gameController;
     }
 
     public static PlayerFSM GetSelected() {
@@ -54,10 +56,11 @@ public class PlayerFSM : StateMachine<PlayerFSM, State<PlayerFSM>> {
     }
 }
 
+
 [Serializable]
 public class PlayerComponents {
     [SerializeField] public Animator animator;
-    [SerializeField] public DottedLineHandler aimLineHandler;
+    [SerializeField] public AimHandler aimLineHandler;
 }
 
 }

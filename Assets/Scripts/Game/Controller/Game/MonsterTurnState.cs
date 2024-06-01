@@ -17,7 +17,7 @@ public class MonstersTurn : GameState {
         }
         else {
             // Set monster grid for guidance
-            fsm.MonsterGrid = new MonsterGrid(fsm.MonstersInGame);
+            fsm.MonsterGrid = new MonsterGrid(fsm.MonstersInGame, fsm.RockPileInGame);
 
             fsm.MonsterMovementBegin();
             // Move all monsters
@@ -29,7 +29,7 @@ public class MonstersTurn : GameState {
     public override void Next(GameController fsm) {
         // var amount = FSM.components.nextWaveActionButton.Counter.Subtract(1);
         // TODO remove print grid
-        fsm.MonsterGrid.PrintGrid();
+        // fsm.MonsterGrid.PrintGrid();
 
         // Consume a wave, if its -1, consider it as zero
         // var amount = fsm.components.nextWaveActionButton.Counter.Subtract(1);
@@ -57,6 +57,12 @@ public class MonstersTurn : GameState {
         //     // fsm.components.nextWaveActionButton.components.counter.text = amount.ToString();
         //     Enter(fsm);
         // }
+    }
+
+    public override void Exit(GameController fsm) {
+        // reset player factors
+        fsm.PlayerInGame.AimFactor = 1f;
+
     }
 
     // public override void NextWave(GameController FSM)

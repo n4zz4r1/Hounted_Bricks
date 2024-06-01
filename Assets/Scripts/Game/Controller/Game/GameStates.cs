@@ -25,6 +25,11 @@ public class PlayerTurn : GameState {
         // TODO
         // fsm.components.nextWaveActionButton.components.button.enabled = true;
         // fsm.components.collectButton.Inactive();
+        // print grid on player stage
+        fsm.MonsterGrid.PrintGrid();
+
+        // Player's aim factor always starts at 1 when player turn started
+        // fsm.PlayerInGame.AimFactor = 1f;
     }
 
     public override void NextWave(GameController fsm) {

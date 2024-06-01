@@ -16,7 +16,6 @@ public class ClickableButtonHandler : MonoBehaviour, IPointerClickHandler {
         var worldPosition =
             Camera.main.ScreenToWorldPoint(new Vector3(screenPosition.x, screenPosition.y,
                 Camera.main.nearClipPlane));
-        Debug.Log("World Position: " + worldPosition);
         onClickCallback?.Invoke(worldPosition);
     }
 }

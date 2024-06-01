@@ -6,6 +6,7 @@ namespace Framework.Base {
 
 // Common Finite States
 public abstract class State<T> {
+
     #region State Machine Defaults
 
     public virtual void Before(T fsm) { }
@@ -39,6 +40,8 @@ public abstract class State<T> {
     public virtual void Select(T fsm) { }
     public virtual void Destroy(T fsm) { }
     public virtual void Hide(T fsm) { }
+    public virtual void Enable(T fsm) { }
+    public virtual void Disable(T fsm) { }
     public virtual void Show(T fsm) { }
     public virtual void Pause(T fsm) { }
     public virtual void Unpause(T fsm) { }

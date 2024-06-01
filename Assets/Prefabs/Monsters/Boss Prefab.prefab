@@ -373,9 +373,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b4df5dddbab59f4681adf7e366a4bff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monsterType: 0
+  monsterResourceType: 0
+  monsterType: 6
   life: 40
-  damage: 1
+  damage: 999
   components:
     onFireBoxes:
     - {fileID: 5248252022902263346}
@@ -387,7 +388,7 @@ MonoBehaviour:
     - {fileID: 7357501485706480971}
     animator: {fileID: 4496902466448515863}
     healthyBar: {fileID: 1474825324997307549}
-    collider: {fileID: 0}
+    collider: {fileID: 1124590397080881714}
     rectTransform: {fileID: 5002170504298159429}
   forceFactor: 1
   impactFX:

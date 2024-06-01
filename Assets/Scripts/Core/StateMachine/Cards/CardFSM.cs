@@ -22,7 +22,7 @@ public class CardFSM : StateMachine<CardFSM, State<CardFSM>> {
     public bool IsDragging { get; set; }
     public long CurrentQuantity { get; private set; }
     public GameObject DragCard { get; private set; }
-    public CardSlotFSM SelectedSlot { get; set; }
+    public CardSlotFSM CurrentSelectedSlot { get; set; }
 
     public static CardFSM GetRawDisabledCardFSM(Card fsmCardSorted) {
         throw new NotImplementedException();
@@ -52,14 +52,6 @@ public class CardFSM : StateMachine<CardFSM, State<CardFSM>> {
         MaxQuantity = CardsDataV1.Instance.GetCardMaxQuantity(cardId);
     }
 
-    public static Sprite GetCardIcon(Card card) {
-        var cardObject = Resources.Load(card.ToString().Replace("Card_", "")) as GameObject;
-        if (cardObject == null)
-            throw new Exception("Card doesnt exist");
-
-        return cardObject.GetComponent<CardFSM>().components.cardIcon.sprite;
-    }
-
     public void PaintCard(CardRarity cardRarity) {
         var normal = RarityUtils.From(cardRarity).NormalColor;
         foreach (var image in components.imagesToPaint)
@@ -68,18 +60,20 @@ public class CardFSM : StateMachine<CardFSM, State<CardFSM>> {
 
     private void PaintCardDisabled() {
         foreach (var image in components.imagesToPaintDisabled)
-            image.color = Colors.DISABLED;
+            image.color = Colors.DISABLED_WOOD;
     }
 
     public void CreateClone(CardFSM prefab) {
         if (prefab == null) return;
 
-        var whereTo = Camera.main!.ScreenToWorldPoint(Input.mousePosition);
+        var position = Camera.main!.ScreenToWorldPoint(Input.mousePosition);
+        position.x += 10f;
+
         var dragArea = gameObject.transform.root.GetComponentInChildren<BagController>()?.components
             .dragArea.transform;
         DragCard = CreateInstance(prefab.gameObject, dragArea);
         DragCard.GetComponent<CardFSM>().components.boxQuantity.SetActive(false);
-        DragCard.transform.position = new Vector3(whereTo.x, whereTo.y, 10);
+        DragCard.transform.position = new Vector3(position.x, position.y, 10);
         DragCard.GetComponent<CardFSM>().components.infoButton.gameObject.SetActive(false);
     }
 
@@ -152,6 +146,8 @@ public class CardFSM : StateMachine<CardFSM, State<CardFSM>> {
         ? (CardRarity)(int)attributes[(int)CardAttribute.RARITY].ConcatValue(Level())
         : CardRarity.COMMON;
 
+    public int Attribute(CardAttribute attribute) => (int)attributes[(int)attribute].ConcatValue(Level());
+    
     internal string MaxLevelLabel = string.Empty;
 
     #endregion

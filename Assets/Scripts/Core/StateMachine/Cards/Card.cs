@@ -31,6 +31,7 @@ public class CardAttributesComponent {
     }
 }
 
+[Serializable]
 public enum CardAttribute {
     POWER = 0,
     RESISTANCE = 1,
@@ -41,7 +42,8 @@ public enum CardAttribute {
     PROBABILITY = 6,
     RARITY = 7,
     GEM_SLOT = 8,
-    RANGE = 9
+    RANGE = 9,
+    QUANTITY = 10,
 }
 
 [Serializable]

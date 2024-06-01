@@ -1,16 +1,18 @@
 using Core.Controller.Audio;
 using Core.Data;
 using Core.StateMachine.Cards;
+using Core.Utils;
 using Core.Utils.Constants;
 using Framework.Base;
-using UnityEngine;
+using Game.Controller.Game;
+using AbilityType = Core.StateMachine.Abilities.AbilityType;
 
 namespace Game.StateMachine.ActionButton {
 
 public abstract class States {
     public static readonly Preload Preload = new();
-    public static readonly Enabled Enable = new();
-    public static readonly Disabled Disable = new();
+    public static readonly Enabled Enabled = new();
+    public static readonly Disabled Disabled = new();
     public static readonly NotAvailable NotAvailable = new();
 }
 
@@ -18,16 +20,41 @@ public class Preload : State<ActionButtonFSM> {
     public override void Before(ActionButtonFSM fsm) {
         if (fsm.card == Card.NONE) return;
         
-        if (!CardsDataV1.Instance.HasCard(fsm.card))
-            fsm.ChangeState(States.NotAvailable);
-        else
-        {
-            fsm.CardFSM = CardFSM.GetRawCardFSM(fsm.card);
-            // initial counter for that ability
-            fsm.Counter.Value = fsm.CardFSM.abilityFSM.counter;
-            fsm.components.counter.text = fsm.CardFSM.abilityFSM.counter.ToString();
-            fsm.ChangeState(States.Enable);
+        // If you don't have card, change to NotAvailable
+        AssetLoader<Card>.Load<ActionButtonFSM, CardFSM>(fsm.card, fsm, SetCard);
+
+        //
+        // if (!CardsDataV1.Instance.HasCard(fsm.card))
+        //     fsm.ChangeState(States.NotAvailable);
+        // else
+        // {
+        //     fsm.CardFSM = CardFSM.GetRawCardFSM(fsm.card);
+        //     // initial counter for that ability
+        //     fsm.Counter.Value = fsm.CardFSM.abilityFSM.counter;
+        //     fsm.components.counter.text = fsm.CardFSM.abilityFSM.counter.ToString();
+        //     fsm.ChangeState(States.Enable);
+        // }
+    }
+
+    private static void SetCard(CardFSM cardFSM, ActionButtonFSM fsm) {
+        fsm.CardFSM = cardFSM;
+        fsm.components.icon.sprite = cardFSM.components.cardIcon.sprite;
+        
+        // Set Counter number, else unlimited actions
+        if (cardFSM.abilityFSM?.abilityType is AbilityType.ACTIVE_COUNTER) {
+            fsm.Counter.Value = cardFSM.Attribute(CardAttribute.QUANTITY);
+            fsm.components.counter.text = fsm.Counter.Value.ToString();
         }
+        else 
+            fsm.Counter.Value = 9999;
+        
+        // set counter based on ability c
+        if (!CardsDataV1.Instance.HasCard(fsm.card) || cardFSM.abilityFSM == null)
+            fsm.ChangeState(States.NotAvailable);
+        else if (cardFSM.abilityFSM.activeOnShootingStage)
+            fsm.ChangeState(States.Disabled);
+        else
+            fsm.ChangeState(States.Enabled);
     }
 
     // public override void Active(ActionButtonFSM fsm) {
@@ -44,9 +71,13 @@ public class Preload : State<ActionButtonFSM> {
 }
 
 public class Enabled : State<ActionButtonFSM> {
+    public override void Enter(ActionButtonFSM fsm) {
+        fsm.components.image.color = Colors.PRIMARY;
+    }
 
     public override void Pressed(ActionButtonFSM fsm) {
         AudioController.PlayFX(CommonFX.CLICK_BUTTON_FX);
+        fsm.IsPressed = true;
         fsm.MoveChildrenIcons(true);
         fsm.components.image.sprite = fsm.components.spritePressed;        
     }
@@ -54,12 +85,20 @@ public class Enabled : State<ActionButtonFSM> {
     public override void Released(ActionButtonFSM fsm) {
         fsm.MoveChildrenIcons(false);
         fsm.components.image.sprite = fsm.components.spriteEnabled;
-    }
+        if (!fsm.IsPointerInside || !fsm.IsPressed) {
+            return;
+        }
 
-    // public override void Click(ActionButtonFSM FSM)
-    // {
-    //     FSM.CardFSM.abilityFSM.Execute(FSM, FSM.gameController, EndActionCallback);
-    // }
+        fsm.ChangeState(States.Disabled);
+
+        // Execute ability and disable button
+        fsm.CardFSM.abilityFSM.Execute(fsm.gameController, fsm.ActionDoneCallback, fsm.ActionCanceledCallback);
+    }
+    
+    public override void Disable(ActionButtonFSM fsm) {
+        fsm.ChangeState(States.Disabled);
+    }
+    
     //
     // public override void SyncData(ActionButtonFSM FSM)
     // {
@@ -116,18 +155,30 @@ public class Disabled : State<ActionButtonFSM> {
     public override void Enter(ActionButtonFSM fsm) {
         fsm.MoveChildrenIcons(true);
         fsm.components.image.sprite = fsm.components.spritePressed;
-        // FSM.components.button.interactable = false;
+        fsm.components.image.color = Colors.DISABLED;
+        fsm.components.canvasGroup.alpha = 0.8f;
     }
     public override void Exit(ActionButtonFSM fsm) {
         fsm.MoveChildrenIcons(false);
         fsm.components.image.sprite = fsm.components.spriteEnabled;
+        fsm.components.canvasGroup.alpha = 1f;
+    }
+
+    public override void Enable(ActionButtonFSM fsm) {
+        if(fsm.Counter.Value > 0)
+            fsm.ChangeState(States.Enabled);
     }
 }
 
 public class NotAvailable : State<ActionButtonFSM> {
-    public override void Enter(ActionButtonFSM FSM) {
-        FSM.components.counterImage.color = Color.white;
-        // FSM.components.button.gameObject.SetActive(false);
+    public override void Enter(ActionButtonFSM fsm) {
+        fsm.MoveChildrenIcons(true);
+        fsm.components.counterImage.gameObject.SetActive(false);
+        fsm.components.image.sprite = fsm.components.spritePressed;
+        fsm.components.canvasGroup.alpha = 0.1f;
+        fsm.components.canvasGroup.blocksRaycasts = false;
+        fsm.components.canvasGroup.interactable = false;
+        fsm.components.image.color = Colors.DISABLED;
     }
 }
 

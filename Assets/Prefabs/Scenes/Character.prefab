@@ -84,6 +84,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5729075540298230578}
     m_Modifications:
+    - target: {fileID: 3520898943946196187, guid: 2eaeeffbf70184d49881c658d78830c3, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3520898943946196187, guid: 2eaeeffbf70184d49881c658d78830c3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3520898943946196187, guid: 2eaeeffbf70184d49881c658d78830c3, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4210611057565162042, guid: 2eaeeffbf70184d49881c658d78830c3, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -196,6 +208,14 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 394.2
       objectReference: {fileID: 0}
+    - target: {fileID: 6902235750734104978, guid: 2eaeeffbf70184d49881c658d78830c3, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6902235750734104978, guid: 2eaeeffbf70184d49881c658d78830c3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8657330685588110402, guid: 2eaeeffbf70184d49881c658d78830c3, type: 3}
       propertyPath: m_SizeDelta.x
       value: 178.3
@@ -226,6 +246,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5729075540298230578}
     m_Modifications:
+    - target: {fileID: 3520898943946196187, guid: 2eaeeffbf70184d49881c658d78830c3, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3520898943946196187, guid: 2eaeeffbf70184d49881c658d78830c3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3520898943946196187, guid: 2eaeeffbf70184d49881c658d78830c3, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4210611057565162042, guid: 2eaeeffbf70184d49881c658d78830c3, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -338,6 +370,14 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 390.5
       objectReference: {fileID: 0}
+    - target: {fileID: 6902235750734104978, guid: 2eaeeffbf70184d49881c658d78830c3, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6902235750734104978, guid: 2eaeeffbf70184d49881c658d78830c3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8657330685588110402, guid: 2eaeeffbf70184d49881c658d78830c3, type: 3}
       propertyPath: m_SizeDelta.x
       value: 176.6
@@ -368,6 +408,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5729075540298230578}
     m_Modifications:
+    - target: {fileID: 3520898943946196187, guid: 2eaeeffbf70184d49881c658d78830c3, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3520898943946196187, guid: 2eaeeffbf70184d49881c658d78830c3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3520898943946196187, guid: 2eaeeffbf70184d49881c658d78830c3, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4272457184254305514, guid: 2eaeeffbf70184d49881c658d78830c3, type: 3}
       propertyPath: m_Name
       value: Box Lucas
@@ -464,6 +516,14 @@ PrefabInstance:
       propertyPath: components.iconSpriteBW
       value: 
       objectReference: {fileID: 21300000, guid: 2c05aa8aac32e2147a98eff7afcb8721, type: 3}
+    - target: {fileID: 6902235750734104978, guid: 2eaeeffbf70184d49881c658d78830c3, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6902235750734104978, guid: 2eaeeffbf70184d49881c658d78830c3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8788621984694694632, guid: 2eaeeffbf70184d49881c658d78830c3, type: 3}
       propertyPath: m_fontSize
       value: 28.55

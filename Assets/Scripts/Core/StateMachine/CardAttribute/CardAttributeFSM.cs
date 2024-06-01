@@ -13,7 +13,7 @@ public class CardAttributeFSM : StateMachine<CardAttributeFSM, State<CardAttribu
     [SerializeField] public Cards.CardAttribute attribute;
     [SerializeField] public Components components;
 
-    private CardFSM _cardFSM;
+    internal CardFSM CardFSM;
     protected override CardAttributeFSM FSM => this;
     protected override State<CardAttributeFSM> GetInitialState => States.Preload;
 
@@ -21,29 +21,29 @@ public class CardAttributeFSM : StateMachine<CardAttributeFSM, State<CardAttribu
         Transform transform, Vector3 position) {
         var cardAttributePrefab = Resources.Load("CardAttribute" + attribute) as GameObject;
         var cardAttribute = Instantiate(cardAttributePrefab, transform);
-        cardAttribute.GetComponent<CardAttributeFSM>()._cardFSM = cardFSM;
+        cardAttribute.GetComponent<CardAttributeFSM>().CardFSM = cardFSM;
         cardAttribute.GetComponent<CardAttributeFSM>().SyncDataBase();
         cardAttribute.transform.localPosition = position;
         return cardAttribute;
     }
 
     protected override void SyncDataBase() {
-        var cardAttributeComponent = _cardFSM.attributes.Find(a => a.attribute == attribute);
+        var cardAttributeComponent = CardFSM.attributes.Find(a => a.attribute == attribute);
 
         // When rarity, only set next value
         if (attribute == Cards.CardAttribute.RARITY) {
-            if (cardAttributeComponent.ValueOfLevel(_cardFSM.Level() + 1) == 0f) {
-                components.currentText.text = RarityUtils.From(_cardFSM.Rarity).Label;
+            if (cardAttributeComponent.ValueOfLevel(CardFSM.Level() + 1) == 0f) {
+                components.currentText.text = RarityUtils.From(CardFSM.Rarity).Label;
             }
             else {
                 components.currentText.color = Color.yellow;
-                components.currentText.text = RarityUtils.From(_cardFSM.Rarity + 1).Label;
+                components.currentText.text = RarityUtils.From(CardFSM.Rarity + 1).Label;
             }
         }
         else {
-            components.currentText.text = cardAttributeComponent.ConcatValue(_cardFSM.Level())
+            components.currentText.text = cardAttributeComponent.ConcatValue(CardFSM.Level())
                 .ToString(CultureInfo.InvariantCulture);
-            var nextValue = cardAttributeComponent.ValueOfLevel(_cardFSM.Level() + 1);
+            var nextValue = cardAttributeComponent.ValueOfLevel(CardFSM.Level() + 1);
             components.nextValueText.text =
                 nextValue != 0f ? "+" + nextValue.ToString(CultureInfo.InvariantCulture) : "";
         }

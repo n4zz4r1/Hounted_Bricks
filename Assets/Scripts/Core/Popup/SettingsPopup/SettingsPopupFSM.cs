@@ -27,7 +27,6 @@ public class SettingsPopupFSM : StateMachine<SettingsPopupFSM, State<SettingsPop
 
         cleanButton.onClick.AddListener(DataManager.Clean);
         // rewardButton.onClick.AddListener(() => {
-        //     var rewardFSM = Resources.Load("Reward") as GameObject;
         //     if (rewardFSM == null) throw new ArgumentNullException(nameof(rewardFSM));
         //
         //     for (var i = 0; i < 50; i++) {
@@ -41,7 +40,6 @@ public class SettingsPopupFSM : StateMachine<SettingsPopupFSM, State<SettingsPop
         //     SyncAllData(typeof(MenuFSM));
         // });
         // reward1000Button.onClick.AddListener(() => {
-        //     var rewardFSM = Resources.Load("Reward") as GameObject;
         //     if (rewardFSM == null) throw new ArgumentNullException(nameof(rewardFSM));
         //
         //     for (var i = 0; i < 1000; i++) {

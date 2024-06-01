@@ -29,15 +29,6 @@ public class CardDetailPopup : StateMachine<CardDetailPopup, State<CardDetailPop
         components.updateButton.onClick.AddListener(UpdateCard);
     }
 
-    // public static GameObject Create(CardFSM cardFSM, Transform transform) {
-    //     var detailPopupPrefab = Resources.Load("UI_CardInfoPopup") as GameObject;
-    //     var detailPopup = Instantiate(detailPopupPrefab, transform);
-    //
-    //     detailPopup.GetComponent<CardDetailPopup>().CardSetup(cardFSM);
-    //
-    //     return detailPopup;
-    // }
-
     public void UpdateCard() {
         var resourcesNeeded = GameMathUtils.GenerateUpdateCostByLevel(CardFSM.Level() + 1);
 

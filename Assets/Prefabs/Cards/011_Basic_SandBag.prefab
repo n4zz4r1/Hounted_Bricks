@@ -124,6 +124,26 @@ PrefabInstance:
       propertyPath: cardType
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 7222727239702437290, guid: 18674750e2a95e140a5c69d77fc90051, type: 3}
+      propertyPath: abilityFSM
+      value: 
+      objectReference: {fileID: 6589042277924326538}
+    - target: {fileID: 7222727239702437290, guid: 18674750e2a95e140a5c69d77fc90051, type: 3}
+      propertyPath: attributes.Array.data[10].updates.m_keys.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7222727239702437290, guid: 18674750e2a95e140a5c69d77fc90051, type: 3}
+      propertyPath: attributes.Array.data[10].updates.m_values.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7222727239702437290, guid: 18674750e2a95e140a5c69d77fc90051, type: 3}
+      propertyPath: attributes.Array.data[10].updates.m_keys.Array.data[0]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7222727239702437290, guid: 18674750e2a95e140a5c69d77fc90051, type: 3}
+      propertyPath: attributes.Array.data[10].updates.m_values.Array.data[0]
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7489373697926889731, guid: 18674750e2a95e140a5c69d77fc90051, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -139,5 +159,27 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6441573078311772871, guid: 18674750e2a95e140a5c69d77fc90051, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6589042277924326538}
   m_SourcePrefab: {fileID: 100100000, guid: 18674750e2a95e140a5c69d77fc90051, type: 3}
+--- !u!1 &8838855934071906936 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6441573078311772871, guid: 18674750e2a95e140a5c69d77fc90051, type: 3}
+  m_PrefabInstance: {fileID: 2579713977119113407}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6589042277924326538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8838855934071906936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2b7833365994612b4511f2265499c51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilityType: 1
+  activeOnShootingStage: 0

@@ -65,6 +65,8 @@ public class Components {
     [SerializeField] public Image slotBox;
     [SerializeField] public Image slotIcon;
     [SerializeField] public GameObject backgroundFilledInBox;
+    [SerializeField] public GameObject glow;
+    [SerializeField] public List<Image> paths;
 }
 
 }

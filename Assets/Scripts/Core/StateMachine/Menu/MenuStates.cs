@@ -42,6 +42,7 @@ public class Started : State<MenuFSM> {
     private static void SyncPosition(MenuFSM fsm) {
         const float anchorFactor = 1f / 6f;
         var currentAnchor = 0f;
+        const float effectDurationTime = 0.35f;
 
         for (var i = 0; i < fsm.menuButtons.Count; i++) {
             var rectTransform = fsm.menuButtons[i].GetComponent<RectTransform>();
@@ -53,15 +54,19 @@ public class Started : State<MenuFSM> {
             currentAnchor += widthFactor;
             var newAnchorMax = new Vector2(currentAnchor, rectTransform.anchorMax.y);
 
-            DOTween.To(() => rectTransform.anchorMin, x => rectTransform.anchorMin = x, newAnchorMin, 0.5f)
+            DOTween.To(() => rectTransform.anchorMin, x => rectTransform.anchorMin = x, newAnchorMin, effectDurationTime)
                 .SetEase(Ease.InOutQuad);
-            DOTween.To(() => rectTransform.anchorMax, x => rectTransform.anchorMax = x, newAnchorMax, 0.5f)
+            DOTween.To(() => rectTransform.anchorMax, x => rectTransform.anchorMax = x, newAnchorMax, effectDurationTime)
                 .SetEase(Ease.InOutQuad);
 
-            var color = fsm.PanelByIndex[fsm.CurrentPanelIndex] == fsm.PanelByIndex[i]
-                ? Colors.PRIMARY
-                : Colors.DARK_WOOD;
-            rectTransform.GetComponent<Image>().DOColor(color, 0.5f);
+            var isSelected = fsm.PanelByIndex[fsm.CurrentPanelIndex] == fsm.PanelByIndex[i];
+            
+            rectTransform.GetComponent<Image>().DOColor(isSelected ? Colors.PRIMARY : Colors.DARK_WOOD, effectDurationTime);
+            fsm.icons[i].DOLocalMoveY(isSelected ? 80f : 60f, effectDurationTime, true);
+            // fsm.labels[i].DOFade(isSelected ? 1f : 5f, effectDurationTime);
+            fsm.labels[i].color = isSelected ? Colors.DARK_WOOD : Colors.PRIMARY;
+            fsm.labels[i].fontSizeMax = isSelected ? 50f : 20f;
+
         }
     }
 }

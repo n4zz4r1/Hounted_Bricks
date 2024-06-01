@@ -514,10 +514,6 @@ PrefabInstance:
       propertyPath: panels.Array.data[4]
       value: 
       objectReference: {fileID: 864781932}
-    - target: {fileID: 2572757560279916262, guid: da2bade4d91c2a1409a5a98de69b0b37, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 102.61133
-      objectReference: {fileID: 0}
     - target: {fileID: 4374683270916598616, guid: da2bade4d91c2a1409a5a98de69b0b37, type: 3}
       propertyPath: m_Name
       value: Menu
@@ -788,7 +784,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7783100087129008489, guid: 9dca6adecd02ecf43adb497fbc22dcd5, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 2956
+      value: 3131
       objectReference: {fileID: 0}
     - target: {fileID: 7783100087129008489, guid: 9dca6adecd02ecf43adb497fbc22dcd5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

@@ -168,13 +168,18 @@ public class CardsDataV1 : Data<CardsDataV1> {
         Card.Card_036_Ab_Bill_AcidBomb,
         Card.Card_037_Ab_Bill_Poison,
         Card.Card_038_Ab_Bill_PoisonByLucky,
-        Card.Card_039_Ab_Bill_PoisonByLuckTwo,
+        Card.Card_039_Ab_Bill_PoisonByLuckyTwo,
         Card.Card_040_Ab_Bill_Barrel,
         Card.Card_041_Ab_Bill_Run,
         Card.Card_042_Ab_Bill_UltraAim,
         Card.Card_043_Ab_Bill_AcidRain,
         Card.Card_044_Ab_Bill_SuperPoison,
-        Card.Card_045_Ab_Bill_Viruz
+        Card.Card_045_Ab_Bill_Viruz,
+        
+        // Essencial
+        Card.Card_E_Recycle,
+        Card.Card_E_NextWave,
+        
     };
 
     [SerializeField] private List<CardLevel> cardsLevel = new();

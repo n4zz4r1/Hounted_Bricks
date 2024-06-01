@@ -20,27 +20,10 @@ public class CharacterCardFSM : StateMachine<CharacterCardFSM, State<CharacterCa
     protected override void Before() {
         components.buttonFoundBox.onClick.AddListener(() => State.Select(FSM));
         components.buttonAbility.onClick.AddListener(OpenPopup);
-        FillAbilityIcons();
     }
 
-    protected override void SyncDataBase() {
-        FillAbilityIcons();
-    }
 
-    private void FillAbilityIcons() {
-        for (var i = 0; i < components.abilitiesSlotIcons.Count; i++) {
-            var characterIndex = PlayerDataV1.Instance.GetIndexByCharacter(card);
-            var abilityCard = PlayerDataV1.Instance.SavedAbilities[characterIndex][i];
 
-            if (abilityCard is not Card.NONE) {
-                components.abilitiesSlotIcons[i].enabled = true;
-                components.abilitiesSlotIcons[i].sprite = CardFSM.GetCardIcon(abilityCard);
-            }
-            else {
-                components.abilitiesSlotIcons[i].enabled = false;
-            }
-        }
-    }
 }
 
 [Serializable]

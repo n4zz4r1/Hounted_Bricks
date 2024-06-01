@@ -26,7 +26,6 @@ public class ResourceSliderFSM : StateMachine<ResourceSliderFSM, State<ResourceS
 
     private void FillResources(CardFSM cardFSM) {
         _cardFSM = cardFSM;
-        components.resourceImage.sprite = GameSprites.resourceTypeSprite[resourceType];
         SyncDataBase();
     }
 

@@ -37,6 +37,9 @@ public abstract class StateMachine<T, U> : MonoBehaviour where T : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
+        // TODO
+        Debug.Log($"Ue, {_isInitialized}");
+        
         if (_isInitialized)
             State.OnCollisionEnter(FSM, collision);
     }

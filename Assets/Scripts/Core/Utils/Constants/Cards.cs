@@ -54,7 +54,7 @@ public enum Card {
     Card_036_Ab_Bill_AcidBomb,
     Card_037_Ab_Bill_Poison,
     Card_038_Ab_Bill_PoisonByLucky,
-    Card_039_Ab_Bill_PoisonByLuckTwo,
+    Card_039_Ab_Bill_PoisonByLuckyTwo,
     Card_040_Ab_Bill_Barrel,
     Card_041_Ab_Bill_Run,
     Card_042_Ab_Bill_UltraAim,
@@ -62,9 +62,11 @@ public enum Card {
     Card_044_Ab_Bill_SuperPoison,
 
     // ReSharper disable once IdentifierTypo
-    Card_045_Ab_Bill_Viruz
+    Card_045_Ab_Bill_Viruz,
 
-    // Basic Cards
+    // Special Actions
+    Card_E_Recycle,
+    Card_E_NextWave,
 }
 
 }

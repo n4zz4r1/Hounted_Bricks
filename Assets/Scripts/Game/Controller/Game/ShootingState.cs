@@ -40,7 +40,7 @@ public class Shooting : GameState {
             fsm.PlayerInGame.State.Shoot(fsm.PlayerInGame);
             var rock = RockFSM.Build(
                 fsm.SaveRockSlot[numberOfRocks - 1],
-                fsm.CardPrefabDictionary[fsm.SaveRockSlot[numberOfRocks - 1]], fsm.ShootReleasePosition,
+                fsm.CardPrefabs[fsm.SaveRockSlot[numberOfRocks - 1]], fsm.ShootReleasePosition,
                 fsm.PlayerInGame.transform.position,
                 fsm.transform, fsm.components.mainCamera, 0, fsm.AbilityFactor, fsm);
             if (fsm.SpeedUp)

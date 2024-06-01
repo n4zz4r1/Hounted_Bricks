@@ -20,8 +20,7 @@ MonoBehaviour:
   - m_GUID: a660af293dea7eb4f9bcd92e19067c68
     m_Address: FPSCounter
     m_ReadOnly: 0
-    m_SerializedLabels:
-    - MainSceneAddressable
+    m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 32e1b6a54f8b9a04b841d0c47a9f0d7a, type: 2}

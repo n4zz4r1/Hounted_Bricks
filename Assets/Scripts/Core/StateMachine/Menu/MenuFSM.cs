@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Framework.Base;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,6 +9,8 @@ namespace Core.StateMachine.Menu {
 public class MenuFSM : StateMachine<MenuFSM, State<MenuFSM>> {
     [SerializeField] public List<Button> menuButtons;
     [SerializeField] public RectTransform[] panels; // Panels that correspond to each button
+    [SerializeField] public TextMeshProUGUI[] labels; // Panels that correspond to each button
+    [SerializeField] public RectTransform[] icons; // Panels that correspond to each button
 
     internal readonly Dictionary<int, MenuPanel> PanelByIndex = new() {
         { 0, MenuPanel.CHARACTER },

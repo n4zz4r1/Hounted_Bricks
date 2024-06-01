@@ -134,6 +134,15 @@ public class PlayerDataV1 : Data<PlayerDataV1> {
         Save();
     }
 
+    public Player GetSelectedCharacter() {
+        return selectedCharacter switch {
+            Card.Card_005_Char_Lucas => Player.Lucas,
+            Card.Card_006_Char_Lisa => Player.Lisa,
+            Card.Card_007_Char_Bill => Player.Billy,
+            _ => Player.NONE
+        };
+    }
+
     public int RockCardCounter(Card card) {
         return saveRockSlot.Count(x => x == card);
     }
@@ -156,4 +165,10 @@ public class PlayerDataV1 : Data<PlayerDataV1> {
     #endregion
 }
 
+public enum Player {
+    NONE,
+    Lucas,
+    Billy,
+    Lisa,
+}
 }

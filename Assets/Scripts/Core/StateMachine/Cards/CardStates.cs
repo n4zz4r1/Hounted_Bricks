@@ -95,29 +95,30 @@ public class Found : State<CardFSM> {
     //
     public override void OnCollisionEnter(CardFSM fsm, Collider2D collider) {
         var slotCollider = collider.GetComponent<CardSlotFSM>();
+
         if (slotCollider == null || slotCollider.State == CardSlots.States.Disabled ||
             (slotCollider.State is WithRock && slotCollider.SelectedCardFSM?.cardId == fsm.cardId))
             return;
 
-        fsm.SelectedSlot = slotCollider;
-        fsm.SelectedSlot.TemporaryIconSprite = fsm.components.cardIcon.sprite;
-        fsm.SelectedSlot.TemporaryCard = fsm;
-        fsm.SelectedSlot.ChangeState(CardSlots.States.OnHover);
+        fsm.CurrentSelectedSlot = slotCollider;
+        slotCollider.TemporaryIconSprite = fsm.components.cardIcon.sprite;
+        slotCollider.TemporaryCard = fsm;
+        slotCollider.ChangeState(CardSlots.States.OnHover);
     }
 
     public override void OnCollisionExit(CardFSM fsm, Collider2D collider) {
-        if (fsm.SelectedSlot == null) return;
+        fsm.CurrentSelectedSlot = null;
 
         var slotCollider = collider.GetComponent<CardSlotFSM>();
         if (slotCollider.State == CardSlots.States.Disabled ||
             (slotCollider.State is WithRock && slotCollider.SelectedCardFSM?.cardId == fsm.cardId))
             return;
-        if (PlayerDataV1.Instance.saveRockSlot[fsm.SelectedSlot.index] != Card.NONE)
-            fsm.SelectedSlot.ChangeState(CardSlots.States.WithRock);
-        else
-            fsm.SelectedSlot.ChangeState(CardSlots.States.Empty);
 
-        fsm.SelectedSlot = null;
+
+        if (PlayerDataV1.Instance.saveRockSlot[slotCollider.index] != Card.NONE)
+            slotCollider.ChangeState(CardSlots.States.WithRock);
+        else
+            slotCollider.ChangeState(CardSlots.States.Empty);
     }
 
     public override void StartDragging(CardFSM fsm) {
@@ -133,16 +134,18 @@ public class Found : State<CardFSM> {
     public override void Update(CardFSM fsm) {
         if (!fsm.IsDragging || Camera.main == null) return;
         var whereTo = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        fsm.DragCard.transform.position = new Vector3(whereTo.x, whereTo.y, 10);
+        fsm.DragCard.transform.position = new Vector3(whereTo.x, whereTo.y + 1f, 10);
     }
 
     public override void StopDragging(CardFSM fsm) {
-        if (fsm.DragCard.GetComponent<CardFSM>().SelectedSlot != null)
-            PlayerDataV1.Instance.ChangeRockSlot(fsm.DragCard.GetComponent<CardFSM>().SelectedSlot.index,
+        if (fsm.DragCard.GetComponent<CardFSM>().CurrentSelectedSlot != null)
+            PlayerDataV1.Instance.ChangeRockSlot(fsm.DragCard.GetComponent<CardFSM>().CurrentSelectedSlot.index,
                 fsm.cardId);
         else
             fsm.UpdateCurrentAvailable(fsm.CurrentQuantity + 1);
 
+        fsm.CurrentSelectedSlot = null;
+        
         fsm.DestroyDragCard();
         fsm.IsDragging = false;
 

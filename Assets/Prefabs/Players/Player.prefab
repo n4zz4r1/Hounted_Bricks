@@ -171,9 +171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9eb5652a671f432abbe706eb1a76fe81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dot: {fileID: 0}
-  size: 0.01
-  delta: 0.1
-  limit: 10
-  reflection: 2
-  gameController: {fileID: 0}
+  dotSprite: {fileID: 21300000, guid: d5f23cc2454824f4cae49e656a2c6aa2, type: 3}
+  dotSize: 1
+  dotSpacing: 0.32
+  reflections: 5

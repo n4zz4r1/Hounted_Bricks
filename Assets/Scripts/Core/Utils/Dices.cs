@@ -141,7 +141,7 @@ public class CardDice : AbstractDice<CardDice, Card> {
         new(Card.Card_036_Ab_Bill_AcidBomb, COMMON),
         new(Card.Card_037_Ab_Bill_Poison, UNCOMMON),
         new(Card.Card_038_Ab_Bill_PoisonByLucky, UNCOMMON),
-        new(Card.Card_039_Ab_Bill_PoisonByLuckTwo, UNCOMMON),
+        new(Card.Card_039_Ab_Bill_PoisonByLuckyTwo, UNCOMMON),
         new(Card.Card_040_Ab_Bill_Barrel, RARE),
         new(Card.Card_041_Ab_Bill_Run, RARE),
         new(Card.Card_042_Ab_Bill_UltraAim, RARE),

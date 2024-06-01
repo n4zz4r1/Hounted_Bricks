@@ -1,6 +1,7 @@
 using System;
 using System.Globalization;
 using Core.Data;
+using Core.Utils;
 using Framework.Base;
 using TMPro;
 using UnityEngine;
@@ -16,6 +17,9 @@ public class HomeController : Controller<HomeController, State<HomeController>> 
     protected override void Before() {
         components.playButton.onClick.AddListener(() => TransitionWithEffectTo("GameScene"));
         components.levelText.text = GameDataV1.Instance.level.ToString(CultureInfo.InvariantCulture);
+        
+        // Preload all
+        AssetLoader<ResourceType>.LoadAssetsByLabel("Sprites");
     }
 }
 

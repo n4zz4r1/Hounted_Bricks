@@ -9,11 +9,13 @@ using UnityEngine;
 namespace Game.StateMachine.Monster {
 
 public class MonsterFSM : StateMachine<MonsterFSM, MonsterState> {
+    [SerializeField] public MonsterResourceType monsterResourceType = Monster.MonsterResourceType.Monster;
     [SerializeField] public MonsterType monsterType = MonsterType.NORMAL;
     [SerializeField] public float life = 40;
     [SerializeField] public int damage = 1;
     [SerializeField] public MonsterComponents components;
     [SerializeField] public float forceFactor = 1f;
+    [SerializeField] public float rockPileFactor = 1f;
     protected override MonsterFSM FSM => this;
     protected override MonsterState GetInitialState => States.Created;
 
@@ -53,6 +55,10 @@ public class MonsterFSM : StateMachine<MonsterFSM, MonsterState> {
 
     public void HitByARock(RockFSM rock) {
         State.Hit(this, rock);
+    }
+
+    public void HitByAMonster(MonsterFSM monsterFSM) {
+        State.Hit(this, monsterFSM);
     }
 
     protected override void Before() {

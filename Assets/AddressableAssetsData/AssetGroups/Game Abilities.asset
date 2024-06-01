@@ -16,7 +16,19 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: 1608188699accb3419d5efeaab7cdf79
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 3b7fc0a85e7aecc40a0540114e7cb107
+    m_Address: AbilityPanel_Move
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameAssets
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b6bdddd15efc67d4597ed47f424b8f45
+    m_Address: AbilityPanel_RockPile
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameAssets
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 32e1b6a54f8b9a04b841d0c47a9f0d7a, type: 2}
   m_SchemaSet:

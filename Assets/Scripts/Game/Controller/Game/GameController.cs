@@ -32,6 +32,7 @@ public class GameController : Controller<GameController, GameState> {
     public readonly AtomicInt CountRockDestroyed = new(0);
     public readonly AtomicInt CurrentStars = new(1);
     internal readonly AtomicList<MonsterFSM> MonstersInGame = new();
+    internal readonly AtomicList<MonsterFSM> RockPileInGame = new();
     private readonly AtomicInt _monstersMoved = new(0);
     internal readonly Dictionary<Monsters.Monster, GameObject> MonstersPrefab = new();
     internal readonly AtomicInt PlayerLife = new(3);
@@ -50,19 +51,27 @@ public class GameController : Controller<GameController, GameState> {
     internal bool SpeedUp { get; set; }
     internal float GameShootingTime { get; set; } // time counter from start of first shoot to last
     internal float SpeedUpAfterSecs { get; set; } = 2f; // speed up starts after seconds 
-    public Dictionary<Card, CardFSM> CardPrefabDictionary { get; set; } = new();
+    public Dictionary<Card, CardFSM> CardPrefabs { get; set; } = new();
+    private Dictionary<RockPile, GameObject> RockPilePrefabs { get; set; } = new();
 
-    internal int MonsterMoved() {
-        return _monstersMoved.Value;
+    public void RemoveMonster(MonsterFSM monsterFSM) {
+        switch (monsterFSM.monsterResourceType) {
+            case MonsterResourceType.Monster:
+                MonstersInGame.Remove(monsterFSM);
+                break;
+            case MonsterResourceType.RockPile:
+                RockPileInGame.Remove(monsterFSM);
+                break;
+            case MonsterResourceType.Chest:
+                break;
+            default:
+                break;
+        }
     }
-
-    internal void SetAllMonstersMoved() {
-        _monstersMoved.Value = 0;
-    }
-
-    internal void MonsterMovementBegin() {
-        FSM._monstersMoved.Value = FSM.MonstersInGame.Count;
-    }
+    
+    internal int MonsterMoved() => _monstersMoved.Value;
+    internal void SetAllMonstersMoved() => _monstersMoved.Value = 0;
+    internal void MonsterMovementBegin() => FSM._monstersMoved.Value = FSM.MonstersInGame.Count;
 
     public void ReduceLife(MonsterFSM monsterFSM) {
         var reduced = PlayerLife.Subtract(monsterFSM.damage);
@@ -74,6 +83,8 @@ public class GameController : Controller<GameController, GameState> {
     }
 
     public void IncreaseMonstersMoved(MonsterFSM monsterFSM) {
+        if (monsterFSM.monsterResourceType != MonsterResourceType.Monster) return;
+        
         var moved = _monstersMoved.Decrement();
         // Debug.Log("["+ monstersMoved.Value +"] Monster "+ monsterFSM.monsterType +" moved to " + monsterFSM.gameObject.transform.position);
 
@@ -83,15 +94,18 @@ public class GameController : Controller<GameController, GameState> {
     }
 
     protected override async Task BeforeAsync() {
-        CardPrefabDictionary.Add(Card.Card_001_Crooked_Rock,
+        CardPrefabs.Add(Card.Card_001_Crooked_Rock,
             await AssetLoader<Card>.Load<CardFSM>(Card.Card_001_Crooked_Rock));
-        CardPrefabDictionary.Add(Card.Card_002_Rounded_Rock,
+        CardPrefabs.Add(Card.Card_002_Rounded_Rock,
             await AssetLoader<Card>.Load<CardFSM>(Card.Card_002_Rounded_Rock));
-        CardPrefabDictionary.Add(Card.Card_003_Arrowed_Rock,
+        CardPrefabs.Add(Card.Card_003_Arrowed_Rock,
             await AssetLoader<Card>.Load<CardFSM>(Card.Card_003_Arrowed_Rock));
-        CardPrefabDictionary.Add(Card.Card_004_Bomb_Rock,
+        CardPrefabs.Add(Card.Card_004_Bomb_Rock,
             await AssetLoader<Card>.Load<CardFSM>(Card.Card_004_Bomb_Rock));
 
+        RockPilePrefabs.Add(RockPile.Basic, 
+            await AssetLoader<RockPile>.LoadAsGameObject(RockPile.Basic));
+        
         ActionButtons = GetComponentsInChildren<ActionButtonFSM>();
         Instance = this;
 
@@ -108,21 +122,25 @@ public class GameController : Controller<GameController, GameState> {
     // {
     //
     // }
+    
+    // Monster type can be added at one or more stages
+
+    public void AddRockPile(RockPile rockPile, Vector2 position) {
+        RockPileInGame.Add(MonsterFSM.Create(RockPilePrefabs[rockPile], position, FSM.components.areaMonsters.transform).GetComponent<MonsterFSM>());
+        MonsterGrid = new MonsterGrid(MonstersInGame, RockPileInGame); // Uptate grid
+    }
 
     // TODO Remove
-    public override void ChangeStateBase() {
-        components.currentState.text = State.ToString();
-    }
 
-    public void AimStart() {
-        PlayerInGame.State.Aim(PlayerInGame);
-    }
+    public override void ChangeStateBase() => components.currentState.text = State.ToString();
 
-    public void AimExit() {
-        // TODO implement
-        PlayerInGame.State.Stop(PlayerInGame);
-    }
+    public void AimStart() =>  PlayerInGame.State.Aim(PlayerInGame);
+    public void AimExit() => PlayerInGame.State.Stop(PlayerInGame);
 
+    public void HideGameUI() => components.gameUIBox.SetActive(false);
+    public void ShowGameUI() => components.gameUIBox.SetActive(true);
+
+    
     public void StartShooting(Vector2 to) {
         if (PlayerInGame.State != StateMachine.Players.States.Aiming) return;
 
@@ -150,6 +168,7 @@ public class Components {
     [SerializeField] public GameObject areaPlayer;
     [SerializeField] public GameObject areaEndLine;
     [SerializeField] public GameMenuFSM gameMenu;
+    [SerializeField] public GameObject gameUIBox;
     [SerializeField] public Camera mainCamera;
     [SerializeField] public GameObject aimTouchArea;
     [SerializeField] public List<Image> hearts;

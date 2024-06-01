@@ -15,7 +15,7 @@ MonoBehaviour:
   m_DefaultGroup: 6ef2cf03bfb82c547b7d0187dac846f0
   m_currentHash:
     serializedVersion: 2
-    Hash: 00000000000000000000000000000000
+    Hash: 76de02cb0cde5c08c1a76d0bf5142f75
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 0
   m_BundleLocalCatalog: 0
@@ -57,6 +57,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4e8af8f2ced42f0498f6ae0b569dd6e9, type: 2}
   - {fileID: 11400000, guid: 483e324689478a2418e69ccdd659279b, type: 2}
   - {fileID: 11400000, guid: a98ea4befdec60848a410ebe781770e7, type: 2}
+  - {fileID: 11400000, guid: dd0293f31b0fcc042a9654ae05612347, type: 2}
+  - {fileID: 11400000, guid: 53c778755380edc4995e694c34fd97a6, type: 2}
+  - {fileID: 11400000, guid: 506ae2e318229114ab3368b47aea6a22, type: 2}
   m_BuildSettings:
     m_CompileScriptsInVirtualMode: 0
     m_CleanupStreamingAssetsAfterBuilds: 1
@@ -102,6 +105,8 @@ MonoBehaviour:
     - Locale-en-US
     - Locale-pt-BR
     - MainSceneAddressable
+    - GameAssets
+    - Sprites
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: 6754c86b00d35d4498fd9a3dcbfb63ed, type: 2}

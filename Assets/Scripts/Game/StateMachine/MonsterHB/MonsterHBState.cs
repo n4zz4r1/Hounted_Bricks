@@ -1,4 +1,5 @@
 ﻿using Framework.Base;
+using Game.StateMachine.Monster;
 using UnityEngine;
 
 namespace StateMachine.MonsterHB {
@@ -38,9 +39,12 @@ public class Damaged : State<MonsterHBFSM> {
             var newLife = FSM.monsterFSM.CurrentLife / FSM.monsterFSM.GetLife();
 
             FSM.rect.sizeDelta = new Vector2(newLife, FSM.rect.sizeDelta.y);
-            if (newLife > 0.25 && newLife < 0.60)
-                FSM.rawImage.color = Color.yellow;
-            else if (newLife <= 0.25) FSM.rawImage.color = Color.red;
+
+            if (FSM.monsterFSM.monsterResourceType == MonsterResourceType.Monster) {
+                if (newLife > 0.25 && newLife < 0.60)
+                    FSM.rawImage.color = Color.yellow;
+                else if (newLife <= 0.25) FSM.rawImage.color = Color.red;
+            }
         }
     }
 

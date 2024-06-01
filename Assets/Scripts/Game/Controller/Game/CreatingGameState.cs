@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using Core.Controllers.Game;
 using Core.Data;
 using Core.StateMachine.Stages;
+using Core.Utils;
 using Core.Utils.Constants;
 using Game.StateMachine.Monster;
 using Game.StateMachine.Players;
+using Game.Utils;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace Game.Controller.Game {
 
@@ -19,28 +22,47 @@ public class CreatingGame : GameState {
         fsm.components.PlayerArea.transform.SetParent(fsm.transform);
         fsm.components.GameArea = new GameObject("Area: Game");
         fsm.components.GameArea.transform.SetParent(fsm.transform);
-        fsm.PlayerInGame = PlayerFSM.Build(BMCharacter.Preset[PlayerDataV1.Instance.selectedCharacter],
-            fsm.components.PlayerArea.transform);
-        fsm.SaveRockSlot = PlayerDataV1.Instance.GetSavedRocks();
+        //
+        // fsm.PlayerInGame = PlayerFSM.Build(BMCharacter.Preset[PlayerDataV1.Instance.selectedCharacter],
+        //     fsm.components.PlayerArea.transform);
 
+        fsm.SaveRockSlot = PlayerDataV1.Instance.GetSavedRocks();
+        
+        // Set Monsters
         CreateMonsters(fsm);
+        
+
+        // Set Player
+        AssetLoader<Player>.Load<GameController, PlayerFSM>(PlayerDataV1.Instance.GetSelectedCharacter(), fsm, SetPlayer);
+        // Enter(fsm);
+    }
+
+    private void SetPlayer(PlayerFSM prefab, GameController fsm) {
+        var playerStartPosition = new Vector2(3, -0.6f);
+        var playerStartRotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
+
+        fsm.PlayerInGame = Object.Instantiate(prefab, playerStartPosition, playerStartRotation, fsm.components.PlayerArea.transform);
 
         Enter(fsm);
     }
-
-    private static void CreateMonsters(GameController FSM) {
+    
+    private static void CreateMonsters(GameController fsm) {
         // Preload all Prefabs
         // TODO to improve performance, load only prefabs within the game
         foreach (var monster in Enum.GetValues(typeof(Monsters.Monster)))
-            FSM.MonstersPrefab[(Monsters.Monster)monster] = Resources.Load<GameObject>(monster.ToString());
+            fsm.MonstersPrefab[(Monsters.Monster)monster] = Resources.Load<GameObject>(monster.ToString());
         foreach (var monster in Enum.GetValues(typeof(Monsters.MonsterBoss)))
-            FSM.BossesPrefab[(Monsters.MonsterBoss)monster] = Resources.Load<GameObject>(monster.ToString());
+            fsm.BossesPrefab[(Monsters.MonsterBoss)monster] = Resources.Load<GameObject>(monster.ToString());
 
         // Create Monsters
-        if (FSM.CurrentStage.properties.autoGenerate)
-            CreateMonstersGeneric(FSM);
+        if (fsm.CurrentStage.properties.autoGenerate)
+            CreateMonstersGeneric(fsm);
         else
-            CreateMonstersFromProperties(FSM);
+            CreateMonstersFromProperties(fsm);
+        
+        // Set Monster grid
+        fsm.MonsterGrid = new MonsterGrid(fsm.MonstersInGame, fsm.RockPileInGame);
+
     }
 
     private static void CreateMonstersFromProperties(GameController FSM) {
@@ -110,15 +132,6 @@ public class CreatingGame : GameState {
     public override void Enter(GameController FSM) {
         FSM.ChangeState(States.PlayerTurn);
     }
-}
-
-// TODO REMOVER
-public static class BMCharacter {
-    public static Dictionary<Card, string> Preset { get; } = new() {
-        { Card.Card_005_Char_Lucas, "Player Lucas" },
-        { Card.Card_006_Char_Lisa, "Player Lisa" },
-        { Card.Card_007_Char_Bill, "Player Billy" }
-    };
 }
 
 }

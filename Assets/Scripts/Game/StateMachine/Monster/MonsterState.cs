@@ -11,6 +11,7 @@ namespace Game.StateMachine.Monster {
 public abstract class MonsterState : State<MonsterFSM> {
     public virtual void Move(MonsterFSM fsm, MonsterGrid grid) { }
     public virtual void Hit(MonsterFSM fsm, RockFSM rockFSM) { }
+    public virtual void Hit(MonsterFSM fsm, MonsterFSM monsterFSM) { }
 }
 
 public abstract class States {
@@ -25,7 +26,7 @@ public abstract class States {
 
 public class ReachEndLine : MonsterState {
     public override void Enter(MonsterFSM fsm) {
-        fsm.GameController.MonstersInGame.Remove(fsm);
+        fsm.GameController.RemoveMonster(fsm);
         Object.Destroy(fsm.gameObject);
     }
 }
@@ -52,6 +53,23 @@ public class Idle : MonsterState {
 
         // For monsters coming to the game (y position = 12), move 3 squares more
         // ReSharper disable once ConvertIfStatementToConditionalTernaryExpression
+
+        // If there is a rock in front, damage it
+        if (grid.HasRockInFront(fsm)) {
+            grid.MonsterInFront(fsm).HitByAMonster(fsm);
+            fsm.components.animator.SetTrigger(HitAnim);
+        }
+
+        if (!grid.CanMonsterMove(fsm)) {
+            fsm.GameController.IncreaseMonstersMoved(fsm);
+            // If there is a BOSS above , kills it (hua hua hua)
+            if (grid.HasBossAbove(fsm)) {
+                fsm.ChangeState(States.Dying);
+            }
+            
+            return;
+        }
+        
         if (Math.Abs(currentPosition.y - 12f) < 0.1f) {
             if (fsm.IsBoss()) {
                 fsm.MovementSpeed = MonsterFSM.NormalSpeed * 4;
@@ -81,12 +99,27 @@ public class Idle : MonsterState {
         }
 
         fsm.NextMove = new Vector3(currentPosition.x, currentPosition.y - fsm.NextMoveDistance, 0);
-
         fsm.ChangeState(States.Moving);
     }
 
     public override void Hit(MonsterFSM fsm, RockFSM rockFSM) {
         var damage = rockFSM.Damage();
+        fsm.components.animator.SetTrigger(HitAnim);
+        fsm.CurrentLife -= 1 * damage;
+
+        if (fsm.CurrentLife <= 0) {
+            Kill(fsm);
+        }
+        else {
+            AudioController.PlayFXRandom(fsm.impactFX);
+            fsm.components.healthyBar.State.Hit(fsm.components.healthyBar, damage);
+        }
+    }
+    
+    
+    public override void Hit(MonsterFSM fsm, MonsterFSM monsterFSM) {
+        // Damage should be rockLife * its factor
+        var damage = fsm.life * fsm.rockPileFactor;
         fsm.components.animator.SetTrigger(HitAnim);
         fsm.CurrentLife -= 1 * damage;
 
@@ -137,7 +170,7 @@ public class Dying : MonsterState {
     private static readonly int KillAnim = Animator.StringToHash("Kill");
 
     public override void Enter(MonsterFSM fsm) {
-        fsm.GameController.MonstersInGame.Remove(fsm);
+        fsm.GameController.RemoveMonster(fsm);
         fsm.components.animator.SetTrigger(KillAnim);
         AudioController.PlayFXRandom(fsm.dyingFX);
     }
@@ -170,9 +203,17 @@ public enum MonsterType {
     SHAMAN,
     MAGE,
     BOSS,
-    CHEST,
-    RESOURCE,
-    VIDEO_CHEST
+}
+
+public enum MonsterResourceType {
+    Monster,
+    RockPile,
+    Chest,
+}
+
+public enum RockPile
+{
+    Basic
 }
 
 }
