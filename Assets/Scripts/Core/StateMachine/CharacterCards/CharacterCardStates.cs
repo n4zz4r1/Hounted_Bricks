@@ -29,19 +29,7 @@ public class Preload : State<CharacterCardFSM> {
     }
 
     private static void SetupStars(CharacterCardFSM _) {
-        // TODO update stars
-        // for (var i = 0; i < FSM.cardFSM.power.stamina; i++) {
-        //     FSM.components.starsStamina[i].color = ColorUtils.YELLOW;
-        // }
-        // for (var i = 0; i < FSM.cardFSM.power.life; i++) {
-        //     FSM.components.starsLife[i].color = ColorUtils.YELLOW;
-        // }
-        // for (var i = 0; i < FSM.cardFSM.power.strength; i++) {
-        //     FSM.components.starsStrength[i].color = ColorUtils.YELLOW;
-        // }
-        // for (var i = 0; i < FSM.cardFSM.power.magic; i++) {
-        //     FSM.components.starsMagic[i].color = ColorUtils.YELLOW;
-        // }
+
     }
 }
 
@@ -61,6 +49,7 @@ public class Selected : State<CharacterCardFSM> {
         fsm.components.boxFoundImage.color = Colors.ENABLED_2;
         fsm.components.boxFoundCanvas.alpha = 1f;
         fsm.components.buttonAbility.enabled = true;
+        fsm.components.buttonAbility.interactable = true;
         fsm.components.icon.sprite = fsm.components.iconSprite;
         fsm.components.buttonFoundBox.interactable = false;
         fsm.components.buttonFoundBox.enabled = false;
@@ -81,6 +70,7 @@ public class Unselected : State<CharacterCardFSM> {
         fsm.components.boxFoundImage.color = Colors.DISABLED;
         fsm.components.boxFoundCanvas.alpha = 0.5f;
         fsm.components.buttonAbility.enabled = false;
+        fsm.components.buttonAbility.interactable = false;
         fsm.components.icon.sprite = fsm.components.iconSpriteBW;
         fsm.components.buttonFoundBox.interactable = true;
         fsm.components.buttonFoundBox.enabled = true;

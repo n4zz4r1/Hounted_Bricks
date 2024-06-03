@@ -87,17 +87,18 @@ public class Found : State<CardFSM> {
         // Set Total and current on save
         var cardQuantity = CardsDataV1.Instance.GetCardQuantity(fsm.cardId);
         fsm.components.textQuantity.text = cardQuantity.ToString();
-        fsm.UpdateCurrentAvailable(cardQuantity - PlayerDataV1.Instance.RockCardCounter(fsm.cardId));
+        fsm.UpdateCurrentAvailable(cardQuantity - PlayerDataV1.Instance.RockCardCounter(fsm.cardId) - CardsDataV1.Instance.AbilityUsed(fsm.cardId));
     }
 
     //
     // // Collision check session
+    // TODO Refactor here, make slot responsible for persist slots
     //
     public override void OnCollisionEnter(CardFSM fsm, Collider2D collider) {
         var slotCollider = collider.GetComponent<CardSlotFSM>();
 
         if (slotCollider == null || slotCollider.State == CardSlots.States.Disabled ||
-            (slotCollider.State is WithRock && slotCollider.SelectedCardFSM?.cardId == fsm.cardId))
+            (slotCollider.State is WithCard && slotCollider.SelectedCardFSM?.cardId == fsm.cardId))
             return;
 
         fsm.CurrentSelectedSlot = slotCollider;
@@ -109,16 +110,27 @@ public class Found : State<CardFSM> {
     public override void OnCollisionExit(CardFSM fsm, Collider2D collider) {
         fsm.CurrentSelectedSlot = null;
 
-        var slotCollider = collider.GetComponent<CardSlotFSM>();
+        if (collider.GetComponent<CardRockSlotFSM>() != null) 
+            CollidedWithSlot(fsm, collider.GetComponent<CardRockSlotFSM>());
+        else if (collider.GetComponent<CardAbilitySlotFSM>() != null) 
+            CollidedWithSlot(fsm, collider.GetComponent<CardAbilitySlotFSM>());
+
+    }
+
+    private static void CollidedWithSlot<T>(CardFSM fsm, T slotCollider) where T : CardSlotFSM {
         if (slotCollider.State == CardSlots.States.Disabled ||
-            (slotCollider.State is WithRock && slotCollider.SelectedCardFSM?.cardId == fsm.cardId))
+            (slotCollider.State is WithCard && slotCollider.SelectedCardFSM?.cardId == fsm.cardId))
             return;
 
-
-        if (PlayerDataV1.Instance.saveRockSlot[slotCollider.index] != Card.NONE)
-            slotCollider.ChangeState(CardSlots.States.WithRock);
+        if (slotCollider.type == CardSlotType.Rock && PlayerDataV1.Instance.saveRockSlot[slotCollider.index] != Card.NONE)
+            slotCollider.ChangeState(CardSlots.States.WithCard);
+        else if (slotCollider.type == CardSlotType.Ability && CardsDataV1.Instance.GetPlayerAbilityAtPosition(slotCollider) != Card.NONE)
+            slotCollider.ChangeState(CardSlots.States.WithCard);
         else
             slotCollider.ChangeState(CardSlots.States.Empty);
+
+        slotCollider.Sync();
+        
     }
 
     public override void StartDragging(CardFSM fsm) {
@@ -138,10 +150,17 @@ public class Found : State<CardFSM> {
     }
 
     public override void StopDragging(CardFSM fsm) {
-        if (fsm.DragCard.GetComponent<CardFSM>().CurrentSelectedSlot != null)
-            PlayerDataV1.Instance.ChangeRockSlot(fsm.DragCard.GetComponent<CardFSM>().CurrentSelectedSlot.index,
-                fsm.cardId);
-        else
+        var slot = fsm.DragCard.GetComponent<CardFSM>().CurrentSelectedSlot;
+        if (slot != null) {
+
+            if (slot.type == CardSlotType.Rock)
+                PlayerDataV1.Instance.ChangeRockSlot(slot.index, fsm.cardId);
+            else {
+                // Changing abilities
+                CardsDataV1.Instance.ChangeSavedAbility(slot.PlayerCard, slot.index, fsm.cardId);
+            }
+            
+        } else
             fsm.UpdateCurrentAvailable(fsm.CurrentQuantity + 1);
 
         fsm.CurrentSelectedSlot = null;
@@ -149,7 +168,8 @@ public class Found : State<CardFSM> {
         fsm.DestroyDragCard();
         fsm.IsDragging = false;
 
-        fsm.SyncAllData(typeof(CardSlotFSM));
+        fsm.SyncAllData(typeof(CardAbilitySlotFSM));
+        fsm.SyncAllData(typeof(CardRockSlotFSM));
         fsm.SyncAllData(typeof(CardFSM));
         fsm.SyncAllData(typeof(BagController));
     }

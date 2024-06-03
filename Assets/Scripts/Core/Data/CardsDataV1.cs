@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Core.Sprites;
+using Core.StateMachine.CardSlots;
 using Core.Utils;
 using Core.Utils.Constants;
 using Framework.Base;
@@ -10,6 +12,72 @@ namespace Core.Data {
 
 [Serializable]
 public class CardsDataV1 : Data<CardsDataV1> {
+
+
+    public static int PlayerIndex(Card player) {
+        return player switch {
+            Card.Card_005_Char_Lucas => 0,
+            Card.Card_006_Char_Lisa => 6,
+            Card.Card_007_Char_Bill => 12,
+            _ => 0
+        };
+    }
+
+    public void ChangeSavedAbility(Card player, int index, Card ability) {
+        savedAbilities[PlayerIndex(player) + index] = ability;
+        Save();
+    } 
+
+    public Card GetPlayerAbilityAtPosition(Card player, int index) =>
+        savedAbilities[PlayerIndex(player) + index];
+    public Card GetPlayerAbilityAtPosition(CardSlotFSM cardSlotFSM) =>
+        savedAbilities[PlayerIndex(cardSlotFSM.PlayerCard) + cardSlotFSM.index];
+    
+    public static Dictionary<Card, List<Card>> abilitiesByCharacter = new() {
+        {
+            Card.Card_005_Char_Lucas, new List<Card> {
+                Card.Card_016_Ab_Lucas_Move,
+                Card.Card_017_Ab_Lucas_SuperStone,
+                Card.Card_018_Ab_Lucas_SlingshotMater,
+                Card.Card_019_Ab_Lucas_SmallRock,
+                Card.Card_020_Ab_Lucas_Power,
+                Card.Card_021_Ab_Lucas_RockRain,
+                Card.Card_022_Ab_Lucas_SuperWall,
+                Card.Card_023_Ab_Lucas_LetsRock,
+                Card.Card_024_Ab_Lucas_Mine,
+                Card.Card_025_Ab_Lucas_GiveMeMoney,
+            }
+        },
+        {
+            Card.Card_006_Char_Lisa, new List<Card> {
+                Card.Card_026_Ab_Lisa_Fire,
+                Card.Card_027_Ab_Lisa_FireByLucky,
+                Card.Card_028_Ab_Lisa_FireByRebounce,
+                Card.Card_029_Ab_Lisa_Healer,
+                Card.Card_030_Ab_Lisa_Firewall,
+                Card.Card_031_Ab_Lisa_FireCamp,
+                Card.Card_032_Ab_Lisa_FireStronger,
+                Card.Card_033_Ab_Lisa_FireSpread,
+                Card.Card_034_Ab_Lisa_Fireworks,
+                Card.Card_035_Ab_Lisa_SpecialFireBomb,
+            }
+        },
+        {
+            Card.Card_007_Char_Bill, new List<Card> {
+                Card.Card_036_Ab_Bill_AcidBomb,
+                Card.Card_037_Ab_Bill_Poison,
+                Card.Card_038_Ab_Bill_PoisonByLucky,
+                Card.Card_039_Ab_Bill_PoisonByLuckyTwo,
+                Card.Card_040_Ab_Bill_Barrel,
+                Card.Card_041_Ab_Bill_Run,
+                Card.Card_042_Ab_Bill_UltraAim,
+                Card.Card_043_Ab_Bill_AcidRain,
+                Card.Card_044_Ab_Bill_SuperPoison,
+                Card.Card_045_Ab_Bill_Viruz,
+            }
+        }
+    };
+    
     public bool AddCard(Card card) {
         try {
             cards.Add(card);
@@ -62,18 +130,18 @@ public class CardsDataV1 : Data<CardsDataV1> {
 
         return maxQuantity >= 1 && quantity >= maxQuantity;
     }
-
-    public Card GetParentCard(Card child) {
-        return _cardRelationship.Exists(c => c.Child == child)
-            ? _cardRelationship.Find(c => c.Child == child).Parent
-            : Card.NONE;
-    }
-
-    public Card GetChildCard(Card parent) {
-        return _cardRelationship.Exists(c => c.Parent == parent)
-            ? _cardRelationship.Find(c => c.Parent == parent).Child
-            : Card.NONE;
-    }
+    //
+    // public Card GetParentCard(Card child) {
+    //     return _cardRelationship.Exists(c => c.Child == child)
+    //         ? _cardRelationship.Find(c => c.Child == child).Parent
+    //         : Card.NONE;
+    // }
+    //
+    // public Card GetChildCard(Card parent) {
+    //     return _cardRelationship.Exists(c => c.Parent == parent)
+    //         ? _cardRelationship.Find(c => c.Parent == parent).Child
+    //         : Card.NONE;
+    // }
 
     public bool CardHasLevel(Card card) {
         return cardsLevel.Count(c => c.card.Equals(card)) > 0;
@@ -95,6 +163,11 @@ public class CardsDataV1 : Data<CardsDataV1> {
         return GetCardQuantity(card) < GetCardMaxQuantity(card);
     }
 
+    public List<Card> GetAbilitiesAvailable(Card player) {
+        // return abilitiesByCharacter[player].FindAll(c => HasCard(c) && !SavedAbilities[PlayerIndex(player)].Contains(c) );
+        return abilitiesByCharacter[player].FindAll(HasCard);
+    }
+
     public bool IncreaseLevel(Card card, ResourceType resourceUpdateType) {
         var success = true;
 
@@ -107,7 +180,7 @@ public class CardsDataV1 : Data<CardsDataV1> {
             cardLevel.level++;
 
             // spend resource
-            success = ResourcesV1.Instance.SpendResources(ResourceType.COIN, coinCost, resourceUpdateType,
+            success = ResourcesV1.Instance.SpendResources(ResourceType.Coin, coinCost, resourceUpdateType,
                 resourceUpdateCost);
 
             // if for some reason there was no money, rollback level
@@ -135,6 +208,7 @@ public class CardsDataV1 : Data<CardsDataV1> {
         Card.Card_005_Char_Lucas,
         // TODO remove characters
         Card.Card_006_Char_Lisa,
+        Card.Card_007_Char_Bill,
 
         // Basic Cards
         // TODO remove
@@ -154,7 +228,7 @@ public class CardsDataV1 : Data<CardsDataV1> {
         Card.Card_022_Ab_Lucas_SuperWall,
         Card.Card_023_Ab_Lucas_LetsRock,
         Card.Card_024_Ab_Lucas_Mine,
-        Card.Card_025_Ab_Lucas_GiveMeMoney,
+        // Card.Card_025_Ab_Lucas_GiveMeMoney,
         Card.Card_026_Ab_Lisa_Fire,
         Card.Card_027_Ab_Lisa_FireByLucky,
         Card.Card_028_Ab_Lisa_FireByRebounce,
@@ -164,7 +238,7 @@ public class CardsDataV1 : Data<CardsDataV1> {
         Card.Card_032_Ab_Lisa_FireStronger,
         Card.Card_033_Ab_Lisa_FireSpread,
         Card.Card_034_Ab_Lisa_Fireworks,
-        Card.Card_035_Ab_Lisa_SpecialFireBomb,
+        // Card.Card_035_Ab_Lisa_SpecialFireBomb,
         Card.Card_036_Ab_Bill_AcidBomb,
         Card.Card_037_Ab_Bill_Poison,
         Card.Card_038_Ab_Bill_PoisonByLucky,
@@ -173,8 +247,8 @@ public class CardsDataV1 : Data<CardsDataV1> {
         Card.Card_041_Ab_Bill_Run,
         Card.Card_042_Ab_Bill_UltraAim,
         Card.Card_043_Ab_Bill_AcidRain,
-        Card.Card_044_Ab_Bill_SuperPoison,
-        Card.Card_045_Ab_Bill_Viruz,
+        // Card.Card_044_Ab_Bill_SuperPoison,
+        // Card.Card_045_Ab_Bill_Viruz,
         
         // Essencial
         Card.Card_E_Recycle,
@@ -191,11 +265,12 @@ public class CardsDataV1 : Data<CardsDataV1> {
         new CardLevel(Card.Card_004_Bomb_Rock, 10)
     };
 
-    [SerializeField] private readonly List<CardRelated> _cardRelationship = new() {
-        // new CardRelated(Card.Card_004_Bomb_Rock,        Card.Card_015_Improved_Bomb_Rock),
-    };
+    [SerializeField] private Card[] savedAbilities = Enumerable.Repeat(Card.NONE, 18).ToArray();
 
     #endregion
+
+    public long AbilityUsed(Card ability) 
+        => savedAbilities.ToList().FindAll(c => c == ability).Count();
 }
 
 [Serializable]
@@ -211,6 +286,7 @@ public class CardLevel {
         this.level = level;
     }
 }
+
 
 
 [Serializable]

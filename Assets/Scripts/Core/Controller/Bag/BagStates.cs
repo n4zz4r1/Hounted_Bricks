@@ -19,7 +19,7 @@ public class Preloading : State<BagController> {
 public class Started : State<BagController> {
     public override void Clear(BagController fsm) {
         PlayerDataV1.Instance.ClearSaveRockSlots();
-        fsm.SyncAllData(typeof(CardSlotFSM));
+        fsm.SyncAllData(typeof(CardRockSlotFSM));
         fsm.SyncAllData(typeof(CardFSM));
         fsm.SyncAllData(typeof(BagController));
     }
@@ -34,7 +34,7 @@ public class Started : State<BagController> {
             PlayerDataV1.Instance.ChangeRockSlot(i, rockCards[shuffledIndex[i]]);
         }
 
-        fsm.SyncAllData(typeof(CardSlotFSM));
+        fsm.SyncAllData(typeof(CardRockSlotFSM));
         fsm.SyncAllData(typeof(CardFSM));
         fsm.SyncAllData(typeof(BagController));
     }

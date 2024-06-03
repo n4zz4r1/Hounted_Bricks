@@ -1,3 +1,5 @@
+using Core.Sprites;
+
 namespace Core.Utils {
 
 public abstract class GameMathUtils {

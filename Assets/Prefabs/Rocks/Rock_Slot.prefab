@@ -32,10 +32,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 8745751373155668658}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0015323, y: -0.001601}
-  m_SizeDelta: {x: 116.93, y: 118.96}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0.0015335083, y: -0.0016021729}
+  m_SizeDelta: {x: -37.081, y: -36.092}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5169436516624901144
 CanvasRenderer:
@@ -185,7 +185,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 1.2814}
+  m_AnchoredPosition: {x: 0, y: 1.2814026}
   m_SizeDelta: {x: -32.344, y: -32.93}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4042076577405904112
@@ -276,10 +276,10 @@ RectTransform:
   - {fileID: 8304103116974517700}
   m_Father: {fileID: 8745751373155668658}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.11571488, y: 0.108850904}
-  m_AnchorMax: {x: 0.88428926, y: 0.8911491}
-  m_AnchoredPosition: {x: -0.00031280518, y: 0.0004386902}
-  m_SizeDelta: {x: 0.12307447, y: 0.07361529}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -0.00024414062, y: 0.00044250488}
+  m_SizeDelta: {x: -36.751, y: -36.42}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4063160501890266495
 CanvasRenderer:
@@ -659,7 +659,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8745751373155668658}
-  - component: {fileID: 3675313875693490230}
+  - component: {fileID: 4464099128543845089}
   - component: {fileID: 725215961461686064}
   - component: {fileID: 8859995355042123890}
   m_Layer: 0
@@ -694,7 +694,7 @@ RectTransform:
   m_AnchoredPosition: {x: -104.4, y: 81.9}
   m_SizeDelta: {x: 33.64, y: 33.64}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &3675313875693490230
+--- !u!114 &4464099128543845089
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -703,10 +703,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 9148134409824033435}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e165ecd52e2847c4ba5b608e676f59e5, type: 3}
+  m_Script: {fileID: 11500000, guid: 4953455489a24e14942b628b50444f7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
   index: 0
+  playerCard: 0
   components:
     slotCollider: {fileID: 8859995355042123890}
     slotBox: {fileID: 717145113824709468}

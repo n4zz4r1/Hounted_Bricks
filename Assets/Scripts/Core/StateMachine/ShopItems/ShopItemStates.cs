@@ -1,4 +1,5 @@
 using Core.Data;
+using Core.Sprites;
 using Core.StateMachine.Resource;
 using Core.Utils;
 using Core.Utils.Constants;
@@ -23,7 +24,7 @@ public class Available : State<ShopItemFSM> {
     public override void Enter(ShopItemFSM fsm) {
         fsm.components.shopItemButton.interactable = true;
         fsm.components.shopItemButton.enabled = true;
-        if (fsm.rewardType != ResourceType.CARD)
+        if (fsm.rewardType != ResourceType.Card)
             fsm.components.shopItemButton.image.color = ResourceUtils.From(fsm.rewardType).BackgroundColor;
     }
 
@@ -34,13 +35,13 @@ public class Available : State<ShopItemFSM> {
 
         // First, spend cost
         // todo implement here for money $$$$
-        if (fsm.costType != ResourceType.MONEY)
+        if (fsm.costType != ResourceType.Money)
             success = ResourcesV1.Instance.SpendResources(fsm.costType, (long)fsm.cost);
 
         if (!success) return;
 
         // Second, earn reward if succeeded
-        if (fsm.rewardType == ResourceType.CARD)
+        if (fsm.rewardType == ResourceType.Card)
             CardsDataV1.Instance.AddCard(fsm.card);
         else
             ResourcesV1.Instance.AddResources(fsm.rewardType, fsm.reward);

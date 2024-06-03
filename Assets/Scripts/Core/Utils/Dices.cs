@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Core.Data;
+using Core.Sprites;
 using Core.Utils.Constants;
 
 namespace Core.Utils {
@@ -26,22 +27,22 @@ public abstract class Dices {
 
     public static int RollDiceFromRewardType(ResourceType type) {
         switch (type) {
-            case ResourceType.COIN:
+            case ResourceType.Coin:
                 return (int)(GameDataV1.Instance.level * CoinQuantityDice.Roll());
-            case ResourceType.DIAMOND:
+            case ResourceType.Diamond:
                 return (int)(GameDataV1.Instance.level * DiamontQuantityDice.Roll());
-            case ResourceType.CHEST:
+            case ResourceType.Chest:
                 return 1; // create dice for chests
-            case ResourceType.CARD:
+            case ResourceType.Card:
                 return 1;
-            case ResourceType.NONE:
+            case ResourceType.None:
                 return 0;
             // TODO
-            case ResourceType.ROCK_SCROLL:
-            case ResourceType.CHAR_SCROLL:
-            case ResourceType.ABILITY_SCROLL:
-            case ResourceType.CHEST_KEYS:
-            case ResourceType.MONEY:
+            case ResourceType.RockScroll:
+            case ResourceType.CharScroll:
+            case ResourceType.AbilityScroll:
+            case ResourceType.ChestKey:
+            case ResourceType.Money:
             default:
                 return 0;
         }
@@ -51,28 +52,28 @@ public abstract class Dices {
 [Serializable]
 public class NormalRewardDice : AbstractDice<NormalRewardDice, ResourceType> {
     public override Factor<ResourceType>[] GetProbabilities => new[] {
-        new Factor<ResourceType>(ResourceType.COIN, 75f),
-        new Factor<ResourceType>(ResourceType.DIAMOND, 20f),
-        new Factor<ResourceType>(ResourceType.CARD, 5f)
+        new Factor<ResourceType>(ResourceType.Coin, 75f),
+        new Factor<ResourceType>(ResourceType.Diamond, 20f),
+        new Factor<ResourceType>(ResourceType.Card, 5f)
     };
 }
 
 [Serializable]
 public class LowRewardDice : AbstractDice<LowRewardDice, ResourceType> {
     public override Factor<ResourceType>[] GetProbabilities => new[] {
-        new Factor<ResourceType>(ResourceType.COIN, 32f),
-        new Factor<ResourceType>(ResourceType.DIAMOND, 6f),
-        new Factor<ResourceType>(ResourceType.CARD, 2f),
-        new Factor<ResourceType>(ResourceType.NONE, 60f)
+        new Factor<ResourceType>(ResourceType.Coin, 32f),
+        new Factor<ResourceType>(ResourceType.Diamond, 6f),
+        new Factor<ResourceType>(ResourceType.Card, 2f),
+        new Factor<ResourceType>(ResourceType.None, 60f)
     };
 }
 
 [Serializable]
 public class HighRewardDice : AbstractDice<HighRewardDice, ResourceType> {
     public override Factor<ResourceType>[] GetProbabilities => new[] {
-        new Factor<ResourceType>(ResourceType.COIN, 60f),
-        new Factor<ResourceType>(ResourceType.DIAMOND, 30f),
-        new Factor<ResourceType>(ResourceType.CARD, 10f)
+        new Factor<ResourceType>(ResourceType.Coin, 60f),
+        new Factor<ResourceType>(ResourceType.Diamond, 30f),
+        new Factor<ResourceType>(ResourceType.Card, 10f)
     };
 }
 

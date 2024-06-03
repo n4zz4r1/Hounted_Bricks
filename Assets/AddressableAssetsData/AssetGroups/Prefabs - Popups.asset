@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Prefabs - Popups
+  m_EditorClassIdentifier: 
+  m_GroupName: Prefabs - Popups
+  m_Data:
+    m_SerializedData: []
+  m_GUID: c6c5e7b5144f6cd4ab82410d0a49f8e4
+  m_SerializeEntries:
+  - m_GUID: 29538cf91e39ee343854f1bec7e5e953
+    m_Address: Popups_CardDetail
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MainSceneAddressable
+    - Prefabs
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fcebd371945d68e499f7d62733b1fb4a
+    m_Address: Popups_Deck
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MainSceneAddressable
+    - Prefabs
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 431bd77e748bda0459f6b4943c67e15a
+    m_Address: Popups_Settings
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MainSceneAddressable
+    - Prefabs
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 32e1b6a54f8b9a04b841d0c47a9f0d7a, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 82a3fd9e1bcef2a4dacb2da99c3ec907, type: 2}
+    - {fileID: 11400000, guid: 5b928563e3ee3ab42a472528a60585c1, type: 2}

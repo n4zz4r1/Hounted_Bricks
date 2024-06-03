@@ -60,7 +60,7 @@ public abstract class State<T> {
     #endregion
 
     #region Specifics
-
+    
     public virtual void SetCard(T fsm) { }
     public virtual void RollTheDice(T fsm) { }
     public virtual void ChangeReward(T fsm, int amount) { }

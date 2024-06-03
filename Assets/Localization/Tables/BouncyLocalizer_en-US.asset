@@ -95,26 +95,6 @@ MonoBehaviour:
     m_Localized: Gold
     m_Metadata:
       m_Items: []
-  - m_Id: 283032309778
-    m_Localized: Rock
-    m_Metadata:
-      m_Items: []
-  - m_Id: 283032309779
-    m_Localized: Special
-    m_Metadata:
-      m_Items: []
-  - m_Id: 283032309780
-    m_Localized: Common
-    m_Metadata:
-      m_Items: []
-  - m_Id: 283032309781
-    m_Localized: Ability
-    m_Metadata:
-      m_Items: []
-  - m_Id: 283032309782
-    m_Localized: Character
-    m_Metadata:
-      m_Items: []
   - m_Id: 283032309783
     m_Localized: Characters
     m_Metadata:
@@ -1173,6 +1153,26 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 13891765317292032
     m_Localized: Shuffle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17076927060398080
+    m_Localized: Rock
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17076927085563904
+    m_Localized: Special
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17076927085563905
+    m_Localized: Common
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17076927085563906
+    m_Localized: Ability
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17076927085563907
+    m_Localized: Character
     m_Metadata:
       m_Items: []
   references:

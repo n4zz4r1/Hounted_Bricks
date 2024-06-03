@@ -10,11 +10,7 @@ namespace Core.Data {
 
 [Serializable]
 public class PlayerDataV1 : Data<PlayerDataV1> {
-    public List<List<Card>> SavedAbilities { get; private set; } = new() {
-        new List<Card>(Enumerable.Repeat(Card.NONE, 4).ToArray()),
-        new List<Card>(Enumerable.Repeat(Card.NONE, 4).ToArray()),
-        new List<Card>(Enumerable.Repeat(Card.NONE, 4).ToArray())
-    };
+
 
     public List<int> CurrentLife { get; private set; } = new() {
         3, 2, 1
@@ -109,19 +105,19 @@ public class PlayerDataV1 : Data<PlayerDataV1> {
     public int CurrentPlayerLife() {
         return CurrentLife[GetIndexByCharacter(selectedCharacter)];
     }
-
-    public bool HasChosenAbility(Card characterCard, int tier, Card card) {
-        return SavedAbilities[GetIndexByCharacter(characterCard)][tier] == card;
-    }
-
-    public List<Card> GetAbilities(Card card) {
-        return SavedAbilities[GetIndexByCharacter(card)] ?? new List<Card>();
-    }
-
-    public void ChooseAbility(int tierIndex, Card newCard, Card character) {
-        SavedAbilities[GetIndexByCharacter(character)][tierIndex] = newCard;
-        Save();
-    }
+    //
+    // public bool HasChosenAbility(Card characterCard, int tier, Card card) {
+    //     return SavedAbilities[GetIndexByCharacter(characterCard)][tier] == card;
+    // }
+    //
+    // public List<Card> GetAbilities(Card card) {
+    //     return SavedAbilities[GetIndexByCharacter(card)] ?? new List<Card>();
+    // }
+    //
+    // public void ChooseAbility(int tierIndex, Card newCard, Card character) {
+    //     SavedAbilities[GetIndexByCharacter(character)][tierIndex] = newCard;
+    //     Save();
+    // }
 
     public void ClearSaveRockSlots() {
         saveRockSlot = Enumerable.Repeat(Card.NONE, 30).ToArray();

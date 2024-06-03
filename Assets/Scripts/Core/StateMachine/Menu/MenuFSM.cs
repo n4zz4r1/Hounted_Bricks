@@ -11,6 +11,7 @@ public class MenuFSM : StateMachine<MenuFSM, State<MenuFSM>> {
     [SerializeField] public RectTransform[] panels; // Panels that correspond to each button
     [SerializeField] public TextMeshProUGUI[] labels; // Panels that correspond to each button
     [SerializeField] public RectTransform[] icons; // Panels that correspond to each button
+    [SerializeField] public Canvas menuCanvas;
 
     internal readonly Dictionary<int, MenuPanel> PanelByIndex = new() {
         { 0, MenuPanel.CHARACTER },

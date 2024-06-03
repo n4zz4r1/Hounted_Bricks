@@ -22,9 +22,9 @@ public class GameMenuFSM : StateMachine<GameMenuFSM, State<GameMenuFSM>> {
     protected override State<GameMenuFSM> GetInitialState => States.Playing;
 
     protected override async Task BeforeAsync() {
-        GamePausedLabel = await LocalizationUtils.LoadText("Game.Pause");
-        YouWonLabel = await LocalizationUtils.LoadText("Game.Won");
-        YouLoseLabel = await LocalizationUtils.LoadText("Game.Lost");
+        GamePausedLabel = await LocalizationUtils.LoadTextAsync("Game.Pause");
+        YouWonLabel = await LocalizationUtils.LoadTextAsync("Game.Won");
+        YouLoseLabel = await LocalizationUtils.LoadTextAsync("Game.Lost");
     }
 
     protected override void Before() {

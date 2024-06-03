@@ -1,40 +1,60 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
+using UnityEngine;
 using UnityEngine.Localization.Settings;
+using UnityEngine.Localization.Tables;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace Core.Utils {
 
 public static class LocalizationUtils {
-    // Method to get localized text synchronously (make sure the system is initialized before you call this)
-    // ReSharper disable once StringLiteralTypo
-    // public static string GetLocalizedText(string key, string table = "BouncyLocalizer") {
-    //     // Check if the localization system is ready; if not, return key as fallback
-    //     // if (LocalizationSettings.InitializationOperation.WaitForCompletion())
-    //     return LocalizationSettings.StringDatabase.GetLocalizedString(table, key);
-    //
-    //     Debug.LogWarning("Localized Key `" + key + "` not found.");
-    //     return key; // Return the key as a fallback
-    // }
-    //
-    // // Asynchronous version to get localized text
-    // public static IEnumerator GetLocalizedTextAsync(string table, string key, Action<string> callback) {
-    //     // Wait until the localization system is ready
-    //     yield return LocalizationSettings.InitializationOperation;
-    //
-    //     // Retrieve the localized string
-    //     var result = LocalizationSettings.StringDatabase.GetLocalizedString(table, key);
-    //     callback?.Invoke(result);
-    // }
-    //
-    // // Asynchronous version to get localized text
-    // public static IEnumerator WaitLocalizedToLoad() {
-    //     // Wait until the localization system is ready
-    //     yield return LocalizationSettings.InitializationOperation;
-    // }
+    private static StringTable _localizedStringTable;
 
-    public static async Task<string> LoadText(string key) {
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
+    private static void Initialize() {
+        PreloadLocalizationTable();
+    }
+
+    private static void PreloadLocalizationTable() {
+        var tableLoadingOperation = LocalizationSettings.StringDatabase.GetTableAsync("BouncyLocalizer"); // Replace with your table name
+        tableLoadingOperation.Completed += HandleTableLoaded;
+    }
+
+    private static void HandleTableLoaded(AsyncOperationHandle<StringTable> handle) {
+        if (handle.Status == AsyncOperationStatus.Succeeded) {
+            _localizedStringTable = handle.Result;
+            Debug.Log("Localization table preloaded successfully.");
+        } else {
+            Debug.LogError("Failed to preload localization table.");
+        }
+    }
+
+    public static string LoadText(string key) {
+        if (_localizedStringTable == null) {
+            // Debug.LogError("Localization table not loaded.");
+            return string.Empty;
+        }
+
+        var entry = _localizedStringTable.GetEntry(key);
+        if (entry != null) {
+            return entry.GetLocalizedString();
+        } 
+        
+        Debug.LogWarning($"Key '{key}' not found in localization table.");
+        return string.Empty;
+        
+    }
+    
+    public static async Task<string> LoadTextAsync(string key) {
         var localization = LocalizationSettings.StringDatabase.GetLocalizedStringAsync("BouncyLocalizer", key);
         return await localization.Task;
     }
+    
+    public static string From(Enum enumerator) {
+        return LoadText(enumerator.GetType().Name + "." + enumerator);
+    }
+    
 }
+
 
 }

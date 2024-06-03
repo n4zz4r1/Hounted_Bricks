@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Core.Sprites;
 using Core.Utils;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -8,13 +9,13 @@ namespace Core.StateMachine.Cards {
 
 [Serializable]
 public class CardAbilityComponent {
-    [FormerlySerializedAs("AbilityType")] public AbilityType abilityType = AbilityType.NONE;
-    [FormerlySerializedAs("Value")] public int value;
+    public AbilityType abilityType = AbilityType.NONE;
+    public int value;
 }
 
 [Serializable]
 public class CardAttributesComponent {
-    [SerializeField] public CardAttribute attribute;
+    [FormerlySerializedAs("attribute")] [SerializeField] public Sprites.CardAttributeType attributeType;
     [SerializeField] public StringStringDictionary updates;
 
     // Concat all values and bring current level value
@@ -32,41 +33,22 @@ public class CardAttributesComponent {
 }
 
 [Serializable]
-public enum CardAttribute {
-    POWER = 0,
-    RESISTANCE = 1,
-    HEALTH = 2,
-    AIM = 3,
-    MAGIC = 4,
-    CONSUMABLE = 5,
-    PROBABILITY = 6,
-    RARITY = 7,
-    GEM_SLOT = 8,
-    RANGE = 9,
-    QUANTITY = 10,
-}
-
-[Serializable]
 public enum CardType {
-    NONE = 0,
-    ROCK = 1,
-    CHARACTER = 2,
-    SPECIAL = 3,
-    BASIC_ABILITY = 4,
-    PASSIVE_ABILITY = 5,
-    ACTIVE_ABILITY = 6
+    None = 0,
+    Rock = 1,
+    Character = 2,
+    Special = 3,
+    Ability = 4
 }
 
 public abstract class CardTypeUtils {
     public static ResourceType ToResource(CardType cardType) {
         return cardType switch {
-            CardType.NONE => ResourceType.NONE,
-            CardType.ROCK => ResourceType.ROCK_SCROLL,
-            CardType.BASIC_ABILITY => ResourceType.ABILITY_SCROLL,
-            CardType.ACTIVE_ABILITY => ResourceType.ABILITY_SCROLL,
-            CardType.PASSIVE_ABILITY => ResourceType.ABILITY_SCROLL,
-            CardType.CHARACTER => ResourceType.CHAR_SCROLL,
-            _ => ResourceType.NONE
+            CardType.None => ResourceType.None,
+            CardType.Rock => ResourceType.RockScroll,
+            CardType.Ability => ResourceType.AbilityScroll,
+            CardType.Character => ResourceType.CharScroll,
+            _ => ResourceType.None
         };
     }
 }

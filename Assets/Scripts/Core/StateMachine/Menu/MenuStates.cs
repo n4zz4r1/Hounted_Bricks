@@ -19,6 +19,7 @@ public class Started : State<MenuFSM> {
         }
 
         fsm.menuButtons[fsm.CurrentPanelIndex].enabled = false;
+        fsm.menuCanvas.worldCamera = Camera.main;
         SyncPosition(fsm);
     }
 

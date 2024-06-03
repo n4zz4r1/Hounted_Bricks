@@ -1,5 +1,7 @@
 using System;
+using System.Threading.Tasks;
 using Core.Data;
+using Core.Sprites;
 using Core.StateMachine.Cards;
 using Core.Utils;
 using Core.Utils.Constants;
@@ -12,12 +14,16 @@ using UnityEngine.UI;
 namespace Core.StateMachine.ResourceSlider {
 
 public class ResourceSliderFSM : StateMachine<ResourceSliderFSM, State<ResourceSliderFSM>> {
-    [SerializeField] public ResourceType resourceType = ResourceType.NONE;
+    [SerializeField] public ResourceType resourceType = ResourceType.None;
     [SerializeField] public Components components;
 
     private CardFSM _cardFSM;
     protected override ResourceSliderFSM FSM => this;
     protected override State<ResourceSliderFSM> GetInitialState => States.Preload;
+
+    protected override void Before() {
+        components.resourceImage.sprite = AssetLoader.AsSprite(resourceType);
+    }
 
     public void FillResources(CardFSM cardFSM, ResourceType type) {
         resourceType = type;

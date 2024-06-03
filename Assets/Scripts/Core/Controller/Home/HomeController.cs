@@ -19,7 +19,7 @@ public class HomeController : Controller<HomeController, State<HomeController>> 
         components.levelText.text = GameDataV1.Instance.level.ToString(CultureInfo.InvariantCulture);
         
         // Preload all
-        AssetLoader<ResourceType>.LoadAssetsByLabel("Sprites");
+        AssetLoader.LoadAssetsByLabel("Prefabs");
     }
 }
 

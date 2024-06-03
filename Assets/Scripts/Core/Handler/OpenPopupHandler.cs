@@ -1,6 +1,8 @@
 using Core.Popup;
 using Core.Popup.CardDetail;
 using Core.StateMachine.Cards;
+using Core.Utils;
+using Core.Utils.Constants;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.EventSystems;
@@ -9,17 +11,29 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 namespace Core.Handler {
 
 public class OpenPopupHandler : MonoBehaviour, IPointerClickHandler {
-    [SerializeField] public Popups popup = Popups.SettingsPopup;
+    [SerializeField] public bool autoClick = true;
+    [SerializeField] public Popups popup = Popups.Settings;
     [SerializeField] public CardFSM cardFSMIfNeeded;
+    [SerializeField] public Card cardIfNeeded = Card.NONE;
+    [SerializeField] public CardDetailTab popupTabIfNeeded = CardDetailTab.Detail;
 
-    public void OnPointerClick(PointerEventData eventData) {
-        var popupAsset = Addressables.LoadAssetAsync<GameObject>(popup.ToString());
-        popupAsset.Completed += AsyncCompleted;
+    public void OnPointerClick(PointerEventData _) {
+        if (!autoClick) return;
+
+        OpenPopup();
     }
 
-    private void AsyncCompleted(AsyncOperationHandle<GameObject> obj) {
-        var instance = Instantiate(obj.Result, transform.root.transform);
-        if (popup == Popups.CardDetailPopup) instance.GetComponent<CardDetailPopup>().CardSetup(cardFSMIfNeeded);
+    public void OpenPopup() {
+        
+        var instance = Instantiate(AssetLoader.AsGameObject(popup), transform.root.transform);
+        if (popup == Popups.CardDetail) {
+            if (cardFSMIfNeeded == null)
+                cardFSMIfNeeded = AssetLoader.AsComponent<CardFSM>(cardIfNeeded);
+
+            instance.GetComponent<CardDetailPopup>().CardSetup(cardFSMIfNeeded, popupTabIfNeeded);
+        }
+        // instance.cam
+            
         instance.GetComponent<BasePopup>().Show();
     }
 }

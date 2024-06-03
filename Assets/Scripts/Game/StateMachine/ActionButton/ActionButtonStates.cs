@@ -1,5 +1,6 @@
 using Core.Controller.Audio;
 using Core.Data;
+using Core.Sprites;
 using Core.StateMachine.Cards;
 using Core.Utils;
 using Core.Utils.Constants;
@@ -42,7 +43,7 @@ public class Preload : State<ActionButtonFSM> {
         
         // Set Counter number, else unlimited actions
         if (cardFSM.abilityFSM?.abilityType is AbilityType.ACTIVE_COUNTER) {
-            fsm.Counter.Value = cardFSM.Attribute(CardAttribute.QUANTITY);
+            fsm.Counter.Value = cardFSM.Attribute(CardAttributeType.Quantity);
             fsm.components.counter.text = fsm.Counter.Value.ToString();
         }
         else 

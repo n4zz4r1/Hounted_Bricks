@@ -94,26 +94,6 @@ MonoBehaviour:
     m_Localized: Dourada
     m_Metadata:
       m_Items: []
-  - m_Id: 283032309778
-    m_Localized: Pedra
-    m_Metadata:
-      m_Items: []
-  - m_Id: 283032309779
-    m_Localized: Special
-    m_Metadata:
-      m_Items: []
-  - m_Id: 283032309780
-    m_Localized: Comum
-    m_Metadata:
-      m_Items: []
-  - m_Id: 283032309781
-    m_Localized: Habilitade
-    m_Metadata:
-      m_Items: []
-  - m_Id: 283032309782
-    m_Localized: Personagen
-    m_Metadata:
-      m_Items: []
   - m_Id: 283032309783
     m_Localized: Personagens
     m_Metadata:
@@ -1172,6 +1152,26 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 13891765317292032
     m_Localized: Embaralhar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17076927060398080
+    m_Localized: Pedra
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17076927085563904
+    m_Localized: Special
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17076927085563905
+    m_Localized: Comum
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17076927085563906
+    m_Localized: Habilitade
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17076927085563907
+    m_Localized: Personagen
     m_Metadata:
       m_Items: []
   references:

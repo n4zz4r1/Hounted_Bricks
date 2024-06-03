@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Core.Sprites;
 using Core.StateMachine.Cards;
 using Core.Utils;
 using Core.Utils.Constants;
@@ -30,9 +31,9 @@ public class ResourcesV1 : Data<ResourcesV1> {
     public bool BuyResourceWithDiamond(long price, ResourceType type, long quantity) {
         var result = true;
         Transaction(() => {
-            if (HasEnoughResource(ResourceType.DIAMOND, price)) {
-                GetGameResource(ResourceType.DIAMOND).quantity =
-                    GetGameResource(ResourceType.DIAMOND).quantity - price;
+            if (HasEnoughResource(ResourceType.Diamond, price)) {
+                GetGameResource(ResourceType.Diamond).quantity =
+                    GetGameResource(ResourceType.Diamond).quantity - price;
                 GetGameResource(type).quantity = GetGameResource(type).quantity + quantity;
             }
             else {
@@ -83,16 +84,16 @@ public class ResourcesV1 : Data<ResourcesV1> {
         var result = true;
 
         Transaction(() => {
-            if (GetGameResource(ResourceType.CHEST).quantity <= 0 || (!PlayerDataV1.Instance.HasMasterKey() &&
-                                                                      GetGameResource(ResourceType.CHEST_KEYS)
+            if (GetGameResource(ResourceType.Chest).quantity <= 0 || (!PlayerDataV1.Instance.HasMasterKey() &&
+                                                                      GetGameResource(ResourceType.ChestKey)
                                                                           .quantity <= 0)) {
                 result = false;
             }
             else {
                 if (!PlayerDataV1.Instance.HasMasterKey())
-                    GetGameResource(ResourceType.CHEST_KEYS).quantity =
-                        GetGameResource(ResourceType.CHEST_KEYS).quantity - 1;
-                GetGameResource(ResourceType.CHEST).quantity = GetGameResource(ResourceType.CHEST).quantity - 1;
+                    GetGameResource(ResourceType.ChestKey).quantity =
+                        GetGameResource(ResourceType.ChestKey).quantity - 1;
+                GetGameResource(ResourceType.Chest).quantity = GetGameResource(ResourceType.Chest).quantity - 1;
             }
         });
 
@@ -103,7 +104,7 @@ public class ResourcesV1 : Data<ResourcesV1> {
         var result = false;
 
         // For cards, add on CardsV1
-        if (type.Equals(ResourceType.CARD)) {
+        if (type.Equals(ResourceType.Card)) {
             CardsDataV1.Instance.AddCard(card);
             return true;
         }
@@ -173,16 +174,16 @@ public class ResourcesV1 : Data<ResourcesV1> {
     [SerializeField] private List<Gem> gems = new();
 
     [SerializeField] private List<GameResource> gameResources = new() {
-        new GameResource(ResourceType.COIN, 0, 0),
-        new GameResource(ResourceType.CHEST_KEYS, 0, 0),
-        new GameResource(ResourceType.CHEST, 0, 0),
-        new GameResource(ResourceType.DIAMOND, 0, 0),
-        new GameResource(ResourceType.ABILITY_SCROLL, 0, 0),
-        new GameResource(ResourceType.CHAR_SCROLL, 0, 0),
-        new GameResource(ResourceType.CARD, 0, 0),
-        new GameResource(ResourceType.ROCK_SCROLL, 0, 0),
-        new GameResource(ResourceType.NONE, 0, 0),
-        new GameResource(ResourceType.MONEY, 0, 0)
+        new GameResource(ResourceType.Coin, 0, 0),
+        new GameResource(ResourceType.ChestKey, 0, 0),
+        new GameResource(ResourceType.Chest, 0, 0),
+        new GameResource(ResourceType.Diamond, 0, 0),
+        new GameResource(ResourceType.AbilityScroll, 0, 0),
+        new GameResource(ResourceType.CharScroll, 0, 0),
+        new GameResource(ResourceType.Card, 0, 0),
+        new GameResource(ResourceType.RockScroll, 0, 0),
+        new GameResource(ResourceType.None, 0, 0),
+        new GameResource(ResourceType.Money, 0, 0)
     };
 
     #endregion

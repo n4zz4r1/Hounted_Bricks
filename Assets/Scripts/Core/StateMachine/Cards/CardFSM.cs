@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Core.Controller.Bag;
 using Core.Data;
 using Core.Handler;
+using Core.Sprites;
 using Core.StateMachine.Abilities;
 using Core.StateMachine.CardSlots;
 using Core.Utils;
@@ -24,33 +24,29 @@ public class CardFSM : StateMachine<CardFSM, State<CardFSM>> {
     public GameObject DragCard { get; private set; }
     public CardSlotFSM CurrentSelectedSlot { get; set; }
 
-    public static CardFSM GetRawDisabledCardFSM(Card fsmCardSorted) {
-        throw new NotImplementedException();
-    }
-
-    public static CardFSM GetRawCardFSM(Card card) {
-        throw new NotImplementedException();
-    }
-
-    public static Sprite GetCardIcon(CardFSM fsmCurrentCard) {
-        throw new NotImplementedException();
-    }
-
     protected override void Before() {
         if (!dragEnabled) components.dragHandler.enabled = false;
 
+        GetCardTitle = LocalizationUtils.LoadText(GetCardName() + ".Title");
+        GetCardFullDetail = LocalizationUtils.LoadText(GetCardName() + ".Detail");
+        GetCardTypeText = LocalizationUtils.LoadText("CardType." + cardType);
+        GetCardRarityText = LocalizationUtils.LoadText("CardRarity." + Rarity);
+        MaxLevelLabel = LocalizationUtils.LoadText("Label.MaxLevel");
+        
         PaintCard(Rarity);
     }
 
     protected override async Task BeforeAsync() {
-        GetCardTitle = await LocalizationUtils.LoadText(GetCardName() + ".Title");
-        await LocalizationUtils.LoadText(GetCardName() + ".Description");
-        GetCardFullDetail = await LocalizationUtils.LoadText(GetCardName() + ".Detail");
-        GetCardTypeText = await LocalizationUtils.LoadText("CardType." + cardType);
-        GetCardRarityText = await LocalizationUtils.LoadText("CardRarity." + Rarity);
-        MaxLevelLabel = await LocalizationUtils.LoadText("Label.MaxLevel");
+        GetCardTitle = await LocalizationUtils.LoadTextAsync(GetCardName() + ".Title");
+        await LocalizationUtils.LoadTextAsync(GetCardName() + ".Description");
+        GetCardFullDetail = await LocalizationUtils.LoadTextAsync(GetCardName() + ".Detail");
+        GetCardTypeText = await LocalizationUtils.LoadTextAsync("CardType." + cardType);
+        GetCardRarityText = await LocalizationUtils.LoadTextAsync("CardRarity." + Rarity);
+        MaxLevelLabel = await LocalizationUtils.LoadTextAsync("Label.MaxLevel");
         MaxQuantity = CardsDataV1.Instance.GetCardMaxQuantity(cardId);
     }
+    
+    public bool HasLevel => maxLevel > 1;
 
     public void PaintCard(CardRarity cardRarity) {
         var normal = RarityUtils.From(cardRarity).NormalColor;
@@ -63,27 +59,39 @@ public class CardFSM : StateMachine<CardFSM, State<CardFSM>> {
             image.color = Colors.DISABLED_WOOD;
     }
 
+    // Makes a card without info, level, and so on...
+    private void MakeSimpleCard() {
+        components.infoButton.gameObject.SetActive(false);
+    }
+    
+    // Makes a card draggable info, level, and so on...
+    public void MakeDraggableCard(GameObject dragArea) {
+        MakeSimpleCard();
+        components.dragArea = dragArea;
+        dragEnabled = true;
+        components.dragHandler.enabled = true;
+        SyncCardColors();
+    }
+
     public void CreateClone(CardFSM prefab) {
         if (prefab == null) return;
 
         var position = Camera.main!.ScreenToWorldPoint(Input.mousePosition);
         position.x += 10f;
 
-        var dragArea = gameObject.transform.root.GetComponentInChildren<BagController>()?.components
-            .dragArea.transform;
-        DragCard = CreateInstance(prefab.gameObject, dragArea);
+        DragCard = CreateInstance(prefab.gameObject, components.dragArea.transform);
         DragCard.GetComponent<CardFSM>().components.boxQuantity.SetActive(false);
         DragCard.transform.position = new Vector3(position.x, position.y, 10);
-        DragCard.GetComponent<CardFSM>().components.infoButton.gameObject.SetActive(false);
+        DragCard.GetComponent<CardFSM>().MakeSimpleCard();
     }
-
 
     public void UpdateCurrentAvailable(long quantity) {
         // only allow disabled card if is draggable
-        if (!dragEnabled)
-            return;
-
         CurrentQuantity = quantity;
+
+        // if (!dragEnabled)
+        //     return;
+
         components.textQuantity.text = quantity.ToString();
         SyncCardColors();
     }
@@ -110,7 +118,7 @@ public class CardFSM : StateMachine<CardFSM, State<CardFSM>> {
     #region Properties
 
     [SerializeField] public Card cardId = Card.NONE;
-    [SerializeField] public CardType cardType = CardType.NONE;
+    [SerializeField] public CardType cardType = CardType.None;
     [SerializeField] public int maxLevel = 1;
     [SerializeField] public bool dragEnabled;
     [SerializeField] public List<CardAttributesComponent> attributes;
@@ -125,6 +133,8 @@ public class CardFSM : StateMachine<CardFSM, State<CardFSM>> {
         return CardsDataV1.Instance.GetCardLevel(cardId) == maxLevel;
     }
 
+    public void SetDragArea(GameObject dragArea) => components.dragArea = dragArea;
+
     public int Level() {
         return maxLevel <= 1 ? 1 : CardsDataV1.Instance.GetCardLevel(cardId);
     }
@@ -134,7 +144,7 @@ public class CardFSM : StateMachine<CardFSM, State<CardFSM>> {
     }
 
     internal bool HasGems() {
-        return attributes[(int)CardAttribute.GEM_SLOT].updates.Count != 0;
+        return attributes[(int)CardAttributeType.GemSlot].updates.Count != 0;
     }
 
     public string GetCardTitle { get; private set; } = string.Empty;
@@ -142,11 +152,11 @@ public class CardFSM : StateMachine<CardFSM, State<CardFSM>> {
     public string GetCardTypeText { get; private set; } = string.Empty;
     public string GetCardRarityText { get; private set; } = string.Empty;
 
-    public CardRarity Rarity => attributes is { Count: > 0 } && attributes[(int)CardAttribute.RARITY] != null
-        ? (CardRarity)(int)attributes[(int)CardAttribute.RARITY].ConcatValue(Level())
+    public CardRarity Rarity => attributes is { Count: > 0 } && attributes[(int)CardAttributeType.Rarity] != null
+        ? (CardRarity)(int)attributes[(int)CardAttributeType.Rarity].ConcatValue(Level())
         : CardRarity.COMMON;
 
-    public int Attribute(CardAttribute attribute) => (int)attributes[(int)attribute].ConcatValue(Level());
+    public int Attribute(CardAttributeType attributeType) => (int)attributes[(int)attributeType].ConcatValue(Level());
     
     internal string MaxLevelLabel = string.Empty;
 
@@ -167,6 +177,7 @@ public class Components {
     [SerializeField] public CanvasGroup cardCanvasGroup;
     [SerializeField] public TextMeshProUGUI cardTitleText;
     [SerializeField] public CardTouchHandler dragHandler;
+    [SerializeField] public GameObject dragArea;
     [SerializeField] public Button infoButton;
 
     #region Quantity

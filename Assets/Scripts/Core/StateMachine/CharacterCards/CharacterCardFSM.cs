@@ -21,9 +21,6 @@ public class CharacterCardFSM : StateMachine<CharacterCardFSM, State<CharacterCa
         components.buttonFoundBox.onClick.AddListener(() => State.Select(FSM));
         components.buttonAbility.onClick.AddListener(OpenPopup);
     }
-
-
-
 }
 
 [Serializable]

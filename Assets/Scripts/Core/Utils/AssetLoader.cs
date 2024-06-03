@@ -1,6 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Core.Popup;
+using Core.Sprites;
+using Core.StateMachine.Cards;
 using Core.Utils.Constants;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -9,45 +12,73 @@ using Object = UnityEngine.Object;
 
 namespace Core.Utils {
 
-public abstract class AssetLoader<TU> where TU : Enum {
+
+public abstract class AssetLoader {
     private static bool StartsWithNumber(string str) =>
         !string.IsNullOrEmpty(str) && char.IsDigit(str[0]);
 
+    private static readonly Dictionary<Enum, Object> CachedObjects = new();
+    // private static readonly Dictionary<Enum, Sprite> CachedSprites = new();
+    //
+    // public static T From<T>(Enum enumerator) where T : Object {
+    //     return (T) CachedObjects[enumerator];
+    // }
+    //
+    public static Sprite AsSprite(Enum enumerator) {
+        var texture = (Texture2D)CachedObjects[enumerator];
+        return Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
+    }
+
+    public static GameObject AsGameObject(Enum enumerator) {
+        return (GameObject) CachedObjects[enumerator];
+    }
+    
+    public static T AsComponent<T>(Enum enumerator) {
+        return ((GameObject) CachedObjects[enumerator]).GetComponent<T>();
+    }
+
+    // Fixme Here
+    private static Enum GetEnumByName(string assetName) {
+        if (StartsWithNumber(assetName)) 
+            return Enum.Parse<Card>($"Card_{assetName}");
+
+        if (assetName.Contains("CardAttributeType_")) 
+            return Enum.Parse<CardAttributeType>($"{assetName.Split("_")[1]}");
+
+        if (assetName.Contains("Popups_")) 
+            return Enum.Parse<Popups>($"{assetName.Split("_")[1]}");
+
+        if (assetName.Contains("ResourceType_")) 
+            return Enum.Parse<ResourceType>($"{assetName.Split("_")[1]}");
+
+        if (assetName.Contains("CardType_")) 
+            return Enum.Parse<CardType>($"{assetName.Split("_")[1]}");
+        
+        throw new Exception($"Enum not found for: {assetName}");
+    }
+
     public static void LoadAssetsByLabel(string label, Action onComplete = null) {
         Addressables.LoadAssetsAsync<Object>(label, null).Completed += handle => {
+            var debug = "\n";
+            int onCache = 0, loads = 0;
             if (handle.Status == AsyncOperationStatus.Succeeded) {
                 foreach (var asset in handle.Result) {
-                    var parts = asset.name.Split('_');
 
-                    if (StartsWithNumber(asset.name)) {
-                        Debug.Log(cachedPrefab.ContainsKey(Enum.Parse<Card>($"Card_{asset.name}"))
-                            ? $"Asset {asset.name} already loaded."
-                            : $"[AssetLoader] Asset {asset.name} loaded successfully.");
+                    // if (StartsWithNumber(asset.name)) {
+                    var assetname = GetEnumByName(asset.name);
 
-                        cachedPrefab[Enum.Parse<Card>($"Card_{asset.name}")] = asset;
 
-                    } else if (parts.Length == 2) {
-                        var enumType = Type.GetType(parts[0]);
-                        if (enumType is { IsEnum: true }) {
-
-                            // Here, cards are exceptions and starts with numbers
-                            if (Enum.TryParse(enumType, parts[1], out var enumValue)) {
-                                Debug.Log(cachedPrefab.ContainsKey((Enum)enumValue)
-                                    ? $"Asset {asset.name} already loaded."
-                                    : $"[AssetLoader] Asset {asset.name} loaded successfully.");
-                                cachedPrefab[(Enum)enumValue] = asset;
-                            } else {
-                                Debug.LogWarning($"Failed to parse enum value '{parts[1]}' for enum type '{enumType}'.");
-                            }
-                        } else {
-                            Debug.LogWarning($"Failed to find enum type '{parts[0]}'.");
-                        }
+                    if (CachedObjects.ContainsKey(assetname)) {
+                        debug += $"Asset {asset.name} already loaded.\n";
+                        onCache++;
+                    } else {
+                        debug += $"Asset {asset.name} loaded successfully.\n";
+                        loads++;
                     }
-                    else
-                    {
-                        Debug.LogWarning($"Asset name {asset.name} does not match the expected format.");
-                    }
+
+                    CachedObjects[assetname] = asset;
                 }
+                Debug.Log($"[AssetLoader] {loads} New assets preloaded, as {onCache} fetched from cache {debug} ");
 
                 onComplete?.Invoke();
             } else {
@@ -55,9 +86,13 @@ public abstract class AssetLoader<TU> where TU : Enum {
             }
         };
     }
+    
+}
+    
+public abstract class AssetLoader<TU> where TU : Enum {
+
 
     
-    public static Dictionary<Enum, Object> cachedPrefab = new();
     
     // private static T ConvertToObject<T>(Object o) where T : Object =>
     //     o is GameObject gameObject ? gameObject.GetComponent<T>() : (T)o;
@@ -148,25 +183,6 @@ public abstract class AssetLoader<TU> where TU : Enum {
         };
     }    
 }
-
-[Serializable]
-public enum ResourceType {
-    NONE = 0,
-    COIN = 1,
-    DIAMOND = 2,
-    ROCK_SCROLL = 3,
-    CHAR_SCROLL = 4,
-    ABILITY_SCROLL = 5,
-    CHEST = 6,
-    CHEST_KEYS = 7,
-    CARD = 8,
-    MONEY = 9
-}
-//
-// [Serializable]
-// public enum CardAttribute {
-//     
-// }
 
 
 }

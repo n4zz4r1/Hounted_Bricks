@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using Core.Data;
 using Core.Handler;
+using Core.Sprites;
 using Core.Utils;
 using Core.Utils.Constants;
 using Framework.Base;
@@ -22,7 +23,7 @@ public class StageFSM : StateMachine<StageFSM, State<StageFSM>>, IPointerClickHa
     [SerializeField] public Card cardReward = Card.NONE;
 
     [SerializeField]
-    public List<ResourceType> rewards = new() { ResourceType.COIN, ResourceType.COIN, ResourceType.COIN };
+    public List<ResourceType> rewards = new() { ResourceType.Coin, ResourceType.Coin, ResourceType.Coin };
 
     [SerializeField] public List<int> rewardsQuantity = new() { 10, 5, 1 };
     [SerializeField] public bool isMapStage;

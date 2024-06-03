@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using Core.Data;
+using Core.Sprites;
 using Core.StateMachine.CardAttribute;
 using Core.StateMachine.Cards;
 using Core.StateMachine.CardSlots;
@@ -24,16 +25,37 @@ public class CardDetailPopup : StateMachine<CardDetailPopup, State<CardDetailPop
     internal CardFSM CardFSM;
     protected override CardDetailPopup FSM => this;
     protected override State<CardDetailPopup> GetInitialState => States.STARTED;
+    internal CardDetailTab CurrentTab = CardDetailTab.Detail;
 
     protected override void Before() {
         components.updateButton.onClick.AddListener(UpdateCard);
+
+        for (var i = 0; i < components.tabBoxes.Length; i++) {
+            var selected = (CardDetailTab) i;
+            components.tabButtons[i].onClick.AddListener(() => SelectTab(selected));
+        }
+    }
+
+    private void SelectTab(CardDetailTab tabSelected) {
+        // if (tabSelected == CurrentTab) return;
+        components.tabButtons[(int) CurrentTab].interactable = true;
+        components.tabBoxes[(int) CurrentTab].SetActive(false);
+        components.tabLabels[(int) CurrentTab].color = Colors.PRIMARY;
+        components.tabButtons[(int) CurrentTab].image.color = Colors.DARK_WOOD;
+
+        components.tabButtons[(int) tabSelected].interactable = false;
+        components.tabBoxes[(int) tabSelected].SetActive(true);
+        components.tabLabels[(int) tabSelected].color = Colors.DARK_WOOD;
+        components.tabButtons[(int) tabSelected].image.color = Colors.PRIMARY;
+
+        CurrentTab = tabSelected;
     }
 
     public void UpdateCard() {
         var resourcesNeeded = GameMathUtils.GenerateUpdateCostByLevel(CardFSM.Level() + 1);
 
-        if (ResourcesV1.Instance.HasEnoughResource(ResourceType.ROCK_SCROLL, resourcesNeeded)) {
-            CardsDataV1.Instance.IncreaseLevel(CardFSM.cardId, ResourceType.ROCK_SCROLL);
+        if (ResourcesV1.Instance.HasEnoughResource(ResourceType.RockScroll, resourcesNeeded)) {
+            CardsDataV1.Instance.IncreaseLevel(CardFSM.cardId, ResourceType.RockScroll);
             SyncAllData(typeof(CardFSM));
             SyncAllData(typeof(ResourceFSM));
             SyncAllData(typeof(CardSlotFSM));
@@ -44,10 +66,9 @@ public class CardDetailPopup : StateMachine<CardDetailPopup, State<CardDetailPop
     protected override void SyncDataBase() {
         components.currentRarityText.text = CardFSM.GetCardRarityText;
         var level = CardsDataV1.Instance.GetCardLevel(CardFSM.cardId);
-        if (level == 0) {
+        if (!CardFSM.HasLevel) {
             components.levelBox.SetActive(false);
-        }
-        else {
+        } else {
             components.levelBox.SetActive(true);
             components.levelText.text = CardsDataV1.Instance.GetCardLevel(CardFSM.cardId).ToString();
         }
@@ -60,17 +81,17 @@ public class CardDetailPopup : StateMachine<CardDetailPopup, State<CardDetailPop
 
         // Set Attributes
         foreach (var cardAttributesComponent in CardFSM.attributes.FindAll(a => a.ConcatValue(level) >= 0f)) {
-            currentAttributesObject.Add(CardAttributeFSM.Create(CardFSM, cardAttributesComponent.attribute,
+            currentAttributesObject.Add(CardAttributeFSM.Create(CardFSM, cardAttributesComponent.attributeType,
                 components.attributesBox.transform,
-                cardAttributesComponent.attribute == CardAttribute.RARITY
+                cardAttributesComponent.attributeType == Sprites.CardAttributeType.Rarity
                     ? new Vector3(xPosition, -211f, 0f)
                     : new Vector3(xPosition, yPosition, 0f)));
 
-            if (cardAttributesComponent.attribute != CardAttribute.RARITY)
+            if (cardAttributesComponent.attributeType != Sprites.CardAttributeType.Rarity)
                 yPosition -= 93f;
         }
 
-        components.coinResourceSlider.FillResources(CardFSM, ResourceType.COIN);
+        components.coinResourceSlider.FillResources(CardFSM, ResourceType.Coin);
         components.puzzleResourceSlider.FillResources(CardFSM, CardTypeUtils.ToResource(CardFSM.cardType));
         components.nextLevelText.text = (level + 1f).ToString(CultureInfo.InvariantCulture);
 
@@ -78,52 +99,78 @@ public class CardDetailPopup : StateMachine<CardDetailPopup, State<CardDetailPop
         var resourceUpdateCost =
             GameMathUtils.GenerateUpdateCostByLevel(level + 1, CardTypeUtils.ToResource(CardFSM.cardType));
 
-        if (ResourcesV1.Instance.HasEnoughResource(ResourceType.COIN, coinCost)
+        if (ResourcesV1.Instance.HasEnoughResource(ResourceType.Coin, coinCost)
             && ResourcesV1.Instance.HasEnoughResource(CardTypeUtils.ToResource(CardFSM.cardType),
                 resourceUpdateCost))
             components.updateButton.interactable = true;
         else
             components.updateButton.interactable = false;
 
-        RefreshGemArea();
 
         var normal = RarityUtils.From(CardFSM.Rarity).NormalColor;
         foreach (var image in components.objectsToPaintByRarity)
             image.color = normal;
     }
 
-    private void RefreshGemArea() {
-        // Set Gems if needed
-        if (CardFSM.HasGems()) {
-            if (CardFSM.attributes[(int)CardAttribute.GEM_SLOT].ConcatValue(CardFSM.Level()) > 0) {
-                components.gemsPageLockedBox.SetActive(false);
-                components.gemsPageButton.gameObject.SetActive(true);
-            }
-            else {
-                components.gemsPageLockedBox.SetActive(true);
-                components.gemsPageButton.gameObject.SetActive(false);
-            }
-        }
-        else {
-            components.gemsPageLockedBox.SetActive(false);
-            components.gemsPageButton.gameObject.SetActive(false);
-        }
-    }
-
-    public void CardSetup(CardFSM cardFSM) {
+    public void CardSetup(CardFSM cardFSM, CardDetailTab tab = CardDetailTab.Detail) {
         CardFSM = cardFSM;
-        // components.cardTypeIcon.sprite = cardFSM.components.cardTypeIcon.sprite;
+        components.cardTypeIcon.sprite = AssetLoader.AsSprite(cardFSM.cardType);
         components.titleText.text = cardFSM.GetCardTitle;
         components.quantityText.text = CardsDataV1.Instance.GetCardQuantity(cardFSM.cardId).ToString();
         components.quantityMaxText.text = cardFSM.MaxQuantity.ToString();
         components.cardTypeText.text = cardFSM.GetCardTypeText;
         components.descriptionText.text = cardFSM.GetCardFullDetail;
+        
+        SelectTab(tab);
+
+        SetupAllAbilities();
+        
         SyncDataBase();
+    }
+
+    private void SetupAllAbilities() {
+        float currentX = -344f, currentY = 146f;
+        var availableAbilities = CardsDataV1.Instance.GetAbilitiesAvailable(CardFSM.cardId);
+
+        foreach (var slot in components.abilitySlots) 
+            slot.SetPlayer(CardFSM.cardId);
+
+        for (var i = 0; i < availableAbilities.Count; i++) {
+
+            var abilityCardInstance = 
+                Instantiate(AssetLoader.AsGameObject(availableAbilities[i]), components.abilityBox.transform);
+
+            abilityCardInstance.transform.localPosition = new Vector3(currentX, currentY, 0);
+            abilityCardInstance.GetComponent<CardFSM>().MakeDraggableCard(components.abilityDragArea);
+            
+            // Next line
+            if (i != 0 && (i + 1) % 5 == 0) {
+                currentX = -344f;
+                currentY -= 271f;
+            } else 
+                currentX += 174f;
+            
+        }
+
     }
 }
 
 [Serializable]
 public class CardPopupComponents {
+
+    [SerializeField] public GameObject[] tabBoxes;
+    [SerializeField] public Button[] tabButtons;
+    [SerializeField] public TextMeshProUGUI[] tabLabels;
+    [SerializeField] public GameObject[] tabDots;
+
+    #region Abilities
+
+    [SerializeField] public GameObject abilityBox;
+    [SerializeField] public GameObject abilityDragArea;
+    [SerializeField] public List<CardAbilitySlotFSM> abilitySlots;
+
+    #endregion
+    
     [SerializeField] public Image cardIcon;
     [SerializeField] public TextMeshProUGUI titleText;
     [SerializeField] public TextMeshProUGUI descriptionText;
@@ -137,17 +184,16 @@ public class CardPopupComponents {
     [SerializeField] public GameObject attributesBox;
     [SerializeField] public Button updateButton;
 
-    [SerializeField] public GameObject detailsPageBox;
-    [SerializeField] public GameObject gemsPageBox;
-    [SerializeField] public Button detailsPageButton;
-    [SerializeField] public Button gemsPageButton;
-    [SerializeField] public GameObject gemsPageLockedBox;
-
     [SerializeField] public ResourceSliderFSM coinResourceSlider;
     [SerializeField] public ResourceSliderFSM puzzleResourceSlider;
     [SerializeField] public TextMeshProUGUI nextLevelText;
 
     [SerializeField] public List<Image> objectsToPaintByRarity;
+}
+
+public enum CardDetailTab {
+    Detail = 0,
+    Abilities = 1
 }
 
 }

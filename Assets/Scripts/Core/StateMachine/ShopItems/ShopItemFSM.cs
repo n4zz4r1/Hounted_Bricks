@@ -1,6 +1,7 @@
 using System;
 using Core.Data;
 using Core.Handler;
+using Core.Sprites;
 using Core.Utils;
 using Core.Utils.Constants;
 using Framework.Base;
@@ -11,9 +12,9 @@ using Button = UnityEngine.UI.Button;
 namespace Core.StateMachine.ShopItems {
 
 public class ShopItemFSM : StateMachine<ShopItemFSM, State<ShopItemFSM>> {
-    [SerializeField] public ResourceType costType = ResourceType.MONEY;
+    [SerializeField] public ResourceType costType = ResourceType.Money;
     [SerializeField] public float cost;
-    [SerializeField] public ResourceType rewardType = ResourceType.COIN;
+    [SerializeField] public ResourceType rewardType = ResourceType.Coin;
     [SerializeField] public long reward;
     [SerializeField] public Card card = Card.NONE;
     [SerializeField] public ShopItemComponents components;
@@ -30,9 +31,9 @@ public class ShopItemFSM : StateMachine<ShopItemFSM, State<ShopItemFSM>> {
     }
 
     protected override void SyncDataBase() {
-        if (rewardType == ResourceType.CARD && CardsDataV1.Instance.HasCard(card))
+        if (rewardType == ResourceType.Card && CardsDataV1.Instance.HasCard(card))
             ChangeState(States.SoldOut);
-        else if (costType != ResourceType.MONEY &&
+        else if (costType != ResourceType.Money &&
                  !ResourcesV1.Instance.HasEnoughResource(costType, (long)cost))
             ChangeState(States.NoFunds);
         else

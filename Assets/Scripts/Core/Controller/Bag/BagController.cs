@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Core.Data;
 using Core.Popup.CardDetail;
+using Core.Sprites;
 using Core.StateMachine.Cards;
 using Core.StateMachine.CardSlots;
 using Core.StateMachine.Resource;
@@ -53,7 +54,7 @@ public class BagController : StateMachine<BagController, State<BagController>> {
     [SerializeField] private Dictionary<Card, CardFSM> _cardPrefabDictionary = new();
 
     private void AddResource() {
-        ResourcesV1.Instance.AddResources(ResourceType.ROCK_SCROLL, 50);
+        ResourcesV1.Instance.AddResources(ResourceType.RockScroll, 50);
         SyncAllData(typeof(CardFSM));
         SyncAllData(typeof(ResourceFSM));
         SyncAllData(typeof(CardDetailPopup));
@@ -64,9 +65,7 @@ public class BagController : StateMachine<BagController, State<BagController>> {
 
 [Serializable]
 public class Components {
-    [FormerlySerializedAs("Slots")] [SerializeField]
-    public List<CardSlotFSM> slots;
-
+    [SerializeField] public List<CardRockSlotFSM> slots;
     [SerializeField] public Button clearButton;
     [SerializeField] public Button shuffleButton;
     [SerializeField] public GameObject dragArea;

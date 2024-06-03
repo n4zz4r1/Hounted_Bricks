@@ -265,7 +265,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 57.05
+  m_fontSize: 72
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -507,7 +507,7 @@ Canvas:
   m_GameObject: {fileID: 3770288953131465551}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -575,6 +575,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: {fileID: 7672968688052635771}
   rectTransform: {fileID: 5943038884779436944}
+  popupCanvas: {fileID: 4102766409332768926}
 --- !u!1 &6615350905340547262
 GameObject:
   m_ObjectHideFlags: 0
