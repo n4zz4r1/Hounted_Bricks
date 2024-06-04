@@ -1,14 +1,22 @@
 using Core.Data;
+using Core.Popup.CardDetail;
 using Core.StateMachine.Cards;
 using Core.Utils;
 using Core.Utils.Constants;
+using UnityEngine;
 
 namespace Core.StateMachine.CardSlots {
 public class CardAbilitySlotFSM: CardSlotFSM {
-    protected override void PersistCard() {
-        
-    }
 
+    protected override void ClearSlot() {
+        if (State == States.WithCard && CardsDataV1.Instance.GetPlayerAbilityAtPosition(PlayerCard, 2) != Card.NONE) {
+            CardsDataV1.Instance.RemoveAbilityCardFromIndex(PlayerCard, index);
+            components.animator.SetTrigger(RemoveAnim);
+            SyncAllData(typeof(CardAbilitySlotFSM));
+            SyncAllData(typeof(CardDetailPopup));
+            SyncAllData(typeof(CardFSM));
+        }
+    }
     protected override void SyncSlots() {
         if (PlayerCard == Card.NONE) return;
 

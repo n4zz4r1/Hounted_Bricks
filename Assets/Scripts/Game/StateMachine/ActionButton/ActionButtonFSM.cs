@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Core.Data;
 using Core.StateMachine.Cards;
 using Core.Utils.Constants;
 using DG.Tweening;
@@ -14,17 +15,19 @@ namespace Game.StateMachine.ActionButton {
 
 public class ActionButtonFSM : StateMachine<ActionButtonFSM, State<ActionButtonFSM>>, IPointerDownHandler, IPointerUpHandler, IPointerEnterHandler, IPointerExitHandler {
 
+    protected override State<ActionButtonFSM> GetInitialState => States.Preload;
+    protected override ActionButtonFSM FSM => this;
+
     [SerializeField] public Card card = Card.NONE;
     [SerializeField] public ActionButtonComponents components;
     [SerializeField] public GameController gameController;
     [SerializeField] public bool activeOnShooting;
-    protected override State<ActionButtonFSM> GetInitialState => States.Preload;
+    [SerializeField] public int abilityIndex = -1;
 
     #region Button Properties
 
     internal CardFSM CardFSM;
     internal readonly AtomicInt Counter = new(0);
-    protected override ActionButtonFSM FSM => this;
     private readonly Dictionary<Transform, Vector3> _originalPositions = new();
     private readonly Vector3 _pressedPosition = new(0f, -5f, 0f);
     internal bool IsPointerInside { get; set; }
@@ -33,11 +36,17 @@ public class ActionButtonFSM : StateMachine<ActionButtonFSM, State<ActionButtonF
     public float moveDistance = 50f; // Distance to move to the right
     public float moveDuration = 0.5f; // Duration of the move
 
-
     #endregion
 
     protected override void Before() {
         _originalPositions.Clear();
+
+        // When ability index is on, select card based on ability slot
+        // TODO implement fetching cards from deck
+        if (abilityIndex >= 0) {
+            card = CardsDataV1.Instance.GetPlayerAbilityAtPosition(PlayerDataV1.Instance.GetSelectedCharacterCard(), abilityIndex);
+        }
+        
         buttonOriginalPosition = components.rectTransform != null ? components.rectTransform.anchoredPosition : Vector2.zero;
         foreach (Transform child in transform)
             _originalPositions[child] = child.localPosition;
@@ -79,13 +88,16 @@ public class ActionButtonFSM : StateMachine<ActionButtonFSM, State<ActionButtonF
                 child.localPosition = pressed ? _originalPositions[child] + _pressedPosition : _originalPositions[child];
     }
 
+    public void AddCounter(int counter = 1) {
+        Counter.Value += counter;
+        components.counter.text = Counter.Value.ToString();
+        State.Enable(FSM);
+    }
+
     // Once action is done
     public void ActionDoneCallback() {
         Counter.Value--;
-        // if (Counter.Value-- <= 0) 
-            State.Disable(FSM);
-        // else
-            // State.Enable(FSM);
+        State.Disable(FSM);
         components.counter.text = Counter.Value.ToString();
     }
 
@@ -111,6 +123,10 @@ public class ActionButtonComponents {
     [SerializeField] public Sprite spritePressed;
     [SerializeField] public CanvasGroup canvasGroup;
     [SerializeField] public RectTransform rectTransform;
+    [SerializeField] public TextMeshProUGUI cardDescription;
+
+    [SerializeField] public GameObject consumableBox;
+    [SerializeField] public TextMeshProUGUI consumableText;
 }
 
 }

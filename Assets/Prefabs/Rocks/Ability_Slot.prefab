@@ -108,6 +108,10 @@ PrefabInstance:
       propertyPath: m_Color.a
       value: 0.19215687
       objectReference: {fileID: 0}
+    - target: {fileID: 8203669732957804670, guid: 91bee62f7a4e4e542b45893a12be6d66, type: 3}
+      propertyPath: m_SortingLayer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8304103116974517700, guid: 91bee62f7a4e4e542b45893a12be6d66, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0.5
@@ -257,6 +261,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &2724485903182841197 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1989732231854875236, guid: 91bee62f7a4e4e542b45893a12be6d66, type: 3}
+  m_PrefabInstance: {fileID: 4491113102139401993}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &3613126215333530762 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 898402928501746563, guid: 91bee62f7a4e4e542b45893a12be6d66, type: 3}
@@ -292,7 +301,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   index: 0
-  playerCard: 0
   components:
     slotCollider: {fileID: 4946822965141092219}
     slotBox: {fileID: 4008322674302577749}
@@ -300,6 +308,7 @@ MonoBehaviour:
     backgroundFilledInBox: {fileID: 6346912971105845911}
     glow: {fileID: 3613126215333530762}
     paths: []
+    animator: {fileID: 2724485903182841197}
 --- !u!61 &4946822965141092219 stripped
 BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 8859995355042123890, guid: 91bee62f7a4e4e542b45893a12be6d66, type: 3}

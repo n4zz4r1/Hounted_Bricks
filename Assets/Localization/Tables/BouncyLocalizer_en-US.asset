@@ -316,16 +316,15 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 283032309851
-    m_Localized: run lucas, run
+    m_Localized: Walk +
     m_Metadata:
       m_Items: []
   - m_Id: 283032309852
-    m_Localized: run lucas, run
+    m_Localized: Mover +
     m_Metadata:
       m_Items: []
   - m_Id: 283032309853
-    m_Localized: Increace the number of times lucas can move during a match from
-      2 to 6
+    m_Localized: Increase the amount of movements you can do in a match by 1
     m_Metadata:
       m_Items: []
   - m_Id: 283036504067
@@ -991,15 +990,16 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 13789088201723921
-    m_Localized: Sand bag Acelerator
+    m_Localized: Rock Pile +
     m_Metadata:
       m_Items: []
   - m_Id: 13789088201723922
-    m_Localized: Sand bag Acelerator
+    m_Localized: Rock Pile +
     m_Metadata:
       m_Items: []
   - m_Id: 13789088201723923
-    m_Localized: Decrease sandbag ability cooldown from 2 turns to 1.
+    m_Localized: Increase the amount of movements you can create rock piles in a
+      match by 1
     m_Metadata:
       m_Items: []
   - m_Id: 13789088201723924
@@ -1173,6 +1173,10 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 17076927085563907
     m_Localized: Character
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17766523062603776
+    m_Localized: Action Ability
     m_Metadata:
       m_Items: []
   references:

@@ -17,6 +17,7 @@ public abstract class AbilityFSM : StateMachine<AbilityFSM, State<AbilityFSM>> {
     protected override AbilityFSM FSM => this;
     protected UnityAction AbilityDoneCallback;
     protected UnityAction AbilityCanceledCallback;
+    protected CardFSM CardFSM;
 
     // protected override State<AbilityFSM> GetInitialState =>
     //     cardFSM && CardsDataV1.Instance.HasCard(cardFSM.cardId) ? States.Available : States.Unavailable;
@@ -29,7 +30,7 @@ public abstract class AbilityFSM : StateMachine<AbilityFSM, State<AbilityFSM>> {
     //
     // // Behave for action abilities
 
-    public abstract void Execute<T>(T GameController, UnityAction callback,  UnityAction canceledCallback) where T: MonoBehaviour;
+    public abstract void Execute<T>(T GameController, CardFSM cardFSM, UnityAction callback,  UnityAction canceledCallback) where T: MonoBehaviour;
 
     //
     // // Behave for improvement abilities
@@ -45,8 +46,8 @@ public abstract class Ability<T> : AbilityFSM where T : MonoBehaviour
     protected T GameController;
     protected GameObject Panel;
 
-    public override void Execute<T1>(T1 controller, UnityAction callback, UnityAction canceledCallback)
-    {
+    public override void Execute<T1>(T1 controller,CardFSM cardFSM, UnityAction callback, UnityAction canceledCallback) {
+        CardFSM = cardFSM;
         AbilityDoneCallback = callback;
         AbilityCanceledCallback = canceledCallback;
         GameController = controller as T;

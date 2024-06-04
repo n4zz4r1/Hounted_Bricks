@@ -26,7 +26,19 @@ public class CardsDataV1 : Data<CardsDataV1> {
     public void ChangeSavedAbility(Card player, int index, Card ability) {
         savedAbilities[PlayerIndex(player) + index] = ability;
         Save();
-    } 
+    }
+
+    public void RemoveAbilityCardFromIndex(Card player, int index) {
+        var playerIndex = PlayerIndex(player);
+
+        if (index != 5) {
+            for (var i = playerIndex + index; i < playerIndex + 5; i++) 
+                savedAbilities[i] = savedAbilities[i + 1];
+        }
+        savedAbilities[playerIndex + 5] = Card.NONE;
+
+        Save();
+    }
 
     public Card GetPlayerAbilityAtPosition(Card player, int index) =>
         savedAbilities[PlayerIndex(player) + index];
@@ -228,7 +240,7 @@ public class CardsDataV1 : Data<CardsDataV1> {
         Card.Card_022_Ab_Lucas_SuperWall,
         Card.Card_023_Ab_Lucas_LetsRock,
         Card.Card_024_Ab_Lucas_Mine,
-        // Card.Card_025_Ab_Lucas_GiveMeMoney,
+        Card.Card_025_Ab_Lucas_GiveMeMoney,
         Card.Card_026_Ab_Lisa_Fire,
         Card.Card_027_Ab_Lisa_FireByLucky,
         Card.Card_028_Ab_Lisa_FireByRebounce,

@@ -202,8 +202,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -58.3, y: 67.441}
-  m_SizeDelta: {x: 51.4, y: 51.4}
+  m_AnchoredPosition: {x: -44.1, y: 57}
+  m_SizeDelta: {x: 74.51, y: 74.51}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4242509980927956919
 CanvasRenderer:
@@ -293,7 +293,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0.000080109, y: 0}
-  m_SizeDelta: {x: 37.66, y: 36.63}
+  m_SizeDelta: {x: 52.09, y: 50.67}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1631745697938389828
 CanvasRenderer:
@@ -323,10 +323,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1
+  m_text: '10
+
+'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 306870ba074f8f644bf9d3cc29501297, type: 2}
-  m_sharedMaterial: {fileID: -632192895462572312, guid: 306870ba074f8f644bf9d3cc29501297, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f2e66c5bbf286234aab15f513c6204b9, type: 2}
+  m_sharedMaterial: {fileID: 3004004360496222236, guid: f2e66c5bbf286234aab15f513c6204b9, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -350,12 +352,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
+  m_fontSize: 44.3
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 10
-  m_fontSizeMax: 30
+  m_fontSizeMax: 60
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 4096
@@ -455,7 +457,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.69, g: 0.6, b: 0.47, a: 1}
+  m_Color: {r: 0.23, g: 0.2, b: 0.16, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -494,8 +496,12 @@ MonoBehaviour:
     spritePressed: {fileID: 21300000, guid: c2581b0e7c6ccd34c8085d8da763a0ab, type: 3}
     canvasGroup: {fileID: 578015807611152801}
     rectTransform: {fileID: 8828927984204439991}
+    cardDescription: {fileID: 0}
+    consumableBox: {fileID: 0}
+    consumableText: {fileID: 0}
   gameController: {fileID: 0}
   activeOnShooting: 0
+  abilityIndex: -1
   moveDistance: 50
   moveDuration: 0.5
 --- !u!225 &578015807611152801

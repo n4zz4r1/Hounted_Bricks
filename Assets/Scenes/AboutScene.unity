@@ -909,11 +909,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3040212498219057149, guid: 02032215b287b3641adee18e05ec1255, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 551.1
+      value: 510.07
       objectReference: {fileID: 0}
     - target: {fileID: 3040212498219057149, guid: 02032215b287b3641adee18e05ec1255, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 130.1
+      value: 120.41
       objectReference: {fileID: 0}
     - target: {fileID: 3040212498219057149, guid: 02032215b287b3641adee18e05ec1255, type: 3}
       propertyPath: m_LocalPosition.x
@@ -949,7 +949,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3040212498219057149, guid: 02032215b287b3641adee18e05ec1255, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -1040
+      value: -783
       objectReference: {fileID: 0}
     - target: {fileID: 3040212498219057149, guid: 02032215b287b3641adee18e05ec1255, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -963,21 +963,33 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5154820267939004539, guid: 02032215b287b3641adee18e05ec1255, type: 3}
+      propertyPath: m_Color.b
+      value: 0.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 5154820267939004539, guid: 02032215b287b3641adee18e05ec1255, type: 3}
+      propertyPath: m_Color.g
+      value: 0.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 5154820267939004539, guid: 02032215b287b3641adee18e05ec1255, type: 3}
+      propertyPath: m_Color.r
+      value: 0.67
+      objectReference: {fileID: 0}
     - target: {fileID: 5262669976093167974, guid: 02032215b287b3641adee18e05ec1255, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 381.74
+      value: 492.52
       objectReference: {fileID: 0}
     - target: {fileID: 5262669976093167974, guid: 02032215b287b3641adee18e05ec1255, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 65.24
+      value: 58.137
       objectReference: {fileID: 0}
     - target: {fileID: 5262669976093167974, guid: 02032215b287b3641adee18e05ec1255, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -2.4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5262669976093167974, guid: 02032215b287b3641adee18e05ec1255, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 3.3001
+      value: 7.0999
       objectReference: {fileID: 0}
     - target: {fileID: 5853087182465903179, guid: 02032215b287b3641adee18e05ec1255, type: 3}
       propertyPath: m_Name
@@ -1187,12 +1199,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1080, y: 1920}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96

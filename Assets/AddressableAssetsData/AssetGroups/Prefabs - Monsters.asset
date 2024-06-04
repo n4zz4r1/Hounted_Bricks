@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: Game Monsters
+  m_Name: Prefabs - Monsters
   m_EditorClassIdentifier: 
-  m_GroupName: Game Monsters
+  m_GroupName: Prefabs - Monsters
   m_Data:
     m_SerializedData: []
   m_GUID: 7eed84febe2ef8b47bd37fd1216870e5

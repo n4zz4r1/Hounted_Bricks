@@ -8124,4 +8124,5 @@ MonoBehaviour:
     coinResourceSlider: {fileID: 6727028954297602222}
     puzzleResourceSlider: {fileID: 440317565286775373}
     nextLevelText: {fileID: 8388820544626039691}
+    nextLevelBox: {fileID: 2503353244201666615}
     objectsToPaintByRarity: []

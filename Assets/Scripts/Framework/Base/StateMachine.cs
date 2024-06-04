@@ -52,26 +52,6 @@ public abstract class StateMachine<T, U> : MonoBehaviour where T : MonoBehaviour
         return Task.CompletedTask;
     }
 
-    // Generic method to load any type of asset from Addressables
-    // public async Task<Tu> LoadAssetAsync<Tu>(string address) where Tu : Object {
-    //     AsyncOperationHandle handle = Addressables.LoadAssetAsync<Tu>(address);
-    //
-    //     try {
-    //         var asset = (Tu)await handle.Task;
-    //         if (asset != null) {
-    //             // Here you can use the asset, for example, instantiate it
-    //             return asset;
-    //         }
-    //
-    //         Debug.LogError($"Failed to load asset: {asset}");
-    //         return null;
-    //     }
-    //     catch (Exception ex) {
-    //         Debug.LogError($"Failed to load asset: {ex.Message}");
-    //         return null;
-    //     }
-    // }
-
     public void SyncAllData(Type @class) {
         transform.root.BroadcastMessage("SyncData", @class);
     }

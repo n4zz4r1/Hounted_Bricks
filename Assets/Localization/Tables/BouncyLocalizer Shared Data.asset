@@ -107,6 +107,10 @@ MonoBehaviour:
     m_Key: CardType.None
     m_Metadata:
       m_Items: []
+  - m_Id: 17766523062603776
+    m_Key: CardType.BasicAbility
+    m_Metadata:
+      m_Items: []
   - m_Id: 17076927085563906
     m_Key: CardType.Ability
     m_Metadata:

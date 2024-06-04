@@ -1,10 +1,20 @@
 using Core.Data;
 using Core.StateMachine.Cards;
-using Core.Utils;
 using Core.Utils.Constants;
+using UnityEngine;
 
 namespace Core.StateMachine.CardSlots {
 public class CardRockSlotFSM: CardSlotFSM {
+
+    protected override void ClearSlot() {
+        if (State == States.WithCard && PlayerDataV1.Instance.saveRockSlot[1] != Card.NONE) {
+            PlayerDataV1.Instance.RemoveFromSlot(index);
+            components.animator.SetTrigger(RemoveAnim);
+            SyncAllData(typeof(CardRockSlotFSM));
+            SyncAllData(typeof(CardFSM));
+        }
+    }
+    
     protected override void SyncSlots() {
         var selectedCard = PlayerDataV1.Instance.saveRockSlot[index];
         var totalOfRocks = CardsDataV1.Instance.GetTotalRocks();

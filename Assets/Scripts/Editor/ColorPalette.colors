@@ -97,3 +97,5 @@ MonoBehaviour:
     m_Color: {r: 0.6441791, g: 0.9528302, b: 0.5977661, a: 1}
   - m_Name: CHEST_TEXT_COLOR
     m_Color: {r: 0.9056604, g: 0.57888794, b: 0.2691349, a: 1}
+  - m_Name: DROP_COLOR
+    m_Color: {r: 0.735849, g: 0.1492524, b: 0.5688945, a: 1}

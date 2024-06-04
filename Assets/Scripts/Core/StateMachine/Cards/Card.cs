@@ -38,7 +38,8 @@ public enum CardType {
     Rock = 1,
     Character = 2,
     Special = 3,
-    Ability = 4
+    Ability = 4,
+    BasicAbility = 5,
 }
 
 public abstract class CardTypeUtils {

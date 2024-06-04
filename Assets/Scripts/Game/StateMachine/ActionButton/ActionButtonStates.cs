@@ -5,7 +5,6 @@ using Core.StateMachine.Cards;
 using Core.Utils;
 using Core.Utils.Constants;
 using Framework.Base;
-using Game.Controller.Game;
 using AbilityType = Core.StateMachine.Abilities.AbilityType;
 
 namespace Game.StateMachine.ActionButton {
@@ -19,34 +18,36 @@ public abstract class States {
 
 public class Preload : State<ActionButtonFSM> {
     public override void Before(ActionButtonFSM fsm) {
-        if (fsm.card == Card.NONE) return;
+        if (fsm.card == Card.NONE) {
+            fsm.ChangeState(States.NotAvailable);
+            return;
+        }
         
         // If you don't have card, change to NotAvailable
         AssetLoader<Card>.Load<ActionButtonFSM, CardFSM>(fsm.card, fsm, SetCard);
-
-        //
-        // if (!CardsDataV1.Instance.HasCard(fsm.card))
-        //     fsm.ChangeState(States.NotAvailable);
-        // else
-        // {
-        //     fsm.CardFSM = CardFSM.GetRawCardFSM(fsm.card);
-        //     // initial counter for that ability
-        //     fsm.Counter.Value = fsm.CardFSM.abilityFSM.counter;
-        //     fsm.components.counter.text = fsm.CardFSM.abilityFSM.counter.ToString();
-        //     fsm.ChangeState(States.Enable);
-        // }
     }
 
     private static void SetCard(CardFSM cardFSM, ActionButtonFSM fsm) {
         fsm.CardFSM = cardFSM;
         fsm.components.icon.sprite = cardFSM.components.cardIcon.sprite;
+        if (fsm.components.cardDescription)
+            fsm.components.cardDescription.text = cardFSM.GetTitle();
+
+        // For basic cards, hide button frame
+        if (fsm.CardFSM.cardType == CardType.BasicAbility) {
+            fsm.components.image.enabled = false;
+        }
         
         // Set Counter number, else unlimited actions
         if (cardFSM.abilityFSM?.abilityType is AbilityType.ACTIVE_COUNTER) {
             fsm.Counter.Value = cardFSM.Attribute(CardAttributeType.Quantity);
             fsm.components.counter.text = fsm.Counter.Value.ToString();
         }
-        else 
+        else if(cardFSM.cardType is CardType.Ability) {
+            fsm.components.consumableText.text = cardFSM.Attribute(CardAttributeType.Consumable).ToString();
+            
+            fsm.Counter.Value = 9999;
+        } else 
             fsm.Counter.Value = 9999;
         
         // set counter based on ability c
@@ -57,23 +58,12 @@ public class Preload : State<ActionButtonFSM> {
         else
             fsm.ChangeState(States.Enabled);
     }
-
-    // public override void Active(ActionButtonFSM fsm) {
-    //     // fsm.components.button.interactable = true;
-    //     fsm.components.counterImage.color = Colors.WithAlpha(Color.green, 1f);
-    // }
-    //
-    // public override void Inactive(ActionButtonFSM fsm) {
-    //     // fsm.components.button.interactable = false;
-    //     fsm.components.counterImage.color = Colors.WithAlpha(Color.white, 0.5f);
-    // }
-    //
-
 }
 
 public class Enabled : State<ActionButtonFSM> {
     public override void Enter(ActionButtonFSM fsm) {
-        fsm.components.image.color = Colors.PRIMARY;
+        fsm.components.image.color = fsm.card == Card.NONE ? Colors.PRIMARY 
+            : RarityUtils.From(fsm.CardFSM.Rarity).NormalColor;
     }
 
     public override void Pressed(ActionButtonFSM fsm) {
@@ -93,63 +83,13 @@ public class Enabled : State<ActionButtonFSM> {
         fsm.ChangeState(States.Disabled);
 
         // Execute ability and disable button
-        fsm.CardFSM.abilityFSM.Execute(fsm.gameController, fsm.ActionDoneCallback, fsm.ActionCanceledCallback);
+        fsm.CardFSM.abilityFSM.Execute(fsm.gameController, fsm.CardFSM, fsm.ActionDoneCallback, fsm.ActionCanceledCallback);
     }
     
     public override void Disable(ActionButtonFSM fsm) {
         fsm.ChangeState(States.Disabled);
     }
     
-    //
-    // public override void SyncData(ActionButtonFSM FSM)
-    // {
-    //     
-    //     if (FSM.card == Card.NONE) return;
-    //     Debug.Log("Syncing Card: " + FSM.card);
-    //     
-    //     switch (FSM.CardFSM.abilityFSM.abilityType)
-    //     {
-    //         case AbilityType.GENERAL_IMPROVEMENT:
-    //             break;
-    //         case AbilityType.ROCK_IMPROVEMENT:
-    //             break;
-    //         case AbilityType.CONSUMABLE:
-    //             if (FSM.gameController.State == Core.Controllers.Game.States.PLAYER_TURN)
-    //                 FSM.State.Active(FSM);
-    //             else
-    //                 FSM.State.Inactive(FSM);
-    //             break;
-    //         case AbilityType.TIME_CONSUMABLE:
-    //             break;
-    //         case AbilityType.NONE:
-    //             break;
-    //         default:
-    //             throw new ArgumentOutOfRangeException();
-    //     }
-    // }
-    //
-    // public override void Active(ActionButtonFSM FSM)
-    // {
-    //     FSM.components.button.interactable = true;
-    //     FSM.components.counterImage.color = Colors.WithAlpha(Color.green, 1f);
-    // }
-    // public override void Inactive(ActionButtonFSM FSM)
-    // {
-    //     FSM.components.button.interactable = false;
-    //     FSM.components.counterImage.color = Colors.WithAlpha(Color.white, 0.5f);
-    // }
-    //
-    // private static void EndActionCallback(ActionButtonFSM FSM, bool success)
-    // {
-    //     if (!success) return;
-    //
-    //     var counter = FSM.Counter.Subtract(1);
-    //     FSM.components.counter.text = counter.ToString();
-    //     if (counter == 0)
-    //     {
-    //         FSM.ChangeState(States.Disable);
-    //     }
-    // }
 }
 
 public class Disabled : State<ActionButtonFSM> {
@@ -158,11 +98,13 @@ public class Disabled : State<ActionButtonFSM> {
         fsm.components.image.sprite = fsm.components.spritePressed;
         fsm.components.image.color = Colors.DISABLED;
         fsm.components.canvasGroup.alpha = 0.8f;
+        fsm.components.icon.sprite = fsm.CardFSM.components.bwIcon;
     }
     public override void Exit(ActionButtonFSM fsm) {
         fsm.MoveChildrenIcons(false);
         fsm.components.image.sprite = fsm.components.spriteEnabled;
         fsm.components.canvasGroup.alpha = 1f;
+        fsm.components.icon.sprite = fsm.CardFSM.components.originalIcon;
     }
 
     public override void Enable(ActionButtonFSM fsm) {
@@ -180,6 +122,15 @@ public class NotAvailable : State<ActionButtonFSM> {
         fsm.components.canvasGroup.blocksRaycasts = false;
         fsm.components.canvasGroup.interactable = false;
         fsm.components.image.color = Colors.DISABLED;
+        if (fsm.card == Card.NONE) {
+            fsm.components.icon.gameObject.SetActive(false);
+            fsm.components.canvasGroup.alpha = 1f;
+            fsm.components.image.gameObject.SetActive(false);
+            fsm.components.consumableBox.SetActive(false);
+        }
+        else {
+            fsm.components.icon.sprite = fsm.CardFSM.components.bwIcon;
+        }
     }
 }
 

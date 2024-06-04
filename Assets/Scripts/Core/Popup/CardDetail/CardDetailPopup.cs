@@ -68,12 +68,13 @@ public class CardDetailPopup : StateMachine<CardDetailPopup, State<CardDetailPop
         var level = CardsDataV1.Instance.GetCardLevel(CardFSM.cardId);
         if (!CardFSM.HasLevel) {
             components.levelBox.SetActive(false);
+            components.nextLevelBox.SetActive(false);
         } else {
             components.levelBox.SetActive(true);
             components.levelText.text = CardsDataV1.Instance.GetCardLevel(CardFSM.cardId).ToString();
         }
 
-        components.cardIcon.sprite = CardFSM.components.cardIcon.sprite;
+        components.cardIcon.sprite = CardFSM.components.originalIcon;
         const float xPosition = 0.2f;
         var yPosition = 161f;
 
@@ -106,26 +107,32 @@ public class CardDetailPopup : StateMachine<CardDetailPopup, State<CardDetailPop
         else
             components.updateButton.interactable = false;
 
-
         var normal = RarityUtils.From(CardFSM.Rarity).NormalColor;
         foreach (var image in components.objectsToPaintByRarity)
             image.color = normal;
     }
 
-    public void CardSetup(CardFSM cardFSM, CardDetailTab tab = CardDetailTab.Detail) {
-        CardFSM = cardFSM;
-        components.cardTypeIcon.sprite = AssetLoader.AsSprite(cardFSM.cardType);
-        components.titleText.text = cardFSM.GetCardTitle;
-        components.quantityText.text = CardsDataV1.Instance.GetCardQuantity(cardFSM.cardId).ToString();
-        components.quantityMaxText.text = cardFSM.MaxQuantity.ToString();
-        components.cardTypeText.text = cardFSM.GetCardTypeText;
-        components.descriptionText.text = cardFSM.GetCardFullDetail;
+    public void CardSetup(Card card, CardDetailTab tab = CardDetailTab.Detail) {
+        CardFSM = Instantiate(AssetLoader.AsComponent<CardFSM>(card));
+        
+        components.cardTypeIcon.sprite = AssetLoader.AsSprite(CardFSM.cardType);
+        components.titleText.text = CardFSM.GetCardTitle;
+        components.quantityText.text = CardsDataV1.Instance.GetCardQuantity(CardFSM.cardId).ToString();
+        components.quantityMaxText.text = CardFSM.MaxQuantity.ToString();
+        components.cardTypeText.text = CardFSM.GetCardTypeText;
+        components.descriptionText.text = CardFSM.GetCardFullDetail;
         
         SelectTab(tab);
-
-        SetupAllAbilities();
-        
+        if (CardFSM.cardType == CardType.Character)
+            SetupAllAbilities();
+        else 
+            HideTab(CardDetailTab.Abilities);
+            
         SyncDataBase();
+    }
+
+    private void HideTab(CardDetailTab tab) {
+        components.tabButtons[(int) tab].gameObject.SetActive(false);
     }
 
     private void SetupAllAbilities() {
@@ -187,6 +194,7 @@ public class CardPopupComponents {
     [SerializeField] public ResourceSliderFSM coinResourceSlider;
     [SerializeField] public ResourceSliderFSM puzzleResourceSlider;
     [SerializeField] public TextMeshProUGUI nextLevelText;
+    [SerializeField] public GameObject nextLevelBox;
 
     [SerializeField] public List<Image> objectsToPaintByRarity;
 }

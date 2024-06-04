@@ -139,12 +139,24 @@ public class PlayerDataV1 : Data<PlayerDataV1> {
         };
     }
 
+    public Card GetSelectedCharacterCard() {
+        return selectedCharacter;
+    }
+
     public int RockCardCounter(Card card) {
         return saveRockSlot.Count(x => x == card);
     }
 
     public void ChangeRockSlot(int index, Card card) {
         saveRockSlot[index] = card;
+        Save();
+    }
+
+    public void RemoveFromSlot(int index) {
+        var currentList = new List<Card>(saveRockSlot);
+        currentList.RemoveAt(index);
+        currentList.Add(Card.NONE);
+        saveRockSlot = currentList.ToArray();
         Save();
     }
 

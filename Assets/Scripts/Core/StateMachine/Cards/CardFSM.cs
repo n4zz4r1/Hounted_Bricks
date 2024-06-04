@@ -26,6 +26,13 @@ public class CardFSM : StateMachine<CardFSM, State<CardFSM>> {
 
     protected override void Before() {
         if (!dragEnabled) components.dragHandler.enabled = false;
+        if (disableCollision) components.collider.enabled = false;
+        components.originalIcon = components.cardIcon.sprite;
+        if (components.bwIcon == null) 
+            components.bwIcon = components.cardIcon.sprite;
+
+        if (cardType == CardType.Rock) components.boxQuantity.gameObject.SetActive(true);
+        PrepareAbilityConsumables();
 
         GetCardTitle = LocalizationUtils.LoadText(GetCardName() + ".Title");
         GetCardFullDetail = LocalizationUtils.LoadText(GetCardName() + ".Detail");
@@ -34,6 +41,15 @@ public class CardFSM : StateMachine<CardFSM, State<CardFSM>> {
         MaxLevelLabel = LocalizationUtils.LoadText("Label.MaxLevel");
         
         PaintCard(Rarity);
+    }
+
+    public string GetTitle() => LocalizationUtils.LoadText(GetCardName() + ".Title");
+
+    private void PrepareAbilityConsumables() {
+        if (cardType != CardType.Ability) return;
+
+        components.boxConsumable.gameObject.SetActive(true);
+        components.textConsumable.text = Attribute(CardAttributeType.Consumable).ToString();
     }
 
     protected override async Task BeforeAsync() {
@@ -52,11 +68,15 @@ public class CardFSM : StateMachine<CardFSM, State<CardFSM>> {
         var normal = RarityUtils.From(cardRarity).NormalColor;
         foreach (var image in components.imagesToPaint)
             image.color = normal;
+        components.cardIcon.sprite = components.originalIcon;
     }
 
     private void PaintCardDisabled() {
         foreach (var image in components.imagesToPaintDisabled)
             image.color = Colors.DISABLED_WOOD;
+        if (components.bwIcon)
+            components.cardIcon.sprite = components.bwIcon;
+        
     }
 
     // Makes a card without info, level, and so on...
@@ -123,12 +143,14 @@ public class CardFSM : StateMachine<CardFSM, State<CardFSM>> {
     [SerializeField] public bool dragEnabled;
     [SerializeField] public List<CardAttributesComponent> attributes;
     // Ability Ref
+    [SerializeField] public bool disableCollision;
     [SerializeField] public AbilityFSM abilityFSM;
 
     [SerializeField] public Components components;
 
     public int MaxQuantity { get; private set; }
 
+    
     public bool IsMaxLevel() {
         return CardsDataV1.Instance.GetCardLevel(cardId) == maxLevel;
     }
@@ -172,6 +194,9 @@ public class Components {
 
     // Game Objects
     [SerializeField] public Image cardIcon;
+    [SerializeField] public Sprite originalIcon;
+    [SerializeField] public Sprite bwIcon;
+
     [SerializeField] public GameObject cardBox;
     [SerializeField] public Shadow cardShadow;
     [SerializeField] public CanvasGroup cardCanvasGroup;
@@ -179,13 +204,16 @@ public class Components {
     [SerializeField] public CardTouchHandler dragHandler;
     [SerializeField] public GameObject dragArea;
     [SerializeField] public Button infoButton;
+    [SerializeField] public Collider2D collider;
 
     #region Quantity
-
     [SerializeField] public GameObject boxQuantity;
-
     [SerializeField] public TextMeshProUGUI textQuantity;
+    #endregion
 
+    #region Consumable
+    [SerializeField] public GameObject boxConsumable;
+    [SerializeField] public TextMeshProUGUI textConsumable;
     #endregion
 
     #region LevelBox

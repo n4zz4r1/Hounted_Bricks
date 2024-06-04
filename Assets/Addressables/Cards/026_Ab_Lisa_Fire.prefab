@@ -125,6 +125,14 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7222727239702437290, guid: 18674750e2a95e140a5c69d77fc90051, type: 3}
+      propertyPath: components.bwIcon
+      value: 
+      objectReference: {fileID: 74427831, guid: 8c9384debbaf0c740b17fa10a37e0456, type: 3}
+    - target: {fileID: 7222727239702437290, guid: 18674750e2a95e140a5c69d77fc90051, type: 3}
+      propertyPath: components.originalIcon
+      value: 
+      objectReference: {fileID: 74427831, guid: 8ea693c84486b6441ac1a198413a83ac, type: 3}
+    - target: {fileID: 7222727239702437290, guid: 18674750e2a95e140a5c69d77fc90051, type: 3}
       propertyPath: attributes.Array.data[7].updates.m_values.Array.data[0]
       value: 1
       objectReference: {fileID: 0}
