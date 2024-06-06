@@ -10,18 +10,9 @@ using Game.Utils;
 using UnityEngine;
 
 namespace Game.StateMachine.Rocks {
-
-public enum RockType {
-    R01_ROUND,
-    R02_CROOKED,
-    R03_ARROW,
-    R04_BOMB,
-    E1_FIREBALL
-}
-
 public class RockFSM : StateMachine<RockFSM, State<RockFSM>> {
     // Parameters
-    [SerializeField] public RockType rockType;
+    [SerializeField] public Rock rock;
     [SerializeField] public float rockDamage;
     [SerializeField] public float life = 1;
 
@@ -56,7 +47,7 @@ public class RockFSM : StateMachine<RockFSM, State<RockFSM>> {
 
     // #region Static Build
     //
-    public static RockFSM Build(Card card, CardFSM cardFSM, Vector3 from, Vector3 to, Transform parent,
+    public static RockFSM Build(Rock rock, CardFSM cardFSM, Vector3 from, Vector3 to, Transform parent,
         Camera mainCamera, float rotationFactor, AbilityFactor abilityFactor, GameController gameController) {
         // Build initial rotation
         var target = mainCamera.ScreenToWorldPoint(from);
@@ -75,23 +66,24 @@ public class RockFSM : StateMachine<RockFSM, State<RockFSM>> {
         // if (abilityFactor.AcidBombEffect && BMPrefabName.From(card) == "Rock04 Bomb")
         //     prefab = "Rock04 Bomb Acid";
 
-        var rock = Instantiate(Resources.Load<RockFSM>(BMPrefabName.From(card)), to, Quaternion.Euler(0.0f, 0.0f, 0f),
+        var rockObject = Instantiate(AssetLoader.AsComponent<RockFSM>(rock), to, Quaternion.Euler(0.0f, 0.0f, 0f),
             parent);
-        rock.components.GameController = gameController;
-        rock.components.spriteRenderer.sprite = cardFSM.components.cardIcon.sprite;
-        rock.Card = card;
+        rockObject.components.GameController = gameController;
+        rockObject.components.spriteRenderer.sprite = cardFSM.components.cardIcon.sprite;
+        rockObject.Card = cardFSM.cardId;
 
         // Change layer if rock party
         if (abilityFactor.RockPartyEffect)
-            rock.gameObject.layer = Layers.RockParty;
+            rockObject.gameObject.layer = Layers.RockParty;
 
-        rock.CurrentDirection = direction.RotateVector(rotationFactor);
+        rockObject.CurrentDirection = direction.RotateVector(rotationFactor);
         // Set from and to attrs
-        rock.CurrentRotation = rotationZ;
+        rockObject.CurrentRotation = rotationZ;
 
-        if (abilityFactor.FireBallEffect && rotationFactor == 0) rock.transform.localScale = new Vector2(0.8f, 0.8f);
+        if (abilityFactor.FireBallEffect && rotationFactor == 0)
+            rockObject.transform.localScale = new Vector2(0.8f, 0.8f);
 
-        return rock;
+        return rockObject;
     }
 
     // Total damage = Rock Damage + Player Factor 
@@ -121,7 +113,7 @@ public class RockFSM : StateMachine<RockFSM, State<RockFSM>> {
         //     SetOnFire();
 
         // For R04_Bomb: also hit near by monster
-        if (RockType.R04_BOMB.Equals(rockType)) {
+        if (Rock.Bomb.Equals(rock)) {
             var monsterInRange =
                 Physics2D.OverlapCircleAll(new Vector2(transform.position.x, transform.position.y),
                     1.5f); // TODO Layer not working
@@ -135,8 +127,8 @@ public class RockFSM : StateMachine<RockFSM, State<RockFSM>> {
         }
 
         // // For R04_Bomb and R02_Crooked: Destroy after hit
-        if (RockType.R02_CROOKED.Equals(rockType) || RockType.R04_BOMB.Equals(rockType) ||
-            RockType.R03_ARROW.Equals(rockType))
+        if (Rock.Crooked.Equals(rock) || Rock.Bomb.Equals(rock) ||
+            Rock.Arrowed.Equals(rock))
             if (--life <= 0) {
                 Speed = 0f;
                 ClearTrace();
@@ -172,7 +164,7 @@ public class RockFSM : StateMachine<RockFSM, State<RockFSM>> {
         components.normalTrace.SetActive(false);
         components.fireTrace.SetActive(true);
         components.poisonTrace.SetActive(false);
-        if (rockType != RockType.R04_BOMB)
+        if (rock != Rock.Bomb)
             SpriteRenderer.color = Colors.FIRE;
     }
 
@@ -181,7 +173,7 @@ public class RockFSM : StateMachine<RockFSM, State<RockFSM>> {
         components.normalTrace.SetActive(false);
         components.fireTrace.SetActive(false);
         components.poisonTrace.SetActive(true);
-        if (rockType != RockType.R04_BOMB)
+        if (rock != Rock.Bomb)
             SpriteRenderer.color = Colors.ROCK_ON_POISON;
     }
 
@@ -206,24 +198,4 @@ public class RockComponents {
     [SerializeField] internal float rotationDegrees = -1f;
     internal GameController GameController;
 }
-
-// TODO REMOVE
-public static class BMPrefabName {
-    public static string From(Card card) {
-        // ReSharper disable once ConvertSwitchStatementToSwitchExpression
-        switch (card) {
-            case Card.Card_001_Crooked_Rock:
-                return "Rock01 Crooked";
-            case Card.Card_002_Rounded_Rock:
-                return "Rock02 Round";
-            case Card.Card_003_Arrowed_Rock:
-                return "Rock03 Arrow";
-            case Card.Card_004_Bomb_Rock:
-                return "Rock04 Bomb";
-            default:
-                throw new Exception("Prefab for card " + card + " not found");
-        }
-    }
-}
-
 }

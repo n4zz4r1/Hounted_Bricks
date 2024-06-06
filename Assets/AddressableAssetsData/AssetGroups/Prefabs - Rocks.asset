@@ -12,14 +12,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
   m_Name: Prefabs - Rocks
   m_EditorClassIdentifier: 
-  m_GroupName: Packed Assets
+  m_GroupName: Prefabs - Rocks
   m_Data:
     m_SerializedData: []
-  m_GUID: ec2e5eb4f30cd434f9739b91084c0999
-  m_SerializeEntries: []
+  m_GUID: d546d24dc11dfda4eb3a1548800c6487
+  m_SerializeEntries:
+  - m_GUID: 6ad264dc79b8a01408e31bc20a419006
+    m_Address: Rock_Arrowed
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameAssets
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ea7012f220a3f5c46a99b973486b8585
+    m_Address: Rock_Bomb
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameAssets
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7a8acea4bf49a9944809bf572edf5d72
+    m_Address: Rock_Crooked
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameAssets
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7414d767349c1dd4a97e73cbcf3b82a4
+    m_Address: Rock_Round
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameAssets
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 15678d07e59240945a2f2969faf77c8f
+    m_Address: Rock_Axe
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameAssets
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 32e1b6a54f8b9a04b841d0c47a9f0d7a, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 0cdafe09036bcbc4498044636d878cbc, type: 2}
-    - {fileID: 11400000, guid: 7afd5d9cfaf83d547a13f1d4c3353802, type: 2}
+    - {fileID: 11400000, guid: beb13fd371c4fef4ebf88ef5b0073855, type: 2}
+    - {fileID: 11400000, guid: 95f0ae70028ed684f9483fb7b60b48ba, type: 2}

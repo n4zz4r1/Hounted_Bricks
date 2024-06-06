@@ -6,8 +6,15 @@ using Core.Sprites;
 using Core.Utils.Constants;
 
 namespace Core.Utils {
-
 public abstract class Dices {
+
+    private static Random random = new Random();
+
+    public static bool Roll(int percentual) {
+        return random.NextDouble() < (percentual / 100f);
+    }
+    
+    
     public static List<int> GenerateRandomList(int numberOfElements) {
         // Create a list containing numbers from 0 to numberOfElements
         var list = new List<int>();
@@ -153,5 +160,4 @@ public class CardDice : AbstractDice<CardDice, Card> {
         // new(Card.Card_015_Improved_Bomb_Rock, UNCOMMON),
     }.Where(card => !CardsDataV1.Instance.HaveAllCardsFrom(card.Value)).ToArray();
 }
-
 }

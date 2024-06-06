@@ -1,5 +1,10 @@
 ﻿using System;
 using Core.Controller.Audio;
+using Core.Sprites;
+using Core.StateMachine.Cards;
+using Core.Utils;
+using Core.Utils.Constants;
+using DG.Tweening;
 using Framework.Base;
 using Game.StateMachine.Rocks;
 using Game.Utils;
@@ -7,7 +12,6 @@ using UnityEngine;
 using Object = UnityEngine.Object;
 
 namespace Game.StateMachine.Monster {
-
 public abstract class MonsterState : State<MonsterFSM> {
     public virtual void Move(MonsterFSM fsm, MonsterGrid grid) { }
     public virtual void Hit(MonsterFSM fsm, RockFSM rockFSM) { }
@@ -27,6 +31,7 @@ public abstract class States {
 public class ReachEndLine : MonsterState {
     public override void Enter(MonsterFSM fsm) {
         fsm.GameController.RemoveMonster(fsm);
+        fsm.transform.DOKill();
         Object.Destroy(fsm.gameObject);
     }
 }
@@ -63,13 +68,11 @@ public class Idle : MonsterState {
         if (!grid.CanMonsterMove(fsm)) {
             fsm.GameController.IncreaseMonstersMoved(fsm);
             // If there is a BOSS above , kills it (hua hua hua)
-            if (grid.HasBossAbove(fsm)) {
-                fsm.ChangeState(States.Dying);
-            }
-            
+            if (grid.HasBossAbove(fsm)) fsm.ChangeState(States.Dying);
+
             return;
         }
-        
+
         if (Math.Abs(currentPosition.y - 12f) < 0.1f) {
             if (fsm.IsBoss()) {
                 fsm.MovementSpeed = MonsterFSM.NormalSpeed * 4;
@@ -102,9 +105,20 @@ public class Idle : MonsterState {
         fsm.ChangeState(States.Moving);
     }
 
-    public override void Hit(MonsterFSM fsm, RockFSM rockFSM) {
-        var damage = rockFSM.Damage();
+    public override void Hit(MonsterFSM fsm, RockFSM rockFSM) => Hit(fsm, rockFSM.Damage());
+    public override void Hit(MonsterFSM fsm, MonsterFSM monsterFSM) => Hit(fsm, fsm.life * fsm.rockPileFactor);
+
+    // TrembleEffect
+    private const float Duration = 0.03f; // Duration of the shake
+    private const float Strength = 0.03f; // Strength of the shake
+    private const int Vibrato = 1; // Number of shakes
+    private const float Randomness = 90f; // Randomness factor
+
+    public override void Hit(MonsterFSM fsm, float damage) {
         fsm.components.animator.SetTrigger(HitAnim);
+        fsm.gameObject.transform.DOShakePosition(Duration, Strength, Vibrato, Randomness ).OnComplete(() => {
+            // fsm.gameObject.transform.localPosition = initialPosition;
+        });
         fsm.CurrentLife -= 1 * damage;
 
         if (fsm.CurrentLife <= 0) {
@@ -114,27 +128,31 @@ public class Idle : MonsterState {
             AudioController.PlayFXRandom(fsm.impactFX);
             fsm.components.healthyBar.State.Hit(fsm.components.healthyBar, damage);
         }
-    }
-    
-    
-    public override void Hit(MonsterFSM fsm, MonsterFSM monsterFSM) {
-        // Damage should be rockLife * its factor
-        var damage = fsm.life * fsm.rockPileFactor;
-        fsm.components.animator.SetTrigger(HitAnim);
-        fsm.CurrentLife -= 1 * damage;
+        
+        if (fsm.rockPile is RockPile.GoldMine) {
+            if (fsm.AbilityCardFSM == null)
+                fsm.AbilityCardFSM = AssetLoader.AsComponent<CardFSM>(Card.Card_025_Ab_Lucas_GiveMeMoney);
 
-        if (fsm.CurrentLife <= 0) {
-            Kill(fsm);
-        }
-        else {
-            AudioController.PlayFXRandom(fsm.impactFX);
-            fsm.components.healthyBar.State.Hit(fsm.components.healthyBar, damage);
+            if (Dices.Roll(fsm.AbilityCardFSM.Attribute(CardAttributeType.Probability)))
+                fsm.GameController.AddGameResource(fsm.transform.position, GameResource.Coin, 1);
         }
     }
 
-    public override void Kill(MonsterFSM fsm) {
-        fsm.ChangeState(States.Dying);
-    }
+    //     // Damage should be rockLife * its factor
+    //     var damage = ;
+    //     fsm.components.animator.SetTrigger(HitAnim);
+    //     fsm.CurrentLife -= 1 * damage;
+    //
+    //     if (fsm.CurrentLife <= 0) {
+    //         Kill(fsm);
+    //     }
+    //     else {
+    //         AudioController.PlayFXRandom(fsm.impactFX);
+    //         fsm.components.healthyBar.State.Hit(fsm.components.healthyBar, damage);
+    //     }
+    // }
+
+    public override void Kill(MonsterFSM fsm) => fsm.ChangeState(States.Dying);
 }
 
 public class Moving : MonsterState {
@@ -151,6 +169,7 @@ public class Moving : MonsterState {
         // If hits player, take life and destroy
         if (fsm.NextMove.y < -0.5f) {
             fsm.GameController.ReduceLife(fsm);
+
             fsm.ChangeState(States.ReachEndLine);
         }
         else {
@@ -176,6 +195,7 @@ public class Dying : MonsterState {
     }
 
     public override void Destroy(MonsterFSM fsm) {
+        fsm.transform.DOKill();
         Object.Destroy(fsm.gameObject);
     }
 }
@@ -184,17 +204,20 @@ public class CastingSummon : MonsterState { }
 
 public class CastingFireball : MonsterState { }
 
+[Serializable]
 public enum EffectType {
     FIRE,
     POISON
 }
 
+[Serializable]
 public enum AuraType {
     NONE,
     GOLD,
     DIAMOND
 }
 
+[Serializable]
 public enum MonsterType {
     NORMAL,
     FAST,
@@ -202,18 +225,13 @@ public enum MonsterType {
     SHIELDED,
     SHAMAN,
     MAGE,
-    BOSS,
+    BOSS
 }
 
+[Serializable]
 public enum MonsterResourceType {
     Monster,
     RockPile,
-    Chest,
+    Chest
 }
-
-public enum RockPile
-{
-    Basic
-}
-
 }

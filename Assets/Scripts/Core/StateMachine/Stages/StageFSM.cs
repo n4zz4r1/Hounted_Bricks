@@ -4,7 +4,6 @@ using System.Text.RegularExpressions;
 using Core.Data;
 using Core.Handler;
 using Core.Sprites;
-using Core.Utils;
 using Core.Utils.Constants;
 using Framework.Base;
 using TMPro;
@@ -14,7 +13,6 @@ using UnityEngine.U2D;
 using UnityEngine.UI;
 
 namespace Core.StateMachine.Stages {
-
 public class StageFSM : StateMachine<StageFSM, State<StageFSM>>, IPointerClickHandler {
     [SerializeField] public List<StageFSM> nextStages = new();
 
@@ -144,7 +142,9 @@ public class Components {
     [SerializeField] public Shadow boxShadow;
     [SerializeField] public Image boxImage;
     [SerializeField] public TextMeshProUGUI difficultyLabel;
+
     [SerializeField] public GameObject doneBox;
+
     // [SerializeField] public StagePopup stagePopup;
     [SerializeField] public Light2DBase light2DBase;
 
@@ -172,5 +172,4 @@ public class StageProperties {
     [SerializeField] public List<StageWave> waves;
     [SerializeField] public StageBoss boss;
 }
-
 }

@@ -1,9 +1,11 @@
-﻿using Game.StateMachine.ActionButton;
+﻿using Core.StateMachine.Cards;
+using Core.Utils;
+using Core.Utils.Constants;
+using Game.StateMachine.ActionButton;
 using Game.StateMachine.Rocks;
 using UnityEngine;
 
 namespace Game.Controller.Game {
-
 public class Shooting : GameState {
     public override void Enter(GameController fsm) {
         fsm.SyncAllData(typeof(ActionButtonFSM));
@@ -32,15 +34,15 @@ public class Shooting : GameState {
         Stop(fsm);
     }
 
-
     public override void Shoot(GameController fsm) {
         var numberOfRocks = fsm.CountNunRockLaunched.Increment();
 
         if (numberOfRocks - 1 < fsm.SaveRockSlot.Length) {
             fsm.PlayerInGame.State.Shoot(fsm.PlayerInGame);
             var rock = RockFSM.Build(
-                fsm.SaveRockSlot[numberOfRocks - 1],
-                fsm.CardPrefabs[fsm.SaveRockSlot[numberOfRocks - 1]], fsm.ShootReleasePosition,
+                (Rock) fsm.SaveRockSlot[numberOfRocks - 1],
+                AssetLoader.AsComponent<CardFSM>(fsm.SaveRockSlot[numberOfRocks - 1]),
+                fsm.ShootReleasePosition,
                 fsm.PlayerInGame.transform.position,
                 fsm.transform, fsm.components.mainCamera, 0, fsm.AbilityFactor, fsm);
             if (fsm.SpeedUp)
@@ -87,5 +89,4 @@ public class Shooting : GameState {
         // fsm.components.nextWaveActionButton.components.button.enabled = true;
     }
 }
-
 }

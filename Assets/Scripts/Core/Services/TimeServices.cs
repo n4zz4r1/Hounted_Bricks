@@ -1,7 +1,6 @@
 ﻿using System;
 
 namespace Core.Services {
-
 public abstract class TimeServices {
     public static TimeSpan TimeForNewLife = TimeSpan.FromMinutes(2);
 
@@ -26,5 +25,4 @@ public abstract class TimeServices {
         return $"{timeLeft.Seconds:D1} s";
     }
 }
-
 }

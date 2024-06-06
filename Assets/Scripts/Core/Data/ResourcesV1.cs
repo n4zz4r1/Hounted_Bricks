@@ -2,17 +2,15 @@ using System;
 using System.Collections.Generic;
 using Core.Sprites;
 using Core.StateMachine.Cards;
-using Core.Utils;
 using Core.Utils.Constants;
 using Framework.Base;
 using UnityEngine;
 
 namespace Core.Data {
-
 [Serializable]
 public class ResourcesV1 : Data<ResourcesV1> {
     // TODO improve performance by indexing / using dictionaries
-    private GameResource GetGameResource(ResourceType type) {
+    private GameResourceData GetGameResource(ResourceType type) {
         return gameResources.Find(g => g.resourceType == type);
     }
 
@@ -173,17 +171,17 @@ public class ResourcesV1 : Data<ResourcesV1> {
     // [SerializeField] private long[] limits = new[] { 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L };
     [SerializeField] private List<Gem> gems = new();
 
-    [SerializeField] private List<GameResource> gameResources = new() {
-        new GameResource(ResourceType.Coin, 0, 0),
-        new GameResource(ResourceType.ChestKey, 0, 0),
-        new GameResource(ResourceType.Chest, 0, 0),
-        new GameResource(ResourceType.Diamond, 0, 0),
-        new GameResource(ResourceType.AbilityScroll, 0, 0),
-        new GameResource(ResourceType.CharScroll, 0, 0),
-        new GameResource(ResourceType.Card, 0, 0),
-        new GameResource(ResourceType.RockScroll, 0, 0),
-        new GameResource(ResourceType.None, 0, 0),
-        new GameResource(ResourceType.Money, 0, 0)
+    [SerializeField] private List<GameResourceData> gameResources = new() {
+        new GameResourceData(ResourceType.Coin, 0, 0),
+        new GameResourceData(ResourceType.ChestKey, 0, 0),
+        new GameResourceData(ResourceType.Chest, 0, 0),
+        new GameResourceData(ResourceType.Diamond, 0, 0),
+        new GameResourceData(ResourceType.AbilityScroll, 0, 0),
+        new GameResourceData(ResourceType.CharScroll, 0, 0),
+        new GameResourceData(ResourceType.Card, 0, 0),
+        new GameResourceData(ResourceType.RockScroll, 0, 0),
+        new GameResourceData(ResourceType.None, 0, 0),
+        new GameResourceData(ResourceType.Money, 0, 0)
     };
 
     #endregion
@@ -210,15 +208,15 @@ public class Gem {
 }
 
 [Serializable]
-public class GameResource {
+public class GameResourceData {
     [SerializeField] public ResourceType resourceType;
     [SerializeField] public long quantity;
     [SerializeField] public long limit;
 
     // JsonUtility requires a parameterless constructor
-    public GameResource() { }
+    public GameResourceData() { }
 
-    public GameResource(ResourceType resourceType, long quantity, long limit) {
+    public GameResourceData(ResourceType resourceType, long quantity, long limit) {
         this.resourceType = resourceType;
         this.quantity = quantity;
         this.limit = limit;
@@ -239,5 +237,4 @@ public enum GemSize {
     LARGE = 2,
     RADIANT = 3
 }
-
 }

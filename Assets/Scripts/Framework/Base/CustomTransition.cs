@@ -4,9 +4,9 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace Framework.Base {
-
 public class CustomTransition : MonoBehaviour {
-    private static readonly int FadeOut = Animator.StringToHash("FadeOut");
+    private static readonly int FadeOutAnim = Animator.StringToHash("FadeOut");
+    private static readonly int FadeInAnim = Animator.StringToHash("FadeIn");
     private bool _hasLoading;
 
     private string _nextScene;
@@ -17,8 +17,10 @@ public class CustomTransition : MonoBehaviour {
 
         _nextScene = scene;
         _hasLoading = loading;
-        animator.SetTrigger(FadeOut);
+        animator.SetTrigger(FadeOutAnim);
     }
+    
+    public void FadeIn() => animator.SetTrigger(FadeInAnim);
 
     public void FadeOutFinished() {
         if (_quit)
@@ -31,7 +33,7 @@ public class CustomTransition : MonoBehaviour {
 
     public void Quit() {
         _quit = true;
-        animator.SetTrigger(FadeOut);
+        animator.SetTrigger(FadeOutAnim);
     }
 
     private IEnumerator LoadAsync(string scene) {
@@ -52,5 +54,4 @@ public class CustomTransition : MonoBehaviour {
 
     #endregion
 }
-
 }

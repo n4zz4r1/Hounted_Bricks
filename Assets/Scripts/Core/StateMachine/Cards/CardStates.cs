@@ -7,7 +7,6 @@ using Framework.Base;
 using UnityEngine;
 
 namespace Core.StateMachine.Cards {
-
 public abstract class States {
     public static readonly Preload Preload = new();
     public static readonly NotFound NotFound = new();
@@ -87,7 +86,8 @@ public class Found : State<CardFSM> {
         // Set Total and current on save
         var cardQuantity = CardsDataV1.Instance.GetCardQuantity(fsm.cardId);
         fsm.components.textQuantity.text = cardQuantity.ToString();
-        fsm.UpdateCurrentAvailable(cardQuantity - PlayerDataV1.Instance.RockCardCounter(fsm.cardId) - CardsDataV1.Instance.AbilityUsed(fsm.cardId));
+        fsm.UpdateCurrentAvailable(cardQuantity - PlayerDataV1.Instance.RockCardCounter(fsm.cardId) -
+                                   CardsDataV1.Instance.AbilityUsed(fsm.cardId));
     }
 
     //
@@ -110,11 +110,10 @@ public class Found : State<CardFSM> {
     public override void OnCollisionExit(CardFSM fsm, Collider2D collider) {
         fsm.CurrentSelectedSlot = null;
 
-        if (collider.GetComponent<CardRockSlotFSM>() != null) 
+        if (collider.GetComponent<CardRockSlotFSM>() != null)
             CollidedWithSlot(fsm, collider.GetComponent<CardRockSlotFSM>());
-        else if (collider.GetComponent<CardAbilitySlotFSM>() != null) 
+        else if (collider.GetComponent<CardAbilitySlotFSM>() != null)
             CollidedWithSlot(fsm, collider.GetComponent<CardAbilitySlotFSM>());
-
     }
 
     private static void CollidedWithSlot<T>(CardFSM fsm, T slotCollider) where T : CardSlotFSM {
@@ -122,15 +121,16 @@ public class Found : State<CardFSM> {
             (slotCollider.State is WithCard && slotCollider.SelectedCardFSM?.cardId == fsm.cardId))
             return;
 
-        if (slotCollider.type == CardSlotType.Rock && PlayerDataV1.Instance.saveRockSlot[slotCollider.index] != Card.NONE)
+        if (slotCollider.type == CardSlotType.Rock &&
+            PlayerDataV1.Instance.saveRockSlot[slotCollider.index] != Card.NONE)
             slotCollider.ChangeState(CardSlots.States.WithCard);
-        else if (slotCollider.type == CardSlotType.Ability && CardsDataV1.Instance.GetPlayerAbilityAtPosition(slotCollider) != Card.NONE)
+        else if (slotCollider.type == CardSlotType.Ability &&
+                 CardsDataV1.Instance.GetPlayerAbilityAtPosition(slotCollider) != Card.NONE)
             slotCollider.ChangeState(CardSlots.States.WithCard);
         else
             slotCollider.ChangeState(CardSlots.States.Empty);
 
         slotCollider.Sync();
-        
     }
 
     public override void StartDragging(CardFSM fsm) {
@@ -152,19 +152,18 @@ public class Found : State<CardFSM> {
     public override void StopDragging(CardFSM fsm) {
         var slot = fsm.DragCard.GetComponent<CardFSM>().CurrentSelectedSlot;
         if (slot != null) {
-
             if (slot.type == CardSlotType.Rock)
                 PlayerDataV1.Instance.ChangeRockSlot(slot.index, fsm.cardId);
-            else {
+            else
                 // Changing abilities
                 CardsDataV1.Instance.ChangeSavedAbility(slot.PlayerCard, slot.index, fsm.cardId);
-            }
-            
-        } else
+        }
+        else {
             fsm.UpdateCurrentAvailable(fsm.CurrentQuantity + 1);
+        }
 
         fsm.CurrentSelectedSlot = null;
-        
+
         fsm.DestroyDragCard();
         fsm.IsDragging = false;
 
@@ -174,5 +173,4 @@ public class Found : State<CardFSM> {
         fsm.SyncAllData(typeof(BagController));
     }
 }
-
 }

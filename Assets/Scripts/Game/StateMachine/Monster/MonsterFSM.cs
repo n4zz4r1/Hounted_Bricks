@@ -1,16 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using Core.StateMachine.Cards;
+using Core.Utils.Constants;
 using Framework.Base;
 using Game.Controller.Game;
+using Game.StateMachine.MonsterHB;
 using Game.StateMachine.Rocks;
-using StateMachine.MonsterHB;
 using UnityEngine;
 
 namespace Game.StateMachine.Monster {
-
 public class MonsterFSM : StateMachine<MonsterFSM, MonsterState> {
-    [SerializeField] public MonsterResourceType monsterResourceType = Monster.MonsterResourceType.Monster;
+    [SerializeField] public MonsterResourceType monsterResourceType = MonsterResourceType.Monster;
     [SerializeField] public MonsterType monsterType = MonsterType.NORMAL;
+    [SerializeField] public RockPile rockPile = RockPile.None;
     [SerializeField] public float life = 40;
     [SerializeField] public int damage = 1;
     [SerializeField] public MonsterComponents components;
@@ -18,6 +20,9 @@ public class MonsterFSM : StateMachine<MonsterFSM, MonsterState> {
     [SerializeField] public float rockPileFactor = 1f;
     protected override MonsterFSM FSM => this;
     protected override MonsterState GetInitialState => States.Created;
+    
+    // TODO refactor when buff
+    internal CardFSM AbilityCardFSM { get; set; }
 
     internal int GetLife() {
         return (int)(life * forceFactor);
@@ -90,5 +95,4 @@ public class MonsterComponents {
 
     // [SerializeField] public Animator summonAnimator;
 }
-
 }

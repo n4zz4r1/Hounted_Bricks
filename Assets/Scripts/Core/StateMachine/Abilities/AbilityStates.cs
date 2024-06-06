@@ -1,7 +1,6 @@
 using Framework.Base;
 
 namespace Core.StateMachine.Abilities {
-
 public abstract class States {
     public static readonly Ready Ready = new();
     public static readonly InProgress InProgress = new();
@@ -9,7 +8,8 @@ public abstract class States {
 }
 
 public class Ready : State<AbilityFSM> { }
-public class Executed : State<AbilityFSM> { }
-public class InProgress : State<AbilityFSM> { }
 
+public class Executed : State<AbilityFSM> { }
+
+public class InProgress : State<AbilityFSM> { }
 }

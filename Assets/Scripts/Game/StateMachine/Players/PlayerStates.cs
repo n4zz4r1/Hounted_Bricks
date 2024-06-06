@@ -4,7 +4,6 @@ using Framework.Base;
 using UnityEngine;
 
 namespace Game.StateMachine.Players {
-
 public abstract class States {
     public static readonly Created Created = new();
     public static readonly Idle Idle = new();
@@ -51,7 +50,6 @@ public class Aiming : State<PlayerFSM> {
     private static readonly int StopAnim = Animator.StringToHash("Stop");
 
     public override void Enter(PlayerFSM fsm) {
-        
         fsm.components.animator.SetTrigger(AimAnim);
         Aim(fsm);
     }
@@ -131,5 +129,4 @@ public class Moving : State<PlayerFSM> {
         fsm.gameController.State.StopMoving(fsm.gameController);
     }
 }
-
 }

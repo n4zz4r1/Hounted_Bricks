@@ -10,14 +10,14 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Core.StateMachine.CardSlots {
-
-
 public enum CardSlotType {
     Rock,
     Ability
 }
 
-public class CardSlotFSM : StateMachine<CardSlotFSM, State<CardSlotFSM>>, IPointerDownHandler, IPointerUpHandler, IPointerEnterHandler, IPointerExitHandler {
+public class CardSlotFSM : StateMachine<CardSlotFSM, State<CardSlotFSM>>, IPointerDownHandler, IPointerUpHandler,
+    IPointerEnterHandler, IPointerExitHandler {
+    protected static readonly int RemoveAnim = Animator.StringToHash("Remove");
 
     [SerializeField] public CardSlotType type = CardSlotType.Rock;
     [SerializeField] public int index;
@@ -26,26 +26,6 @@ public class CardSlotFSM : StateMachine<CardSlotFSM, State<CardSlotFSM>>, IPoint
 
     protected override CardSlotFSM FSM => this;
     protected override State<CardSlotFSM> GetInitialState => States.Preload;
-    protected static readonly int RemoveAnim = Animator.StringToHash("Remove");
-
-    #region Remove Event Region
-
-    private bool IsPointerInside { get; set; }
-    private bool IsPressed { get; set; }
-
-    public void OnPointerDown(PointerEventData eventData) => IsPressed = true;
-    public void OnPointerUp(PointerEventData eventData) => IsPressed = false;
-    public void OnPointerEnter(PointerEventData eventData) => IsPointerInside = true;
-
-    // When dragged out, remove it
-    public void OnPointerExit(PointerEventData eventData) {
-        if (IsPointerInside && IsPressed)
-            ClearSlot();
-        
-        IsPointerInside = false;
-        IsPressed = false;
-    }
-    #endregion
 
     public Sprite TemporaryIconSprite { get; set; }
     public CardFSM TemporaryCard { get; set; }
@@ -66,12 +46,42 @@ public class CardSlotFSM : StateMachine<CardSlotFSM, State<CardSlotFSM>>, IPoint
             await AssetLoader<Card>.Load<CardFSM>(Card.Card_004_Bomb_Rock));
     }
 
-    protected virtual void PersistCard() {}
-    protected virtual void ClearSlot() {}
+    protected virtual void PersistCard() { }
+    protected virtual void ClearSlot() { }
 
-    protected override void SyncDataBase() => SyncSlots();
-    protected virtual void SyncSlots() {}
+    protected override void SyncDataBase() {
+        SyncSlots();
+    }
 
+    protected virtual void SyncSlots() { }
+
+    #region Remove Event Region
+
+    private bool IsPointerInside { get; set; }
+    private bool IsPressed { get; set; }
+
+    public void OnPointerDown(PointerEventData eventData) {
+        IsPressed = true;
+    }
+
+    public void OnPointerUp(PointerEventData eventData) {
+        IsPressed = false;
+    }
+
+    public void OnPointerEnter(PointerEventData eventData) {
+        IsPointerInside = true;
+    }
+
+    // When dragged out, remove it
+    public void OnPointerExit(PointerEventData eventData) {
+        if (IsPointerInside && IsPressed)
+            ClearSlot();
+
+        IsPointerInside = false;
+        IsPressed = false;
+    }
+
+    #endregion
 }
 
 [Serializable]
@@ -84,5 +94,4 @@ public class Components {
     [SerializeField] public List<Image> paths;
     [SerializeField] public Animator animator;
 }
-
 }

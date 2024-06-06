@@ -8,7 +8,6 @@ using UnityEngine;
 using Button = UnityEngine.UI.Button;
 
 namespace Core.Controller.Home {
-
 public class HomeController : Controller<HomeController, State<HomeController>> {
     [SerializeField] public Components components;
     protected override HomeController FSM => this;
@@ -17,9 +16,12 @@ public class HomeController : Controller<HomeController, State<HomeController>> 
     protected override void Before() {
         components.playButton.onClick.AddListener(() => TransitionWithEffectTo("GameScene"));
         components.levelText.text = GameDataV1.Instance.level.ToString(CultureInfo.InvariantCulture);
-        
-        // Preload all
-        AssetLoader.LoadAssetsByLabel("Prefabs");
+
+        AssetLoader.LoadAssetsByLabel("Prefabs",AfterPreload, this);
+    }
+
+    private static void AfterPreload(HomeController fsm) {
+        fsm.FadeIn();
     }
 }
 
@@ -28,5 +30,4 @@ public class Components {
     [SerializeField] public Button playButton;
     [SerializeField] public TextMeshProUGUI levelText;
 }
-
 }

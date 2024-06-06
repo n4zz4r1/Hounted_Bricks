@@ -1,7 +1,6 @@
 using UnityEngine;
 
 namespace Core.Utils {
-
 public static class LayerUtils {
     public static string Background { get; } = "Background";
     public static string Default { get; } = "Default";
@@ -52,5 +51,4 @@ public static class Layers {
     public static int Fireball { get; } = LayerMask.NameToLayer("Fireball");
     public static int Stage { get; } = LayerMask.NameToLayer("Stage");
 }
-
 }

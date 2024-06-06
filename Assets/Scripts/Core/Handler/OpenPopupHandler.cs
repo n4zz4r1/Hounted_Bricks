@@ -7,9 +7,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace Core.Handler {
-
 public class OpenPopupHandler : MonoBehaviour, IPointerClickHandler {
-
     [SerializeField] public bool autoClick = true;
     [SerializeField] public Popups popup = Popups.Settings;
     [SerializeField] public CardFSM cardFSMIfNeeded;
@@ -23,15 +21,12 @@ public class OpenPopupHandler : MonoBehaviour, IPointerClickHandler {
     }
 
     public void OpenPopup() {
-        
         var instance = Instantiate(AssetLoader.AsGameObject(popup), transform.root.transform);
-        if (popup == Popups.CardDetail) {
+        if (popup == Popups.CardDetail)
             instance.GetComponent<CardDetailPopup>()
                 .CardSetup(cardFSMIfNeeded == null ? cardIfNeeded : cardFSMIfNeeded.cardId, popupTabIfNeeded);
-        }
 
         instance.GetComponent<BasePopup>().Show(popup);
     }
 }
-
 }

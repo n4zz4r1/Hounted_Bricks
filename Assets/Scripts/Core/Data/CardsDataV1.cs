@@ -9,9 +9,50 @@ using Framework.Base;
 using UnityEngine;
 
 namespace Core.Data {
-
 [Serializable]
 public class CardsDataV1 : Data<CardsDataV1> {
+    public static Dictionary<Card, List<Card>> abilitiesByCharacter = new() {
+        {
+            Card.Card_005_Char_Lucas, new List<Card> {
+                Card.Card_016_Ab_Lucas_Move,
+                Card.Card_017_Ab_Lucas_SuperStone,
+                Card.Card_018_Ab_Lucas_SlingshotMater,
+                Card.Card_019_Ab_Lucas_SmallRock,
+                Card.Card_020_Ab_Lucas_Power,
+                Card.Card_021_Ab_Lucas_RockRain,
+                Card.Card_022_Ab_Lucas_SuperWall,
+                Card.Card_023_Ab_Lucas_LetsRock,
+                Card.Card_024_Ab_Lucas_Mine,
+                Card.Card_025_Ab_Lucas_GiveMeMoney
+            }
+        }, {
+            Card.Card_006_Char_Lisa, new List<Card> {
+                Card.Card_026_Ab_Lisa_Fire,
+                Card.Card_027_Ab_Lisa_FireByLucky,
+                Card.Card_028_Ab_Lisa_FireByRebounce,
+                Card.Card_029_Ab_Lisa_Healer,
+                Card.Card_030_Ab_Lisa_Firewall,
+                Card.Card_031_Ab_Lisa_FireCamp,
+                Card.Card_032_Ab_Lisa_FireStronger,
+                Card.Card_033_Ab_Lisa_FireSpread,
+                Card.Card_034_Ab_Lisa_Fireworks,
+                Card.Card_035_Ab_Lisa_SpecialFireBomb
+            }
+        }, {
+            Card.Card_007_Char_Bill, new List<Card> {
+                Card.Card_036_Ab_Bill_AcidBomb,
+                Card.Card_037_Ab_Bill_Poison,
+                Card.Card_038_Ab_Bill_PoisonByLucky,
+                Card.Card_039_Ab_Bill_PoisonByLuckyTwo,
+                Card.Card_040_Ab_Bill_Barrel,
+                Card.Card_041_Ab_Bill_Run,
+                Card.Card_042_Ab_Bill_UltraAim,
+                Card.Card_043_Ab_Bill_AcidRain,
+                Card.Card_044_Ab_Bill_SuperPoison,
+                Card.Card_045_Ab_Bill_Viruz
+            }
+        }
+    };
 
 
     public static int PlayerIndex(Card player) {
@@ -31,65 +72,22 @@ public class CardsDataV1 : Data<CardsDataV1> {
     public void RemoveAbilityCardFromIndex(Card player, int index) {
         var playerIndex = PlayerIndex(player);
 
-        if (index != 5) {
-            for (var i = playerIndex + index; i < playerIndex + 5; i++) 
+        if (index != 5)
+            for (var i = playerIndex + index; i < playerIndex + 5; i++)
                 savedAbilities[i] = savedAbilities[i + 1];
-        }
         savedAbilities[playerIndex + 5] = Card.NONE;
 
         Save();
     }
 
-    public Card GetPlayerAbilityAtPosition(Card player, int index) =>
-        savedAbilities[PlayerIndex(player) + index];
-    public Card GetPlayerAbilityAtPosition(CardSlotFSM cardSlotFSM) =>
-        savedAbilities[PlayerIndex(cardSlotFSM.PlayerCard) + cardSlotFSM.index];
-    
-    public static Dictionary<Card, List<Card>> abilitiesByCharacter = new() {
-        {
-            Card.Card_005_Char_Lucas, new List<Card> {
-                Card.Card_016_Ab_Lucas_Move,
-                Card.Card_017_Ab_Lucas_SuperStone,
-                Card.Card_018_Ab_Lucas_SlingshotMater,
-                Card.Card_019_Ab_Lucas_SmallRock,
-                Card.Card_020_Ab_Lucas_Power,
-                Card.Card_021_Ab_Lucas_RockRain,
-                Card.Card_022_Ab_Lucas_SuperWall,
-                Card.Card_023_Ab_Lucas_LetsRock,
-                Card.Card_024_Ab_Lucas_Mine,
-                Card.Card_025_Ab_Lucas_GiveMeMoney,
-            }
-        },
-        {
-            Card.Card_006_Char_Lisa, new List<Card> {
-                Card.Card_026_Ab_Lisa_Fire,
-                Card.Card_027_Ab_Lisa_FireByLucky,
-                Card.Card_028_Ab_Lisa_FireByRebounce,
-                Card.Card_029_Ab_Lisa_Healer,
-                Card.Card_030_Ab_Lisa_Firewall,
-                Card.Card_031_Ab_Lisa_FireCamp,
-                Card.Card_032_Ab_Lisa_FireStronger,
-                Card.Card_033_Ab_Lisa_FireSpread,
-                Card.Card_034_Ab_Lisa_Fireworks,
-                Card.Card_035_Ab_Lisa_SpecialFireBomb,
-            }
-        },
-        {
-            Card.Card_007_Char_Bill, new List<Card> {
-                Card.Card_036_Ab_Bill_AcidBomb,
-                Card.Card_037_Ab_Bill_Poison,
-                Card.Card_038_Ab_Bill_PoisonByLucky,
-                Card.Card_039_Ab_Bill_PoisonByLuckyTwo,
-                Card.Card_040_Ab_Bill_Barrel,
-                Card.Card_041_Ab_Bill_Run,
-                Card.Card_042_Ab_Bill_UltraAim,
-                Card.Card_043_Ab_Bill_AcidRain,
-                Card.Card_044_Ab_Bill_SuperPoison,
-                Card.Card_045_Ab_Bill_Viruz,
-            }
-        }
-    };
-    
+    public Card GetPlayerAbilityAtPosition(Card player, int index) {
+        return savedAbilities[PlayerIndex(player) + index];
+    }
+
+    public Card GetPlayerAbilityAtPosition(CardSlotFSM cardSlotFSM) {
+        return savedAbilities[PlayerIndex(cardSlotFSM.PlayerCard) + cardSlotFSM.index];
+    }
+
     public bool AddCard(Card card) {
         try {
             cards.Add(card);
@@ -205,6 +203,10 @@ public class CardsDataV1 : Data<CardsDataV1> {
         return success;
     }
 
+    public long AbilityUsed(Card ability) {
+        return savedAbilities.ToList().FindAll(c => c == ability).Count();
+    }
+
     #region Properties
 
     [SerializeField] public List<Card> cards = new() {
@@ -261,11 +263,10 @@ public class CardsDataV1 : Data<CardsDataV1> {
         Card.Card_043_Ab_Bill_AcidRain,
         // Card.Card_044_Ab_Bill_SuperPoison,
         // Card.Card_045_Ab_Bill_Viruz,
-        
+
         // Essencial
         Card.Card_E_Recycle,
-        Card.Card_E_NextWave,
-        
+        Card.Card_E_NextWave
     };
 
     [SerializeField] private List<CardLevel> cardsLevel = new();
@@ -280,9 +281,6 @@ public class CardsDataV1 : Data<CardsDataV1> {
     [SerializeField] private Card[] savedAbilities = Enumerable.Repeat(Card.NONE, 18).ToArray();
 
     #endregion
-
-    public long AbilityUsed(Card ability) 
-        => savedAbilities.ToList().FindAll(c => c == ability).Count();
 }
 
 [Serializable]
@@ -300,7 +298,6 @@ public class CardLevel {
 }
 
 
-
 [Serializable]
 public class CardRelated {
     public CardRelated(Card parent, Card child) {
@@ -311,5 +308,4 @@ public class CardRelated {
     public Card Parent { get; set; }
     public Card Child { get; set; }
 }
-
 }

@@ -6,7 +6,6 @@ using UnityEngine;
 using Object = UnityEngine.Object;
 
 namespace Game.StateMachine.Rocks {
-
 public abstract class States {
     public static readonly Moving Moving = new();
     public static readonly Collected Collected = new();
@@ -22,15 +21,15 @@ public class Moving : State<RockFSM> {
         fsm.lastPositionY = position.y;
 
         // for rocks different than arrow, check if is on fire
-        if (fsm.rockType != RockType.R03_ARROW) {
+        if (fsm.rock != Rock.Arrowed && fsm.rock != Rock.Axe) {
             // Bomb Fire Effect, GALisaFireBomb
             if (fsm.IsOnFire() || (fsm.components.GameController.AbilityFactor.FireBombEffect &&
-                                   fsm.rockType == RockType.R04_BOMB))
+                                   fsm.rock == Rock.Bomb))
                 fsm.SetOnFire();
 
             // Poison Fire Effect, Billy
             else if (fsm.IsOnPoison() || (fsm.components.GameController.AbilityFactor.AcidBombEffect &&
-                                          fsm.rockType == RockType.R04_BOMB))
+                                          fsm.rock == Rock.Bomb))
                 fsm.SetOnPoison();
         }
 
@@ -134,5 +133,4 @@ public class Destroyed : State<RockFSM> {
         Object.Destroy(fsm.gameObject);
     }
 }
-
 }

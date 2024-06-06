@@ -11,7 +11,6 @@ using UnityEngine.Audio;
 
 #pragma warning disable 1591
 namespace DG.Tweening {
-
 public static class DOTweenModuleAudio {
     #region Shortcuts
 
@@ -198,6 +197,5 @@ public static class DOTweenModuleAudio {
 
     #endregion
 }
-
 }
 #endif

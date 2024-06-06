@@ -5,9 +5,7 @@ using Game.Controller.Game;
 using UnityEngine;
 
 namespace Game.StateMachine.Abilities {
-
 public class BasicMoveAbility : Ability<GameController> {
-
     protected override void InitAction() {
         AssetLoader<AbilityPanel>.LoadAsGameObject(AbilityPanel.Move, GameController, OnPanelOpen);
     }
@@ -15,7 +13,7 @@ public class BasicMoveAbility : Ability<GameController> {
     private void OnPanelOpen(GameObject prefab, GameController gameController) {
         GameController.HideGameUI();
         Panel = Instantiate(prefab, GameController.transform);
-        
+
         // Set Clickable Area
         var clickableArea = Panel.GetComponentInChildren<ClickableButtonHandler>();
         clickableArea.onClickCallback = OnMove;
@@ -29,5 +27,4 @@ public class BasicMoveAbility : Ability<GameController> {
         AbilityDoneCallback?.Invoke();
     }
 }
-
 }

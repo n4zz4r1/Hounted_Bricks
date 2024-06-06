@@ -9,7 +9,6 @@ using UnityEngine;
 using UnityEngine.UI;
 
 namespace Game.Popup.GameMenu {
-
 public class GameMenuFSM : StateMachine<GameMenuFSM, State<GameMenuFSM>> {
     [SerializeField] public GameMenuComponents components;
     [SerializeField] public StageFSM stageFSM;
@@ -63,5 +62,4 @@ public class GameMenuComponents {
     [SerializeField] public GameObject menuBox;
     [SerializeField] public Button buttonNextLevel;
 }
-
 }

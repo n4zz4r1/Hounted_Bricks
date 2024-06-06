@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEngine.UI;
 
 namespace Core.StateMachine.Menu {
-
 public abstract class States {
     public static readonly Started Started = new();
 }
@@ -55,21 +54,22 @@ public class Started : State<MenuFSM> {
             currentAnchor += widthFactor;
             var newAnchorMax = new Vector2(currentAnchor, rectTransform.anchorMax.y);
 
-            DOTween.To(() => rectTransform.anchorMin, x => rectTransform.anchorMin = x, newAnchorMin, effectDurationTime)
+            DOTween.To(() => rectTransform.anchorMin, x => rectTransform.anchorMin = x, newAnchorMin,
+                    effectDurationTime)
                 .SetEase(Ease.InOutQuad);
-            DOTween.To(() => rectTransform.anchorMax, x => rectTransform.anchorMax = x, newAnchorMax, effectDurationTime)
+            DOTween.To(() => rectTransform.anchorMax, x => rectTransform.anchorMax = x, newAnchorMax,
+                    effectDurationTime)
                 .SetEase(Ease.InOutQuad);
 
             var isSelected = fsm.PanelByIndex[fsm.CurrentPanelIndex] == fsm.PanelByIndex[i];
-            
-            rectTransform.GetComponent<Image>().DOColor(isSelected ? Colors.PRIMARY : Colors.DARK_WOOD, effectDurationTime);
+
+            rectTransform.GetComponent<Image>()
+                .DOColor(isSelected ? Colors.PRIMARY : Colors.DARK_WOOD, effectDurationTime);
             fsm.icons[i].DOLocalMoveY(isSelected ? 80f : 60f, effectDurationTime, true);
             // fsm.labels[i].DOFade(isSelected ? 1f : 5f, effectDurationTime);
             fsm.labels[i].color = isSelected ? Colors.DARK_WOOD : Colors.PRIMARY;
             fsm.labels[i].fontSizeMax = isSelected ? 50f : 20f;
-
         }
     }
 }
-
 }

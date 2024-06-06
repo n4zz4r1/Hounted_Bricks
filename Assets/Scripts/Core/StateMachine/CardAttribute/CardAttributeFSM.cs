@@ -3,15 +3,12 @@ using System.Globalization;
 using Core.Sprites;
 using Core.StateMachine.Cards;
 using Core.Utils;
-using Core.Utils.Constants;
 using Framework.Base;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Color = UnityEngine.Color;
 
 namespace Core.StateMachine.CardAttribute {
-
 public class CardAttributeFSM : StateMachine<CardAttributeFSM, State<CardAttributeFSM>> {
     [SerializeField] public CardAttributeType attributeType;
     [SerializeField] public Components components;
@@ -39,7 +36,8 @@ public class CardAttributeFSM : StateMachine<CardAttributeFSM, State<CardAttribu
                 components.descriptionText.gameObject.SetActive(false);
                 components.currentText.gameObject.SetActive(false);
                 // components.currentText.text = RarityUtils.From(_cardFSM.Rarity).Label;
-            } else {
+            }
+            else {
                 var rarity = _cardFSM.Rarity + 1;
                 components.descriptionText.gameObject.SetActive(true);
                 components.currentText.gameObject.SetActive(true);
@@ -63,5 +61,4 @@ public class Components {
     [SerializeField] public TextMeshProUGUI nextValueText;
     [SerializeField] public TextMeshProUGUI descriptionText;
 }
-
 }

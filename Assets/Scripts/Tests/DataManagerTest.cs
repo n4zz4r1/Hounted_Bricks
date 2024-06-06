@@ -17,7 +17,7 @@ namespace Tests
         [Test]
         public void TestConcurrentAccessToResourceData()
         {
-            DataManager.UnitTest = true;
+            DataManager.unitTest = true;
             
             const int numThreads = 10;
             const int numIterations = 200;
@@ -54,7 +54,7 @@ namespace Tests
         [Test]
         public void SpendResourcesFailTest()
         {
-            DataManager.UnitTest = true;
+            DataManager.unitTest = true;
             ResourcesV1.Instance.SetResource(ResourceType.Coin, 0);
             ResourcesV1.Instance.AddResources(ResourceType.Coin, 120);
             
@@ -67,7 +67,7 @@ namespace Tests
         [Test]
         public void SpendResourcesSuccessTest()
         {
-            DataManager.UnitTest = true;
+            DataManager.unitTest = true;
             ResourcesV1.Instance.SetResource(ResourceType.Coin, 0);
             ResourcesV1.Instance.AddResources(ResourceType.Coin, 120);
             

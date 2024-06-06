@@ -3,7 +3,6 @@ using UnityEngine;
 using UnityEngine.UI;
 
 namespace Core.Controller.AboutUs {
-
 public class AboutUsController : Controller<AboutUsController, State<AboutUsController>> {
     [SerializeField] public Button closeButton;
     protected override AboutUsController FSM => this;
@@ -11,6 +10,7 @@ public class AboutUsController : Controller<AboutUsController, State<AboutUsCont
 
     protected override void Before() {
         closeButton.onClick.AddListener(Close);
+        FadeIn();
     }
 
     private void Close() {
@@ -18,5 +18,4 @@ public class AboutUsController : Controller<AboutUsController, State<AboutUsCont
         TransitionWithEffectTo(GameScenes.PreloadScene.ToString());
     }
 }
-
 }

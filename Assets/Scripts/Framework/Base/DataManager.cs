@@ -3,12 +3,11 @@ using System.IO;
 using UnityEngine;
 
 namespace Framework.Base {
-
 public static class DataManager {
     private static readonly object LockObject = new();
     private static readonly string SaveFolderPath = Path.Combine(Application.persistentDataPath, "saves");
 
-    public static bool UnitTest = false;
+    public static bool unitTest = false;
 
     public static T Load<T>() where T : new() {
         lock (LockObject) {
@@ -31,7 +30,7 @@ public static class DataManager {
 
     public static void Save<T>(T instance) {
         lock (LockObject) {
-            if (UnitTest) return;
+            if (unitTest) return;
 
             try {
                 if (!Directory.Exists(SaveFolderPath)) Directory.CreateDirectory(SaveFolderPath);
@@ -81,5 +80,4 @@ public abstract class Data<T> where T : Data<T>, new() {
         });
     }
 }
-
 }

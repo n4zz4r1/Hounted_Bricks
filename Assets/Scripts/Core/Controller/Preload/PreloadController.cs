@@ -3,7 +3,6 @@ using UnityEngine;
 using UnityEngine.UI;
 
 namespace Core.Controller.Preload {
-
 /**
  * Refactor: ok
  */
@@ -13,5 +12,4 @@ public class PreloadController : Controller<PreloadController, State<PreloadCont
     protected override PreloadController FSM => this;
     protected override State<PreloadController> GetInitialState => States.Created;
 }
-
 }

@@ -11,7 +11,6 @@ using UnityEngine.Scripting;
 
 #pragma warning disable 1591
 namespace DG.Tweening {
-
 /// <summary>
 ///     Utility functions that deal with available Modules.
 ///     Modules defines:
@@ -156,5 +155,4 @@ public static class DOTweenModuleUtils {
         #endregion
     }
 }
-
 }

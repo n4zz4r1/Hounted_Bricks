@@ -1,16 +1,12 @@
-﻿using Core.Handler;
-using Core.StateMachine.Abilities;
-using Framework.Base;
+﻿using Core.StateMachine.Abilities;
+using Core.Utils.Constants;
 using Game.Controller.Game;
-using UnityEngine;
 
 namespace Game.StateMachine.Abilities {
-
 public class NextWaveAbility : Ability<GameController> {
-
-    protected override void InitAction() =>
+    protected override void InitAction() {
+        GameController.GetGameResource(GameResource.Drop).Increase(1);
         GameController.State.NextWave(GameController);
-    
+    }
 }
-
 }

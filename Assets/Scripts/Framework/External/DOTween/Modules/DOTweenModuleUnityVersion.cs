@@ -12,7 +12,6 @@ using UnityEngine;
 
 #pragma warning disable 1591
 namespace DG.Tweening {
-
 /// <summary>
 ///     Shortcuts/functions that are not strictly related to specific Modules
 ///     but are available only on some Unity versions
@@ -410,5 +409,4 @@ public static class DOTweenCYInstruction {
         public override bool keepWaiting => t.active && !t.playedOnce;
     }
 }
-
 }

@@ -7,7 +7,6 @@ using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 namespace Core.Controller.Audio {
-
 public class AudioController : PersistentStateMachine<AudioController, MusicState> {
     [SerializeField] public List<AudioSource> musicSource;
     [SerializeField] public AudioSource fxSource;
@@ -19,7 +18,7 @@ public class AudioController : PersistentStateMachine<AudioController, MusicStat
     protected override AudioController FSM => this;
     protected override MusicState GetInitialState => States.Started;
 
-    public override void BeforeChangeScene() {
+    protected override void BeforeChangeScene() {
         State.ChangeMusic(FSM, SceneManager.GetActiveScene().name);
     }
 
@@ -35,6 +34,7 @@ public class AudioController : PersistentStateMachine<AudioController, MusicStat
         var instance = (AudioController)Instance;
         instance.fxSource.PlayOneShot(clips[Random.Range(0, clips.Count)]);
     }
+    
 
     public void ChangeVolumeInternal(AudioGroupType groupType, float volume) {
         audioMixer.SetFloat(groupType.ToString(), volume);
@@ -47,23 +47,18 @@ public class AudioController : PersistentStateMachine<AudioController, MusicStat
 
     public static void PlayFX(CommonFX commonFX) {
         var instance = (AudioController)Instance;
-        switch (commonFX) {
-            case CommonFX.CLICK_BUTTON_FX:
-                PlayFXRandom(instance.audioDefaultClips.clickButtonFX);
-                break;
-            default:
-                throw new ArgumentOutOfRangeException(nameof(commonFX), commonFX, null);
-        }
+        PlayFX(instance.audioDefaultClips.clickButtonFX[(int) commonFX]);
     }
 }
 
 public enum CommonFX {
-    CLICK_BUTTON_FX
+    ClickButtonFX = 0,
+    ThrownHigh = 1,
+    ImpactMetal = 2,
 }
 
 [Serializable]
 public class AudioDefaultClips {
     [SerializeField] public List<AudioClip> clickButtonFX;
 }
-
 }

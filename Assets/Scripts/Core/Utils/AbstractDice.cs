@@ -4,7 +4,6 @@ using System;
 using System.Linq;
 
 namespace Core.Utils {
-
 [Serializable]
 public abstract class AbstractDice<T1, T2> where T1 : AbstractDice<T1, T2>, new() {
     private static readonly Lazy<T1> LazyInstance = new(() => new T1());
@@ -46,5 +45,4 @@ public class Factor<T> {
     public float Percent { get; }
     public T Value { get; }
 }
-
 }

@@ -3,7 +3,6 @@ using Game.StateMachine.Rocks;
 using UnityEngine;
 
 namespace Game.Handler {
-
 public class RockColliderHandler : MonoBehaviour {
     [SerializeField] public RockFSM rockFSM;
 
@@ -20,5 +19,4 @@ public class RockColliderHandler : MonoBehaviour {
             rockFSM.HitMonster(other.gameObject);
     }
 }
-
 }

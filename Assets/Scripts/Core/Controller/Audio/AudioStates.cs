@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace Core.Controller.Audio {
-
 public abstract class MusicState : State<AudioController> {
     public virtual void ChangeMusic(AudioController fsm, string scene, bool forceChange = false) { }
 }
@@ -70,5 +69,4 @@ public enum AudioGroupType {
     MUSIC,
     FX
 }
-
 }

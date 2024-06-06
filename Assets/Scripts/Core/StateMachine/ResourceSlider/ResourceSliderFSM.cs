@@ -1,10 +1,8 @@
 using System;
-using System.Threading.Tasks;
 using Core.Data;
 using Core.Sprites;
 using Core.StateMachine.Cards;
 using Core.Utils;
-using Core.Utils.Constants;
 using DG.Tweening;
 using Framework.Base;
 using TMPro;
@@ -12,7 +10,6 @@ using UnityEngine;
 using UnityEngine.UI;
 
 namespace Core.StateMachine.ResourceSlider {
-
 public class ResourceSliderFSM : StateMachine<ResourceSliderFSM, State<ResourceSliderFSM>> {
     [SerializeField] public ResourceType resourceType = ResourceType.None;
     [SerializeField] public Components components;
@@ -61,5 +58,4 @@ public class Components {
     [SerializeField] public Image resourceImage;
     [SerializeField] public TextMeshProUGUI requiredResourcesCounter;
 }
-
 }

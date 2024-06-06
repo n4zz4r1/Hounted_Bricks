@@ -3,7 +3,6 @@ using TMPro;
 using UnityEngine;
 
 namespace Core.Utils {
-
 public class FPSCounter : MonoBehaviour {
     public TextMeshProUGUI fpsDisplay; // Assign a UI Text element in the Inspector
     public TextMeshProUGUI fpsMinDisplay; // Assign a UI Text element in the Inspector
@@ -28,5 +27,4 @@ public class FPSCounter : MonoBehaviour {
             fpsMinDisplay.text = Mathf.Ceil(_minFPS).ToString(CultureInfo.InvariantCulture);
     }
 }
-
 }

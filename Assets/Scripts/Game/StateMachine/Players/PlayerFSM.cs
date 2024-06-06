@@ -8,7 +8,6 @@ using Game.Handler;
 using UnityEngine;
 
 namespace Game.StateMachine.Players {
-
 public class PlayerFSM : StateMachine<PlayerFSM, State<PlayerFSM>> {
     public static readonly Vector2 PlayerStartPosition = new(3, -0.6f);
     private static readonly Quaternion PlayerStartRotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
@@ -17,17 +16,20 @@ public class PlayerFSM : StateMachine<PlayerFSM, State<PlayerFSM>> {
     [SerializeField] public float movementSpeed = 6.0f;
     [SerializeField] public PlayerComponents components;
 
-    internal float AimFactor { get; set; } = 1f;
-    
     #region Sounds
+
     [SerializeField] public List<AudioClip> throwRockFX;
+
     #endregion
 
     internal GameController gameController;
 
     internal Vector3 nextMove;
 
+    internal float AimFactor { get; set; } = 1f;
+
     protected override PlayerFSM FSM => this;
+
     protected override State<PlayerFSM> GetInitialState => States.Created;
     //
     // public static PlayerFSM Build(string prefab, Transform parent) {
@@ -62,5 +64,4 @@ public class PlayerComponents {
     [SerializeField] public Animator animator;
     [SerializeField] public AimHandler aimLineHandler;
 }
-
 }

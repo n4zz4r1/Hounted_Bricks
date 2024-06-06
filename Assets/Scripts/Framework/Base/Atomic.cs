@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Threading;
 
 namespace Framework.Base {
-
 public class AtomicInt {
     private int _value;
 
@@ -88,5 +87,4 @@ public class AtomicList<T> {
         }
     }
 }
-
 }

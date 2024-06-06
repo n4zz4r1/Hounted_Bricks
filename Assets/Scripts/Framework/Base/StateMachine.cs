@@ -4,15 +4,15 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Object = UnityEngine.Object;
 
 namespace Framework.Base {
-
-public abstract class StateMachine<T, U> : MonoBehaviour where T : MonoBehaviour where U : State<T> {
+public abstract class StateMachine<T, TU> : MonoBehaviour where T : MonoBehaviour where TU : State<T> {
     // ReSharper disable once InconsistentNaming
-    public U State;
+    public TU State;
+    private bool _isInitialized;
     protected abstract T FSM { get; }
-    protected abstract U GetInitialState { get; }
-    private bool _isInitialized; 
+    protected abstract TU GetInitialState { get; }
 
     public async void Awake() {
         // ReSharper disable once MethodHasAsyncOverload
@@ -23,10 +23,7 @@ public abstract class StateMachine<T, U> : MonoBehaviour where T : MonoBehaviour
         _isInitialized = true;
     }
 
-    public void Sync() => SyncDataBase();
-
-    private IEnumerator Start()
-    {
+    private IEnumerator Start() {
         while (!_isInitialized) yield return null;
 
         if (GetInitialState == State)
@@ -34,8 +31,9 @@ public abstract class StateMachine<T, U> : MonoBehaviour where T : MonoBehaviour
     }
 
     public void Update() {
-        if (_isInitialized)
-           State?.Update(FSM);
+        if (_isInitialized) {
+            State?.Update(FSM);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
@@ -48,6 +46,10 @@ public abstract class StateMachine<T, U> : MonoBehaviour where T : MonoBehaviour
             State.OnCollisionExit(FSM, collision);
     }
 
+    public void Sync() {
+        SyncDataBase();
+    }
+
     protected virtual Task BeforeAsync() {
         return Task.CompletedTask;
     }
@@ -56,11 +58,11 @@ public abstract class StateMachine<T, U> : MonoBehaviour where T : MonoBehaviour
         transform.root.BroadcastMessage("SyncData", @class);
     }
 
-    public void SyncAllData<Tu, Tz>(TagType tagType) where Tu : StateMachine<Tu, Tz> where Tz : State<Tu> {
+    public void SyncAllData<TY, TB>(TagType tagType) where TY : StateMachine<TY, TB> where TB : State<TY> {
         var objectsWithTag = GameObject.FindGameObjectsWithTag(tagType.ToString());
         if (objectsWithTag.Length == 0) return;
         foreach (var obj in objectsWithTag) {
-            var stateMachine = obj.GetComponent<Tu>();
+            var stateMachine = obj.GetComponent<TY>();
             if (stateMachine == null) continue;
 
             stateMachine.State?.SyncData(stateMachine);
@@ -68,7 +70,7 @@ public abstract class StateMachine<T, U> : MonoBehaviour where T : MonoBehaviour
         }
     }
 
-    public void ChangeState(U newState) {
+    public void ChangeState(TU newState) {
         if (State == newState) return;
         State?.Exit(FSM);
         State = newState;
@@ -77,15 +79,6 @@ public abstract class StateMachine<T, U> : MonoBehaviour where T : MonoBehaviour
     }
 
     public virtual void ChangeStateBase() { }
-
-    //
-    public void SelfDestroy() {
-        Destroy(gameObject);
-    }
-
-    // public virtual void DestroyInstance(GameObject obj) {
-    //     DestroyImmediate(obj, true);
-    // }
 
     public virtual void CreateInstance(GameObject obj) {
         _ = Instantiate(obj);
@@ -97,16 +90,14 @@ public abstract class StateMachine<T, U> : MonoBehaviour where T : MonoBehaviour
 
     protected virtual void Before() { }
 
-    protected virtual void Setup() { }
-    //
-    // // Propagate methods
-    // protected void IncreaseLevel() {
-    //     State.IncreaseLevel(FSM);
-    // }
-
     public void LoadScene(string scene) {
         SceneManager.LoadScene(scene);
     }
+
+    public void DestroyObject(Object o) {
+        Destroy(o);
+    }
+    
 
     // Propagate methods
     protected void OpenPopup() {
@@ -124,12 +115,12 @@ public abstract class StateMachine<T, U> : MonoBehaviour where T : MonoBehaviour
     }
 }
 
-public abstract class PersistentStateMachine<T, U> : StateMachine<T, U> where T : MonoBehaviour where U : State<T> {
-    public static PersistentStateMachine<T, U> Instance { get; set; }
+public abstract class PersistentStateMachine<T, TU> : StateMachine<T, TU> where T : MonoBehaviour where TU : State<T> {
+    protected static PersistentStateMachine<T, TU> Instance { get; private set; }
 
     public new void Awake() {
         if (ScenesToDestroy().Exists(s => s.ToString() == SceneManager.GetActiveScene().name)) {
-            // Aways destroy if scene should be
+            // Always destroy if scene should be
             Destroy(gameObject); // Destroy any duplicate instance
             if (Instance != null) Destroy(Instance.gameObject);
         }
@@ -146,11 +137,11 @@ public abstract class PersistentStateMachine<T, U> : StateMachine<T, U> where T 
         }
     }
 
-    public virtual List<GameScenes> ScenesToDestroy() {
+    protected virtual List<GameScenes> ScenesToDestroy() {
         return new List<GameScenes>();
     }
 
-    public virtual void BeforeChangeScene() { }
+    protected virtual void BeforeChangeScene() { }
 
     public override void ChangeStateBase() {
         // Additional behaviors on state change, if needed

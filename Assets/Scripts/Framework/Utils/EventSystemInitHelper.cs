@@ -2,7 +2,6 @@
 using UnityEngine.EventSystems;
 
 namespace Framework.Utils {
-
 public class EventSystemInitHelper : MonoBehaviour {
     private void Awake() {
         // Find all EventSystem components in the scene
@@ -26,5 +25,4 @@ public class EventSystemInitHelper : MonoBehaviour {
         // If there's exactly one, do nothing
     }
 }
-
 }

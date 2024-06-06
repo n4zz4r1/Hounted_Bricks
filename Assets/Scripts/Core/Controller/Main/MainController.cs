@@ -3,7 +3,6 @@ using Framework.Base;
 using UnityEngine;
 
 namespace Core.Controller.Main {
-
 public class MainController : StateMachine<MainController, State<MainController>> {
     [SerializeField] public Components components;
     protected override MainController FSM => this;
@@ -11,6 +10,7 @@ public class MainController : StateMachine<MainController, State<MainController>
 }
 
 [Serializable]
-public class Components { }
-
+public class Components {
+    
+}
 }

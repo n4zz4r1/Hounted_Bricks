@@ -3,7 +3,6 @@ using UnityEngine;
 using Application = UnityEngine.Device.Application;
 
 namespace Core.Controller.Main {
-
 public abstract class States {
     public static readonly Created Created = new();
 }
@@ -15,5 +14,4 @@ public class Created : State<MainController> {
         Debug.Log("Target Frame Rate: " + Application.targetFrameRate);
     }
 }
-
 }

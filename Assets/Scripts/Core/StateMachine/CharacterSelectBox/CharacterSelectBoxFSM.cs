@@ -8,7 +8,6 @@ using UnityEngine.UI;
 using Image = UnityEngine.UI.Image;
 
 namespace Core.StateMachine.CharacterSelectBox {
-
 public class CharacterSelectBoxFSM : StateMachine<CharacterSelectBoxFSM, State<CharacterSelectBoxFSM>> {
     [SerializeField] public Components components;
     [SerializeField] public Card character = Card.Card_005_Char_Lucas;
@@ -16,7 +15,7 @@ public class CharacterSelectBoxFSM : StateMachine<CharacterSelectBoxFSM, State<C
     protected override CharacterSelectBoxFSM FSM => this;
     protected override State<CharacterSelectBoxFSM> GetInitialState => States.Preload;
 
-    private int MaxHeart { get; set; } = 3;
+    private int MaxHeart { get; } = 3;
     // public DateTime LastDateTime { get; set; } = new ();
 
     protected override void SyncDataBase() {
@@ -79,5 +78,4 @@ public class Components {
     [SerializeField] public GameObject notFoundBox;
     [SerializeField] public Button enabledButton;
 }
-
 }

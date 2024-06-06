@@ -1,7 +1,4 @@
-using System;
 using Core.Data;
-using Core.StateMachine.Menu;
-using Core.Utils;
 using Core.Utils.Constants;
 using Framework.Base;
 using UnityEngine;
@@ -9,7 +6,6 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace Core.Popup.SettingsPopup {
-
 public class SettingsPopupFSM : StateMachine<SettingsPopupFSM, State<SettingsPopupFSM>> {
     [SerializeField] public Button aboutButton;
     [SerializeField] public Button langEnglishButton;
@@ -97,5 +93,4 @@ public class SettingsPopupFSM : StateMachine<SettingsPopupFSM, State<SettingsPop
 
     #endregion
 }
-
 }

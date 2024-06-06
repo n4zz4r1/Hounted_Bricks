@@ -1,22 +1,18 @@
 using System;
 using System.Collections.Generic;
-using Core.Data;
-using Core.StateMachine.Cards;
 using Core.Utils.Constants;
 using Framework.Base;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Core.StateMachine.CharacterCards {
-
 public class CharacterCardFSM : StateMachine<CharacterCardFSM, State<CharacterCardFSM>> {
+    [SerializeField] public Card card;
+    [SerializeField] public Components components;
 
     protected override CharacterCardFSM FSM => this;
     protected override State<CharacterCardFSM> GetInitialState => States.Preload;
 
-    [SerializeField] public Card card;
-    [SerializeField] public Components components;
-    
     protected override void Before() {
         components.buttonFoundBox.onClick.AddListener(() => State.Select(FSM));
         components.buttonAbility.onClick.AddListener(OpenPopup);
@@ -41,5 +37,4 @@ public class Components {
     [SerializeField] public List<Image> starsStamina;
     [SerializeField] public List<Image> starsLife;
 }
-
 }

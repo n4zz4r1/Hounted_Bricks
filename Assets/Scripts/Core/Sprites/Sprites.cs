@@ -1,7 +1,6 @@
 using System;
 
 namespace Core.Sprites {
-    
 [Serializable]
 public enum CardAttributeType {
     Power = 0,
@@ -14,7 +13,7 @@ public enum CardAttributeType {
     Rarity = 7,
     GemSlot = 8,
     Range = 9,
-    Quantity = 10,
+    Quantity = 10
 }
 
 [Serializable]
@@ -31,5 +30,4 @@ public enum ResourceType {
     Money = 9,
     MasterKey = 10
 }
-
 }

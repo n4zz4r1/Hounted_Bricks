@@ -6,7 +6,6 @@ using UnityEngine;
 using UnityEngine.Serialization;
 
 namespace Core.StateMachine.Cards {
-
 [Serializable]
 public class CardAbilityComponent {
     public AbilityType abilityType = AbilityType.NONE;
@@ -15,7 +14,9 @@ public class CardAbilityComponent {
 
 [Serializable]
 public class CardAttributesComponent {
-    [FormerlySerializedAs("attribute")] [SerializeField] public Sprites.CardAttributeType attributeType;
+    [FormerlySerializedAs("attribute")] [SerializeField]
+    public CardAttributeType attributeType;
+
     [SerializeField] public StringStringDictionary updates;
 
     // Concat all values and bring current level value
@@ -39,7 +40,7 @@ public enum CardType {
     Character = 2,
     Special = 3,
     Ability = 4,
-    BasicAbility = 5,
+    BasicAbility = 5
 }
 
 public abstract class CardTypeUtils {
@@ -70,5 +71,4 @@ public enum AbilityType {
     CONSUME_ONCE,
     IMPROVEMENT
 }
-
 }

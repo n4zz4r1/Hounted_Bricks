@@ -3,7 +3,6 @@ using UnityEngine;
 // using UnityEngine.AdaptivePerformance;
 
 namespace Framework.Utils {
-
 public class AdaptivePerformanceCheck : MonoBehaviour {
     // private void Start()
     // {
@@ -43,5 +42,4 @@ public class AdaptivePerformanceCheck : MonoBehaviour {
     //     }
     // }
 }
-
 }

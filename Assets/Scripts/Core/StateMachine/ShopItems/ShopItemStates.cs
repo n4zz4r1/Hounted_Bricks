@@ -1,12 +1,10 @@
 using Core.Data;
 using Core.Sprites;
 using Core.StateMachine.Resource;
-using Core.Utils;
 using Core.Utils.Constants;
 using Framework.Base;
 
 namespace Core.StateMachine.ShopItems {
-
 public abstract class States {
     public static readonly Preload Preload = new();
     public static readonly Available Available = new();
@@ -72,5 +70,4 @@ public class NoFunds : State<ShopItemFSM> {
         fsm.components.effectHandler.MoveUp();
     }
 }
-
 }

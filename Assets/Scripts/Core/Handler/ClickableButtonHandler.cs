@@ -3,7 +3,6 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
 namespace Core.Handler {
-
 public class ClickableButtonHandler : MonoBehaviour, IPointerClickHandler {
     // Define an action to hold the callback
     public UnityAction<Vector2> onClickCallback;
@@ -19,5 +18,4 @@ public class ClickableButtonHandler : MonoBehaviour, IPointerClickHandler {
         onClickCallback?.Invoke(worldPosition);
     }
 }
-
 }

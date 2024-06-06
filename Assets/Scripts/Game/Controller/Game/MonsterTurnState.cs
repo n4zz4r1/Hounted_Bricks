@@ -2,7 +2,6 @@
 using Game.Utils;
 
 namespace Game.Controller.Game {
-
 public class MonstersTurn : GameState {
     // TODO
     public override void Enter(GameController fsm) {
@@ -36,20 +35,20 @@ public class MonstersTurn : GameState {
         // Debug.Log("Consumed wave " + amount + " moved "  + FSM.MonsterMoved() + " with monsters in game " + FSM.monstersInGame.Count);
 
         // Victory if no monsters alive
-        if (fsm.MonstersInGame.Count <= 0 && fsm.PlayerLife.Value > 0)
-            fsm.ChangeState(States.Victory);
+        // if (fsm.MonstersInGame.Count <= 0 && fsm.PlayerLife.Value > 0)
+        //     fsm.ChangeState(States.Victory);
 
         // When all moved
-        else if (fsm.PlayerLife.Value <= 0)
-            fsm.ChangeState(States.Defeat);
+        // else if (fsm.PlayerLife.Value <= 0)
+        //     fsm.ChangeState(States.Defeat);
 
 
         // if (amount <= 0) {
-            // Debug.Log("changing to player turn");
+        // Debug.Log("changing to player turn");
 
-            // fsm.components.nextWaveActionButton.Counter.Value = 0;
-            // fsm.components.nextWaveActionButton.components.counter.text = "0";
-            fsm.ChangeState(States.PlayerTurn);
+        // fsm.components.nextWaveActionButton.Counter.Value = 0;
+        // fsm.components.nextWaveActionButton.components.counter.text = "0";
+        fsm.ChangeState(States.PlayerTurn);
         // }
         // else {
         //     // Debug.Log("keep moving");
@@ -62,7 +61,6 @@ public class MonstersTurn : GameState {
     public override void Exit(GameController fsm) {
         // reset player factors
         fsm.PlayerInGame.AimFactor = 1f;
-
     }
 
     // public override void NextWave(GameController FSM)
@@ -71,5 +69,4 @@ public class MonstersTurn : GameState {
     //     // FSM.components.nextWaveActionButton.components.counter.text = newWave.ToString();
     // }
 }
-
 }

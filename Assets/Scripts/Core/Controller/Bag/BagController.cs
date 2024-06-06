@@ -15,7 +15,6 @@ using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Core.Controller.Bag {
-
 public class BagController : StateMachine<BagController, State<BagController>> {
     [FormerlySerializedAs("Components")] [SerializeField]
     public Components components;
@@ -70,5 +69,4 @@ public class Components {
     [SerializeField] public Button shuffleButton;
     [SerializeField] public GameObject dragArea;
 }
-
 }

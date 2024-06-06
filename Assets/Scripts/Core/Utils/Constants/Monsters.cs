@@ -1,6 +1,14 @@
+using System;
 using System.Diagnostics.CodeAnalysis;
 
 namespace Core.Utils.Constants {
+
+[Serializable]
+public enum RockPile {
+    None,
+    Basic,
+    GoldMine,
+}
 
 public class Monsters {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
@@ -60,5 +68,4 @@ public class Monsters {
         B07_Crypt
     }
 }
-
 }

@@ -1,11 +1,9 @@
 using System;
-using Core.Utils;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
 
 namespace Core.Popup {
-
 public class BasePopup : MonoBehaviour {
     [SerializeField] public TextMeshProUGUI title;
     [SerializeField] public RectTransform rectTransform;
@@ -18,11 +16,10 @@ public class BasePopup : MonoBehaviour {
         popupCanvas.worldCamera = Camera.main;
         popupCanvas.sortingLayerID = 4;
         popupCanvas.sortingLayerName = "Above All";
-        if (popup == Popups.Deck) {
+        if (popup == Popups.Deck)
             popupCanvas.sortingOrder = 10;
-        } else {
+        else
             popupCanvas.sortingOrder = 100;
-        }
     }
 
     public void ClosePopup() {
@@ -36,5 +33,4 @@ public enum Popups {
     CardDetail,
     Deck
 }
-
 }

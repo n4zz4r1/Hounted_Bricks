@@ -3,7 +3,6 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace Game.Handler {
-
 public class GameTouchHandler : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerExitHandler,
     IPointerEnterHandler {
     [SerializeField] public GameController gameController;
@@ -39,5 +38,4 @@ public class GameTouchHandler : MonoBehaviour, IPointerDownHandler, IPointerUpHa
         return gameController.State == States.PlayerTurn;
     }
 }
-
 }

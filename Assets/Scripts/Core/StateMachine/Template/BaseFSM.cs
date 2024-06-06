@@ -3,7 +3,6 @@ using Framework.Base;
 using UnityEngine;
 
 namespace Core.StateMachine.Template {
-
 /**
  * Refactor: ok
  */
@@ -16,5 +15,4 @@ public class TemplateFSM : StateMachine<TemplateFSM, State<TemplateFSM>> {
 
 [Serializable]
 public class Components { }
-
 }

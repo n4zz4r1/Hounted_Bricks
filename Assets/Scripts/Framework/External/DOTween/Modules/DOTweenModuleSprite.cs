@@ -8,7 +8,6 @@ using UnityEngine;
 
 #pragma warning disable 1591
 namespace DG.Tweening {
-
 public static class DOTweenModuleSprite {
     #region Shortcuts
 
@@ -99,6 +98,5 @@ public static class DOTweenModuleSprite {
 
     #endregion
 }
-
 }
 #endif

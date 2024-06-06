@@ -5,23 +5,20 @@ using Game.StateMachine.Monster;
 using UnityEngine;
 
 namespace Game.Utils {
-
 public class MonsterGrid {
-    private MonsterFSM[][] _monsterGrid;
-
     private readonly Dictionary<int, Dictionary<int, MonsterFSM>> _monsterGridDictionary = new();
 
     private readonly int _nextRowWithMonster;
 
     // private int _wavesTotal;
     private readonly int _wavesLeft;
+    private MonsterFSM[][] _monsterGrid;
 
     public MonsterGrid(AtomicList<MonsterFSM> monsterFSMListParam, AtomicList<MonsterFSM> rockPileList) {
-
         var monsterFSMList = new List<MonsterFSM>();
         monsterFSMList.AddRange(monsterFSMListParam.ToList());
         monsterFSMList.AddRange(rockPileList.ToList());
-        
+
         if (monsterFSMList.Count == 0)
             return;
 
@@ -43,14 +40,15 @@ public class MonsterGrid {
             var position = monsterFSM.transform.position;
             if (monsterFSM.monsterType != MonsterType.BOSS) {
                 _monsterGridDictionary[(int)position.y][(int)position.x] = monsterFSM;
-            } else {
+            }
+            else {
                 _monsterGridDictionary[(int)position.y][(int)position.x] = monsterFSM;
-                _monsterGridDictionary[(int)position.y][(int)position.x+1] = monsterFSM;
-                _monsterGridDictionary[(int)position.y+1][(int)position.x] = monsterFSM;
-                _monsterGridDictionary[(int)position.y+1][(int)position.x+1] = monsterFSM;
+                _monsterGridDictionary[(int)position.y][(int)position.x + 1] = monsterFSM;
+                _monsterGridDictionary[(int)position.y + 1][(int)position.x] = monsterFSM;
+                _monsterGridDictionary[(int)position.y + 1][(int)position.x + 1] = monsterFSM;
             }
         }
-        
+
         // Print grid 
     }
 
@@ -58,26 +56,35 @@ public class MonsterGrid {
 
     public bool HasMonsterInFront(MonsterFSM monsterFSM) {
         var position = monsterFSM.transform.position;
-        return _monsterGridDictionary.ContainsKey((int)position.y - 1) 
+        return _monsterGridDictionary.ContainsKey((int)position.y - 1)
                && _monsterGridDictionary?[(int)position.y - 1]?[(int)position.x] != null;
+    }
+    
+    public MonsterFSM MonsterAtPosition(Vector2 position) {
+        return _monsterGridDictionary.ContainsKey((int)position.y) 
+               && _monsterGridDictionary?[(int)position.y]?[(int)position.x] != null 
+            ? _monsterGridDictionary?[(int)position.y]?[(int)position.x] : null;
     }
     public MonsterFSM MonsterInFront(MonsterFSM monsterFSM) {
         var position = monsterFSM.transform.position;
         return _monsterGridDictionary?[(int)position.y - 1]?[(int)position.x];
     }
-    
+
     public bool HasRockInFront(MonsterFSM monsterFSM) {
         var position = monsterFSM.transform.position;
-        return _monsterGridDictionary.ContainsKey((int)position.y - 1) 
-               && _monsterGridDictionary?[(int)position.y - 1]?[(int)position.x] != null 
-               && _monsterGridDictionary?[(int)position.y - 1]?[(int)position.x].monsterResourceType == MonsterResourceType.RockPile;
+        return _monsterGridDictionary.ContainsKey((int)position.y - 1)
+               && _monsterGridDictionary?[(int)position.y - 1]?[(int)position.x] != null
+               && _monsterGridDictionary?[(int)position.y - 1]?[(int)position.x].monsterResourceType ==
+               MonsterResourceType.RockPile;
     }
-    
+
     public bool HasBossAbove(MonsterFSM monsterFSM) {
         var position = monsterFSM.transform.position;
-        return monsterFSM.monsterType != MonsterType.BOSS && _monsterGridDictionary.ContainsKey((int)position.y + 1) 
-               && _monsterGridDictionary?[(int)position.y + 1]?[(int)position.x] != null 
-               && _monsterGridDictionary?[(int)position.y + 1]?[(int)position.x].monsterType == MonsterType.BOSS;
+        return monsterFSM.monsterType != MonsterType.BOSS && _monsterGridDictionary.ContainsKey((int)position.y + 1)
+                                                          && _monsterGridDictionary?[(int)position.y + 1]?[
+                                                              (int)position.x] != null
+                                                          && _monsterGridDictionary?[(int)position.y + 1]?[
+                                                              (int)position.x].monsterType == MonsterType.BOSS;
     }
 
     public bool HasMonstersOnScene() {
@@ -105,24 +112,23 @@ public class MonsterGrid {
 
         return false;
     }
-    
+
     public void PrintGrid() {
         var grid = $"[GRID LOG] Waves left: {_wavesLeft}, Next With Monsters: {_nextRowWithMonster} \n";
 
         for (var i = 10; i >= 0; i--) {
-            if (!_monsterGridDictionary.ContainsKey(i)) {
-                continue;
-            }
+            if (!_monsterGridDictionary.ContainsKey(i)) continue;
             grid += $"Line {i} : ";
             for (var j = 0; j < 6; j++) {
-                grid += _monsterGridDictionary[i][j] == null ? "-" : 
-                    _monsterGridDictionary[i][j].monsterResourceType == MonsterResourceType.RockPile ? "0" : 
+                grid += _monsterGridDictionary[i][j] == null ? "-" :
+                    _monsterGridDictionary[i][j].monsterResourceType == MonsterResourceType.RockPile ? "0" :
                     _monsterGridDictionary[i][j].monsterType == MonsterType.BOSS ? "B" : "X";
                 grid += " ";
             }
 
             grid += "\n";
         }
+
         //
         // grid += "\n" + _wavesLeft + "";
         // grid += "\n next wave with monster: " + _nextRowWithMonster + "";
@@ -147,7 +153,5 @@ public class MonsterGrid {
     //     grid += "\n next wave with monster: " + _nextRowWithMonster + "";
     //     Debug.Log(grid);
     // }
-
 }
-
 }

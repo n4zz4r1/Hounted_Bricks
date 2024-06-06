@@ -3,7 +3,6 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Core.Handler {
-
 public class ButtonPressEffectHandler : MonoBehaviour, IPointerDownHandler, IPointerUpHandler {
     public float moveDistance = 5f; // Distance to move the children
 
@@ -31,5 +30,4 @@ public class ButtonPressEffectHandler : MonoBehaviour, IPointerDownHandler, IPoi
             child.localPosition += movement;
     }
 }
-
 }

@@ -16,37 +16,36 @@ using UnityEngine;
 using UnityEngine.UI;
 
 namespace Core.Popup.CardDetail {
-
 public class CardDetailPopup : StateMachine<CardDetailPopup, State<CardDetailPopup>> {
     [SerializeField] public CardPopupComponents components;
 
     private readonly List<GameObject> currentAttributesObject = new();
 
     internal CardFSM CardFSM;
+    internal CardDetailTab CurrentTab = CardDetailTab.Detail;
     protected override CardDetailPopup FSM => this;
     protected override State<CardDetailPopup> GetInitialState => States.STARTED;
-    internal CardDetailTab CurrentTab = CardDetailTab.Detail;
 
     protected override void Before() {
         components.updateButton.onClick.AddListener(UpdateCard);
 
         for (var i = 0; i < components.tabBoxes.Length; i++) {
-            var selected = (CardDetailTab) i;
+            var selected = (CardDetailTab)i;
             components.tabButtons[i].onClick.AddListener(() => SelectTab(selected));
         }
     }
 
     private void SelectTab(CardDetailTab tabSelected) {
         // if (tabSelected == CurrentTab) return;
-        components.tabButtons[(int) CurrentTab].interactable = true;
-        components.tabBoxes[(int) CurrentTab].SetActive(false);
-        components.tabLabels[(int) CurrentTab].color = Colors.PRIMARY;
-        components.tabButtons[(int) CurrentTab].image.color = Colors.DARK_WOOD;
+        components.tabButtons[(int)CurrentTab].interactable = true;
+        components.tabBoxes[(int)CurrentTab].SetActive(false);
+        components.tabLabels[(int)CurrentTab].color = Colors.PRIMARY;
+        components.tabButtons[(int)CurrentTab].image.color = Colors.DARK_WOOD;
 
-        components.tabButtons[(int) tabSelected].interactable = false;
-        components.tabBoxes[(int) tabSelected].SetActive(true);
-        components.tabLabels[(int) tabSelected].color = Colors.DARK_WOOD;
-        components.tabButtons[(int) tabSelected].image.color = Colors.PRIMARY;
+        components.tabButtons[(int)tabSelected].interactable = false;
+        components.tabBoxes[(int)tabSelected].SetActive(true);
+        components.tabLabels[(int)tabSelected].color = Colors.DARK_WOOD;
+        components.tabButtons[(int)tabSelected].image.color = Colors.PRIMARY;
 
         CurrentTab = tabSelected;
     }
@@ -69,7 +68,8 @@ public class CardDetailPopup : StateMachine<CardDetailPopup, State<CardDetailPop
         if (!CardFSM.HasLevel) {
             components.levelBox.SetActive(false);
             components.nextLevelBox.SetActive(false);
-        } else {
+        }
+        else {
             components.levelBox.SetActive(true);
             components.levelText.text = CardsDataV1.Instance.GetCardLevel(CardFSM.cardId).ToString();
         }
@@ -84,11 +84,11 @@ public class CardDetailPopup : StateMachine<CardDetailPopup, State<CardDetailPop
         foreach (var cardAttributesComponent in CardFSM.attributes.FindAll(a => a.ConcatValue(level) >= 0f)) {
             currentAttributesObject.Add(CardAttributeFSM.Create(CardFSM, cardAttributesComponent.attributeType,
                 components.attributesBox.transform,
-                cardAttributesComponent.attributeType == Sprites.CardAttributeType.Rarity
+                cardAttributesComponent.attributeType == CardAttributeType.Rarity
                     ? new Vector3(xPosition, -211f, 0f)
                     : new Vector3(xPosition, yPosition, 0f)));
 
-            if (cardAttributesComponent.attributeType != Sprites.CardAttributeType.Rarity)
+            if (cardAttributesComponent.attributeType != CardAttributeType.Rarity)
                 yPosition -= 93f;
         }
 
@@ -114,70 +114,60 @@ public class CardDetailPopup : StateMachine<CardDetailPopup, State<CardDetailPop
 
     public void CardSetup(Card card, CardDetailTab tab = CardDetailTab.Detail) {
         CardFSM = Instantiate(AssetLoader.AsComponent<CardFSM>(card));
-        
+
         components.cardTypeIcon.sprite = AssetLoader.AsSprite(CardFSM.cardType);
         components.titleText.text = CardFSM.GetCardTitle;
         components.quantityText.text = CardsDataV1.Instance.GetCardQuantity(CardFSM.cardId).ToString();
         components.quantityMaxText.text = CardFSM.MaxQuantity.ToString();
         components.cardTypeText.text = CardFSM.GetCardTypeText;
         components.descriptionText.text = CardFSM.GetCardFullDetail;
-        
+
         SelectTab(tab);
         if (CardFSM.cardType == CardType.Character)
             SetupAllAbilities();
-        else 
+        else
             HideTab(CardDetailTab.Abilities);
-            
+
         SyncDataBase();
     }
 
     private void HideTab(CardDetailTab tab) {
-        components.tabButtons[(int) tab].gameObject.SetActive(false);
+        components.tabButtons[(int)tab].gameObject.SetActive(false);
     }
 
     private void SetupAllAbilities() {
         float currentX = -344f, currentY = 146f;
         var availableAbilities = CardsDataV1.Instance.GetAbilitiesAvailable(CardFSM.cardId);
 
-        foreach (var slot in components.abilitySlots) 
+        foreach (var slot in components.abilitySlots)
             slot.SetPlayer(CardFSM.cardId);
 
         for (var i = 0; i < availableAbilities.Count; i++) {
-
-            var abilityCardInstance = 
+            var abilityCardInstance =
                 Instantiate(AssetLoader.AsGameObject(availableAbilities[i]), components.abilityBox.transform);
 
             abilityCardInstance.transform.localPosition = new Vector3(currentX, currentY, 0);
             abilityCardInstance.GetComponent<CardFSM>().MakeDraggableCard(components.abilityDragArea);
-            
+
             // Next line
             if (i != 0 && (i + 1) % 5 == 0) {
                 currentX = -344f;
                 currentY -= 271f;
-            } else 
+            }
+            else {
                 currentX += 174f;
-            
+            }
         }
-
     }
 }
 
 [Serializable]
 public class CardPopupComponents {
-
     [SerializeField] public GameObject[] tabBoxes;
     [SerializeField] public Button[] tabButtons;
     [SerializeField] public TextMeshProUGUI[] tabLabels;
     [SerializeField] public GameObject[] tabDots;
 
-    #region Abilities
-
-    [SerializeField] public GameObject abilityBox;
-    [SerializeField] public GameObject abilityDragArea;
-    [SerializeField] public List<CardAbilitySlotFSM> abilitySlots;
-
-    #endregion
-    
     [SerializeField] public Image cardIcon;
     [SerializeField] public TextMeshProUGUI titleText;
     [SerializeField] public TextMeshProUGUI descriptionText;
@@ -197,11 +187,18 @@ public class CardPopupComponents {
     [SerializeField] public GameObject nextLevelBox;
 
     [SerializeField] public List<Image> objectsToPaintByRarity;
+
+    #region Abilities
+
+    [SerializeField] public GameObject abilityBox;
+    [SerializeField] public GameObject abilityDragArea;
+    [SerializeField] public List<CardAbilitySlotFSM> abilitySlots;
+
+    #endregion
 }
 
 public enum CardDetailTab {
     Detail = 0,
     Abilities = 1
 }
-
 }

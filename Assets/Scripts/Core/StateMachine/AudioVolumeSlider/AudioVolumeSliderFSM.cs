@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEngine.UI;
 
 namespace Core.StateMachine.AudioVolumeSlider {
-
 public class AudioVolumeSliderFSM : StateMachine<AudioVolumeSliderFSM, State<AudioVolumeSliderFSM>> {
     [SerializeField] public Slider slider;
     [SerializeField] public AudioGroupType audioGroupType = AudioGroupType.MUSIC;
@@ -23,5 +22,4 @@ public class AudioVolumeSliderFSM : StateMachine<AudioVolumeSliderFSM, State<Aud
         SettingsDataV1.Instance.SetVolume(audioGroupType, volume);
     }
 }
-
 }

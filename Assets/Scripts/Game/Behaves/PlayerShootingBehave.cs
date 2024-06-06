@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 
 namespace Game.Behaves {
-
 public class PlayerShootingBehave : StateMachineBehaviour {
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
 
@@ -25,5 +24,4 @@ public class PlayerShootingBehave : StateMachineBehaviour {
     //
     // }
 }
-
 }

@@ -23,6 +23,7 @@ MonoBehaviour:
     m_SerializedLabels:
     - MainSceneAddressable
     - Prefabs
+    - GameAssets
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9f30f6f63cf4b814dbdb4f82ec618672
     m_Address: 002_Rounded_Rock
@@ -30,6 +31,7 @@ MonoBehaviour:
     m_SerializedLabels:
     - MainSceneAddressable
     - Prefabs
+    - GameAssets
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 19f841b8047489040a86efde8332506e
     m_Address: 003_Arrowed_Rock
@@ -37,6 +39,7 @@ MonoBehaviour:
     m_SerializedLabels:
     - MainSceneAddressable
     - Prefabs
+    - GameAssets
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8c3d1b5550fe9d04da05244576204926
     m_Address: 004_Bomb_Rock
@@ -44,6 +47,7 @@ MonoBehaviour:
     m_SerializedLabels:
     - MainSceneAddressable
     - Prefabs
+    - GameAssets
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ad500fb087a424743aae68ec93d300e0
     m_Address: 005_Char_Lucas
@@ -51,6 +55,7 @@ MonoBehaviour:
     m_SerializedLabels:
     - MainSceneAddressable
     - Prefabs
+    - GameAssets
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1e1bf93ab1648bd48907c338a7abe4ff
     m_Address: 006_Char_Lisa
@@ -58,6 +63,7 @@ MonoBehaviour:
     m_SerializedLabels:
     - MainSceneAddressable
     - Prefabs
+    - GameAssets
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d409bed2d2fa69b4ebe6e564178b0ead
     m_Address: 007_Char_Bill
@@ -65,6 +71,7 @@ MonoBehaviour:
     m_SerializedLabels:
     - MainSceneAddressable
     - Prefabs
+    - GameAssets
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: eea663fc7172f0340aea937a537c2300
     m_Address: 008_Special_Char_Willy
@@ -72,6 +79,7 @@ MonoBehaviour:
     m_SerializedLabels:
     - MainSceneAddressable
     - Prefabs
+    - GameAssets
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 79e1ff31c478a124195d83443f830ac7
     m_Address: 009_Special_Char_Brutus
@@ -79,6 +87,7 @@ MonoBehaviour:
     m_SerializedLabels:
     - MainSceneAddressable
     - Prefabs
+    - GameAssets
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c3cc5d34d6caf1241b518f8eb0e7a224
     m_Address: 010_Basic_Move
@@ -86,6 +95,7 @@ MonoBehaviour:
     m_SerializedLabels:
     - MainSceneAddressable
     - Prefabs
+    - GameAssets
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a5524dfa94a2d494e83f8b0ef084cf9b
     m_Address: 011_Basic_SandBag
@@ -93,6 +103,7 @@ MonoBehaviour:
     m_SerializedLabels:
     - MainSceneAddressable
     - Prefabs
+    - GameAssets
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9be5e80e1dea21a4e863376ac82aa867
     m_Address: 012_Basic_SuperAim
@@ -100,6 +111,7 @@ MonoBehaviour:
     m_SerializedLabels:
     - MainSceneAddressable
     - Prefabs
+    - GameAssets
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9bae304b511e7fa44a0947ab9b9178df
     m_Address: 013_Basic_Lucas
@@ -107,6 +119,7 @@ MonoBehaviour:
     m_SerializedLabels:
     - MainSceneAddressable
     - Prefabs
+    - GameAssets
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9f7402ff2ac3af74d8922c8ae7b2904a
     m_Address: 014_Basic_Lisa
@@ -114,6 +127,7 @@ MonoBehaviour:
     m_SerializedLabels:
     - MainSceneAddressable
     - Prefabs
+    - GameAssets
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 609ad5af521662241adcf8d09fba3d46
     m_Address: 015_Basic_Billy
@@ -121,6 +135,7 @@ MonoBehaviour:
     m_SerializedLabels:
     - MainSceneAddressable
     - Prefabs
+    - GameAssets
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b625abd12a74e1f40a86f379ed20631e
     m_Address: 016_Ab_Lucas_Move
@@ -128,6 +143,7 @@ MonoBehaviour:
     m_SerializedLabels:
     - MainSceneAddressable
     - Prefabs
+    - GameAssets
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 766d952ab1205cf4ca4e14266b9caa95
     m_Address: 017_Ab_Lucas_SuperStone
@@ -135,6 +151,7 @@ MonoBehaviour:
     m_SerializedLabels:
     - MainSceneAddressable
     - Prefabs
+    - GameAssets
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ce0abaff8674b5b46bccc5b5d458f8d6
     m_Address: 018_Ab_Lucas_SlingshotMater
@@ -142,6 +159,7 @@ MonoBehaviour:
     m_SerializedLabels:
     - MainSceneAddressable
     - Prefabs
+    - GameAssets
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7972e22d7b5d71b41aa8ca125dc0e337
     m_Address: 019_Ab_Lucas_SmallRock
@@ -149,6 +167,7 @@ MonoBehaviour:
     m_SerializedLabels:
     - MainSceneAddressable
     - Prefabs
+    - GameAssets
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9c31557894e17ca4f9c7f7c09f8fdc19
     m_Address: 020_Ab_Lucas_Power
@@ -156,6 +175,7 @@ MonoBehaviour:
     m_SerializedLabels:
     - MainSceneAddressable
     - Prefabs
+    - GameAssets
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: fd4be57af689920469abfbd9c158f68a
     m_Address: 021_Ab_Lucas_RockRain
@@ -163,6 +183,7 @@ MonoBehaviour:
     m_SerializedLabels:
     - MainSceneAddressable
     - Prefabs
+    - GameAssets
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: dc4108ec72897cd469d3a1f0b5482076
     m_Address: 022_Ab_Lucas_SuperWall
@@ -170,6 +191,7 @@ MonoBehaviour:
     m_SerializedLabels:
     - MainSceneAddressable
     - Prefabs
+    - GameAssets
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e035ad768325bcb4f85e0a3f58c61332
     m_Address: 023_Ab_Lucas_LetsRock
@@ -177,6 +199,7 @@ MonoBehaviour:
     m_SerializedLabels:
     - MainSceneAddressable
     - Prefabs
+    - GameAssets
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 939d9ea1eabef3040be3b61776cb5107
     m_Address: 024_Ab_Lucas_Mine
@@ -184,6 +207,7 @@ MonoBehaviour:
     m_SerializedLabels:
     - MainSceneAddressable
     - Prefabs
+    - GameAssets
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f7ea36a3d594ecc418d1f5c7adb49672
     m_Address: 025_Ab_Lucas_GiveMeMoney
@@ -191,6 +215,7 @@ MonoBehaviour:
     m_SerializedLabels:
     - MainSceneAddressable
     - Prefabs
+    - GameAssets
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e7407cf340220ac40a01ed1af4719699
     m_Address: 026_Ab_Lisa_Fire
@@ -198,6 +223,7 @@ MonoBehaviour:
     m_SerializedLabels:
     - MainSceneAddressable
     - Prefabs
+    - GameAssets
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 99b2ee8a96d513340a01e7c6ed485757
     m_Address: 027_Ab_Lisa_FireByLucky
@@ -205,6 +231,7 @@ MonoBehaviour:
     m_SerializedLabels:
     - MainSceneAddressable
     - Prefabs
+    - GameAssets
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5b69a7e6f80c7464eba62553073805af
     m_Address: 028_Ab_Lisa_FireByRebounce
@@ -212,6 +239,7 @@ MonoBehaviour:
     m_SerializedLabels:
     - MainSceneAddressable
     - Prefabs
+    - GameAssets
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 23b836f31c9f2e843996ac01be0379a2
     m_Address: 029_Ab_Lisa_Healer
@@ -219,6 +247,7 @@ MonoBehaviour:
     m_SerializedLabels:
     - MainSceneAddressable
     - Prefabs
+    - GameAssets
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 0e8a414a754a81743ba0e06c0b16ab63
     m_Address: 030_Ab_Lisa_Firewall
@@ -226,6 +255,7 @@ MonoBehaviour:
     m_SerializedLabels:
     - MainSceneAddressable
     - Prefabs
+    - GameAssets
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: bf7df8bd585c7014eb3689852d69902a
     m_Address: 031_Ab_Lisa_FireCamp
@@ -233,6 +263,7 @@ MonoBehaviour:
     m_SerializedLabels:
     - MainSceneAddressable
     - Prefabs
+    - GameAssets
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 33cab0e08e0ee2d40bfb6c2400c3b350
     m_Address: 032_Ab_Lisa_FireStronger
@@ -240,6 +271,7 @@ MonoBehaviour:
     m_SerializedLabels:
     - MainSceneAddressable
     - Prefabs
+    - GameAssets
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d288047f749cbbb48a6a519910e409b7
     m_Address: 033_Ab_Lisa_FireSpread
@@ -247,6 +279,7 @@ MonoBehaviour:
     m_SerializedLabels:
     - MainSceneAddressable
     - Prefabs
+    - GameAssets
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: fb6aa6e2d530c6d4aa98d1dab3de391f
     m_Address: 034_Ab_Lisa_Fireworks
@@ -254,6 +287,7 @@ MonoBehaviour:
     m_SerializedLabels:
     - MainSceneAddressable
     - Prefabs
+    - GameAssets
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 4eda55f2d9682674ca0c622ecfebbc07
     m_Address: 035_Ab_Lisa_SpecialFireBomb
@@ -261,6 +295,7 @@ MonoBehaviour:
     m_SerializedLabels:
     - MainSceneAddressable
     - Prefabs
+    - GameAssets
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e3b8db6fa5c984a41980498d2624c203
     m_Address: 036_Ab_Bill_AcidBomb
@@ -268,6 +303,7 @@ MonoBehaviour:
     m_SerializedLabels:
     - MainSceneAddressable
     - Prefabs
+    - GameAssets
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 372cf818c130bcf4ca8c04102bfd2728
     m_Address: 037_Ab_Bill_Poison
@@ -275,6 +311,7 @@ MonoBehaviour:
     m_SerializedLabels:
     - MainSceneAddressable
     - Prefabs
+    - GameAssets
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 954a2726b4173e743ad8b668bc9f8cd9
     m_Address: 038_Ab_Bill_PoisonByLucky
@@ -282,6 +319,7 @@ MonoBehaviour:
     m_SerializedLabels:
     - MainSceneAddressable
     - Prefabs
+    - GameAssets
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 68bb7c219ee1ab24ab8d53a33b05b2f9
     m_Address: 039_Ab_Bill_PoisonByLuckyTwo
@@ -289,6 +327,7 @@ MonoBehaviour:
     m_SerializedLabels:
     - MainSceneAddressable
     - Prefabs
+    - GameAssets
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 69edf37a10b960c45af3d5b8929d62c6
     m_Address: 040_Ab_Bill_Barrel
@@ -296,6 +335,7 @@ MonoBehaviour:
     m_SerializedLabels:
     - MainSceneAddressable
     - Prefabs
+    - GameAssets
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 16568beb464f841418d457b7711ebdc9
     m_Address: 041_Ab_Bill_Run
@@ -303,6 +343,7 @@ MonoBehaviour:
     m_SerializedLabels:
     - MainSceneAddressable
     - Prefabs
+    - GameAssets
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e5c66de76fc23ec4d84521b61e7a5fde
     m_Address: 042_Ab_Bill_UltraAim
@@ -310,6 +351,7 @@ MonoBehaviour:
     m_SerializedLabels:
     - MainSceneAddressable
     - Prefabs
+    - GameAssets
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8322c3a171b68474cb1f68d745954728
     m_Address: 043_Ab_Bill_AcidRain
@@ -317,6 +359,7 @@ MonoBehaviour:
     m_SerializedLabels:
     - MainSceneAddressable
     - Prefabs
+    - GameAssets
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 71bf4474fa0d8444fb36d979318d27a0
     m_Address: 044_Ab_Bill_SuperPoison
@@ -324,6 +367,7 @@ MonoBehaviour:
     m_SerializedLabels:
     - MainSceneAddressable
     - Prefabs
+    - GameAssets
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5cb7faeb7bca4c44cb110cadd3905cad
     m_Address: 045_Ab_Bill_Viruz
@@ -331,6 +375,7 @@ MonoBehaviour:
     m_SerializedLabels:
     - MainSceneAddressable
     - Prefabs
+    - GameAssets
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e7cb4ee543cc58643b8f51ae0d4a0722
     m_Address: E_NextWave

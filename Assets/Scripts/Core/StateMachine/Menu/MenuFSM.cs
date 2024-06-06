@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEngine.UI;
 
 namespace Core.StateMachine.Menu {
-
 public class MenuFSM : StateMachine<MenuFSM, State<MenuFSM>> {
     [SerializeField] public List<Button> menuButtons;
     [SerializeField] public RectTransform[] panels; // Panels that correspond to each button
@@ -34,5 +33,4 @@ public enum MenuPanel {
     MAP = 3244,
     SHOP = 6169
 }
-
 }

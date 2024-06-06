@@ -4,7 +4,6 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Core.Handler {
-
 public class HBButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler {
     [Header("Button States")] public Sprite normalSprite;
 
@@ -120,5 +119,4 @@ public class HBButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler {
     //     }
     // }
 }
-
 }

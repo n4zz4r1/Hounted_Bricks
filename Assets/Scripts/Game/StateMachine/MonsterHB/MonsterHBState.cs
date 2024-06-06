@@ -1,9 +1,9 @@
-﻿using Framework.Base;
+﻿using DG.Tweening;
+using Framework.Base;
 using Game.StateMachine.Monster;
 using UnityEngine;
 
-namespace StateMachine.MonsterHB {
-
+namespace Game.StateMachine.MonsterHB {
 public abstract class States {
     public static readonly Full FULL = new();
     public static readonly Damaged DAMAGED = new();
@@ -38,7 +38,9 @@ public class Damaged : State<MonsterHBFSM> {
         else {
             var newLife = FSM.monsterFSM.CurrentLife / FSM.monsterFSM.GetLife();
 
-            FSM.rect.sizeDelta = new Vector2(newLife, FSM.rect.sizeDelta.y);
+            FSM.rect.DOSizeDelta(new Vector2(newLife, FSM.rect.sizeDelta.y), 0.1f); // Adjust the duration (0.5f) as needed
+
+            // FSM.rect.sizeDelta = new Vector2(newLife, FSM.rect.sizeDelta.y);
 
             if (FSM.monsterFSM.monsterResourceType == MonsterResourceType.Monster) {
                 if (newLife > 0.25 && newLife < 0.60)
@@ -58,5 +60,4 @@ public class Destroyed : State<MonsterHBFSM> {
         Object.Destroy(stateMachine.gameObject);
     }
 }
-
 }

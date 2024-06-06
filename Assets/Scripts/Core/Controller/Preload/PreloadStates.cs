@@ -5,7 +5,6 @@ using UnityEngine.AddressableAssets;
 using UnityEngine.SceneManagement;
 
 namespace Core.Controller.Preload {
-
 /**
  * Refactor: ok
  */
@@ -47,5 +46,4 @@ public class Created : State<PreloadController> {
         fsm.progressBar.value = totalProgress / 2; // Dividing by the number of steps (3 in this case)
     }
 }
-
 }

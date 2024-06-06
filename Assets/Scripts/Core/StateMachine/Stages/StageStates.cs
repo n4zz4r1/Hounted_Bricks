@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEngine.UI;
 
 namespace Core.StateMachine.Stages {
-
 public abstract class States {
     public static readonly Preload Preload = new();
     public static readonly MainGameStage MainGameStage = new();
@@ -109,5 +108,4 @@ public class Done : State<StageFSM> {
             gameObject.SetActive(true);
     }
 }
-
 }

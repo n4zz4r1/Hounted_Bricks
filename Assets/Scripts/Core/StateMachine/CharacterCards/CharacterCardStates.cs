@@ -4,7 +4,6 @@ using Core.Utils.Constants;
 using Framework.Base;
 
 namespace Core.StateMachine.CharacterCards {
-
 public abstract class States {
     public static readonly Preload Preload = new();
     public static readonly NotFound NotFound = new();
@@ -28,9 +27,7 @@ public class Preload : State<CharacterCardFSM> {
         }
     }
 
-    private static void SetupStars(CharacterCardFSM _) {
-
-    }
+    private static void SetupStars(CharacterCardFSM _) { }
 }
 
 public class NotFound : State<CharacterCardFSM> {
@@ -83,5 +80,4 @@ public class Unselected : State<CharacterCardFSM> {
         fsm.SyncAllData(typeof(MenuFSM));
     }
 }
-
 }

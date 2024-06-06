@@ -2,7 +2,6 @@
 using UnityEngine;
 
 namespace Game.Behaves {
-
 public class MonsterDyingBehave : StateMachineBehaviour {
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     //override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -37,5 +36,4 @@ public class MonsterDyingBehave : StateMachineBehaviour {
     //    // Implement code that sets up animation IK (inverse kinematics)
     //}
 }
-
 }

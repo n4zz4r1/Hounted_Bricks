@@ -2,7 +2,6 @@ using System;
 using Core.Data;
 using Core.Handler;
 using Core.Sprites;
-using Core.Utils;
 using Core.Utils.Constants;
 using Framework.Base;
 using UnityEngine;
@@ -10,7 +9,6 @@ using Button = UnityEngine.UI.Button;
 
 
 namespace Core.StateMachine.ShopItems {
-
 public class ShopItemFSM : StateMachine<ShopItemFSM, State<ShopItemFSM>> {
     [SerializeField] public ResourceType costType = ResourceType.Money;
     [SerializeField] public float cost;
@@ -51,5 +49,4 @@ public class ShopItemComponents {
     [SerializeField] public GameObject availableBox;
     [SerializeField] public ButtonPressEffectHandler effectHandler;
 }
-
 }

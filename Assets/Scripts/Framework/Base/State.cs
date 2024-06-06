@@ -3,10 +3,8 @@ using UnityEngine;
 using UnityEngine.UI;
 
 namespace Framework.Base {
-
 // Common Finite States
 public abstract class State<T> {
-
     #region State Machine Defaults
 
     public virtual void Before(T fsm) { }
@@ -25,7 +23,7 @@ public abstract class State<T> {
     public virtual void TransitionTo(T fsm, string scene, Button from) { }
     public virtual void Released(T fsm) { }
     public virtual void Pressed(T fsm) { }
-    
+
     #endregion
 
     #region Common Behaves
@@ -35,8 +33,11 @@ public abstract class State<T> {
     public virtual void Buy(T fsm) { }
     public virtual void Click(T fsm) { }
     public virtual void Clear(T fsm) { }
+    public virtual bool Decrease(T fsm, int value = 1) => false;
+    public virtual void Increase(T fsm, int value = 1) { }
     public virtual void Inactive(T fsm) { }
     public virtual void Active(T fsm) { }
+    public virtual void Prepare(T fsm) { }
     public virtual void Select(T fsm) { }
     public virtual void Destroy(T fsm) { }
     public virtual void Hide(T fsm) { }
@@ -60,7 +61,7 @@ public abstract class State<T> {
     #endregion
 
     #region Specifics
-    
+
     public virtual void SetCard(T fsm) { }
     public virtual void RollTheDice(T fsm) { }
     public virtual void ChangeReward(T fsm, int amount) { }
@@ -92,5 +93,4 @@ public abstract class State<T> {
     // public virtual void Bark(T fsm) { }
     // public virtual void StartShooting(T fsm, Vector2 to) { }
 }
-
 }

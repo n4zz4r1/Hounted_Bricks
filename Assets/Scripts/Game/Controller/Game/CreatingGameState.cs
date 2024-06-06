@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using Core.Controllers.Game;
 using Core.Data;
+using Core.StateMachine.Cards;
 using Core.StateMachine.Stages;
 using Core.Utils;
 using Core.Utils.Constants;
@@ -12,40 +11,43 @@ using UnityEngine;
 using Object = UnityEngine.Object;
 
 namespace Game.Controller.Game {
-
 public class CreatingGame : GameState {
     public override void Before(GameController fsm) {
         fsm.CurrentStage = StageFSM.GetCurrentStage();
+        fsm.SaveRockSlot = PlayerDataV1.Instance.GetSavedRocks();
+
+        // Preload All Game Assets
+        // TODO Only preload assets that is going to be used
+        AssetLoader.LoadAssetsByLabel("GameAssets", AfterPreload, fsm);
+    }
+
+    private static void AfterPreload(GameController fsm) {
+        var playerStartPosition = new Vector2(3, -0.6f);
+        var playerStartRotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
 
         // Add player
         fsm.components.PlayerArea = new GameObject("Area: Player");
         fsm.components.PlayerArea.transform.SetParent(fsm.transform);
         fsm.components.GameArea = new GameObject("Area: Game");
         fsm.components.GameArea.transform.SetParent(fsm.transform);
-        //
-        // fsm.PlayerInGame = PlayerFSM.Build(BMCharacter.Preset[PlayerDataV1.Instance.selectedCharacter],
-        //     fsm.components.PlayerArea.transform);
+       
+        fsm.PlayerInGame = Object.Instantiate(AssetLoader
+                .AsComponent<PlayerFSM>(PlayerDataV1.Instance.GetSelectedCharacter()),
+            playerStartPosition, playerStartRotation, fsm.components.PlayerArea.transform);
 
-        fsm.SaveRockSlot = PlayerDataV1.Instance.GetSavedRocks();
+        fsm.PlayerCardInGame = AssetLoader.AsComponent<CardFSM>(PlayerDataV1.Instance.GetSelectedCharacterCard());
+        
+        // Prepare Consumables
+        
+        fsm.gameResourcesAtStart.ForEach(r => r.Prepare(fsm));
         
         // Set Monsters
         CreateMonsters(fsm);
-        
 
-        // Set Player
-        AssetLoader<Player>.Load<GameController, PlayerFSM>(PlayerDataV1.Instance.GetSelectedCharacter(), fsm, SetPlayer);
-        // Enter(fsm);
+        fsm.FadeIn();
+        fsm.ChangeState(States.PlayerTurn);
     }
 
-    private void SetPlayer(PlayerFSM prefab, GameController fsm) {
-        var playerStartPosition = new Vector2(3, -0.6f);
-        var playerStartRotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
-
-        fsm.PlayerInGame = Object.Instantiate(prefab, playerStartPosition, playerStartRotation, fsm.components.PlayerArea.transform);
-
-        Enter(fsm);
-    }
-    
     private static void CreateMonsters(GameController fsm) {
         // Preload all Prefabs
         // TODO to improve performance, load only prefabs within the game
@@ -59,44 +61,43 @@ public class CreatingGame : GameState {
             CreateMonstersGeneric(fsm);
         else
             CreateMonstersFromProperties(fsm);
-        
+
         // Set Monster grid
         fsm.MonsterGrid = new MonsterGrid(fsm.MonstersInGame, fsm.RockPileInGame);
-
     }
 
-    private static void CreateMonstersFromProperties(GameController FSM) {
+    private static void CreateMonstersFromProperties(GameController fsm) {
         var lastWave = 0f;
         // add wave of monsters
-        foreach (var wave in FSM.CurrentStage.properties.waves) {
+        foreach (var wave in fsm.CurrentStage.properties.waves) {
             if (wave.positionY > lastWave)
                 lastWave = wave.positionY;
 
             foreach (var positionX in wave.positionX)
-                FSM.MonstersInGame.Add(MonsterFSM.Create(
-                    FSM.MonstersPrefab[wave.monster],
+                fsm.MonstersInGame.Add(MonsterFSM.Create(
+                    fsm.MonstersPrefab[wave.monster],
                     new Vector2(positionX, wave.positionY),
-                    FSM.components.areaMonsters.transform).GetComponent<MonsterFSM>());
+                    fsm.components.areaMonsters.transform).GetComponent<MonsterFSM>());
         }
 
         // Add boss if exist
-        if (FSM.CurrentStage.properties.boss.boss != Monsters.MonsterBoss.NONE)
-            FSM.MonstersInGame.Add(MonsterFSM.Create(
-                FSM.BossesPrefab[FSM.CurrentStage.properties.boss.boss],
-                new Vector2(FSM.CurrentStage.properties.boss.positionX, lastWave + 2), // last wave + two blocks
-                FSM.components.areaMonsters.transform).GetComponent<MonsterFSM>());
+        if (fsm.CurrentStage.properties.boss.boss != Monsters.MonsterBoss.NONE)
+            fsm.MonstersInGame.Add(MonsterFSM.Create(
+                fsm.BossesPrefab[fsm.CurrentStage.properties.boss.boss],
+                new Vector2(fsm.CurrentStage.properties.boss.positionX, lastWave + 2), // last wave + two blocks
+                fsm.components.areaMonsters.transform).GetComponent<MonsterFSM>());
     }
 
-    private static void CreateMonstersGeneric(GameController FSM) {
+    private static void CreateMonstersGeneric(GameController fsm) {
         // TODO revisit here when balancing
 
-        var level = FSM.CurrentStage.Level;
+        var level = fsm.CurrentStage.Level;
 
         // 1. Get number of waves
         var waves = StageGenerator.GetNumberOfWavesByLevel(level);
 
         // 2. Get difficulty, stageType and monsters
-        var difficulty = StageGenerator.GetDifficultyByLevel(level);
+        // var difficulty = StageGenerator.GetDifficultyByLevel(level);
         var stageType = StageGenerator.GetStageTypeByLevel(level);
 
         // 3. get easy, medium and hard monsters by stage
@@ -111,10 +112,10 @@ public class CreatingGame : GameState {
             var monster = StageGenerator.ChooseMonster(level, monstersEasy, monstersMid, monstersHard);
             var positionsX = StageGenerator.ShuffleList(numberOfMonsters);
             foreach (var positionX in positionsX)
-                FSM.MonstersInGame.Add(MonsterFSM.Create(
-                    FSM.MonstersPrefab[monster],
+                fsm.MonstersInGame.Add(MonsterFSM.Create(
+                    fsm.MonstersPrefab[monster],
                     new Vector2(positionX, positionY),
-                    FSM.components.areaMonsters.transform).GetComponent<MonsterFSM>());
+                    fsm.components.areaMonsters.transform).GetComponent<MonsterFSM>());
         }
 
         // 4. Check for Boss and proceed if has
@@ -123,15 +124,10 @@ public class CreatingGame : GameState {
 
         var bossPositionY = waves + 12;
         var bossPositionX = StageGenerator.ShuffleListBoss();
-        FSM.MonstersInGame.Add(MonsterFSM.Create(
-            FSM.BossesPrefab[boss],
+        fsm.MonstersInGame.Add(MonsterFSM.Create(
+            fsm.BossesPrefab[boss],
             new Vector2(bossPositionX, bossPositionY),
-            FSM.components.areaMonsters.transform).GetComponent<MonsterFSM>());
-    }
-
-    public override void Enter(GameController FSM) {
-        FSM.ChangeState(States.PlayerTurn);
+            fsm.components.areaMonsters.transform).GetComponent<MonsterFSM>());
     }
 }
-
 }

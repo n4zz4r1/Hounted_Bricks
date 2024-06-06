@@ -2,7 +2,6 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 
 namespace Core.Utils.Constants {
-
 [Serializable]
 [SuppressMessage("ReSharper", "InconsistentNaming")]
 public enum Card {
@@ -66,7 +65,6 @@ public enum Card {
 
     // Special Actions
     Card_E_Recycle,
-    Card_E_NextWave,
+    Card_E_NextWave
 }
-
 }

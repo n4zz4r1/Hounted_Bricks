@@ -14,7 +14,6 @@ using UnityEngine;
 using UnityEngine.UI;
 
 namespace Core.StateMachine.Cards {
-
 public class CardFSM : StateMachine<CardFSM, State<CardFSM>> {
     protected override CardFSM FSM => this;
     protected override State<CardFSM> GetInitialState => States.Preload;
@@ -24,11 +23,13 @@ public class CardFSM : StateMachine<CardFSM, State<CardFSM>> {
     public GameObject DragCard { get; private set; }
     public CardSlotFSM CurrentSelectedSlot { get; set; }
 
+    public bool HasLevel => maxLevel > 1;
+
     protected override void Before() {
         if (!dragEnabled) components.dragHandler.enabled = false;
         if (disableCollision) components.collider.enabled = false;
         components.originalIcon = components.cardIcon.sprite;
-        if (components.bwIcon == null) 
+        if (components.bwIcon == null)
             components.bwIcon = components.cardIcon.sprite;
 
         if (cardType == CardType.Rock) components.boxQuantity.gameObject.SetActive(true);
@@ -39,11 +40,13 @@ public class CardFSM : StateMachine<CardFSM, State<CardFSM>> {
         GetCardTypeText = LocalizationUtils.LoadText("CardType." + cardType);
         GetCardRarityText = LocalizationUtils.LoadText("CardRarity." + Rarity);
         MaxLevelLabel = LocalizationUtils.LoadText("Label.MaxLevel");
-        
+
         PaintCard(Rarity);
     }
 
-    public string GetTitle() => LocalizationUtils.LoadText(GetCardName() + ".Title");
+    public string GetTitle() {
+        return LocalizationUtils.LoadText(GetCardName() + ".Title");
+    }
 
     private void PrepareAbilityConsumables() {
         if (cardType != CardType.Ability) return;
@@ -61,8 +64,6 @@ public class CardFSM : StateMachine<CardFSM, State<CardFSM>> {
         MaxLevelLabel = await LocalizationUtils.LoadTextAsync("Label.MaxLevel");
         MaxQuantity = CardsDataV1.Instance.GetCardMaxQuantity(cardId);
     }
-    
-    public bool HasLevel => maxLevel > 1;
 
     public void PaintCard(CardRarity cardRarity) {
         var normal = RarityUtils.From(cardRarity).NormalColor;
@@ -76,14 +77,13 @@ public class CardFSM : StateMachine<CardFSM, State<CardFSM>> {
             image.color = Colors.DISABLED_WOOD;
         if (components.bwIcon)
             components.cardIcon.sprite = components.bwIcon;
-        
     }
 
     // Makes a card without info, level, and so on...
     private void MakeSimpleCard() {
         components.infoButton.gameObject.SetActive(false);
     }
-    
+
     // Makes a card draggable info, level, and so on...
     public void MakeDraggableCard(GameObject dragArea) {
         MakeSimpleCard();
@@ -141,7 +141,9 @@ public class CardFSM : StateMachine<CardFSM, State<CardFSM>> {
     [SerializeField] public CardType cardType = CardType.None;
     [SerializeField] public int maxLevel = 1;
     [SerializeField] public bool dragEnabled;
+
     [SerializeField] public List<CardAttributesComponent> attributes;
+
     // Ability Ref
     [SerializeField] public bool disableCollision;
     [SerializeField] public AbilityFSM abilityFSM;
@@ -150,12 +152,14 @@ public class CardFSM : StateMachine<CardFSM, State<CardFSM>> {
 
     public int MaxQuantity { get; private set; }
 
-    
+
     public bool IsMaxLevel() {
         return CardsDataV1.Instance.GetCardLevel(cardId) == maxLevel;
     }
 
-    public void SetDragArea(GameObject dragArea) => components.dragArea = dragArea;
+    public void SetDragArea(GameObject dragArea) {
+        components.dragArea = dragArea;
+    }
 
     public int Level() {
         return maxLevel <= 1 ? 1 : CardsDataV1.Instance.GetCardLevel(cardId);
@@ -178,8 +182,10 @@ public class CardFSM : StateMachine<CardFSM, State<CardFSM>> {
         ? (CardRarity)(int)attributes[(int)CardAttributeType.Rarity].ConcatValue(Level())
         : CardRarity.COMMON;
 
-    public int Attribute(CardAttributeType attributeType) => (int)attributes[(int)attributeType].ConcatValue(Level());
-    
+    public int Attribute(CardAttributeType attributeType) {
+        return (int)attributes[(int)attributeType].ConcatValue(Level());
+    }
+
     internal string MaxLevelLabel = string.Empty;
 
     #endregion
@@ -187,7 +193,6 @@ public class CardFSM : StateMachine<CardFSM, State<CardFSM>> {
 
 [Serializable]
 public class Components {
-
     // Images to paint Rarity
     [SerializeField] public List<Image> imagesToPaint;
     [SerializeField] public List<Image> imagesToPaintDisabled;
@@ -207,13 +212,17 @@ public class Components {
     [SerializeField] public Collider2D collider;
 
     #region Quantity
+
     [SerializeField] public GameObject boxQuantity;
     [SerializeField] public TextMeshProUGUI textQuantity;
+
     #endregion
 
     #region Consumable
+
     [SerializeField] public GameObject boxConsumable;
     [SerializeField] public TextMeshProUGUI textConsumable;
+
     #endregion
 
     #region LevelBox
@@ -226,5 +235,4 @@ public class Components {
 
     #endregion
 }
-
 }

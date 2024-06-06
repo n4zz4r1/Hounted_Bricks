@@ -15,7 +15,6 @@ using Text = UnityEngine.UI.Text;
 
 #pragma warning disable 1591
 namespace DG.Tweening {
-
 public static class DOTweenModuleUI {
     // █████████████████████████████████████████████████████████████████████████████████████████████████████████████████████
     // ███ INTERNAL CLASSES ████████████████████████████████████████████████████████████████████████████████████████████████
@@ -823,6 +822,5 @@ public static class DOTweenModuleUI {
 
     #endregion
 }
-
 }
 #endif

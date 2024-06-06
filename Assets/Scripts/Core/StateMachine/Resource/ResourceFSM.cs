@@ -9,7 +9,6 @@ using UnityEngine;
 using Image = UnityEngine.UI.Image;
 
 namespace Core.StateMachine.Resource {
-
 public class ResourceFSM : StateMachine<ResourceFSM, State<ResourceFSM>> {
     [SerializeField] public ResourceType resourceType;
     [SerializeField] public Components components;
@@ -22,8 +21,10 @@ public class ResourceFSM : StateMachine<ResourceFSM, State<ResourceFSM>> {
         components.resourceIcon.sprite = ConvertToSprite(texture2d);
         components.quantityText.text = ResourcesV1.Instance.GetResourcesAmount(resourceType).ToString();
     }
-    
-    private Sprite ConvertToSprite(Texture2D texture) => Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
+
+    private Sprite ConvertToSprite(Texture2D texture) {
+        return Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
+    }
 
     protected override void SyncDataBase() {
         components.quantityText.text = ResourcesV1.Instance.GetResourcesAmount(resourceType).ToString();
@@ -35,5 +36,4 @@ public class Components {
     [SerializeField] public TextMeshProUGUI quantityText;
     [SerializeField] public Image resourceIcon;
 }
-
 }

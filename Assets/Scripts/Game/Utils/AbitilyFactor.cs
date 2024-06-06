@@ -1,5 +1,4 @@
 ﻿namespace Game.Utils {
-
 public class AbilityFactor {
     public int RockOnFireFactor { get; set; } = 0;
     public int MonsterOnFireFactor { get; set; } = 100; // by default, monsters will aways burn, wuawuawua
@@ -50,5 +49,4 @@ public class AbilityFactor {
         FireBallEffect = false;
     }
 }
-
 }

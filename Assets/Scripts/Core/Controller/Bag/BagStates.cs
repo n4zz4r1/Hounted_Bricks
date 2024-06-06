@@ -5,7 +5,6 @@ using Core.Utils;
 using Framework.Base;
 
 namespace Core.Controller.Bag {
-
 public abstract class States {
     public static readonly Preloading Preloading = new();
     public static readonly Started Started = new();
@@ -50,5 +49,4 @@ public class Started : State<BagController> {
         }
     }
 }
-
 }

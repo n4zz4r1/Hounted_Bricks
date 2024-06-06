@@ -4,7 +4,6 @@ using Core.StateMachine.Menu;
 using Framework.Base;
 
 namespace Core.StateMachine.CharacterSelectBox {
-
 public abstract class States {
     public static readonly Preload Preload = new();
     public static readonly Selected Selected = new();
@@ -145,5 +144,4 @@ public class Dead : State<CharacterSelectBoxFSM> {
     //     FSM.ChangeState(States.SOME_HEARTS);
     // }
 }
-
 }

@@ -5,7 +5,6 @@ using DG.Tweening;
 using Framework.Base;
 
 namespace Core.StateMachine.CardSlots {
-
 public abstract class States {
     public static readonly Preload Preload = new();
     public static readonly Empty Empty = new();
@@ -15,7 +14,9 @@ public abstract class States {
 }
 
 public class Preload : State<CardSlotFSM> {
-    public override void Before(CardSlotFSM fsm) =>  fsm.Sync();
+    public override void Before(CardSlotFSM fsm) {
+        fsm.Sync();
+    }
 }
 
 public class Empty : State<CardSlotFSM> {
@@ -37,13 +38,12 @@ public class WithCard : State<CardSlotFSM> {
         var prefab = fsm.type == CardSlotType.Rock
             ? fsm.CardPrefabDictionary[fsm.CurrentCard.cardId]
             : AssetLoader.AsComponent<CardFSM>(fsm.CurrentCard.cardId);
-        
+
         fsm.OriginalIconSprite = prefab.components.cardIcon.sprite;
         fsm.components.slotIcon.sprite = prefab.components.cardIcon.sprite;
         fsm.SelectedCardFSM = fsm.CurrentCard;
         fsm.components.slotBox.color = RarityUtils.From(fsm.CurrentCard.Rarity).NormalColor;
     }
-
 }
 
 public class OnHover : State<CardSlotFSM> {
@@ -81,5 +81,4 @@ public class Disabled : State<CardSlotFSM> {
         fsm.components.glow.SetActive(true);
     }
 }
-
 }

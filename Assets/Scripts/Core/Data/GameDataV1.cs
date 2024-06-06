@@ -7,7 +7,6 @@ using UnityEngine;
 // using Core.StateMachine.Stages;
 
 namespace Core.Data {
-
 [Serializable]
 public class GameDataV1 : Data<GameDataV1> {
     public StageStatus GetStageStatus(int currentLevel) {
@@ -57,5 +56,4 @@ public enum StageStatus {
     DONE_TWO_STAR = 2,
     DONE_THREE_STAR = 3
 }
-
 }

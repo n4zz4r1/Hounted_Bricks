@@ -145,6 +145,10 @@ PrefabInstance:
       value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 7580662223508044073, guid: 11f6bc20caa5f1648b38221451907c78, type: 3}
+      propertyPath: rockPile
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7580662223508044073, guid: 11f6bc20caa5f1648b38221451907c78, type: 3}
       propertyPath: monsterStrenght
       value: 1
       objectReference: {fileID: 0}

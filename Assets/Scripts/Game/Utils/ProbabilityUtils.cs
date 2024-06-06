@@ -3,7 +3,6 @@ using UnityEngine;
 using Random = System.Random;
 
 namespace Game.Utils {
-
 public class ProbabilityUtils : SingletonBase<ProbabilityUtils> {
     private readonly Random rnd = new();
 
@@ -129,5 +128,4 @@ public class ProbabilityException : Exception { }
 //     public static int F_MONSTER_WITH_AURA_GOLD = 5;
 //     public static int F_MONSTER_WITH_AURA_DIAMOND = 1;
 // }
-
 }

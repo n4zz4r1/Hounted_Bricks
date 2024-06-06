@@ -3,7 +3,6 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace Core.Handler {
-
 public class CameraTouchMovementHandler : MonoBehaviour, IPointerDownHandler, IPointerUpHandler {
     private const float ImageWidth = 2048f;
     private const float ImageHeight = 1360f;
@@ -69,5 +68,4 @@ public class CameraTouchMovementHandler : MonoBehaviour, IPointerDownHandler, IP
         cameraTransform.position = newPosition;
     }
 }
-
 }

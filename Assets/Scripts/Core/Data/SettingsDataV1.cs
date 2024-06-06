@@ -5,7 +5,6 @@ using Framework.Base;
 using UnityEngine;
 
 namespace Core.Data {
-
 [Serializable]
 public class SettingsDataV1 : Data<SettingsDataV1> {
     public BMLanguage GetLanguage() {
@@ -56,5 +55,4 @@ public enum BMLanguage {
     Portuguese, // = 28,
     English // = 10
 }
-
 }

@@ -4,7 +4,6 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Core.Handler {
-
 public class AudioPlayerHandler : MonoBehaviour, IPointerClickHandler {
     [SerializeField] public CommonFX commonFX;
     [SerializeField] public bool checkForDisabledButton = true;
@@ -21,5 +20,4 @@ public class AudioPlayerHandler : MonoBehaviour, IPointerClickHandler {
         // Checks if there is a button and it is not disabled
     }
 }
-
 }

@@ -1,5 +1,4 @@
 namespace Core.Utils.Constants {
-
 public enum StageLevelType {
     GARDEN = 0,
     KITCHEN = 1,
@@ -15,5 +14,4 @@ public enum StageDifficultyType {
     HARD = 2,
     IMPOSSIBLE = 3
 }
-
 }

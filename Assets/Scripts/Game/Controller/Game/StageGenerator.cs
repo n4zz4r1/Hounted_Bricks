@@ -6,8 +6,7 @@ using Monster = Core.Utils.Constants.Monsters.Monster;
 using MonsterBoss = Core.Utils.Constants.Monsters.MonsterBoss;
 
 
-namespace Core.Controllers.Game {
-
+namespace Game.Controller.Game {
 public abstract class StageGenerator {
     // Set monsters accordingly with its level and difficulty
     // TODO set real probability
@@ -141,5 +140,4 @@ public abstract class StageGenerator {
         };
     }
 }
-
 }

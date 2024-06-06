@@ -3,7 +3,6 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace Core.Handler {
-
 public class CardTouchHandler : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerExitHandler,
     IPointerEnterHandler {
     [SerializeField] private CardFSM currentCardFSM;
@@ -33,5 +32,4 @@ public class CardTouchHandler : MonoBehaviour, IPointerDownHandler, IPointerUpHa
         _isDraggingCard = false;
     }
 }
-
 }

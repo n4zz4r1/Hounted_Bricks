@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEngine.Serialization;
 
 namespace Core.Handler {
-
 public class PathLineHandler : MonoBehaviour {
     private const int Limit = 1000;
 
@@ -63,5 +62,4 @@ public class PathLineHandler : MonoBehaviour {
         }
     }
 }
-
 }

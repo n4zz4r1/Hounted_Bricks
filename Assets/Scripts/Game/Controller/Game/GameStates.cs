@@ -3,7 +3,6 @@ using Game.StateMachine.ActionButton;
 using Game.StateMachine.Rocks;
 
 namespace Game.Controller.Game {
-
 public abstract class GameState : State<GameController> {
     public virtual void DestroyRock(GameController fsm, RockFSM rockFSM) { }
 }
@@ -52,5 +51,4 @@ public class Defeat : GameState {
         fsm.components.gameMenu.ChangeState(Popup.GameMenu.States.Defeat);
     }
 }
-
 }

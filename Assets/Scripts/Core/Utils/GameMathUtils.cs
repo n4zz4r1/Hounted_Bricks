@@ -1,7 +1,6 @@
 using Core.Sprites;
 
 namespace Core.Utils {
-
 public abstract class GameMathUtils {
     // This method uses Fibonacci to calculate cost based on its level
     // TODO change and research when leveling maths
@@ -25,5 +24,4 @@ public abstract class GameMathUtils {
         return fib[level];
     }
 }
-
 }

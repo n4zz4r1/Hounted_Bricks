@@ -3,10 +3,11 @@ using Core.StateMachine.Cards;
 using UnityEngine;
 
 namespace Core.Utils.Constants {
-
 public static class Colors {
     public static readonly Color PRIMARY = new(0.69f, 0.60f, 0.47f);
     public static readonly Color SECONDARY = new(0.55f, 0.48f, 0.38f);
+    public static readonly Color TERDIARY = new(0.35f, 0.48f, 0.22f);
+        
     public static readonly Color COMMON_CARD = new(0.77f, 0.73f, 0.69f);
     public static readonly Color COMMON_CARD_DARK = new(0.61f, 0.58f, 0.54f);
     public static readonly Color UNCOMMON_CARD = new(0.64f, 0.64f, 0.46f);
@@ -150,5 +151,4 @@ public class RarityUtils {
         return rarityUtils;
     }
 }
-
 }

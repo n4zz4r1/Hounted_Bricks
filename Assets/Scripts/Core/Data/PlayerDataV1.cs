@@ -7,11 +7,8 @@ using Framework.Base;
 using UnityEngine;
 
 namespace Core.Data {
-
 [Serializable]
 public class PlayerDataV1 : Data<PlayerDataV1> {
-
-
     public List<int> CurrentLife { get; private set; } = new() {
         3, 2, 1
     };
@@ -135,7 +132,7 @@ public class PlayerDataV1 : Data<PlayerDataV1> {
             Card.Card_005_Char_Lucas => Player.Lucas,
             Card.Card_006_Char_Lisa => Player.Lisa,
             Card.Card_007_Char_Bill => Player.Billy,
-            _ => Player.NONE
+            _ => Player.None
         };
     }
 
@@ -174,9 +171,9 @@ public class PlayerDataV1 : Data<PlayerDataV1> {
 }
 
 public enum Player {
-    NONE,
+    None,
     Lucas,
     Billy,
-    Lisa,
+    Lisa
 }
 }

@@ -3,7 +3,6 @@ using Framework.Base;
 using UnityEngine;
 
 namespace Game.Popup.GameMenu {
-
 public abstract class States {
     public static readonly Playing Playing = new();
     public static readonly Paused Paused = new();
@@ -44,7 +43,7 @@ public class Paused : State<GameMenuFSM> {
 
         fsm.components.gameController.TransitionWithEffectTo(fsm.components.gameController.CurrentStage.isMapStage
             ? "MapScene"
-            : "PreloadScene");
+            : "MainScene");
     }
 
     public override void Exit(GameMenuFSM fsm) {
@@ -58,9 +57,7 @@ public class Victory : State<GameMenuFSM> {
         fsm.components.menuBox.SetActive(true);
         fsm.components.buttonUnpause.gameObject.SetActive(false);
         fsm.components.buttonRestart.gameObject.SetActive(false);
-        if (!fsm.stageFSM.isMapStage) {
-            fsm.components.buttonNextLevel.gameObject.SetActive(true);
-        }
+        if (!fsm.stageFSM.isMapStage) fsm.components.buttonNextLevel.gameObject.SetActive(true);
         fsm.components.gameMenuTitle.text = fsm.YouWonLabel;
         GameDataV1.Instance.CompleteStage(fsm.components.gameController.CurrentStage,
             fsm.components.gameController.CurrentStars.Value);
@@ -71,7 +68,7 @@ public class Victory : State<GameMenuFSM> {
         Time.timeScale = 1f;
         fsm.components.gameController.TransitionWithEffectTo(fsm.components.gameController.CurrentStage.isMapStage
             ? "MapScene"
-            : "PreloadScene");
+            : "MainScene");
     }
 }
 
@@ -88,8 +85,7 @@ public class Defeat : State<GameMenuFSM> {
             PlayerDataV1.Instance.RemoveLifeFromCurrentPlayer();
         fsm.components.gameController.TransitionWithEffectTo(fsm.components.gameController.CurrentStage.isMapStage
             ? "MapScene"
-            : "PreloadScene");
+            : "MainScene");
     }
 }
-
 }
