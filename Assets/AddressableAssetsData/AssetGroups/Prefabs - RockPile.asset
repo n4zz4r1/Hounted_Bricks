@@ -29,6 +29,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - GameAssets
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2f0200aa3e0a52640ba873e8a1d723a2
+    m_Address: RockPile_DiamondMine
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameAssets
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 32e1b6a54f8b9a04b841d0c47a9f0d7a, type: 2}
   m_SchemaSet:

@@ -65,6 +65,10 @@ public enum Card {
 
     // Special Actions
     Card_E_Recycle,
-    Card_E_NextWave
+    Card_E_NextWave,
+    
+    // Others
+    Card_101_Broken_Rock,
+    Card_102_Broke_Arrowed
 }
 }

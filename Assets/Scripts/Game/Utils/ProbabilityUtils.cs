@@ -48,22 +48,6 @@ public class ProbabilityUtils : SingletonBase<ProbabilityUtils> {
         Debug.Log("Next, " + next + " from " + min + " to " + max);
         return next;
     }
-
-    public static bool EffectProbability(int chance, int counter, AbilityFactor abilityFactor) {
-        // fire is limited by 2
-        switch (counter) {
-            case 0:
-                return Instance.Between100((int)(chance * abilityFactor.EffectDamageChance1));
-            case 1:
-                return Instance.Between100((int)(chance * abilityFactor.EffectDamageChance2));
-            case 2:
-                return Instance.Between100((int)(chance * abilityFactor.EffectDamageChance3));
-            case 3:
-                return Instance.Between100((int)(chance * abilityFactor.EffectDamageChance4));
-            default:
-                return false;
-        }
-    }
 }
 
 public class CornerTypeModel {

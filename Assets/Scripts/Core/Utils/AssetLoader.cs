@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using Core.Data;
 using Core.Popup;
@@ -10,6 +11,7 @@ using Core.Utils.Constants;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
+using Debug = UnityEngine.Debug;
 using Object = UnityEngine.Object;
 
 namespace Core.Utils {
@@ -33,46 +35,61 @@ public abstract class AssetLoader {
         return ((GameObject)CachedObjects[enumerator]).GetComponent<T>();
     }
 
+    private static readonly Dictionary<string, bool> _addressablesOnCache = new();
+    
+    // private static readonly Dictionary<string, bool> labels
+
+    private static readonly Dictionary<string, Type> enumTypeMappings = new Dictionary<string, Type>
+    {
+        { "Card_", typeof(Card) },
+        { "UI_", typeof(UI) },
+        { "CardAttributeType_", typeof(CardAttributeType) },
+        { "Popups_", typeof(Popups) },
+        // { "GameResourceType_", typeof(GameResourceType) },
+        // { "GameResource_", typeof(GameResource) },
+        { "ResourceType_", typeof(ResourceType) },
+        { "AbilityPanel_", typeof(AbilityPanel) },
+        { "Player_", typeof(Player) },
+        { "RockPile_", typeof(RockPile) },
+        { "CardType_", typeof(CardType) },
+        { "Rock_", typeof(Rock) }
+    };
+    
     // TODO Improve this
-    private static Enum GetEnumByName(string assetName) {
+    // Current: 1752
+    private static Enum GetEnumByName(string assetName)
+    {
         if (StartsWithNumber(assetName))
-            return Enum.Parse<Card>($"Card_{assetName}");
+            return (Enum)Enum.Parse(typeof(Card), $"Card_{assetName}");
 
-        if (assetName.Contains("CardAttributeType_"))
-            return Enum.Parse<CardAttributeType>($"{assetName.Split("_")[1]}");
-
-        if (assetName.Contains("Popups_"))
-            return Enum.Parse<Popups>($"{assetName.Split("_")[1]}");
-
-        if (assetName.Contains("GameResourceType_"))
-            return Enum.Parse<GameResourceType>($"{assetName.Split("_")[1]}");
-
-        if (assetName.Contains("GameResource_"))
-            return Enum.Parse<GameResource>($"{assetName.Split("_")[1]}");
-
-        if (assetName.Contains("ResourceType_"))
-            return Enum.Parse<ResourceType>($"{assetName.Split("_")[1]}");
-
-        if (assetName.Contains("AbilityPanel_"))
-            return Enum.Parse<AbilityPanel>($"{assetName.Split("_")[1]}");
-
-        if (assetName.Contains("Player_"))
-            return Enum.Parse<Player>($"{assetName.Split("_")[1]}");
-
-        if (assetName.Contains("RockPile_"))
-            return Enum.Parse<RockPile>($"{assetName.Split("_")[1]}");
-
-        if (assetName.Contains("CardType_"))
-            return Enum.Parse<CardType>($"{assetName.Split("_")[1]}");
-
-        if (assetName.Contains("Rock_"))
-            return Enum.Parse<Rock>($"{assetName.Split("_")[1]}");
+        foreach (var mapping in enumTypeMappings)
+            if (assetName.StartsWith(mapping.Key)) {
+                var enumName = assetName.Substring(mapping.Key.Length);
+                return (Enum)Enum.Parse(mapping.Value, enumName);
+            }
 
         throw new Exception($"Enum not found for: {assetName}");
     }
 
     public static void LoadAssetsByLabel<TX>(string label, Action<TX> callback, TX param) {
+        var memoryUsageBefore = $"{GC.GetTotalMemory(false) / 1024} KB";
+
+        var stopwatch = new Stopwatch();
+        var stopwatchAssetLoader = new Stopwatch();
+        stopwatch.Start();
+        stopwatchAssetLoader.Start();
+
+        // if (_addressablesOnCache.ContainsKey(label)) {
+        //     Debug.Log($"[AssetLoader] label {label} already in cache. Memory usage: {GC.GetTotalMemory(false) / 1024} KB.");
+        //     callback?.Invoke(param);
+        //     return;
+        // }
+        
+
         Addressables.LoadAssetsAsync<Object>(label, null).Completed += handle => {
+            stopwatchAssetLoader.Stop();
+            // _addressablesOnCache.Add(label, true);
+
             var debug = "\n";
             int onCache = 0, loads = 0;
             if (handle.Status == AsyncOperationStatus.Succeeded) {
@@ -92,9 +109,14 @@ public abstract class AssetLoader {
 
                     CachedObjects[assetname] = asset;
                 }
+                stopwatch.Stop();
+                var memoryUsageAfter = $"{GC.GetTotalMemory(false) / 1024} KB";
+                Debug.Log($"[AssetLoader] {loads} New assets preloaded, as {onCache} fetched from cache in {stopwatch.ElapsedMilliseconds} ms, being {stopwatchAssetLoader.ElapsedMilliseconds} ms the asset loader time. {debug}  ");
+                // Debug.Log($"[AssetLoader] Memory Consumption before: {memoryUsageBefore} then {memoryUsageAfter}");
 
-                Debug.Log($"[AssetLoader] {loads} New assets preloaded, as {onCache} fetched from cache {debug} ");
-
+                // Release from cache
+                Addressables.Release(handle);
+                
                 callback?.Invoke(param);
             }
             else {
@@ -103,36 +125,47 @@ public abstract class AssetLoader {
         };
     }
     
-    public static void LoadAssetsByLabel(string label) {
-        Addressables.LoadAssetsAsync<Object>(label, null).Completed += handle => {
-            var debug = "\n";
-            int onCache = 0, loads = 0;
-            if (handle.Status == AsyncOperationStatus.Succeeded) {
-                foreach (var asset in handle.Result) {
-                    // if (StartsWithNumber(asset.name)) {
-                    var assetname = GetEnumByName(asset.name);
-
-
-                    if (CachedObjects.ContainsKey(assetname)) {
-                        debug += $"Asset {asset.name} already loaded.\n";
-                        onCache++;
-                    }
-                    else {
-                        debug += $"Asset {asset.name} loaded successfully.\n";
-                        loads++;
-                    }
-
-                    CachedObjects[assetname] = asset;
-                }
-
-                Debug.Log($"[AssetLoader] {loads} New assets preloaded, as {onCache} fetched from cache {debug} ");
-
-            }
-            else {
-                Debug.LogError("Failed to load assets.");
-            }
-        };
-    }
+    // public static void LoadAssetsByLabel(string label) {
+    //     var memoryUsageBefore = $"{GC.GetTotalMemory(false) / 1024} KB";
+    //     var stopwatch = new Stopwatch();
+    //     var stopwatchAssetLoader = new Stopwatch();
+    //     stopwatch.Start();
+    //     stopwatchAssetLoader.Start();
+    //
+    //     Addressables.LoadAssetsAsync<Object>(label, null).Completed += handle => {
+    //         stopwatchAssetLoader.Stop();
+    //
+    //         var debug = "\n";
+    //         int onCache = 0, loads = 0;
+    //         if (handle.Status == AsyncOperationStatus.Succeeded) {
+    //             foreach (var asset in handle.Result) {
+    //                 // if (StartsWithNumber(asset.name)) {
+    //                 var assetname = GetEnumByName(asset.name);
+    //
+    //
+    //                 if (CachedObjects.ContainsKey(assetname)) {
+    //                     debug += $"Asset {asset.name} already loaded.\n";
+    //                     onCache++;
+    //                 }
+    //                 else {
+    //                     debug += $"Asset {asset.name} loaded successfully.\n";
+    //                     loads++;
+    //                 }
+    //
+    //                 CachedObjects[assetname] = asset;
+    //             }
+    //
+    //             stopwatch.Stop();
+    //             var memoryUsageAfter = $"{GC.GetTotalMemory(false) / 1024} KB";
+    //             debug += $"Memory Consumption before: {memoryUsageBefore} then {memoryUsageAfter}";
+    //             Debug.Log($"[AssetLoader] {loads} New assets preloaded, as {onCache} fetched from cache in {stopwatch.ElapsedMilliseconds} ms, being {stopwatchAssetLoader.ElapsedMilliseconds} ms the asset loader time. {debug}  ");
+    //
+    //         }
+    //         else {
+    //             Debug.LogError("Failed to load assets.");
+    //         }
+    //     };
+    // }
 }
 
 public abstract class AssetLoader<TU> where TU : Enum {

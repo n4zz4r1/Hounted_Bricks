@@ -12,7 +12,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using GameResource = Core.Utils.Constants.GameResource;
 
 namespace Game.StateMachine.ActionButton {
 public class ActionButtonFSM : StateMachine<ActionButtonFSM, State<ActionButtonFSM>>, IPointerDownHandler,
@@ -65,12 +64,12 @@ public class ActionButtonFSM : StateMachine<ActionButtonFSM, State<ActionButtonF
 
         // First check if has enough Consumables
         if (CardFSM.cardType is CardType.Ability &&
-            gameController.GetGameResource(GameResource.Drop).GetQuantity() <
+            gameController.GetGameResource(ResourceType.Elixir).GetQuantity() <
             CardFSM.Attribute(CardAttributeType.Consumable)) {
             State.Disable(FSM);
             return;
         }
-        
+
         // ReSharper disable once ConvertIfStatementToSwitchStatement
         if (!CardFSM.abilityFSM.activeOnShootingStage && gameController.State == Controller.Game.States.PlayerTurn)
             State.Enable(FSM);
@@ -78,7 +77,6 @@ public class ActionButtonFSM : StateMachine<ActionButtonFSM, State<ActionButtonF
             State.Enable(FSM);
         else
             State.Disable(FSM);
-        
     }
 
     public void MoveRight() {
@@ -102,7 +100,7 @@ public class ActionButtonFSM : StateMachine<ActionButtonFSM, State<ActionButtonF
         Counter.Value += counter;
         components.counter.text = Counter.Value.ToString();
 
-        components.rectTransform.localScale = new Vector3(2f,2f,2f);
+        components.rectTransform.localScale = new Vector3(2f, 2f, 2f);
         components.rectTransform.DOScale(1f, GameResourceFSM.EffectTime);
         State.Enable(FSM);
     }
@@ -110,7 +108,7 @@ public class ActionButtonFSM : StateMachine<ActionButtonFSM, State<ActionButtonF
     // Once action is done
     public void ActionDoneCallback() {
         Counter.Value--;
-        
+
         // Disable basic abilities after one hit
         // if (CardFSM.cardType == CardType.BasicAbility)
         //     State.Disable(FSM);
@@ -119,8 +117,9 @@ public class ActionButtonFSM : StateMachine<ActionButtonFSM, State<ActionButtonF
 
         // Remove drops
         if (CardFSM.cardType is CardType.Ability)
-            gameController.GetGameResource(GameResource.Drop).Decrease(CardFSM.Attribute(CardAttributeType.Consumable));
-        
+            gameController.GetGameResource(ResourceType.Elixir)
+                .Decrease(CardFSM.Attribute(CardAttributeType.Consumable));
+
         // Refresh all Cards
         SyncAllData(typeof(ActionButtonFSM));
     }
@@ -143,12 +142,6 @@ public class ActionButtonFSM : StateMachine<ActionButtonFSM, State<ActionButtonF
     public float moveDuration = 0.5f; // Duration of the move
 
     #endregion
-}
-
-public enum SpecialAction {
-    NONE,
-    RECYCLE,
-    NEXT_WAVE
 }
 
 [Serializable]

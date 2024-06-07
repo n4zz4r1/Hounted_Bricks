@@ -66,6 +66,13 @@ public class AtomicList<T> {
         }
     }
 
+    public int RemoveCounter(T item) {
+        lock (_lock) {
+            _list.Remove(item);
+            return _list.Count;
+        }
+    }
+
     // Get a copy of the list
     public List<T> ToList() {
         lock (_lock) {

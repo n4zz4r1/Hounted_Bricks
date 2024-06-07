@@ -39,7 +39,7 @@ public class ReachEndLine : MonsterState {
 public class Created : MonsterState {
     public override void Enter(MonsterFSM fsm) {
         // When monster is corner, rotate it
-        if (fsm.components.rectTransform != null && fsm.monsterType == MonsterType.CORNER) {
+        if (fsm.components.rectTransform != null && fsm.monsterType == MonsterType.Corner) {
             var randomCorner = ProbabilityUtils.Instance.RandomCornerPosition();
             fsm.components.rectTransform.Rotate(new Vector3(0f, 0f, randomCorner.radius));
             fsm.components.rectTransform.localPosition = new Vector2(randomCorner.x, randomCorner.y);
@@ -61,7 +61,7 @@ public class Idle : MonsterState {
 
         // If there is a rock in front, damage it
         if (grid.HasRockInFront(fsm)) {
-            grid.MonsterInFront(fsm).HitByAMonster(fsm);
+            grid.MonsterInFront(fsm).RockHitByMonster(fsm);
             fsm.components.animator.SetTrigger(HitAnim);
         }
 
@@ -84,13 +84,13 @@ public class Idle : MonsterState {
             }
         }
         else {
-            if (currentPosition.y < 13 && fsm.monsterType == MonsterType.FAST && !grid.HasMonsterInFront(fsm)) {
+            if (currentPosition.y < 13 && fsm.monsterType == MonsterType.Fast && !grid.HasMonsterInFront(fsm)) {
                 fsm.MovementSpeed = MonsterFSM.NormalSpeed * 2;
                 fsm.NextMoveDistance = 2f;
 
                 // Jump 5 houses when there is no monster on screen and only the boss
             }
-            else if (fsm.monsterType == MonsterType.BOSS && !grid.HasMonstersOnScene() &&
+            else if (fsm.monsterType == MonsterType.Boss && !grid.HasMonstersOnScene() &&
                      grid.MonsterFSMList.Count == 1) {
                 fsm.MovementSpeed = MonsterFSM.NormalSpeed * 5;
                 fsm.NextMoveDistance = 5f;
@@ -105,38 +105,48 @@ public class Idle : MonsterState {
         fsm.ChangeState(States.Moving);
     }
 
-    public override void Hit(MonsterFSM fsm, RockFSM rockFSM) => Hit(fsm, rockFSM.Damage());
-    public override void Hit(MonsterFSM fsm, MonsterFSM monsterFSM) => Hit(fsm, fsm.life * fsm.rockPileFactor);
+    public override void Hit(MonsterFSM fsm, RockFSM rockFSM) {
+        //  when Ignore first collision, return
+        if (rockFSM.ignoreFirstCollision) {
+            Debug.Log("Ignoring first collision");
+            rockFSM.ignoreFirstCollision = false;
+            return;
+        }
 
-    // TrembleEffect
-    private const float Duration = 0.03f; // Duration of the shake
-    private const float Strength = 0.03f; // Strength of the shake
-    private const int Vibrato = 1; // Number of shakes
-    private const float Randomness = 90f; // Randomness factor
+        Hit(fsm, rockFSM.Damage());
+    }
+
+    public override void Hit(MonsterFSM fsm, MonsterFSM _) {
+        // In cases of monster hitting rocks, 
+        Hit(fsm, fsm.GetLife() + 1);
+    }
 
     public override void Hit(MonsterFSM fsm, float damage) {
         fsm.components.animator.SetTrigger(HitAnim);
-        fsm.gameObject.transform.DOShakePosition(Duration, Strength, Vibrato, Randomness ).OnComplete(() => {
-            // fsm.gameObject.transform.localPosition = initialPosition;
-        });
-        fsm.CurrentLife -= 1 * damage;
+        fsm.CurrentLife -= damage;
+
+        if (fsm.rockPile is RockPile.GoldMine or RockPile.DiamondMine) {
+            var card = fsm.rockPile is RockPile.GoldMine
+                ? Card.Card_025_Ab_Lucas_GiveMeMoney
+                : Card.Card_022_Ab_Lucas_SuperWall;
+            var resource = fsm.rockPile is RockPile.GoldMine
+                ? ResourceType.Coin
+                : ResourceType.Diamond;
+
+            if (Dices.Roll(AssetLoader.AsComponent<CardFSM>(card).Attribute(CardAttributeType.Probability)))
+                fsm.GameController.AddGameResource(fsm.transform.position, resource, 1);
+        }
 
         if (fsm.CurrentLife <= 0) {
             Kill(fsm);
         }
+
         else {
             AudioController.PlayFXRandom(fsm.impactFX);
             fsm.components.healthyBar.State.Hit(fsm.components.healthyBar, damage);
         }
-        
-        if (fsm.rockPile is RockPile.GoldMine) {
-            if (fsm.AbilityCardFSM == null)
-                fsm.AbilityCardFSM = AssetLoader.AsComponent<CardFSM>(Card.Card_025_Ab_Lucas_GiveMeMoney);
-
-            if (Dices.Roll(fsm.AbilityCardFSM.Attribute(CardAttributeType.Probability)))
-                fsm.GameController.AddGameResource(fsm.transform.position, GameResource.Coin, 1);
-        }
     }
+
 
     //     // Damage should be rockLife * its factor
     //     var damage = ;
@@ -152,7 +162,9 @@ public class Idle : MonsterState {
     //     }
     // }
 
-    public override void Kill(MonsterFSM fsm) => fsm.ChangeState(States.Dying);
+    public override void Kill(MonsterFSM fsm) {
+        fsm.ChangeState(States.Dying);
+    }
 }
 
 public class Moving : MonsterState {
@@ -205,27 +217,14 @@ public class CastingSummon : MonsterState { }
 public class CastingFireball : MonsterState { }
 
 [Serializable]
-public enum EffectType {
-    FIRE,
-    POISON
-}
-
-[Serializable]
-public enum AuraType {
-    NONE,
-    GOLD,
-    DIAMOND
-}
-
-[Serializable]
 public enum MonsterType {
-    NORMAL,
-    FAST,
-    CORNER,
-    SHIELDED,
-    SHAMAN,
-    MAGE,
-    BOSS
+    Normal,
+    Fast,
+    Corner,
+    Shielded,
+    Shaman,
+    Mage,
+    Boss
 }
 
 [Serializable]

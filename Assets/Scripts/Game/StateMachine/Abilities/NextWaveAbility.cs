@@ -1,11 +1,11 @@
-﻿using Core.StateMachine.Abilities;
-using Core.Utils.Constants;
+﻿using Core.Sprites;
+using Core.StateMachine.Abilities;
 using Game.Controller.Game;
 
 namespace Game.StateMachine.Abilities {
-public class NextWaveAbility : Ability<GameController> {
+public class NextWaveAbility : Ability<GameController, GameState> {
     protected override void InitAction() {
-        GameController.GetGameResource(GameResource.Drop).Increase(1);
+        GameController.GetGameResource(ResourceType.Elixir).Increase();
         GameController.State.NextWave(GameController);
     }
 }

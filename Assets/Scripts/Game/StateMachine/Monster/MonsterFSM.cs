@@ -1,35 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
-using Core.StateMachine.Cards;
 using Core.Utils.Constants;
 using Framework.Base;
 using Game.Controller.Game;
 using Game.StateMachine.MonsterHB;
 using Game.StateMachine.Rocks;
+using Game.Utils;
 using UnityEngine;
 
 namespace Game.StateMachine.Monster {
 public class MonsterFSM : StateMachine<MonsterFSM, MonsterState> {
     [SerializeField] public MonsterResourceType monsterResourceType = MonsterResourceType.Monster;
-    [SerializeField] public MonsterType monsterType = MonsterType.NORMAL;
+    [SerializeField] public MonsterType monsterType = MonsterType.Normal;
     [SerializeField] public RockPile rockPile = RockPile.None;
-    [SerializeField] public float life = 40;
-    [SerializeField] public int damage = 1;
+    [SerializeField] public float baseLife = 40;
+    [SerializeField] public int baseDamage = 1;
     [SerializeField] public MonsterComponents components;
-    [SerializeField] public float forceFactor = 1f;
-    [SerializeField] public float rockPileFactor = 1f;
     protected override MonsterFSM FSM => this;
     protected override MonsterState GetInitialState => States.Created;
-    
-    // TODO refactor when buff
-    internal CardFSM AbilityCardFSM { get; set; }
 
-    internal int GetLife() {
-        return (int)(life * forceFactor);
+    internal float GetLife() {
+        return Balancer.Instance.MonsterLife(baseLife);
+    }
+
+    internal int GetDamage() {
+        return Balancer.Instance.MonsterDamage(baseDamage);
     }
 
     internal bool IsBoss() {
-        return monsterType == MonsterType.BOSS;
+        return monsterType == MonsterType.Boss;
     }
 
     public void DestroyMonster() {
@@ -49,21 +48,16 @@ public class MonsterFSM : StateMachine<MonsterFSM, MonsterState> {
 
     public static GameObject Create(GameObject prefab, Vector2 where, Transform area) {
         var monsterInstance = Instantiate(prefab, where, Quaternion.Euler(0.0f, 0.0f, 0.0f), area);
-        // MonsterFSM monster = Instantiate(Resources.Load<MonsterFSM>(prefab), where, Quaternion.Euler(0.0f, 0.0f, 0.0f), monsterController.transform);
-        // monster.forceFactor *= forceFactor;
-        // monster.wasSummoned = isSummon;
-        // monster.AuraType = auraType;
-        // If monster is corner, rotate
-
         return monsterInstance;
     }
+
 
     public void HitByARock(RockFSM rock) {
         State.Hit(this, rock);
     }
 
-    public void HitByAMonster(MonsterFSM monsterFSM) {
-        State.Hit(this, monsterFSM);
+    public void RockHitByMonster(MonsterFSM monsterHittingFSM) {
+        State.Hit(this, monsterHittingFSM);
     }
 
     protected override void Before() {

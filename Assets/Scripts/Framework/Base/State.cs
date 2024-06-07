@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,6 +19,11 @@ public abstract class State<T> {
     public virtual void OnCollisionEnter(T fsm, Collider2D collider) { }
     public virtual void OnCollisionExit(T fsm, Collider2D collider) { }
     public virtual void Exit(T fsm) { }
+
+    public virtual IEnumerator ExitAsync(T fsm, System.Action callback) {
+        yield return null;
+        
+    }
     public virtual void SyncData(T fsm) { }
     public virtual void OpenPopup(T fsm) { }
     public virtual void TransitionTo(T fsm, string scene, Button from) { }
@@ -33,6 +39,7 @@ public abstract class State<T> {
     public virtual void Buy(T fsm) { }
     public virtual void Click(T fsm) { }
     public virtual void Clear(T fsm) { }
+    public virtual void Break(T fsm) { }
     public virtual bool Decrease(T fsm, int value = 1) => false;
     public virtual void Increase(T fsm, int value = 1) { }
     public virtual void Inactive(T fsm) { }

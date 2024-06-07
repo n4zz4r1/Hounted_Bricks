@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
+using Core.Sprites;
 using Core.StateMachine.Cards;
 using Core.StateMachine.Stages;
 using Core.Utils;
@@ -9,6 +9,7 @@ using DG.Tweening;
 using Framework.Base;
 using Game.Popup.GameMenu;
 using Game.StateMachine.ActionButton;
+using Game.StateMachine.BuffItems;
 using Game.StateMachine.GameResources;
 using Game.StateMachine.Monster;
 using Game.StateMachine.Players;
@@ -19,42 +20,46 @@ using UnityEngine;
 
 namespace Game.Controller.Game {
 public class GameController : Controller<GameController, GameState> {
-
-    [SerializeField] public List<GameResourceFSM> gameResourcesAtStart;
-    private readonly Dictionary<GameResource, GameResourceFSM> _gameResourcesDictionary = new();
+    // private readonly Dictionary<BuffType, List<BuffAbility>> _gameBuffs = new();
 
     [SerializeField] public Components components;
-    public List<RockFSM> rocksInGame = new();
-    private readonly AtomicInt _monstersMoved = new(0);
-    internal readonly AbilityFactor AbilityFactor = new();
-    internal readonly Dictionary<Monsters.MonsterBoss, GameObject> BossesPrefab = new();
-    public readonly AtomicInt CountNunRockLaunched = new(0);
+    private readonly Dictionary<Buff, BuffItemFSM> _gameBuffItems = new();
 
-    // Atomic Properties
-    public readonly AtomicInt CountRockDestroyed = new(0);
+    private readonly Dictionary<ResourceType, GameResourceFSM> _gameResourcesDictionary = new();
+    private readonly AtomicInt _monstersMoved = new(0);
+    internal readonly Dictionary<Monsters.MonsterBoss, GameObject> BossesPrefab = new();
+    // public readonly AtomicInt CountNunRockLaunched = new(0);
+    //
+    // // Atomic Properties
+    // public readonly AtomicInt CountRockDestroyed = new(0);
+    
     public readonly AtomicInt CurrentStars = new(1);
+    internal AtomicList<RockFSM> RocksInGame = new();
     internal readonly AtomicList<MonsterFSM> MonstersInGame = new();
+
+    public readonly AtomicInt RockThrowCounter = new AtomicInt(0);
     internal readonly Dictionary<Monsters.Monster, GameObject> MonstersPrefab = new();
+
     // internal readonly AtomicInt PlayerLife = new(3);
     internal readonly AtomicList<MonsterFSM> RockPileInGame = new();
     internal ActionButtonFSM[] ActionButtons;
     internal MonsterGrid MonsterGrid;
     internal Vector2 NextPlayerPosition = PlayerFSM.PlayerStartPosition;
-    internal PlayerFSM PlayerInGame;
     internal CardFSM PlayerCardInGame;
+    internal PlayerFSM PlayerInGame;
     internal Vector2 ShootReleasePosition;
 
     protected override GameController FSM => this;
+
     protected override GameState GetInitialState => States.CreatingGame;
-
-    public GameResourceFSM GetGameResource(GameResource gameResource) => _gameResourcesDictionary[gameResource];
-
-    public void AddGameResource(Vector3 from, GameResource gameResource, int quantity) {
-        if (!_gameResourcesDictionary.ContainsKey(gameResource))
-            _gameResourcesDictionary.Add(gameResource, GameResourceFSM.Build(FSM, gameResource, _gameResourcesDictionary.Count - 2));
-        
-        _gameResourcesDictionary[gameResource].IncreaseWithEffect(from, quantity);
-    }
+    //
+    // public void ExecuteBuffs<T>(BuffType buffType, T fsm) where T: StateMachine<T, State<T>> {
+    //     if (_gameBuffs[buffType] == null) return;
+    //     
+    //     foreach (var buffAbility in _gameBuffs[buffType]) {
+    //         StartCoroutine(buffAbility.ApplyBuff<T>(this, _gameBuffItems[buffAbility.BuffItem()].Counter.Value, fsm));
+    //     }
+    // }
 
     // Internal Properties
     internal StageFSM CurrentStage { get; set; }
@@ -63,15 +68,53 @@ public class GameController : Controller<GameController, GameState> {
     internal float GameShootingTime { get; set; } // time counter from start of first shoot to last
     internal float SpeedUpAfterSecs { get; set; } = 2f; // speed up starts after seconds 
 
+    public GameResourceFSM GetGameResource(ResourceType resourceType) {
+        return _gameResourcesDictionary[resourceType];
+    }
+
+    public void AddGameResource(Vector3 from, ResourceType resourceType, int quantity) {
+        if (!_gameResourcesDictionary.TryGetValue(resourceType, out var value)) {
+            _gameResourcesDictionary.Add(resourceType,
+                GameResourceFSM.Build(FSM, resourceType, _gameResourcesDictionary.Count - 2, quantity));
+            return;
+        }
+
+        value.IncreaseWithEffect(from, quantity);
+    }
+
+    public void AddGameResource(ResourceType resourceType, int quantity) {
+        if (!_gameResourcesDictionary.TryGetValue(resourceType, out var value)) {
+            _gameResourcesDictionary.Add(resourceType,
+                GameResourceFSM.Build(FSM, resourceType, _gameResourcesDictionary.Count - 2, quantity));
+            return;
+        }
+
+        value.Increase(quantity);
+    }
+
+    public void AddGameBuff(Buff buff, Sprite icon) {
+        // First, add Buff box
+
+        if (!_gameBuffItems.TryGetValue(buff, out var item))
+            _gameBuffItems.Add(buff, BuffItemFSM.Build(this, buff, icon, _gameBuffItems.Count));
+        else
+            item.Increase();
+
+        // // Then, add to the type list
+        //
+        // if (!_gameBuffs.TryGetValue(buffType, out var gameBuff))
+        //     _gameBuffs.Add(buffType, new List<BuffAbility> {buffAbility});
+        // else 
+        //     gameBuff.Add(buffAbility);
+    }
+
     public void RemoveMonster(MonsterFSM monsterFSM) {
         switch (monsterFSM.monsterResourceType) {
             case MonsterResourceType.Monster:
                 MonstersInGame.Remove(monsterFSM);
 
-                if (MonstersInGame.Count == 0) {
-                    DOVirtual.DelayedCall(1.5f, Victory);
-                }
-                    
+                if (MonstersInGame.Count == 0) DOVirtual.DelayedCall(1.5f, Victory);
+
                 break;
             case MonsterResourceType.RockPile:
                 RockPileInGame.Remove(monsterFSM);
@@ -80,18 +123,26 @@ public class GameController : Controller<GameController, GameState> {
                 break;
         }
     }
-    private void Victory() => ChangeState(States.Victory);
-    private void Defeat() => ChangeState(States.Defeat);
-    
-    public void UpdateGrid() => MonsterGrid = new MonsterGrid(MonstersInGame, RockPileInGame);
 
-    internal int MonsterMoved() {
-        return _monstersMoved.Value;
+    private void Victory() {
+        ChangeState(States.Victory);
     }
 
-    internal void SetAllMonstersMoved() {
-        _monstersMoved.Value = 0;
+    private void Defeat() {
+        ChangeState(States.Defeat);
     }
+
+    public void UpdateGrid() {
+        MonsterGrid = new MonsterGrid(MonstersInGame, RockPileInGame);
+    }
+    //
+    // internal int MonsterMoved() {
+    //     return _monstersMoved.Value;
+    // }
+    //
+    // internal void SetAllMonstersMoved() {
+    //     _monstersMoved.Value = 0;
+    // }
 
     internal void MonsterMovementBegin() {
         FSM._monstersMoved.Value = FSM.MonstersInGame.Count;
@@ -99,8 +150,8 @@ public class GameController : Controller<GameController, GameState> {
 
     public void ReduceLife(MonsterFSM monsterFSM) {
         MonstersInGame.Remove(monsterFSM);
-        var defeated = GetGameResource(GameResource.Heart).Decrease(monsterFSM.damage);
-        if (defeated) 
+        var defeated = GetGameResource(ResourceType.Heart).Decrease(monsterFSM.GetDamage());
+        if (defeated)
             DOVirtual.DelayedCall(0.2f, Defeat);
     }
 
@@ -117,14 +168,12 @@ public class GameController : Controller<GameController, GameState> {
 
     protected override void Before() {
         ActionButtons = GetComponentsInChildren<ActionButtonFSM>();
-
-        foreach (var gameResourceFSM in gameResourcesAtStart) 
-            _gameResourcesDictionary.Add(gameResourceFSM.type, gameResourceFSM);
     }
 
     // Monster type can be added at one or more stages
     public void AddRockPile(RockPile rockPile, Vector2 position) {
-        RockPileInGame.Add(MonsterFSM.Create(AssetLoader.AsGameObject(rockPile), position, FSM.components.areaMonsters.transform)
+        RockPileInGame.Add(MonsterFSM
+            .Create(AssetLoader.AsGameObject(rockPile), position, FSM.components.areaMonsters.transform)
             .GetComponent<MonsterFSM>());
         MonsterGrid = new MonsterGrid(MonstersInGame, RockPileInGame); // Uptate grid
     }

@@ -8,6 +8,7 @@ public enum RockPile {
     None,
     Basic,
     GoldMine,
+    DiamondMine,
 }
 
 public class Monsters {

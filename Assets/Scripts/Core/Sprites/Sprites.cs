@@ -28,6 +28,9 @@ public enum ResourceType {
     ChestKey = 7,
     Card = 8,
     Money = 9,
-    MasterKey = 10
+    MasterKey = 10,
+    // In game Resources
+    Elixir = 11,
+    Heart = 12,
 }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using Core.Data;
+using Core.Sprites;
 using Core.StateMachine.Cards;
 using Core.StateMachine.Stages;
 using Core.Utils;
@@ -30,19 +31,23 @@ public class CreatingGame : GameState {
         fsm.components.PlayerArea.transform.SetParent(fsm.transform);
         fsm.components.GameArea = new GameObject("Area: Game");
         fsm.components.GameArea.transform.SetParent(fsm.transform);
-       
+
         fsm.PlayerInGame = Object.Instantiate(AssetLoader
                 .AsComponent<PlayerFSM>(PlayerDataV1.Instance.GetSelectedCharacter()),
             playerStartPosition, playerStartRotation, fsm.components.PlayerArea.transform);
 
         fsm.PlayerCardInGame = AssetLoader.AsComponent<CardFSM>(PlayerDataV1.Instance.GetSelectedCharacterCard());
-        
+
         // Prepare Consumables
-        
-        fsm.gameResourcesAtStart.ForEach(r => r.Prepare(fsm));
-        
+        fsm.AddGameResource(ResourceType.Heart, fsm.PlayerCardInGame.Attribute(CardAttributeType.Health));
+        fsm.AddGameResource(ResourceType.Elixir, fsm.PlayerCardInGame.Attribute(CardAttributeType.Consumable));
+        // fsm.gameResourcesAtStart.ForEach(r => r.Prepare(fsm));
+
         // Set Monsters
         CreateMonsters(fsm);
+
+        // Reset level and buffers
+        Balancer.Instance.RefreshLevelAndBuffs();
 
         fsm.FadeIn();
         fsm.ChangeState(States.PlayerTurn);

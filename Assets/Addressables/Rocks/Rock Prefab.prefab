@@ -177,8 +177,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 303026293
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 1757733819, guid: 59ac3940a004b0f4d80ecf12dc63a3e4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -264,10 +264,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a110bca82802d24491c4b3fec1b3736, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rockType: 0
-  rockDamage: 0
-  life: 1
+  rock: 0
   collisionCounter: 0
+  ignoreFirstCollision: 0
   components:
     spriteRenderer: {fileID: 6532144934385515314}
     rigidBodyBouncer: {fileID: 376845271550258954}

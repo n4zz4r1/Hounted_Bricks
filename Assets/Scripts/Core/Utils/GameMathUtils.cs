@@ -23,5 +23,21 @@ public abstract class GameMathUtils {
 
         return fib[level];
     }
+    
+    // This method apply percentage in a way never reach 100 %
+    public static float GetPercentageByQuantity(int percentage, int quantity)
+    {
+        double totalBuff = 0;
+        double remainingPercentage = 100;
+
+        for (var i = 0; i < quantity; i++)
+        {
+            var currentBuff = (percentage / 100.0) * remainingPercentage;
+            totalBuff += currentBuff;
+            remainingPercentage -= currentBuff;
+        }
+
+        return (float) totalBuff;
+    }
 }
 }

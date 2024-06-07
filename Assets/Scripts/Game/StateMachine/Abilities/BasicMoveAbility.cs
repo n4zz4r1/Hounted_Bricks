@@ -5,7 +5,7 @@ using Game.Controller.Game;
 using UnityEngine;
 
 namespace Game.StateMachine.Abilities {
-public class BasicMoveAbility : Ability<GameController> {
+public class BasicMoveAbility : Ability<GameController, GameState> {
     protected override void InitAction() {
         AssetLoader<AbilityPanel>.LoadAsGameObject(AbilityPanel.Move, GameController, OnPanelOpen);
     }

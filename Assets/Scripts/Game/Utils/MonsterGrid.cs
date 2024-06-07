@@ -38,7 +38,7 @@ public class MonsterGrid {
         // 3. insert monster on current grid
         foreach (var monsterFSM in MonsterFSMList) {
             var position = monsterFSM.transform.position;
-            if (monsterFSM.monsterType != MonsterType.BOSS) {
+            if (monsterFSM.monsterType != MonsterType.Boss) {
                 _monsterGridDictionary[(int)position.y][(int)position.x] = monsterFSM;
             }
             else {
@@ -59,12 +59,14 @@ public class MonsterGrid {
         return _monsterGridDictionary.ContainsKey((int)position.y - 1)
                && _monsterGridDictionary?[(int)position.y - 1]?[(int)position.x] != null;
     }
-    
+
     public MonsterFSM MonsterAtPosition(Vector2 position) {
-        return _monsterGridDictionary.ContainsKey((int)position.y) 
-               && _monsterGridDictionary?[(int)position.y]?[(int)position.x] != null 
-            ? _monsterGridDictionary?[(int)position.y]?[(int)position.x] : null;
+        return _monsterGridDictionary.ContainsKey((int)position.y)
+               && _monsterGridDictionary?[(int)position.y]?[(int)position.x] != null
+            ? _monsterGridDictionary?[(int)position.y]?[(int)position.x]
+            : null;
     }
+
     public MonsterFSM MonsterInFront(MonsterFSM monsterFSM) {
         var position = monsterFSM.transform.position;
         return _monsterGridDictionary?[(int)position.y - 1]?[(int)position.x];
@@ -80,11 +82,11 @@ public class MonsterGrid {
 
     public bool HasBossAbove(MonsterFSM monsterFSM) {
         var position = monsterFSM.transform.position;
-        return monsterFSM.monsterType != MonsterType.BOSS && _monsterGridDictionary.ContainsKey((int)position.y + 1)
+        return monsterFSM.monsterType != MonsterType.Boss && _monsterGridDictionary.ContainsKey((int)position.y + 1)
                                                           && _monsterGridDictionary?[(int)position.y + 1]?[
                                                               (int)position.x] != null
                                                           && _monsterGridDictionary?[(int)position.y + 1]?[
-                                                              (int)position.x].monsterType == MonsterType.BOSS;
+                                                              (int)position.x].monsterType == MonsterType.Boss;
     }
 
     public bool HasMonstersOnScene() {
@@ -94,7 +96,7 @@ public class MonsterGrid {
     // Monsters that are type `RockPile` or are blocked by one, should not move.
     public bool CanMonsterMove(MonsterFSM fsm) {
         if (fsm.monsterResourceType == MonsterResourceType.RockPile) return false;
-        if (fsm.monsterType == MonsterType.BOSS) return true;
+        if (fsm.monsterType == MonsterType.Boss) return true;
 
         return !IsMonsterBlockedByRock(fsm);
     }
@@ -122,7 +124,7 @@ public class MonsterGrid {
             for (var j = 0; j < 6; j++) {
                 grid += _monsterGridDictionary[i][j] == null ? "-" :
                     _monsterGridDictionary[i][j].monsterResourceType == MonsterResourceType.RockPile ? "0" :
-                    _monsterGridDictionary[i][j].monsterType == MonsterType.BOSS ? "B" : "X";
+                    _monsterGridDictionary[i][j].monsterType == MonsterType.Boss ? "B" : "X";
                 grid += " ";
             }
 

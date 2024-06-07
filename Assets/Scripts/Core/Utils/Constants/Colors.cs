@@ -1,9 +1,11 @@
+using System;
 using Core.Sprites;
 using Core.StateMachine.Cards;
 using UnityEngine;
 
 namespace Core.Utils.Constants {
 public static class Colors {
+
     public static readonly Color PRIMARY = new(0.69f, 0.60f, 0.47f);
     public static readonly Color SECONDARY = new(0.55f, 0.48f, 0.38f);
     public static readonly Color TERDIARY = new(0.35f, 0.48f, 0.22f);
@@ -15,6 +17,7 @@ public static class Colors {
     public static readonly Color RARE_CARD = new(0.46f, 0.57f, 0.70f);
     public static readonly Color RARE_CARD_DARK = new(0.37f, 0.46f, 0.56f);
     public static readonly Color LEGENDARY_CARD = new(0.50f, 0.00f, 0.50f);
+    public static readonly Color ELIXIR = new(1f, 0.00f, 1f);
     public static readonly Color LEGENDARY_CARD_DARK = new(0.40f, 0.00f, 0.40f);
     public static readonly Color GOLD_CARD = new(0.85f, 0.65f, 0.13f);
     public static readonly Color GOLD_CARD_DARK = new(0.68f, 0.52f, 0.10f);
@@ -54,6 +57,26 @@ public static class Colors {
     public static readonly Color INACTIVE_MENU_BUTTON = new(0.62f, 0.52f, 0.45f, 0.5f);
     public static readonly Color ROCK_ON_POISON = new(0.62f, 0.52f, 0.45f, 0.5f); // TODO change
     public static readonly Color FIRE = new(0.62f, 0.52f, 0.45f, 0.5f); // TODO change
+
+
+    public static Color From(ResourceType resourceType) {
+        return resourceType switch {
+            ResourceType.None => PRIMARY,
+            ResourceType.Coin => GOLD_CARD,
+            ResourceType.Diamond => BUTTON_VARIANT_1,
+            ResourceType.RockScroll => PRIMARY,
+            ResourceType.CharScroll => PRIMARY,
+            ResourceType.AbilityScroll => PRIMARY,
+            ResourceType.Chest => PRIMARY,
+            ResourceType.ChestKey => SECONDARY,
+            ResourceType.Card => SECONDARY,
+            ResourceType.Money => SECONDARY,
+            ResourceType.MasterKey => SECONDARY,
+            ResourceType.Elixir => ELIXIR,
+            ResourceType.Heart => VERY_HARD,
+            _ => throw new ArgumentOutOfRangeException(nameof(resourceType), resourceType, null)
+        };
+    }
 
     public static Color WithAlpha(Color color, float alpha) {
         var newColorWithAlpha = color;

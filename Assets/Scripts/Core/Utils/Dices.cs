@@ -4,17 +4,25 @@ using System.Linq;
 using Core.Data;
 using Core.Sprites;
 using Core.Utils.Constants;
+using UnityEngine;
+using Random = System.Random;
 
 namespace Core.Utils {
 public abstract class Dices {
 
     private static Random random = new Random();
 
+    // Receive 
     public static bool Roll(int percentual) {
-        return random.NextDouble() < (percentual / 100f);
+        var result = random.NextDouble();
+        return result < (percentual / 100f);
     }
     
-    
+    public static bool Roll(float percentual) {
+        var result = random.NextDouble();
+        return result < (percentual / 100f);
+    }
+
     public static List<int> GenerateRandomList(int numberOfElements) {
         // Create a list containing numbers from 0 to numberOfElements
         var list = new List<int>();
@@ -52,6 +60,49 @@ public abstract class Dices {
             case ResourceType.Money:
             default:
                 return 0;
+        }
+    }
+    
+    
+    public static Vector2 RotateRandomly(Vector2 from, Vector2 target)
+    {
+        // Generate a random angle in degrees
+        float angle = GenerateRandomAngle();
+
+        // Convert angle to radians
+        float angleRadians = angle * Mathf.Deg2Rad;
+
+        // Translate target to origin
+        Vector2 direction = target - from;
+
+        // Apply rotation
+        float cosAngle = Mathf.Cos(angleRadians);
+        float sinAngle = Mathf.Sin(angleRadians);
+        Vector2 rotatedDirection = new Vector2(
+            cosAngle * direction.x - sinAngle * direction.y,
+            sinAngle * direction.x + cosAngle * direction.y
+        );
+
+        // Translate back to the original position
+        Vector2 newTarget = from + rotatedDirection;
+
+        return newTarget;
+    }
+
+    private static float GenerateRandomAngle()
+    {
+        // Generate a random boolean to decide between positive and negative angle ranges
+        bool isPositive = random.NextDouble() >= 0.5;
+
+        if (isPositive)
+        {
+            // Random angle between 25 and 45 degrees
+            return (float)random.NextDouble() * 10 + 5;
+        }
+        else
+        {
+            // Random angle between -25 and -45 degrees
+            return (float)random.NextDouble() * -10 - 5;
         }
     }
 }

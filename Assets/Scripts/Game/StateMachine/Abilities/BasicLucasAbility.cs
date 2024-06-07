@@ -9,15 +9,14 @@ using Game.Controller.Game;
 using Game.StateMachine.AbilityPanels;
 using Game.StateMachine.Monster;
 using Game.StateMachine.Rocks;
-using Game.Utils;
 using UnityEngine;
 
 namespace Game.StateMachine.Abilities {
 public class BasicLucasAbility : AbilityPanelBase {
+    private const float Duration = 0.6f;
+    private readonly AtomicInt _actions = new(1);
     private GameObject _axe;
     private MonsterFSM _monsterFSM;
-    private readonly AtomicInt _actions = new AtomicInt(1);
-    private const float Duration = 0.6f;
 
     protected override void InitAction() {
         AssetLoader<AbilityPanel>.LoadAsGameObject(AbilityPanel.LucasBasic, GameController, OnPanelOpen);
@@ -45,10 +44,12 @@ public class BasicLucasAbility : AbilityPanelBase {
             AbilityCanceledCallback?.Invoke();
             return;
         }
+
         AudioController.PlayFX(CommonFX.ThrownHigh);
-        
-        var center = _monsterFSM.monsterType == MonsterType.BOSS ? 1f : 0.5f;
-        var target = new Vector2(Mathf.Floor(_monsterFSM.transform.position.x) + center, Mathf.Floor(_monsterFSM.transform.position.y) + center);
+
+        var center = _monsterFSM.monsterType == MonsterType.Boss ? 1f : 0.5f;
+        var target = new Vector2(Mathf.Floor(_monsterFSM.transform.position.x) + center,
+            Mathf.Floor(_monsterFSM.transform.position.y) + center);
 
         _axe = Instantiate(AssetLoader.AsGameObject(Rock.Axe), GameController.PlayerInGame.transform);
         // Make the axe spin
@@ -60,19 +61,21 @@ public class BasicLucasAbility : AbilityPanelBase {
 
     private void ThrownComplete() {
         // This effect kills normal monster, else make half monster's damage. Boss and Shielded takes regular damage.
-        if (_monsterFSM.monsterType is MonsterType.NORMAL or MonsterType.FAST or MonsterType.CORNER)
+        if (_monsterFSM.monsterType is MonsterType.Normal or MonsterType.Fast or MonsterType.Corner) {
             _monsterFSM.State.Kill(_monsterFSM);
-        else if (_monsterFSM.monsterType is MonsterType.MAGE or MonsterType.SHAMAN)
+        }
+        else if (_monsterFSM.monsterType is MonsterType.Mage or MonsterType.Shaman) {
             _monsterFSM.State.Hit(_monsterFSM, _monsterFSM.GetLife());
+        }
         else {
-            if (_monsterFSM.monsterType == MonsterType.SHIELDED) 
+            if (_monsterFSM.monsterType == MonsterType.Shielded)
                 AudioController.PlayFX(CommonFX.ImpactMetal);
             var rock = AssetLoader.AsComponent<RockFSM>(Rock.Crooked);
-            _monsterFSM.State.Hit(_monsterFSM, rock.rockDamage * GameController.AbilityFactor.DamageFactor);
+            _monsterFSM.State.Hit(_monsterFSM, rock.Damage());
         }
-        
+
         _axe.transform.DOKill();
-        Destroy(_axe); 
+        Destroy(_axe);
         GameController.ShowGameUI();
         AbilityDoneCallback?.Invoke();
     }

@@ -140,6 +140,26 @@ PrefabInstance:
       propertyPath: components.originalIcon
       value: 
       objectReference: {fileID: -1408990746, guid: 8ea693c84486b6441ac1a198413a83ac, type: 3}
+    - target: {fileID: 7222727239702437290, guid: 18674750e2a95e140a5c69d77fc90051, type: 3}
+      propertyPath: attributes.Array.data[1].updates.m_keys.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7222727239702437290, guid: 18674750e2a95e140a5c69d77fc90051, type: 3}
+      propertyPath: attributes.Array.data[1].updates.m_values.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7222727239702437290, guid: 18674750e2a95e140a5c69d77fc90051, type: 3}
+      propertyPath: attributes.Array.data[1].updates.m_keys.Array.data[0]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7222727239702437290, guid: 18674750e2a95e140a5c69d77fc90051, type: 3}
+      propertyPath: attributes.Array.data[0].updates.m_values.Array.data[0]
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 7222727239702437290, guid: 18674750e2a95e140a5c69d77fc90051, type: 3}
+      propertyPath: attributes.Array.data[1].updates.m_values.Array.data[0]
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 7489373697926889731, guid: 18674750e2a95e140a5c69d77fc90051, type: 3}
       propertyPath: m_Sprite
       value: 

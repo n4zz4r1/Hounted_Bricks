@@ -198,7 +198,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7222727239702437290, guid: 18674750e2a95e140a5c69d77fc90051, type: 3}
       propertyPath: attributes.Array.data[7].updates.m_values.Array.data[0]
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7222727239702437290, guid: 18674750e2a95e140a5c69d77fc90051, type: 3}
       propertyPath: attributes.Array.data[10].updates.m_values.Array.data[0]

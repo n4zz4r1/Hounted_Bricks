@@ -6,7 +6,6 @@ using UnityEngine;
 using UnityEngine.UI;
 
 namespace Game.StateMachine.MonsterHB {
-
 public class MonsterHBFSM : StateMachine<MonsterHBFSM, State<MonsterHBFSM>> {
     [SerializeField] public MonsterFSM monsterFSM;
     [SerializeField] public RectTransform rect;

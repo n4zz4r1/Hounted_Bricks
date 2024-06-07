@@ -315,7 +315,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 283032309851
-    m_Localized: Mover +
+    m_Localized: Mover
     m_Metadata:
       m_Items: []
   - m_Id: 283032309852
@@ -340,11 +340,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 283036504070
-    m_Localized: its a trap
+    m_Localized: Mine
     m_Metadata:
       m_Items: []
   - m_Id: 283036504071
-    m_Localized: its a trap
+    m_Localized: Mine
     m_Metadata:
       m_Items: []
   - m_Id: 283036504072
@@ -353,11 +353,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 283036504073
-    m_Localized: give me money
+    m_Localized: Gold Mine
     m_Metadata:
       m_Items: []
   - m_Id: 283036504074
-    m_Localized: give me money
+    m_Localized: Gold Mine
     m_Metadata:
       m_Items: []
   - m_Id: 283036504075
@@ -1038,11 +1038,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 13789088201723933
-    m_Localized: more love please
+    m_Localized: Multi-Strike
     m_Metadata:
       m_Items: []
   - m_Id: 13789088201723934
-    m_Localized: more love please
+    m_Localized: Multi-Strike
     m_Metadata:
       m_Items: []
   - m_Id: 13789088201723935

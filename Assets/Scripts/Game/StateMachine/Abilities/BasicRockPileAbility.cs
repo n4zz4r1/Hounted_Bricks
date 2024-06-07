@@ -6,9 +6,9 @@ using Game.Controller.Game;
 using UnityEngine;
 
 namespace Game.StateMachine.Abilities {
-public class BasicRockPileAbility : Ability<GameController> {
+public class BasicRockPileAbility : Ability<GameController, GameState> {
     [SerializeField] public RockPile type = RockPile.Basic;
-    
+
     protected override void InitAction() {
         AssetLoader<AbilityPanel>.LoadAsGameObject(AbilityPanel.RockPile, OnPanelOpen);
     }

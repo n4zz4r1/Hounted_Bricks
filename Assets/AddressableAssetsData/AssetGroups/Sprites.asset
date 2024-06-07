@@ -24,6 +24,7 @@ MonoBehaviour:
     - MainSceneAddressable
     - Sprites
     - Prefabs
+    - GameAssets
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 0c43deb829b91d146bdd2b36be502c01
     m_Address: ResourceType_Card
@@ -32,6 +33,7 @@ MonoBehaviour:
     - MainSceneAddressable
     - Sprites
     - Prefabs
+    - GameAssets
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9076f2b0b2b3b584f908e0c4620d7be2
     m_Address: ResourceType_CharScroll
@@ -40,6 +42,7 @@ MonoBehaviour:
     - MainSceneAddressable
     - Sprites
     - Prefabs
+    - GameAssets
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 673aa81531bc8424eb112c7415b2b2cb
     m_Address: ResourceType_Chest
@@ -48,6 +51,7 @@ MonoBehaviour:
     - MainSceneAddressable
     - Sprites
     - Prefabs
+    - GameAssets
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f93a6450d2e44364dabfdc12918510bc
     m_Address: ResourceType_ChestKey
@@ -56,6 +60,7 @@ MonoBehaviour:
     - MainSceneAddressable
     - Sprites
     - Prefabs
+    - GameAssets
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 806ff350883cf5e4db1ab3f76e22b435
     m_Address: ResourceType_Coin
@@ -64,6 +69,7 @@ MonoBehaviour:
     - MainSceneAddressable
     - Sprites
     - Prefabs
+    - GameAssets
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2ab8e1e5b394cbc48bf24e4ec4abdf60
     m_Address: ResourceType_MasterKey
@@ -72,6 +78,7 @@ MonoBehaviour:
     - MainSceneAddressable
     - Sprites
     - Prefabs
+    - GameAssets
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: cbb8e76c2a9737f4489de179639c662e
     m_Address: ResourceType_Money
@@ -80,6 +87,7 @@ MonoBehaviour:
     - MainSceneAddressable
     - Sprites
     - Prefabs
+    - GameAssets
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 71c303b54c967334da4f92d0a897d861
     m_Address: ResourceType_None
@@ -88,6 +96,7 @@ MonoBehaviour:
     - MainSceneAddressable
     - Sprites
     - Prefabs
+    - GameAssets
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1843503aac37b8041b388a2913b79549
     m_Address: ResourceType_RockScroll
@@ -96,6 +105,7 @@ MonoBehaviour:
     - MainSceneAddressable
     - Sprites
     - Prefabs
+    - GameAssets
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 28a9b7d14f49dca45acf1cde2a85d0ea
     m_Address: ResourceType_Diamond
@@ -104,6 +114,7 @@ MonoBehaviour:
     - MainSceneAddressable
     - Sprites
     - Prefabs
+    - GameAssets
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 46f265e2f9fcb9d4190089fae6e47e1b
     m_Address: CardType_Ability
@@ -112,6 +123,7 @@ MonoBehaviour:
     - MainSceneAddressable
     - Prefabs
     - Sprites
+    - GameAssets
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: cca384a234e82d844a00de0fa5d61a8b
     m_Address: CardType_Character
@@ -120,6 +132,7 @@ MonoBehaviour:
     - MainSceneAddressable
     - Prefabs
     - Sprites
+    - GameAssets
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c417d2e1abb57324a8f2f639361c7725
     m_Address: CardType_None
@@ -128,6 +141,7 @@ MonoBehaviour:
     - MainSceneAddressable
     - Prefabs
     - Sprites
+    - GameAssets
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f735d9186054cc846ae4e38926c1c9b8
     m_Address: CardType_Rock
@@ -136,6 +150,7 @@ MonoBehaviour:
     - MainSceneAddressable
     - Prefabs
     - Sprites
+    - GameAssets
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 4ff1c278a7340ae429d3491e3bbe03cb
     m_Address: CardType_Special
@@ -144,6 +159,7 @@ MonoBehaviour:
     - MainSceneAddressable
     - Prefabs
     - Sprites
+    - GameAssets
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 20ae6c96170db944f9909cb8429fd92d
     m_Address: CardType_BasicAbility
@@ -152,6 +168,25 @@ MonoBehaviour:
     - MainSceneAddressable
     - Sprites
     - Prefabs
+    - GameAssets
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3fda882b52085d64598a205927fc592f
+    m_Address: ResourceType_Heart
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprites
+    - MainSceneAddressable
+    - Prefabs
+    - GameAssets
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c4812a540347c5245b6e60ebd4e80900
+    m_Address: ResourceType_Elixir
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprites
+    - MainSceneAddressable
+    - Prefabs
+    - GameAssets
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 32e1b6a54f8b9a04b841d0c47a9f0d7a, type: 2}

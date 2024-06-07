@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Framework.Base {
 public abstract class Controller<T, TU> : StateMachine<T, TU> where T : MonoBehaviour where TU : State<T> {
@@ -9,6 +10,5 @@ public abstract class Controller<T, TU> : StateMachine<T, TU> where T : MonoBeha
     }
     
     public void FadeIn() => customTransition.GetComponent<CustomTransition>().FadeIn();
-
 }
 }

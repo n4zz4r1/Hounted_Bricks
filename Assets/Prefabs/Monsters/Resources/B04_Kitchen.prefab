@@ -72,6 +72,14 @@ PrefabInstance:
       propertyPath: life
       value: 450
       objectReference: {fileID: 0}
+    - target: {fileID: 4107898449068045943, guid: 5c39cf84e623b574d909527f3dc1da2c, type: 3}
+      propertyPath: baseLife
+      value: 4000
+      objectReference: {fileID: 0}
+    - target: {fileID: 4107898449068045943, guid: 5c39cf84e623b574d909527f3dc1da2c, type: 3}
+      propertyPath: baseDamage
+      value: 9999
+      objectReference: {fileID: 0}
     - target: {fileID: 4496902466448515863, guid: 5c39cf84e623b574d909527f3dc1da2c, type: 3}
       propertyPath: m_Controller
       value: 

@@ -6,7 +6,7 @@ using Game.Controller.Game;
 using UnityEngine;
 
 namespace Game.StateMachine.Abilities {
-public class AddQuantityAbility : Ability<GameController> {
+public class AddQuantityAbility : Ability<GameController, GameState> {
     [SerializeField] public Card card;
 
     // Increase based on its quantity

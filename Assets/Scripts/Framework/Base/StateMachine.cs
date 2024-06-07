@@ -77,6 +77,15 @@ public abstract class StateMachine<T, TU> : MonoBehaviour where T : MonoBehaviou
         ChangeStateBase();
         State.Enter(FSM);
     }
+    
+    public void ChangeStateWithCoroutine(TU newState) {
+        if (State == newState) return;
+        StartCoroutine(State?.ExitAsync(FSM, () => {
+            State = newState;
+            ChangeStateBase();
+            State.Enter(FSM);
+        }));
+    }
 
     public virtual void ChangeStateBase() { }
 

@@ -316,11 +316,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 283032309851
-    m_Localized: Walk +
+    m_Localized: Walk
     m_Metadata:
       m_Items: []
   - m_Id: 283032309852
-    m_Localized: Mover +
+    m_Localized: Walk
     m_Metadata:
       m_Items: []
   - m_Id: 283032309853
@@ -328,11 +328,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 283036504067
-    m_Localized: Lets rock
+    m_Localized: Rockstorm
     m_Metadata:
       m_Items: []
   - m_Id: 283036504068
-    m_Localized: Lets rock
+    m_Localized: Rockstorm
     m_Metadata:
       m_Items: []
   - m_Id: 283036504069
@@ -341,11 +341,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 283036504070
-    m_Localized: its a trap
+    m_Localized: Mine
     m_Metadata:
       m_Items: []
   - m_Id: 283036504071
-    m_Localized: its a trap
+    m_Localized: Mine
     m_Metadata:
       m_Items: []
   - m_Id: 283036504072
@@ -354,11 +354,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 283036504073
-    m_Localized: give me money
+    m_Localized: Gold Mine
     m_Metadata:
       m_Items: []
   - m_Id: 283036504074
-    m_Localized: give me money
+    m_Localized: Gold Mine
     m_Metadata:
       m_Items: []
   - m_Id: 283036504075
@@ -990,11 +990,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 13789088201723921
-    m_Localized: Rock Pile +
+    m_Localized: Rock
     m_Metadata:
       m_Items: []
   - m_Id: 13789088201723922
-    m_Localized: Rock Pile +
+    m_Localized: Rock
     m_Metadata:
       m_Items: []
   - m_Id: 13789088201723923
@@ -1003,23 +1003,23 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 13789088201723924
-    m_Localized: more rocks please
+    m_Localized: Axe
     m_Metadata:
       m_Items: []
   - m_Id: 13789088201723925
-    m_Localized: more rocks please
+    m_Localized: Axe
     m_Metadata:
       m_Items: []
   - m_Id: 13789088201723926
-    m_Localized: get a change to duplicate or triplicate each rock you throw
+    m_Localized: Thrown an axe, kiling in most types of monsters.
     m_Metadata:
       m_Items: []
   - m_Id: 13789088201723927
-    m_Localized: rock party
+    m_Localized: Shattershot
     m_Metadata:
       m_Items: []
   - m_Id: 13789088201723928
-    m_Localized: rock party
+    m_Localized: Shattershot
     m_Metadata:
       m_Items: []
   - m_Id: 13789088201723929
@@ -1028,11 +1028,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 13789088201723930
-    m_Localized: no pain, no gain
+    m_Localized: Powerboost
     m_Metadata:
       m_Items: []
   - m_Id: 13789088201723931
-    m_Localized: no pain, no gain
+    m_Localized: Powerboost
     m_Metadata:
       m_Items: []
   - m_Id: 13789088201723932
@@ -1040,11 +1040,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 13789088201723933
-    m_Localized: more love please
+    m_Localized: Multi-Strike
     m_Metadata:
       m_Items: []
   - m_Id: 13789088201723934
-    m_Localized: more love please
+    m_Localized: Multi-Strike
     m_Metadata:
       m_Items: []
   - m_Id: 13789088201723935
@@ -1052,11 +1052,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 13789088201723936
-    m_Localized: perfect aim
+    m_Localized: Diamond Mine
     m_Metadata:
       m_Items: []
   - m_Id: 13789088201723937
-    m_Localized: perfect aim
+    m_Localized: Diamond Mine
     m_Metadata:
       m_Items: []
   - m_Id: 13789088201723938

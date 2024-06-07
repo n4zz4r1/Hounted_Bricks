@@ -3,7 +3,6 @@ using Framework.Base;
 using UnityEngine;
 
 namespace Game.StateMachine.AbilityPanels {
-
 public class AbilityPanelFSM : StateMachine<AbilityPanelFSM, State<AbilityPanelFSM>> {
     [SerializeField] public Components components;
 

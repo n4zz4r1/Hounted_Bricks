@@ -47,6 +47,18 @@ MonoBehaviour:
     m_SerializedLabels:
     - GameAssets
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 25fb07a42f36c364b94bfcf4fb5f8cc3
+    m_Address: Rock_Broken
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameAssets
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1c3d82c4a7f9fd04781bfab46c91ffe7
+    m_Address: Rock_BrokeArrowed
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameAssets
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 32e1b6a54f8b9a04b841d0c47a9f0d7a, type: 2}
   m_SchemaSet:

@@ -38,7 +38,8 @@ public class Damaged : State<MonsterHBFSM> {
         else {
             var newLife = FSM.monsterFSM.CurrentLife / FSM.monsterFSM.GetLife();
 
-            FSM.rect.DOSizeDelta(new Vector2(newLife, FSM.rect.sizeDelta.y), 0.1f); // Adjust the duration (0.5f) as needed
+            FSM.rect.DOSizeDelta(new Vector2(newLife, FSM.rect.sizeDelta.y),
+                0.1f); // Adjust the duration (0.5f) as needed
 
             // FSM.rect.sizeDelta = new Vector2(newLife, FSM.rect.sizeDelta.y);
 

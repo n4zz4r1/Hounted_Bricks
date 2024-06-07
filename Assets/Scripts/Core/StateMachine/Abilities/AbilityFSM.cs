@@ -1,5 +1,6 @@
 ﻿using System;
 using Core.StateMachine.Cards;
+using Core.Utils.Constants;
 using Framework.Base;
 using UnityEngine;
 using UnityEngine.Events;
@@ -40,7 +41,7 @@ public abstract class AbilityFSM : StateMachine<AbilityFSM, State<AbilityFSM>> {
     // }
 }
 
-public abstract class Ability<T> : AbilityFSM where T : MonoBehaviour {
+public abstract class Ability<T, TZ> : AbilityFSM where T : StateMachine<T, TZ> where TZ : State<T> {
     protected T GameController;
     protected GameObject Panel;
 
@@ -50,7 +51,9 @@ public abstract class Ability<T> : AbilityFSM where T : MonoBehaviour {
         AbilityDoneCallback = callback;
         AbilityCanceledCallback = canceledCallback;
         GameController = controller as T;
-        InitAction();
+        
+            InitAction();
+        
     }
     
     // public void Execute(T controller, UnityAction callback,  UnityAction canceledCallback) {
